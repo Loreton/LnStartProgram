@@ -1,9 +1,10 @@
 #
-#  updated by Loreto: 17-10-2017 09.25.15
+#  updated by Loreto: 17-10-2017 17.08.57
 #
 
 import os, sys
 import subprocess
+from  pathlib import *         # dalla versione 3.4
 import pathlib as p         # dalla versione 3.4
 
 import Functions as myFunc
@@ -36,32 +37,28 @@ def setSUBST(drive, substDir):
 def calculateMainDirs():
     # programName,  fAction, fConsole = args['program'], args['go'], args['console']
 
-    logger.info("caller       : {}".format(args['caller']))
-    logger.info("program      : {}".format(args['program']))
-    logger.info("subst Drive  : {}".format(args['subst']))
-    logger.info("action       : {}".format(args['go']))
-    logger.info("console      : {}".format(args['console']))
 
-        # - create dirs
-    import pathlib
+
+        # ---------------------------------------------------------------
+        # - prepare dirs
+        # - devo partire dalla directory del caller in quanto mi serve
+        # - la root di partenza di LnDisk
+        # ---------------------------------------------------------------
     scriptMain  = p.Path(sys.argv[0]).resolve()
-    thisDir     = myFunc.VerifyPath(gv, scriptMain.parent)
-    # print (type(scriptMain))
-    # print (isinstance(scriptMain, pathlib.WindowsPath))
-    # print (isinstance(scriptMain, pathlib.))
-
+    # thisDir     = myFunc.VerifyPath(scriptMain.parent,      logger=logger)
+    LnStart     = myFunc.VerifyPath(args['caller'].strip(), logger=logger)
+    LnStart     = LnStart.drive
+    # thisDir   = myFunc.VerifyPath(os.path.abspath(os.path.dirname(sys.argv[0])), logger=logger)
+    # logger.info("gv.Ln.LnStart     : {}".format(gv.Ln.LnStart))
+    # logger.info("")
+    Drive     = myFunc.VerifyPath(LnStart, logger=logger).drive
     sys.exit()
-    thisDir   = myFunc.VerifyPath(gv, os.path.abspath(os.path.dirname(sys.argv[0])))
-    thisDir   = myFunc.VerifyPath(gv, args['caller'].strip())
+    RootDir   = myFunc.VerifyPath(LnStart, logger=logger)
 
-    logger.info("thisDir     : {}".format(thisDir))
-    logger.info("")
 
-    gv.Ln.Drive     = myFunc.VerifyPath(gv, thisDir[:2])
-    gv.Ln.RootDir   = myFunc.VerifyPath(gv, os.path.abspath(os.path.dirname(thisDir)))
-    gv.Ln.LoretoDir = myFunc.VerifyPath(gv, os.path.abspath(os.path.join(gv.Ln.RootDir, 'Loreto')))
-    gv.Ln.FreeDir   = myFunc.VerifyPath(gv, os.path.abspath(os.path.join(gv.Ln.RootDir, 'LnFree')))
-    gv.Ln.GitRepo   = myFunc.VerifyPath(gv, os.path.abspath(os.path.join(gv.Ln.RootDir, 'GIT-REPO')))
+    gv.Ln.LoretoDir = myFunc.VerifyPath(os.path.abspath(os.path.join(gv.Ln.RootDir, 'Loreto')), logger=logger)
+    gv.Ln.FreeDir   = myFunc.VerifyPath(os.path.abspath(os.path.join(gv.Ln.RootDir, 'LnFree')), logger=logger)
+    gv.Ln.GitRepo   = myFunc.VerifyPath(os.path.abspath(os.path.join(gv.Ln.RootDir, 'GIT-REPO')), logger=logger)
 
         # - logging
     logger.info("Drive       : {}".format(gv.Ln.Drive))
@@ -100,7 +97,7 @@ if __name__ == '__main__':
     gv.subst = LnClass()
 
     args   = myFunc.ParseInput() # ; print (args)
-    logger = myFunc.LoggerSetUp(CONSOLE=args['console'])
+    logger = myFunc.LoggerSetUp(fCONSOLE=args['console'], ARGS=args)
     gv.logger = logger
 
     calculateMainDirs()
