@@ -1,43 +1,61 @@
 #!/usr/bin/python3.5
 #
 # Scope:  Programma per ...........
-# updated by Loreto: 17-10-2017 08.34.07
+# updated by Loreto: 19-10-2017 15.59.48
 # -----------------------------------------------
-import sys, os
-
-logger = None
-
+from    sys import exit as sysExit
+import os
+import winreg
 
 # =============================================
 # = Parsing
 # =============================================
 def SetTotalCommander(gv):
-    global logger
-    logger = gv.logger
+    logger = gv.Ln.SetLogger(__package__)
     CMDList = []
-    TCDir  = '{}\Files\Manager\WinCmd-LN'.format(gv.Ln.FreeDir)
-    TCexe  = '{}\realApp\WinCmd\TOTALCMD.EXE'.format(TCDir)
+    TCDir     = gv.Ln.VerifyPath(gv, gv.env.FreeDir.joinpath('Files/Manager/WinCmd-LN'))
+    dataDir   = gv.Ln.VerifyPath(gv, TCDir.joinpath('LnData'))
+    iconsDir  = gv.Ln.VerifyPath(gv, TCDir.joinpath('LnData/Icons'))
+    configDir = gv.Ln.VerifyPath(gv, TCDir.joinpath('LnData/Config'))
+    logDir    = gv.Ln.VerifyPath(gv, TCDir.joinpath('log'))
 
-    dataDir      = setVerifyPath('{}\LnData'.format(TCDir))
-    TCIconsDir   = setVerifyPath('{}\Icons'.format(dataDir))
-    TCIConfigDir = setVerifyPath('{}\Config'.format(dataDir))
+    tcIniFile  = gv.Ln.VerifyPath(gv, configDir.joinpath('WinCmd.ini'))
+    ftpIniFile = gv.Ln.VerifyPath(gv, configDir.joinpath('Wcx_Ftp.ini'))
 
-    tcIniFile    = setVerifyPath('{}\Wincmd.ini'.format(TCIConfigDir))
-    ftpIniFile   = setVerifyPath('{}\Wcx_Ftp.ini'.format(TCIConfigDir))
-    logDir       = setVerifyPath('{}\log'.format(dataDir))
 
-    # if  not os.path.isfile(tcIniFile) \
-    #     or not os.path.isfile(ftpIniFile) \
-    #     or not os.path.isfile(TCexe) \
-    #     or not os.path.isdir(logDir):
-    #     print('ERRORE....')
-    #     sys.exit()
+
+
+    # =====================================================================
+    # * Verifichiamo la versione del sistema operativo
+    # * Set "RegQry=HKLM\Hardware\Description\System\CentralProcessor\0"
+    # * "%SystemRoot%\system32\REG.exe"  Query %RegQry%
+    # =====================================================================
+    reg_obj = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r'Hardware\Description\System\CentralProcessor\0',0, (winreg.KEY_WOW64_64KEY+ winreg.KEY_READ))
+    OSbits = winreg.EnumValue(reg_obj, 1)[1].split()[0]   # ('Identifier', 'Intel64 Family 6 Model 69 Stepping 1', 1)
+    winreg.CloseKey(reg_obj)
+    logger.info("Windows OS bits: {}".format(OSbits))
+
+    if OSbits.lower() == "intel64":
+        TCexe = gv.Ln.VerifyPath(gv, TCDir.joinpath('realApp/WinCmd/TOTALCMD64.exe'))
+        if gv.fDEBUG: print ("Stiamo lavorando con TotalCommander 64 Bits")
+    else:
+        TCexe = gv.Ln.VerifyPath(gv, TCDir.joinpath('realApp/WinCmd/TOTALCMD.exe'))
+        if gv.fDEBUG: print ("Stiamo lavorando con TotalCommander 32 Bits")
 
 
     CMDList.append(TCexe)
     CMDList.append('/I={}'.format(tcIniFile))
     CMDList.append('/F={}'.format(ftpIniFile))
+
+
     return CMDList
+
+
+
+
+
+
+
 
 
 

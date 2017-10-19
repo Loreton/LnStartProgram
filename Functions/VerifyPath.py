@@ -1,38 +1,28 @@
 #!/usr/bin/python3.5
 #
 # Scope:  Programma per ...........
-# updated by Loreto: 17-10-2017 17.07.21
+# updated by Loreto: 19-10-2017 11.50.48
+#  https://docs.python.org/3/library/pathlib.html
 # -----------------------------------------------
-import sys, os
-from pathlib import *
-# import pathlib as p
+from    sys     import exit as sysExit
+from    pathlib import Path, PurePath
+
+def VerifyPath(gv, path, exitOnError=True):
+    logger = gv.Ln.SetLogger(__name__)
+    logger.info('path: {} - {}'.format(path, type(path)))
 
 
-def VerifyPath(path, logger=None):
-    print ('\n.........', type(path), path)
-    if logger: logger.info('verifying path: {}'.format(path))
-
-    retPath = None
-
-    if isinstance(path, WindowsPath):
-        if  path.exists():
-            retPath = path
-
-    elif isinstance(path, PureWindowsPath):
-        if  Path(path).exists():
-            retPath = path
-
-    elif  os.path.isfile(path) or os.path.isdir(path):
-        retPath = path
-
+    if  Path(path).exists():
+        retPath = PurePath(path)
+        logger.info('    .... exists - {}'.format(type(retPath)))
     else:
-        if  Path(path).exists():
-            retPath = path
-        # print("ERROR: path: {} doesn't exists".format(path))
-        # sys.exit()
+        retPath = None
+        logger.info('    .... not exists')
+        if exitOnError:
+            print("*********** ERROR **************")
+            print("* ", path, "doesn't exists.")
+            print("*********** ERROR **************")
+            sysExit()
 
-    retPath = PurePath(retPath)
-    print ('.....', type(retPath),retPath)
-    print ()
 
     return retPath
