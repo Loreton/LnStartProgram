@@ -1,25 +1,14 @@
 #
-#  updated by Loreto: 19-10-2017 15.58.40
+#  updated by Loreto: 19-10-2017 16.51.29
 #
-
-# import  os, sys
-
-# from    pathlib import *         # dalla versione 3.4
-# import  pathlib as p         # dalla versione 3.4
-# from    time import sleep
 
 import  Functions as myFunc
 
-# class LnClass(): pass
+#@TODO: spostare le directory su un file di configurazione
+#@TODO: preparare per Executor
 
-
-
-
-
-
-# le variabili definite qui sono automaticamente globali.
 if __name__ == '__main__':
-    gv        = myFunc.LnClass()
+    gv        = myFunc.LnClass() # definita nell __init__.py
     gv.env    = myFunc.LnClass()
     gv.Ln     = myFunc
 

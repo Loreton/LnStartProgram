@@ -1,12 +1,12 @@
 #!/usr/bin/python3.5
 #
 # Scope:  Programma per ...........
-# updated by Loreto: 19-10-2017 15.57.50
+# updated by Loreto: 19-10-2017 16.47.39
 # -----------------------------------------------
 from    sys     import argv as sysArgv, exit as sysExit
-# import sys
+
 from    pathlib import Path
-# import  os
+
 import  argparse
 import  time
 
