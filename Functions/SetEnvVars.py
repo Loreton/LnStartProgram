@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # Scope:  Programma per ...........
-# updated by Loreto: 19-10-2017 15.49.53
+# updated by Loreto: 20-10-2017 15.25.31
 #  https://docs.python.org/3/library/pathlib.html
 # -----------------------------------------------
 from    os     import environ, getenv
@@ -31,13 +31,34 @@ def setPath(pathName):
 def SetEnvVars(gVars):
     global gv, logger
     gv = gVars
-    logger = gv.Ln.SetLogger(__name__)
+    logger = gv.prj.SetLogger(__name__)
+
+
+    iniFile = gv.Ln.ReadIniFile(gv.args.config_file, strict=True)
+    iniFile.setDebug(False)
+    iniFile.read(resolveEnvVars=True)
+    gv.cfgFile = gv.Ln.LnDict(iniFile.dict)
+    # gv.cfgFile.printTree(fPAUSE=True)
+
+
+
+
+    sysExit()
+
+#########################################################################
+#
+#########################################################################
+def SetEnvVars_OK(gVars):
+    global gv, logger
+    gv = gVars
+    logger = gv.prj.SetLogger(__name__)
+
 
     freeDir     = gv.env.FreeDir
     rootDir     = gv.env.RootDir
     gitRepoDir  = gv.env.GitRepoDir
-    pythonDir   = gv.Ln.VerifyPath(gv, freeDir.joinpath('Pgm/WinPython-64bit-3.5.3.1Qt5/python-3.5.3.amd64'))
-    JAVA_HOME   = gv.Ln.VerifyPath(gv, freeDir.joinpath('Pgm/Java/jdk1.8.0_66'))
+    pythonDir   = gv.prj.VerifyPath(gv, freeDir.joinpath('Pgm/WinPython-64bit-3.5.3.1Qt5/python-3.5.3.amd64'))
+    JAVA_HOME   = gv.prj.VerifyPath(gv, freeDir.joinpath('Pgm/Java/jdk1.8.0_66'))
 
 
     myVars = {
@@ -61,7 +82,7 @@ def SetEnvVars(gVars):
     }
 
     for varName, varValue in myVars.items():
-        setOsEnv(varName, gv.Ln.VerifyPath(gv, varValue))
+        setOsEnv(varName, gv.prj.VerifyPath(gv, varValue))
 
 
     myPATH = []

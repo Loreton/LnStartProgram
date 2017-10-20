@@ -1,14 +1,14 @@
 #!/usr/bin/python3.5
 #
 # Scope:  Programma per ...........
-# updated by Loreto: 19-10-2017 11.50.48
+# updated by Loreto: 20-10-2017 08.45.56
 #  https://docs.python.org/3/library/pathlib.html
 # -----------------------------------------------
 from    sys     import exit as sysExit
 from    pathlib import Path, PurePath
 
 def VerifyPath(gv, path, exitOnError=True):
-    logger = gv.Ln.SetLogger(__name__)
+    logger = gv.prj.SetLogger(__name__)
     logger.info('path: {} - {}'.format(path, type(path)))
 
 

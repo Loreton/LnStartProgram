@@ -1,27 +1,32 @@
 #
-#  updated by Loreto: 19-10-2017 16.51.29
+#  updated by Loreto: 20-10-2017 14.59.18
 #
 
-import  Functions as myFunc
+import  Functions as Prj
+import  LnLib as Ln
 
 #@TODO: spostare le directory su un file di configurazione
 #@TODO: preparare per Executor
 
 if __name__ == '__main__':
-    gv        = myFunc.LnClass() # definita nell __init__.py
-    gv.env    = myFunc.LnClass()
-    gv.Ln     = myFunc
+    # gv        = myFunc.LnClass() # definita nell __init__.py
+    # gv.env    = myFunc.LnClass()
+    gv        = Ln.LnDict()
+    gv.env    = Ln.LnDict()
+    gv.prj    = Prj
+    gv.Ln     = Ln
 
 
-    args   = gv.Ln.ParseInput() # ; print (args)
-    gv.fDEBUG = args['debug']
-    logger = gv.Ln.InitLogger(fFILE=args['log_file'], fCONSOLE=args['log_console'], ARGS=args)
+    args      = gv.prj.ParseInput() # ; print (args)
+    gv.args   = Ln.LnDict(args)
+    gv.fDEBUG = gv.args.debug
+    logger    = gv.prj.InitLogger(fFILE=gv.args.log_file, fCONSOLE=gv.args.log_console, ARGS=args)
     gv.logger = logger
 
-    gv.Ln.CalculateMainDirs(gv, args)
-    gv.Ln.SetEnvVars(gv)
+    gv.prj.CalculateMainDirs(gv, args)
+    gv.prj.SetEnvVars(gv)
 
 
     if args['program'].lower().strip() in ['tc', 'totalcomander']:
-        CMDList = gv.Ln.SetTotalCommander(gv)
-        gv.Ln.LaunchProgram(gv, 'TotalCommander command list:', CMDList)
+        CMDList = gv.prj.SetTotalCommander(gv)
+        gv.prj.LaunchProgram(gv, 'TotalCommander command list:', CMDList)

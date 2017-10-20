@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # Scope:  Programma per ...........
-# updated by Loreto: 19-10-2017 15.59.48
+# updated by Loreto: 20-10-2017 08.45.49
 # -----------------------------------------------
 from    sys import exit as sysExit
 import os
@@ -11,16 +11,16 @@ import winreg
 # = Parsing
 # =============================================
 def SetTotalCommander(gv):
-    logger = gv.Ln.SetLogger(__package__)
+    logger = gv.prj.SetLogger(__package__)
     CMDList = []
-    TCDir     = gv.Ln.VerifyPath(gv, gv.env.FreeDir.joinpath('Files/Manager/WinCmd-LN'))
-    dataDir   = gv.Ln.VerifyPath(gv, TCDir.joinpath('LnData'))
-    iconsDir  = gv.Ln.VerifyPath(gv, TCDir.joinpath('LnData/Icons'))
-    configDir = gv.Ln.VerifyPath(gv, TCDir.joinpath('LnData/Config'))
-    logDir    = gv.Ln.VerifyPath(gv, TCDir.joinpath('log'))
+    TCDir     = gv.prj.VerifyPath(gv, gv.env.FreeDir.joinpath('Files/Manager/WinCmd-LN'))
+    dataDir   = gv.prj.VerifyPath(gv, TCDir.joinpath('LnData'))
+    iconsDir  = gv.prj.VerifyPath(gv, TCDir.joinpath('LnData/Icons'))
+    configDir = gv.prj.VerifyPath(gv, TCDir.joinpath('LnData/Config'))
+    logDir    = gv.prj.VerifyPath(gv, TCDir.joinpath('log'))
 
-    tcIniFile  = gv.Ln.VerifyPath(gv, configDir.joinpath('WinCmd.ini'))
-    ftpIniFile = gv.Ln.VerifyPath(gv, configDir.joinpath('Wcx_Ftp.ini'))
+    tcIniFile  = gv.prj.VerifyPath(gv, configDir.joinpath('WinCmd.ini'))
+    ftpIniFile = gv.prj.VerifyPath(gv, configDir.joinpath('Wcx_Ftp.ini'))
 
 
 
@@ -36,10 +36,10 @@ def SetTotalCommander(gv):
     logger.info("Windows OS bits: {}".format(OSbits))
 
     if OSbits.lower() == "intel64":
-        TCexe = gv.Ln.VerifyPath(gv, TCDir.joinpath('realApp/WinCmd/TOTALCMD64.exe'))
+        TCexe = gv.prj.VerifyPath(gv, TCDir.joinpath('realApp/WinCmd/TOTALCMD64.exe'))
         if gv.fDEBUG: print ("Stiamo lavorando con TotalCommander 64 Bits")
     else:
-        TCexe = gv.Ln.VerifyPath(gv, TCDir.joinpath('realApp/WinCmd/TOTALCMD.exe'))
+        TCexe = gv.prj.VerifyPath(gv, TCDir.joinpath('realApp/WinCmd/TOTALCMD.exe'))
         if gv.fDEBUG: print ("Stiamo lavorando con TotalCommander 32 Bits")
 
 
