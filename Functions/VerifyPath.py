@@ -1,28 +1,35 @@
 #!/usr/bin/python3.5
 #
 # Scope:  Programma per ...........
-# updated by Loreto: 20-10-2017 08.45.56
+# updated by Loreto: 23-10-2017 07.57.10
 #  https://docs.python.org/3/library/pathlib.html
 # -----------------------------------------------
 from    sys     import exit as sysExit
 from    pathlib import Path, PurePath
 
 def VerifyPath(gv, path, exitOnError=True):
-    logger = gv.prj.SetLogger(__name__)
+    logger = gv.Prj.SetLogger(__name__)
     logger.info('path: {} - {}'.format(path, type(path)))
 
 
-    if  Path(path).exists():
+
+    try:
+        pathExists = Path(path).exists()
+
+    except (Exception) as why:
+        pathExists = False
+        logger.error(str(why))
+
+
+    if pathExists:
         retPath = PurePath(path)
-        logger.info('    .... exists - {}'.format(type(retPath)))
+        logger.info('exists.')
+
     else:
         retPath = None
-        logger.info('    .... not exists')
+        logger.error('not exists.')
         if exitOnError:
-            print("*********** ERROR **************")
-            print("* ", path, "doesn't exists.")
-            print("*********** ERROR **************")
-            sysExit()
+            gv.Ln.Exit(10, "{} doesn't exists".format(path))
 
 
     return retPath

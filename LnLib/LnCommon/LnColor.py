@@ -139,6 +139,8 @@ class LnColor:
     YEL         = YELLOW
 
     Error  = RedH
+    Warning  = MagentaH
+    Fucsia  = MagentaH
     # getREDH     = printRedH
     # getYellow   = printYellow
     # getGreen    = printGreen

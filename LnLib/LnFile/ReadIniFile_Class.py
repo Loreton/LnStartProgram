@@ -2,7 +2,7 @@
 # -*- coding: iso-8859-1 -*-
 #
 # Scope:  ............
-# updated by Loreto: 20-10-2017 15.17.00
+# updated by Loreto: 23-10-2017 14.59.41
 # ######################################################################################
 from sys import exit as sysExit
 from  os import getenv as osGetEnv
@@ -11,12 +11,12 @@ import collections
 import configparser
 import codecs
 
-from ..LnCommon.LnLogger import SetLogger
+# from ..LnCommon.LnLogger import SetLogger
 from ..LnCommon.LnColor  import LnColor
 
 class ReadIniFile(object):
     """docstring for ClassName"""
-    def __init__(self, fileName, strict=True):
+    def __init__(self, fileName, strict=True, logger=None):
         self._filename                = str(fileName) # potrebbe essere della classe pathlib
         self._delimiters              = ('=', ':')
         self._comment_prefixes        = ('#',';')
@@ -33,6 +33,7 @@ class ReadIniFile(object):
         self._fDEBUG                  = False
         self._subSectionChar          = []   # es ('\\', '/' , '.')
         self._exitOnError             = False
+        self._logger                 = logger
 
         self._SetParser()
 
@@ -76,6 +77,9 @@ class ReadIniFile(object):
     def returnRAW(self, flag):
         self._returnRAW = flag
 
+    def setLogger(self, logger):
+        self._logger = logger
+
     def subSectionChar(self, charList):
         if isinstance(charList, str):
             charList = [charList]
@@ -88,7 +92,7 @@ class ReadIniFile(object):
     # # https://docs.python.org/3/library/configparser.html
     # ######################################################
     def read(self, onlySection=None, returnOrderedDict=False, resolveEnvVars=False):
-        logger  = SetLogger(package=__name__)
+        # logger  = self._logger
         self._onlySection       = onlySection
         self._returnOrderedDict = returnOrderedDict
         self._resolveEnvVars    = resolveEnvVars
@@ -108,18 +112,18 @@ class ReadIniFile(object):
             # - Se Key-Val esistono esse sono rimpiazzate
             # ------------------------------------------------------------------
         for sectionName in self._extraSections:
-            logger.info('adding Section: {SECTION}'.format(SECTION=sectionName))
-            logger.info('          data: {EXTRA}'.format(EXTRA=extraSections[sectionName]))
+            self._logger.info('adding Section: {SECTION}'.format(SECTION=sectionName))
+            self._logger.info('          data: {EXTRA}'.format(EXTRA=extraSections[sectionName]))
             extraSection = extraSections[sectionName]
 
             if not self._configMain.has_section(sectionName):
-                logger.debug('creating Section: {0}'.format(sectionName))
+                self._logger.debug('creating Section: {0}'.format(sectionName))
                 self._configMain.add_section(sectionName)
 
             for key, val in extraSection.items():
-                logger.debug('adding on Section {0}:'.format(sectionName))
-                logger.debug('   key: {0}'.format(key))
-                logger.debug('   val: {0}'.format(val))
+                self._logger.debug('adding on Section {0}:'.format(sectionName))
+                self._logger.debug('   key: {0}'.format(key))
+                self._logger.debug('   val: {0}'.format(val))
                 self._configMain.set(sectionName, key, val)
 
 
@@ -138,7 +142,7 @@ class ReadIniFile(object):
     #                  interpretare la stessa come section+subsection
     ############################################################
     def _iniConfigAsDict(self):
-        logger  = SetLogger(package=__name__)
+        # logger  = SetLogger(package=__name__)
         C = LnColor()
         """
         Converts a ConfigParser object into a dictionary.
@@ -194,9 +198,9 @@ class ReadIniFile(object):
                                     val = val.replace('%{}%'.format(envVarName), envVarValue)
                                 else:
                                     msg = 'nome della variabile di ambiente: [{VAR}] non trovato.'.format(VAR=envVarName)
-                                    C.printYellow(msg, tab=4)
-                                    logger.warning(msg)
-                                    if self._fDEBUG:print(msg)
+                                    # C.Yellow(msg, tab=4)
+                                    self._logger.warning(msg)
+                                    if self._fDEBUG: C.Yellow(msg, tab=4)
 
                     currSECT[key] = val
                     if self._fDEBUG: print('    {KEY:<30} : {VAL}'.format(KEY=key, VAL=val))

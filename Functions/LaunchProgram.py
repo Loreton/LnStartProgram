@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # Scope:  Programma per ...........
-# updated by Loreto: 20-10-2017 08.45.37
+# updated by Loreto: 23-10-2017 08.08.36
 # -----------------------------------------------
 from  subprocess import Popen
 from    pathlib import PureWindowsPath, WindowsPath         # dalla versione 3.4
@@ -10,7 +10,7 @@ from    pathlib import PureWindowsPath, WindowsPath         # dalla versione 3.4
 #
 #########################################################################
 def LaunchProgram(gv, textMsg, CMDList):
-    logger = gv.prj.SetLogger(__package__)
+    logger = gv.Prj.SetLogger(__package__)
 
         # --------------------------------------------------
         # - Nella lista del comando potrebbero essere presenti

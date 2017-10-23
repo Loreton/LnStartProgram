@@ -21,7 +21,7 @@ EXIT_STACK  = -32
 # - Ad esempio la Prj.exit() chimaera wuesta exit con stackLevel=2 in modo
 # - da saltare se stessa.
 # =======================================================================
-def Exit(rcode, text, printStack=False, stackLevel=9, console=True):
+def Exit(rcode, text, printStack=True, stackLevel=9, console=True):
     logger  = SetLogger(package=__name__)
     cPrint       = LnColor()
 
@@ -39,8 +39,11 @@ def Exit(rcode, text, printStack=False, stackLevel=9, console=True):
     if rcode == 0:
         printColor = cPrint.Green
         logWrite = logger.debug
+    elif rcode >9000: # uscite per debugging
+        printColor = cPrint.Warning
+        logWrite = logger.warning
     else:
-        printColor = cPrint.ERROR
+        printColor = cPrint.Error
         logWrite = logger.error
 
 

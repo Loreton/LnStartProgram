@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # Scope:  Programma per ...........
-# updated by Loreto: 20-10-2017 15.06.41
+# updated by Loreto: 23-10-2017 15.01.49
 # -----------------------------------------------
 
 import  os, sys
@@ -13,9 +13,9 @@ logger = None
 #########################################################################
 #
 #########################################################################
-def setOsEnv(varName, varValue):
-    logger.info('{0:<20} : {1}'.format(varName, varValue))
-    os.environ[varName] = str(varValue)
+# def setOsEnv(varName, varValue):
+#     logger.info('{0:<20} : {1}'.format(varName, varValue))
+#     os.environ[varName] = str(varValue)
 
 #########################################################################
 #
@@ -25,7 +25,7 @@ def setSUBST(drive, substDir):
     CMDList.append('subst')
     CMDList.append(str(drive))
     CMDList.append(str(substDir))
-    gv.prj.LaunchProgram(gv, "executing SUBST command:", CMDList)
+    gv.Prj.LaunchProgram(gv, "executing SUBST command:", CMDList)
     sleep(1) #diamo tempo che avvenga il montaggio
 
 
@@ -35,7 +35,7 @@ def setSUBST(drive, substDir):
 def CalculateMainDirs(gVars, myArgs):
     global logger, gv
     gv     = gVars
-    logger = gv.prj.SetLogger(__package__)
+    logger = gv.Prj.SetLogger(__package__)
 
         # ---------------------------------------------------------------
         # - prepare dirs
@@ -44,12 +44,12 @@ def CalculateMainDirs(gVars, myArgs):
         # ---------------------------------------------------------------
     scriptMain  = Path(sys.argv[0]).resolve()
 
-    gv.env.StartDir    = gv.prj.VerifyPath(gv, myArgs['callerDir'])
-    gv.env.Drive       = gv.prj.VerifyPath(gv, gv.env.StartDir.drive)
-    gv.env.RootDir     = gv.prj.VerifyPath(gv, gv.env.StartDir.parent)
-    # gv.env.LoretoDir   = gv.prj.VerifyPath(gv, gv.env.RootDir.joinpath('Loreto'))
-    # gv.env.FreeDir     = gv.prj.VerifyPath(gv, gv.env.RootDir.joinpath('LnFree'))
-    # gv.env.GitRepoDir  = gv.prj.VerifyPath(gv, gv.env.RootDir.joinpath('GIT-REPO'))
+    gv.env.StartDir    = gv.Prj.VerifyPath(gv, myArgs['callerDir'])
+    gv.env.Drive       = gv.Prj.VerifyPath(gv, gv.env.StartDir.drive)
+    gv.env.RootDir     = gv.Prj.VerifyPath(gv, gv.env.StartDir.parent)
+    # gv.env.LoretoDir   = gv.Prj.VerifyPath(gv, gv.env.RootDir.joinpath('Loreto'))
+    # gv.env.FreeDir     = gv.Prj.VerifyPath(gv, gv.env.RootDir.joinpath('LnFree'))
+    # gv.env.GitRepoDir  = gv.Prj.VerifyPath(gv, gv.env.RootDir.joinpath('GIT-REPO'))
 
 
         # --------------------------------------------
@@ -57,7 +57,7 @@ def CalculateMainDirs(gVars, myArgs):
         # - impostiamo anche i path per quel drive
         # --------------------------------------------
     if myArgs['subst']:
-        gv.subst = gv.prj.LnClass()
+        gv.subst = gv.Prj.LnClass()
         substDrive = myArgs['subst'].strip()
         if substDrive.lower() in ['x:', 'y:', 'w:', 'z:']:
             gv.subst.MountDir  = gv.env.RootDir
@@ -65,17 +65,17 @@ def CalculateMainDirs(gVars, myArgs):
                 setSUBST(substDrive, gv.subst.MountDir )
 
             # verifico che il comando di SUBST sia andato a buon fine...
-            gv.subst.FreeDir = gv.prj.VerifyPath(gv, Path(substDrive).joinpath('/LnFree'), exitOnError=False)
+            gv.subst.FreeDir = gv.Prj.VerifyPath(gv, Path(substDrive).joinpath('/LnFree'), exitOnError=False)
             if gv.subst.FreeDir:
-                gv.subst.Drive      = gv.prj.VerifyPath(gv, Path(substDrive))
-                # gv.subst.LoretoDir  = gv.prj.VerifyPath(gv, gv.subst.Drive.joinpath('/Loreto'))
-                gv.subst.StartDir   = gv.prj.VerifyPath(gv, gv.subst.Drive.joinpath('/LnStart'))
-                # gv.subst.GitRepoDir = gv.prj.VerifyPath(gv, gv.subst.Drive.joinpath('/GIT-REPO'))
+                gv.subst.Drive      = gv.Prj.VerifyPath(gv, Path(substDrive))
+                # gv.subst.LoretoDir  = gv.Prj.VerifyPath(gv, gv.subst.Drive.joinpath('/Loreto'))
+                gv.subst.StartDir   = gv.Prj.VerifyPath(gv, gv.subst.Drive.joinpath('/LnStart'))
+                # gv.subst.GitRepoDir = gv.Prj.VerifyPath(gv, gv.subst.Drive.joinpath('/GIT-REPO'))
 
                     # - setting and logging
-                setOsEnv('Ln.subst.Drive'     ,gv.subst.Drive)
-                setOsEnv('Ln.subst.MountDir'  ,gv.subst.MountDir)
-                setOsEnv('Ln.subst.StartDir'  ,gv.subst.StartDir)
+                gv.Prj.setOsEnv(gv, 'Ln.subst.Drive'     ,gv.subst.Drive)
+                gv.Prj.setOsEnv(gv, 'Ln.subst.MountDir'  ,gv.subst.MountDir)
+                gv.Prj.setOsEnv(gv, 'Ln.subst.StartDir'  ,gv.subst.StartDir)
                 # setOsEnv('Ln.subst.LoretoDir' ,gv.subst.LoretoDir)
                 # setOsEnv('Ln.subst.FreeDir'   ,gv.subst.FreeDir)
                 # setOsEnv('Ln.subst.GitRepoDir',gv.subst.GitRepoDir)
@@ -95,9 +95,9 @@ def CalculateMainDirs(gVars, myArgs):
 
 
     # - re-impostiamo le vriabili di ambiente
-    setOsEnv('Ln.Drive'     ,gv.env.Drive)
-    setOsEnv('Ln.RootDir'   ,gv.env.RootDir)
-    setOsEnv('Ln.StartDir'  ,gv.env.StartDir)
+    gv.Prj.setOsEnv(gv, 'Ln.Drive'     ,gv.env.Drive)
+    gv.Prj.setOsEnv(gv, 'Ln.RootDir'   ,gv.env.RootDir)
+    gv.Prj.setOsEnv(gv, 'Ln.StartDir'  ,gv.env.StartDir)
     # setOsEnv('Ln.LoretoDir' ,gv.env.LoretoDir)
     # setOsEnv('Ln.FreeDir'   ,gv.env.FreeDir)
     # setOsEnv('Ln.GitRepoDir',gv.env.GitRepoDir)

@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # Scope:  Programma per ...........
-# updated by Loreto: 20-10-2017 09.45.43
+# updated by Loreto: 23-10-2017 15.23.01
 # -----------------------------------------------
 from    sys     import argv as sysArgv, exit as sysExit
 
@@ -20,10 +20,15 @@ def ParseInput():
     if len(sysArgv) == 1: sysArgv.append('-h')
 
     programDir     = Path(sysArgv[0]).resolve().parent
+    if programDir.name.lower() in ['bin',  'source']:
+        programDir = programDir.parent
+
     prjName        = programDir.name   # nome della dir del programma
 
         # ---- DEFAULT VALUEs
     defaultLogDir     = programDir
+    # print (programDir)
+    # sysExit()
     defaultLogFile    = Path(defaultLogDir , 'log', prjName + time.strftime('_%Y-%m-%d') + '.log')
     defaultConfigFile = Path(programDir , 'conf', prjName + '.ini')
     defaultCallerDir  = Path(sysArgv[0]).resolve().parent
