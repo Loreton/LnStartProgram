@@ -3,8 +3,7 @@
 # -O Optimize e non scrive il __debug__
 #
 # -----------------------------------------------
-__author__  = 'Loreto Notarantonio'
-__version__ = 'LnVer_2017-03-30_09.38.23'
+# updated by Loreto: 23-10-2017 16.01.38
 # -----------------------------------------------
 
 # ####################################################################################################################
@@ -15,7 +14,7 @@ import logging
 import logging.config # obbligatorio altrimenti da' l'errore: <'module' object has no attribute 'config'>
 import inspect
 
-gPackageQualifiers = 0
+# gPackageQualifiers = 0
 isLoggerActive = False   # variabile globale accessibile anche dall'esterno
 
 _logMODULE  = False
@@ -27,9 +26,6 @@ _LOGGER     = False
 class ContextFilter(logging.Filter):
     """
     This is a filter which injects contextual information into the log.
-
-    Rather than use actual contextual information, we just use random
-    data in this demo.
     """
     def __init__(self):
         self._line  = None
@@ -80,35 +76,14 @@ def _GetCaller(deepLevel=0, funcName=None):
     # - INIT del log. Chiamato solo dal MAIN program
     # ========================================================
 def InitLogger(iniLogFile, logFileName, package, LOGGER=False, logCONSOLE=False, logMODULE=False, packageQualifiers=2):
-    global gPackageQualifiers
+    # global gPackageQualifiers
     global _logMODULE, _logCONSOLE, _LOGGER
-
-    '''
-    if logCONSOLE:
-        _LOGGER     = True
-        _logCONSOLE = True
-        _logMODULE  = logCONSOLE[:]
-
-    elif LogMODULE:
-        _LOGGER     = True
-        _logCONSOLE = False
-        _logMODULE  = LogMODULE[:]
-
-    else:
-        _logMODULE  = False
-        _logCONSOLE = False
-        _LOGGER     = False
-    '''
 
     _logMODULE  = logMODULE
     _logCONSOLE = logCONSOLE
     _LOGGER     = LOGGER
 
-
-    # print( _LOGGER)
-
-
-    gPackageQualifiers = packageQualifiers
+    # gPackageQualifiers = packageQualifiers
 
     if not os.path.isfile(iniLogFile):
         print (iniLogFile, "... NOT FOUND")
@@ -222,7 +197,7 @@ def SetLogger(package, stackNum=0):
         packageHier = pkgName.split('.')
 
         pkgName     = (packageHier[0] +'.'+packageHier[-1])  # se ho nomi servizi uguali in diversi moduli crea confusione
-        pkgName     = ('.'.join(packageHier[-gPackageQualifiers:]))
+        # pkgName     = ('.'.join(packageHier[-gPackageQualifiers:]))
         pkgName     = ('.'.join(packageHier[-2:])) # prende il modulo+Function
 
             # ------------------------------------------------

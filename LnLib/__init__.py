@@ -20,8 +20,8 @@ isUnix    = not isWindows
 # ############### OpSy type & version
 
 
-# from . LnCommon.LnLogger                import SetLogger
-# from . LnCommon.LnLogger                import InitLogger
+from . LnCommon.LnLogger_New2                import SetLogger
+from . LnCommon.LnLogger_New2                import InitLogger
 # from . LnCommon.LnLogger                import SetNullLogger
 from . LnCommon.LnColor                 import LnColor
 from . LnCommon.Exit                    import Exit
@@ -29,6 +29,7 @@ from . LnCommon.Exit                    import Exit
 from . System.GetKeyboardInput          import getKeyboardInput
 from . System.ExecRcode                 import ExecRcode
 from . LnMonkey import LnMonkeyFunctions
+# from . LnMonkey import LnLoggerClass
 
 from . LnDict.LnDict_DotMap             import DotMap  as LnDict
 

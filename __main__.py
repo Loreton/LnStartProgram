@@ -1,10 +1,11 @@
 #
-#  updated by Loreto: 23-10-2017 15.35.08
+#  updated by Loreto: 23-10-2017 18.02.52
 #
 
 import  Functions as Prj
 import  LnLib as Ln
 import  winreg
+import logging
 
 
 #@TODO: spostare le directory su un file di configurazione
@@ -27,8 +28,21 @@ if __name__ == '__main__':
     args      = gv.Prj.ParseInput() # ; print (args)
     gv.args   = Ln.LnDict(args)
     gv.fDEBUG = gv.args.debug
-    logger    = gv.Prj.InitLogger(fFILE=gv.args.log_file, fCONSOLE=gv.args.log_console, ARGS=args)
+    # myLog = logging
+    logger    = gv.Ln.InitLogger(fFILE=gv.args.log_file, fCONSOLE=gv.args.log_console, ARGS=args)
+    # logger    = myLog.initLogger(fFILE=gv.args.log_file, fCONSOLE=gv.args.log_console, ARGS=args)
     gv.logger = logger
+
+
+
+
+
+    # gv.Ln.Exit(9999, "temporary exit")
+
+
+
+
+
 
 
     gv.Prj.CalculateMainDirs(gv, args)
@@ -65,7 +79,7 @@ if __name__ == '__main__':
         gv.Prj.LaunchProgram(gv, 'Executor command list:', CMDList)
 
     else:
-        gv.Ln.Exit(1, "Program: {} notyet implemented".format(gv.args.program))
+        gv.Ln.Exit(1, "Program: {} not yet implemented".format(gv.args.program))
 
     gv.Ln.Exit(0, "Process completed, {} has been started".format(gv.args.program))
 

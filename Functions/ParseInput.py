@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # Scope:  Programma per ...........
-# updated by Loreto: 23-10-2017 15.23.01
+# updated by Loreto: 23-10-2017 17.51.47
 # -----------------------------------------------
 from    sys     import argv as sysArgv, exit as sysExit
 
@@ -55,7 +55,8 @@ def ParseInput():
                                 metavar='subst',
                                 help=myHELP('Specify the SUBST drive', None))
 
-    myParser.add_argument('-cf', '--config-file',
+    myParser.add_argument('--config-file',
+                                metavar='',
                                 type=_fileCheck,
                                 required=False,
                                 default=defaultConfigFile,
@@ -66,7 +67,7 @@ def ParseInput():
                                 action='store_true',
                                 help=myHELP('Specifies if program must be started', False))
 
-    myParser.add_argument('--debug', '-D',
+    myParser.add_argument('--debug',
                                 required=False,
                                 action='store_true',
                                 help=myHELP('Specifies if program must be started', False))
@@ -81,17 +82,26 @@ def ParseInput():
                                 action='store_true',
                                 help=myHELP('Enable log on file... ', False))
 
-    myParser.add_argument('--log-console',
+        # log debug su console
+    myParser.add_argument( "--log-console",
+                                metavar='',
                                 required=False,
-                                action='store_true',
-                                help=myHELP('Enable log on console... ', False))
+                                default=False,
+                                nargs='*',
+                                help=myHELP("""attivazione log sulla console.
+    E' possibile indicare una o più stringhe
+    per identificare le funzioni che si vogliono inserire nel log.
+    Possono essere anche porzioni di funcName separate da ' ' Es: pippo uto ciao""", False))
 
-    myParser.add_argument('--log-file',
+
+    myParser.add_argument('--log-filename',
+                                metavar='',
                                 required=False,
                                 default=defaultLogFile,
                                 help=myHELP('Specifies log fileName...', defaultLogFile))
 
     myParser.add_argument('--callerDir',
+                                metavar='',
                                 type=_fileCheck,
                                 required=False,
                                 default=defaultCallerDir,
