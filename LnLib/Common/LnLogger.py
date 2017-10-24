@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # Scope:  Programma per ...........
-# updated by Loreto: 23-10-2017 17.46.04
+# updated by Loreto: 24-10-2017 09.10.33
 # -----------------------------------------------
 from    sys import exit as sysExit, _getframe as getframe
 import  logging, time
@@ -9,8 +9,6 @@ from    pathlib import Path
 import  inspect
 
 myLOGGER    = None
-toFILE      = []
-toCONSOLE   = []
 modulesToLog = []
 
 
@@ -22,10 +20,13 @@ modulesToLog = []
 #   %(funcName)s    Name of function containing the logging call.
 #   %(lineno)d      Source line number where the logging call was issued (if available).
 # =============================================
-def InitLogger(fFILE=None, fCONSOLE=False, ARGS=None):
-    global myLOGGER, toFILE, toCONSOLE, modulesToLog
+def InitLogger(toFILE=None, toCONSOLE=False, ARGS=None):
+    global myLOGGER, modulesToLog
 
-    if not fFILE and not fCONSOLE:
+    if toCONSOLE == []: toCONSOLE = '!ALL!'
+    modulesToLog = toCONSOLE
+
+    if not toFILE and not toCONSOLE:
         myLOGGER = None
         return _setNullLogger()
 
@@ -40,17 +41,15 @@ def InitLogger(fFILE=None, fCONSOLE=False, ARGS=None):
     logFormatter = logging.Formatter('[%(asctime)s] [%(module)s:%(lineno)4d] %(levelname)-5.5s - %(message)s','%m-%d %H:%M:%S')
     logger       = logging.getLogger()
     logger.setLevel(logging.DEBUG)
-
         # log to file
-    if fFILE:
-        toFILE = True
+    if toFILE:
         ''' impostalo manualmente
-            LOG_DIR = Path(fFILE)
+            LOG_DIR = Path(toFILE)
             LOG_DIR.mkdir(parents=True, exist_ok=True) # se esiste non dare errore
             LOG_FILE_NAME = LOG_DIR.joinpath('LnStartProgra_' + time.strftime('%Y-%m-%d') + '.log')
         '''
-        LOG_FILE_NAME = fFILE
-        LOG_DIR = Path(fFILE).parent
+        LOG_FILE_NAME = toFILE
+        LOG_DIR = Path(toFILE).parent
         LOG_DIR.mkdir(parents=True, exist_ok=True) # se esiste non dare errore
 
         print ('using log file:', LOG_FILE_NAME)
@@ -60,11 +59,9 @@ def InitLogger(fFILE=None, fCONSOLE=False, ARGS=None):
         logger.addHandler(fileHandler)
 
         # log to the console
-    if fCONSOLE:
-        toCONSOLE = fCONSOLE
-        modulesToLog = fCONSOLE
+    if toCONSOLE:
         consoleFormatter = logFormatter
-        consoleHandler = logging.StreamHandler()
+        consoleHandler   = logging.StreamHandler()
         consoleHandler.setFormatter(consoleFormatter)
         logger.addHandler(consoleHandler)
 
@@ -86,14 +83,14 @@ def InitLogger(fFILE=None, fCONSOLE=False, ARGS=None):
 # ====================================================================================
 # - dal package passato come parametro cerchiamo di individuare se la fuzione/modulo
 # - è tra quelli da fare il log.
-# -
+# - Il package mi server per verficare se devo loggare il modulo o meno
 # ====================================================================================
 def SetLogger(package, stackNum=0):
     if not myLOGGER:
         return _setNullLogger()
 
+    # print ('..................', modulesToLog)
 
-    # stackLevel = 1                          # stackLevel di base
     stackLevel = stackNum + 1                 # aggiungiamo quello richiesto dal caller
     print (stackLevel)
     funcName    = getframe(stackLevel).f_code.co_name
@@ -101,7 +98,10 @@ def SetLogger(package, stackNum=0):
 
 
         # - tracciamo la singola funzione oppure modulo oppure libreria od altro
-    if modulesToLog:
+    if modulesToLog == '!ALL!':
+        LOG_LEVEL = logging.DEBUG
+
+    elif modulesToLog:
         LOG_LEVEL = None # default
         fullPkg = (package + funcName).lower()
         print (fullPkg)
@@ -109,18 +109,9 @@ def SetLogger(package, stackNum=0):
             if moduleStr.lower() in fullPkg:
                 LOG_LEVEL = logging.DEBUG
 
-    else:
-        LOG_LEVEL = logging.DEBUG
+    else:       # False
+        LOG_LEVEL = None # default
 
-
-
-    '''
-        # - calcoliamo il nome del package da scrivere nel log....
-    funcLineNO  = getframe(stackLevel).f_lineno
-    pkgName     = package + '.' + funcName if funcName else package
-    packageHier = pkgName.split('.')
-    pkgName     = ('.'.join(packageHier[-2:])) # prende il modulo+Function
-    '''
 
     logger = logging.getLogger(package)
 
@@ -134,41 +125,6 @@ def SetLogger(package, stackNum=0):
 
 
 
-    # -----------------------------------------------------------------------------------------
-    # - Per quanto riguarda il setLogger, devo intervenire sul numero di riga della funzione
-    # - altrimenti scriverebbe quello della presente funzione.
-    # - Per fare questo utilizzo l'aggiunta di un filtro passandogli il lineNO corretto
-    # - per poi ripristinarlo al default
-    # -----------------------------------------------------------------------------------------
-
-    # print ('..........', LOG_LEVEL, pkgName)
-
-
-         # logger.setLevel(logging.NOTSET)  # oppure FATAL
-
-        # - creiamo il contextFilter
-    LnFilter    = _ContextFilter()
-
-        # - aggiungiamolo al logger attuale
-    logger.addFilter(LnFilter)
-
-        # - modifichiamo la riga della funzione chiamante
-    LnFilter.setLineNO(funcLineNO)
-
-        # ----------------------------------------------------------------------------------
-        # - inseriamo la riga con riferimento al chiamante di questa fuznione
-        # - nel "...called by" inseriamo il caller-1
-        # ----------------------------------------------------------------------------------
-    # logger.debug('')
-
-        # --------------------------------------------------------------------------
-        # - azzeriamo il lineNO in modo che le prossime chiamate al logger, che
-        # - non passano da questa funzione, prendano il lineNO corretto.
-        # --------------------------------------------------------------------------
-    LnFilter.setLineNO(None)
-    LnFilter.setStack(5)            # ho verificato che con 5 sembra andare bene
-
-    return logger
 
 
 

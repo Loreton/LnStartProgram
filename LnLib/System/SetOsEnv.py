@@ -1,48 +1,46 @@
-#!/usr/bin/python3.5
+#!/usr/bin/python3.4
+# -*- coding: iso-8859-15 -*-
 #
-# Scope:  Programma per ...........
-# updated by Loreto: 23-10-2017 10.10.39
-# -----------------------------------------------
+# updated by Loreto: 24-10-2017 12.53.07
+#
+# ####################################################################################################################
 
-
-from    os     import environ, getenv
-from    sys     import exit as sysExit
-from    pathlib import Path, PurePath
-
+from os                           import environ, getenv
+from LnLib.Common.LnLogger        import SetLogger    as LnSetLogger
+from LnLib.File.VerifyPath        import VerifyPath   as LnVerifyPath
 
 #########################################################################
 #
 #########################################################################
-def setOsEnv(gv, varName, varValue, fDEBUG=False):
+def setOsEnv(varName, varValue, fDEBUG=False):
+    logger = LnSetLogger(__package__)
     msg = '{0:<20} : {1}'.format(varName, varValue)
-    gv.logger.info(msg)
+    logger.info(msg)
     if fDEBUG: print (msg)
     environ[varName] = str(varValue)
-
 
 
 #########################################################################
 # - Setting PATH
 #########################################################################
 def setPath(pathName, pathValue, fMANDATORY=True, sepChar=';'):
+    logger = LnSetLogger(__package__)
     newPATH = getenv(pathName)
     paths = pathValue.split(sepChar)
     for path in paths:
-        path    = gv.Prj.VerifyPath(gv, path, exitOnError=fMANDATORY)
+        path    = LnVerifyPath(path, exitOnError=fMANDATORY)
         path    = '{0};'.format(path)           # add ;
         newPATH = newPATH.replace(path, '')     # delete if exists
         newPATH = path + newPATH                # add new one
 
-    setOsEnv(gv, pathName, newPATH, fDEBUG=False)
+    setOsEnv(pathName, newPATH, fDEBUG=False)
 
 
 #########################################################################
 # imposta le variabili passate come dictionary
 #########################################################################
-def SetEnvVars(gVars, dictVARS):
-    global gv, logger
-    gv = gVars
-    logger = gv.Prj.SetLogger(__name__)
+def SetEnvVars(dictVARS, fDEBUG=False):
+    logger = LnSetLogger(__package__)
 
         # -------------------------------------------------
         # - Setting delle variabili
@@ -53,18 +51,16 @@ def SetEnvVars(gVars, dictVARS):
             fMANDATORY = False
         else:
             fMANDATORY = True
-        path = gv.Prj.VerifyPath(gv, varValue, exitOnError=fMANDATORY)
-        setOsEnv(gv, varName, path, fDEBUG=gv.fDEBUG)
+        path = LnVerifyPath(varValue, exitOnError=fMANDATORY)
+        setOsEnv(varName, path, fDEBUG=fDEBUG)
 
 
 
 #########################################################################
 # imposta le path passate come dictionary
 #########################################################################
-def SetEnvPaths(gVars, dictVARS):
-    global gv, logger
-    gv = gVars
-    logger = gv.Prj.SetLogger(__name__)
+def SetEnvPaths(dictVARS):
+    logger = LnSetLogger(__package__)
     for pathName, pathValue in dictVARS.items():
         if pathName.startswith('opt.'):
             fMANDATORY = False

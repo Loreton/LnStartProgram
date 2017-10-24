@@ -1,19 +1,21 @@
 #!/usr/bin/python3.5
 #
 # Scope:  Programma per ...........
-# updated by Loreto: 23-10-2017 09.55.12
+# updated by Loreto: 24-10-2017 14.24.47
 # -----------------------------------------------
-from    sys import exit as sysExit
-# import os
+from os     import chdir
+import platform
 
-from os import chdir
 
+from LnLib.Common.LnLogger import SetLogger  as LnSetLogger
+from LnLib.System.SetOsEnv import setOsEnv   as LnDetOsEnv
+from LnLib.File.VerifyPath import VerifyPath as LnVerifyPath
 
 # =============================================
 # = Parsing
 # =============================================
-def SetTotalCommander(gv, iniVar):
-    logger = gv.Prj.SetLogger(__package__)
+def SetTotalCommander(iniVar):
+    logger = LnSetLogger(__package__)
     CMDList = []
 
         # -------------------------------------------------
@@ -27,17 +29,18 @@ def SetTotalCommander(gv, iniVar):
             fMANDATORY = True
 
         # salviamolo in formato Path
-        iniVar[varName] = gv.Prj.VerifyPath(gv, varValue, exitOnError=fMANDATORY)
-        gv.Prj.setOsEnv(gv, varName, iniVar[varName])
+        iniVar[varName] = LnVerifyPath(varValue, exitOnError=fMANDATORY)
+        LnDetOsEnv(varName, iniVar[varName])
         if varName.lower() == 'workingdir':
             chdir(str(iniVar[varName]))
 
-    if gv.env.OSbits.lower() == "intel64":
-        TCexe = gv.Prj.VerifyPath(gv, iniVar.TCDir.joinpath('realApp/WinCmd/TOTALCMD64.exe'))
-        if gv.fDEBUG: print ("Stiamo lavorando con TotalCommander 64 Bits")
+
+    OSbits = platform.architecture()[0]
+    logger.info( "Stiamo lavorando con TotalCommander {}".format(OSbits))
+    if OSbits.lower() == "64bit":
+        TCexe = LnVerifyPath(iniVar.TCDir.joinpath('realApp/WinCmd/TOTALCMD64.exe'))
     else:
-        TCexe = gv.Prj.VerifyPath(gv, iniVar.TCDir.joinpath('realApp/WinCmd/TOTALCMD.exe'))
-        if gv.fDEBUG: print ("Stiamo lavorando con TotalCommander 32 Bits")
+        TCexe = LnVerifyPath(iniVar.TCDir.joinpath('realApp/WinCmd/TOTALCMD.exe'))
 
 
     CMDList.append(TCexe)

@@ -1,17 +1,20 @@
 #!/usr/bin/python3.5
 #
 # Scope:  Programma per ...........
-# updated by Loreto: 23-10-2017 07.57.10
+# updated by Loreto: 24-10-2017 09.33.20
 #  https://docs.python.org/3/library/pathlib.html
 # -----------------------------------------------
 from    sys     import exit as sysExit
 from    pathlib import Path, PurePath
 
-def VerifyPath(gv, path, exitOnError=True):
-    logger = gv.Prj.SetLogger(__name__)
-    logger.info('path: {} - {}'.format(path, type(path)))
+from LnLib.Common.Exit          import Exit       as LnExit
+from LnLib.Common.LnLogger      import SetLogger as LnSetLogger
 
 
+def VerifyPath(path, exitOnError=True):
+    logger = LnSetLogger(__package__)
+
+    logger.info('verifying path: {}'.format(path))
 
     try:
         pathExists = Path(path).exists()
@@ -23,13 +26,13 @@ def VerifyPath(gv, path, exitOnError=True):
 
     if pathExists:
         retPath = PurePath(path)
-        logger.info('exists.')
+        logger.info('it exists.')
 
     else:
         retPath = None
-        logger.error('not exists.')
+        logger.error("it doen't exists.")
         if exitOnError:
-            gv.Ln.Exit(10, "{} doesn't exists".format(path))
+            LnExit(10, "{} doesn't exists".format(path))
 
 
     return retPath

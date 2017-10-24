@@ -8,7 +8,7 @@ import collections
 import inspect, os
 import sys
 
-from ..LnCommon.LnColor  import LnColor
+from LnLib.Common.LnColor  import LnColor
 cPrint=LnColor()
 
 # colori delle righe

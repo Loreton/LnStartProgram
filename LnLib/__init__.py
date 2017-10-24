@@ -1,25 +1,40 @@
 #!/usr/bin/env python3
 # -*- coding: iso-8859-1 -*-
 
-import sys, os
+from  sys import version_info as sysVersion, path as sysPath
 import platform
+from pathlib import Path
+'''
+scriptMain  = Path(sys.argv[0]).resolve()
+projectDir  = scriptMain.parent
+currDir  = Path.cwd()
+currDir  = Path('.').resolve()
+print (scriptMain)
+print (projectDir)
+'''
+currfile  = __file__
+currDir  = Path(__file__).parent
+sysPath.insert(0, currDir)
+
+# print (currfile)
+# print (currDir)
+# sys.exit()
 
 
 
 # ############### OpSy type & version
 # - sys.version_info(major=3, minor=3, micro=2, releaselevel='final', serial=0)
-v = sys.version_info
+v = sysVersion
 pyVer = '{0}{1}{2}'.format(v.major, v.minor, v.micro)
 opSys = platform.system()
 if opSys.lower() == 'windows':
     isWindows = True
 else:
     isWindows = False
-
 isUnix    = not isWindows
 # ############### OpSy type & version
 
-
+'''
 from . LnCommon.LnLogger_New2                import SetLogger
 from . LnCommon.LnLogger_New2                import InitLogger
 # from . LnCommon.LnLogger                import SetNullLogger
@@ -49,3 +64,4 @@ from . LnFile.ReadIniFile_Class         import ReadIniFile
 # from . SqLite.LnSqLite_Class                import LnSqLite
 
 
+'''

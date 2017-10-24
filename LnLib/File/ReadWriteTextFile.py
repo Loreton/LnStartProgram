@@ -9,7 +9,7 @@
 
 # import os, sys
 
-from ..LnCommon.LnLogger import SetLogger
+from LnLib.Common.LnLogger import SetLogger
 
 def readTextFile(inputFname, encoding='utf-8', strip=True):
     logger = SetLogger(package=__name__)

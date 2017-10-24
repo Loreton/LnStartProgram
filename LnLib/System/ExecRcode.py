@@ -7,9 +7,9 @@
 # ####################################################################################################################
 import sys, subprocess
 
-from ..LnCommon.LnLogger import SetLogger
-# from ..LnCommon.LnColor  import LnColor
-# from ..LnCommon.Exit     import Exit
+from LnLib.Common.LnLogger import SetLogger
+# from LnLib.Common.LnColor  import LnColor
+# from LnLib.Common.Exit     import Exit
 
 ##########################################################
 # - timeout     solo dalla Versione 3.3

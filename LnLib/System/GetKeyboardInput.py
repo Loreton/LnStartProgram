@@ -11,9 +11,9 @@ __version__ = 'LnVer_2017-06-28_16.34.25'
 import sys, os
 import inspect
 
-from ..LnCommon.LnLogger import SetLogger
-from ..LnCommon.LnColor  import LnColor
-from ..LnCommon.Exit     import Exit
+from LnLib.Common.LnLogger import SetLogger as LnSetLogger
+from LnLib.Common.LnColor  import LnColor
+from LnLib.Common.Exit     import Exit      as LnExit
 
 # ###########################################################################
 # * Gestione input da Keyboard.
@@ -23,7 +23,7 @@ from ..LnCommon.Exit     import Exit
 # * 01-01-2014 - modificato il validKeysLIST.
 # ###########################################################################
 def getKeyboardInput(msg, validKeys='ENTER', exitKey='X', deepLevel=1, keySep="|", fDEBUG=False):
-    logger = SetLogger(package=__name__)
+    logger = LnSetLogger(package=__name__)
     cPrint = LnColor()
     exitKeyUPP = exitKey.upper()
 
@@ -67,7 +67,7 @@ def getKeyboardInput(msg, validKeys='ENTER', exitKey='X', deepLevel=1, keySep="|
                     cPrint.Cyan('\n... please enter something\n')
 
             elif choiceUPP in exitKeyLIST:
-                Exit(9998, "Exiting on user request new.", printStack=True)
+                LnExit(9998, "Exiting on user request new.", printStack=True)
 
             elif choice in validKeyLIST:
                 break
@@ -76,7 +76,7 @@ def getKeyboardInput(msg, validKeys='ENTER', exitKey='X', deepLevel=1, keySep="|
                 cPrint.Cyan('\n... try again\n')
 
     except Exception as why:
-        Exit(8, "Error running program [{ME}]\n\n ....{WHY}\n".format(ME=sys.argv[0], WHY=why) )
+        LnExit(8, "Error running program [{ME}]\n\n ....{WHY}\n".format(ME=sys.argv[0], WHY=why) )
 
     return choice
 

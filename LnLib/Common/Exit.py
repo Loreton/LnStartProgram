@@ -7,8 +7,8 @@
 
 import types, os, inspect, sys
 
-from ..LnCommon.LnLogger import SetLogger       # OK funziona dalla upperDir del package
-from ..LnCommon.LnColor  import LnColor
+from LnLib.Common.LnLogger import SetLogger       # OK funziona dalla upperDir del package
+from LnLib.Common.LnColor  import LnColor
 
 
 EXIT_KEYB   = -30

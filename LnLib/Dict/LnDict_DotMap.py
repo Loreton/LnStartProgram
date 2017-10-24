@@ -4,6 +4,10 @@ from pprint import pprint
 from sys import version_info
 from inspect import ismethod
 
+from LnLib.Dict.DictToList          import KeyTree as LnKeyTree, KeyList as LnKeyList, getValue as LnGetValue
+from LnLib.Dict.PrintDictionaryTree import PrintDictionary as LnPrintDictionary
+LORETO = True
+'''
 try:
     from . import DictToList
     from . import PrintDictionaryTree
@@ -20,6 +24,7 @@ except (Exception) as why:
         LORETO = False
         print ('LORETO:', LORETO)
 
+'''
 
 class DotMap(OrderedDict):
     def __init__(self, *args, **kwargs):
@@ -156,20 +161,20 @@ class DotMap(OrderedDict):
             return ptr
 
         def KeyTree(self, fPRINT=False):
-            return DictToList.KeyTree(self, myDictTYPES=MY_DICT_TYPES, fPRINT=fPRINT)
+            return LnKeyTree(self, myDictTYPES=MY_DICT_TYPES, fPRINT=fPRINT)
 
         def KeyList(self):
-            return DictToList.KeyList(self, myDictTYPES=MY_DICT_TYPES)
+            return LnKeyList(self, myDictTYPES=MY_DICT_TYPES)
 
 
         def PrintTree(self, fEXIT=False, fPAUSE=False, maxDepth=10, header=None, whatPrint='LTKV', stackLevel=1):
-            PrintDictionaryTree.PrintDictionary(self, myDictTYPES=MY_DICT_TYPES, whatPrint=whatPrint, fEXIT=fEXIT, fPAUSE=False, maxDepth=maxDepth, header=header, stackLevel=stackLevel+1)
+            LnPrintDictionary(self, myDictTYPES=MY_DICT_TYPES, whatPrint=whatPrint, fEXIT=fEXIT, fPAUSE=False, maxDepth=maxDepth, header=header, stackLevel=stackLevel+1)
 
         printDict = PrintTree
         printTree = PrintTree
 
         def GetValue(self, listOfQualifiers=[], fPRINT=False):
-            return DictToList.getValue(self, listOfQualifiers=listOfQualifiers, myDictTYPES=MY_DICT_TYPES, fPRINT=fPRINT)
+            return LnGetValue(self, listOfQualifiers=listOfQualifiers, myDictTYPES=MY_DICT_TYPES, fPRINT=fPRINT)
         # ===================================
 
     def empty(self):

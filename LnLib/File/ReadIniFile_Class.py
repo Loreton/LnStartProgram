@@ -2,7 +2,7 @@
 # -*- coding: iso-8859-1 -*-
 #
 # Scope:  ............
-# updated by Loreto: 23-10-2017 14.59.41
+# updated by Loreto: 24-10-2017 09.30.00
 # ######################################################################################
 from sys import exit as sysExit
 from  os import getenv as osGetEnv
@@ -12,7 +12,7 @@ import configparser
 import codecs
 
 # from ..LnCommon.LnLogger import SetLogger
-from ..LnCommon.LnColor  import LnColor
+from LnLib.Common.LnColor  import LnColor
 
 class ReadIniFile(object):
     """docstring for ClassName"""
