@@ -2,7 +2,7 @@
 #  updated by Loreto: 24-10-2017 14.24.09
 #
 
-import  Source as Prj
+# import  Source as Prj
 import  platform
 
 import  winreg
@@ -18,18 +18,19 @@ from LnLib.System.SetOsEnv        import SetEnvPaths as LnSetEnvPaths
 from LnLib.System.RunProgram      import RunProgram  as LnRunProgram
 
 from Source.CalculateMainDirs      import CalculateMainDirs as prjCalculateMainDirs
+from Source.SetTotalCommander      import SetTotalCommander as prjSetTotalCommander
+from Source.SetExecutor             import SetExecutor      as prjSetExecutor
+from Source.ParseInput             import ParseInput      as prjParseInput
 
 
 if __name__ == '__main__':
     gv        = LnDict()
 
 
-    args      = gv.Prj.ParseInput() # ; print (args)
+    args      = prjParseInput() # ; print (args)
     gv.args   = LnDict(args)
     gv.fDEBUG = gv.args.debug
     logger    = InitLogger(toFILE=gv.args.log_file, toCONSOLE=gv.args.log_console, ARGS=args)
-
-
 
 
 
@@ -38,7 +39,7 @@ if __name__ == '__main__':
         # in teoria sono già impostati ma serve in caso
         # di subst perché li modifica opportunamente.
         # -----------------------------------------------
-    # gv.Prj.CalculateMainDirs(gv, args)
+
     prjCalculateMainDirs(args, fDEBUG=gv.fDEBUG)
 
     iniFile = LnReadIniFile(gv.args.config_file, strict=True, logger=logger)
@@ -66,11 +67,11 @@ if __name__ == '__main__':
 
     # prev_cwd = Path.cwd() # Save current directory
     if gv.args.program.lower().strip() in ['tc', 'totalcommander']:
-        CMDList = gv.Prj.SetTotalCommander(gv.cfgFile.TOTAL_COMMANDER)
+        CMDList = prjSetTotalCommander(gv.cfgFile.TOTAL_COMMANDER, fDEBUG=gv.fDEBUG)
         LnRunProgram('TotalCommander command list:', CMDList)
 
     elif gv.args.program.lower().strip() in ['executor']:
-        CMDList = gv.Prj.SetExecutor(gv.cfgFile.EXECUTOR)
+        CMDList = prjSetExecutor(gv.cfgFile.EXECUTOR)
         LnRunProgram('Executor command list:', CMDList)
 
     else:
