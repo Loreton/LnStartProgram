@@ -4,10 +4,10 @@
 # updated by Loreto: 24-10-2017 14.24.41
 # -----------------------------------------------
 from    pathlib import Path
-from LnLib.Common.LnLogger import SetLogger  as LnSetLogger
-import platform
+from    LnLib.Common.LnLogger import SetLogger  as LnSetLogger
+import  platform
 
-
+import LnLib.Monkey.LnMonkeyFunctions # per .LnCopy e .LnBackup
 
 # =============================================
 # = Parsing

@@ -1,7 +1,10 @@
 #!/usr/bin/python3.5
 #
 # Scope:  Programma per ...........
-# updated by Loreto: 24-10-2017 12.55.17
+#
+# __author__  : 'Loreto Notarantonio'
+# __version__ : '25-10-2017 10.25.59'
+#
 # -----------------------------------------------
 
 import  os, sys
@@ -10,6 +13,7 @@ from    time import sleep
 
 from LnLib.Common.LnLogger     import SetLogger   as LnSetLogger
 from LnLib.Common.Exit         import Exit        as LnExit
+from LnLib.Dict.LnDict_DotMap  import DotMap      as LnDict
 from LnLib.System.SetOsEnv     import setOsEnv    as LnDetOsEnv
 from LnLib.File.VerifyPath     import VerifyPath  as LnVerifyPath
 from LnLib.System.RunProgram   import RunProgram  as LnRunProgram
@@ -19,7 +23,7 @@ from LnLib.File.VerifyPath     import VerifyPath  as LnVerifyPath
 #########################################################################
 #
 #########################################################################
-def CalculateMainDirs(gv, myArgs):
+def CalculateMainDirs(myArgs, fDEBUG=False):
     logger = LnSetLogger(__package__)
 
         # ---------------------------------------------------------------
@@ -29,33 +33,37 @@ def CalculateMainDirs(gv, myArgs):
         # ---------------------------------------------------------------
     scriptMain         = Path(sys.argv[0]).resolve()
 
-    gv.env.StartDir    = LnVerifyPath(myArgs['callerDir'])
-    gv.env.Drive       = LnVerifyPath(gv.env.StartDir.drive)
-    gv.env.RootDir     = LnVerifyPath(gv.env.StartDir.parent)
+
+    ln = LnDict()
+    ln.RootDir    = LnVerifyPath(myArgs['rootDir'])
+    ln.Drive      = LnVerifyPath(ln.RootDir.drive)
+    ln.StartDir   = LnVerifyPath(ln.RootDir.joinpath('LnStart'))
+
+    if fDEBUG: ln.printTree(header="ln. variables", fPAUSE=True)
 
         # --------------------------------------------
         # - se e' richiesto un drive SUBST ...
         # - impostiamo anche i path per quel drive
         # --------------------------------------------
     if myArgs['subst']:
-        gv.subst = gv.Prj.LnClass()
+        subst = LnDict()
         substDrive = myArgs['subst'].strip()
         if substDrive.lower() in ['x:', 'y:', 'w:', 'z:']:
-            gv.subst.MountDir  = gv.env.RootDir
+            subst.MountDir  = ln.RootDir
             if not Path(substDrive).exists():
-                LnRunProgram("executing SUBST command:", ['subst', substDrive, gv.subst.MountDir])
+                LnRunProgram("executing SUBST command:", ['subst', substDrive, subst.MountDir])
                 sleep(1) #diamo tempo affinché avvenga il montaggio
 
             # verifico che il comando di SUBST sia andato a buon fine...
-            gv.subst.FreeDir = LnVerifyPath(Path(substDrive).joinpath('/LnFree'), exitOnError=False)
-            if gv.subst.FreeDir:
-                gv.subst.Drive      = LnVerifyPath(Path(substDrive))
-                gv.subst.StartDir   = LnVerifyPath(gv.subst.Drive.joinpath('/LnStart'))
+            subst.FreeDir = LnVerifyPath(Path(substDrive).joinpath('/LnFree'), exitOnError=False)
+            if subst.FreeDir:
+                subst.Drive      = LnVerifyPath(Path(substDrive))
+                subst.StartDir   = LnVerifyPath(subst.Drive.joinpath('/LnStart'))
 
                     # - setting and logging
-                LnDetOsEnv('Ln.subst.Drive'     ,gv.subst.Drive)
-                LnDetOsEnv('Ln.subst.MountDir'  ,gv.subst.MountDir)
-                LnDetOsEnv('Ln.subst.StartDir'  ,gv.subst.StartDir)
+                LnDetOsEnv('Ln.subst.Drive'     ,subst.Drive)
+                LnDetOsEnv('Ln.subst.MountDir'  ,subst.MountDir)
+                LnDetOsEnv('Ln.subst.StartDir'  ,subst.StartDir)
 
             else:
                 logger.warning("il comando di SUBST non ha avuto successo...")
@@ -63,14 +71,17 @@ def CalculateMainDirs(gv, myArgs):
 
             # - se abbiamo attivato il SUBST,
             # - modifichiamo anche le MAIN variables
-            gv.env.Drive        = gv.subst.Drive
-            gv.env.RootDir      = gv.subst.Drive
-            gv.env.StartDir     = gv.subst.StartDir
+            ln.Drive        = subst.Drive
+            ln.RootDir      = subst.Drive
+            ln.StartDir     = subst.StartDir
 
 
-    # - re-impostiamo le vriabili di ambiente
-    LnDetOsEnv('Ln.Drive'     ,gv.env.Drive)
-    LnDetOsEnv('Ln.RootDir'   ,gv.env.RootDir)
-    LnDetOsEnv('Ln.StartDir'  ,gv.env.StartDir)
+    # - re-impostiamo le vriabili di ambientez
+    LnDetOsEnv('Ln.Drive'     ,ln.Drive)
+    LnDetOsEnv('Ln.RootDir'   ,ln.RootDir)
+    LnDetOsEnv('Ln.StartDir'  ,ln.StartDir)
 
+    if fDEBUG:
+        subst.printTree(header="subst variables", fPAUSE=False)
+        ln.printTree(header="ln. variables", fPAUSE=True)
 

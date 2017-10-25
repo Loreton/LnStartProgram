@@ -4,7 +4,7 @@
 # updated by Loreto: 24-10-2017 14.24.47
 # -----------------------------------------------
 from os     import chdir
-import platform
+import  platform
 
 
 from LnLib.Common.LnLogger import SetLogger  as LnSetLogger

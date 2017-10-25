@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: iso-8859-1 -*-
 
-from  sys import version_info as sysVersion, path as sysPath
+from  sys import version_info as sysVersion, path as sysPath, exit as sysExit
 import platform
 from pathlib import Path
 '''
@@ -12,13 +12,25 @@ currDir  = Path('.').resolve()
 print (scriptMain)
 print (projectDir)
 '''
-currfile  = __file__
-currDir  = Path(__file__).parent
-sysPath.insert(0, currDir)
 
-# print (currfile)
-# print (currDir)
-# sys.exit()
+# --------------------------------------------
+# - inserire i path per fare l'import delle funzioni LnLib
+# - ... sembra che non serva in quanto il path del progetto
+# - ... è già inserito... comunque non si sa mai.
+# --------------------------------------------
+# LnLibDir    = Path(__file__).parent
+# ProjectDir  = Path(LnLibDir).parent
+# sysPath.insert(0, LnLibDir)
+# sysPath.insert(0, ProjectDir)
+
+if False:
+    print ()
+    # print (ProjectDir)
+    # print (LnLibDir)
+    # print (LnLibDir.joinpath('Common'))
+    for path in sysPath: print (path)
+    print ()
+# sysExit()
 
 
 

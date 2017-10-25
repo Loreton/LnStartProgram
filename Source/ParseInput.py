@@ -4,13 +4,13 @@
 # updated by Loreto: 23-10-2017 17.51.47
 # -----------------------------------------------
 from    sys     import argv as sysArgv, exit as sysExit
-
 from    pathlib import Path
-
+from    time import  strftime
 import  argparse
-import  time
 
 
+
+# import  Functions as Prj
 
 
 def ParseInput():
@@ -29,9 +29,9 @@ def ParseInput():
     defaultLogDir     = programDir
     # print (programDir)
     # sysExit()
-    defaultLogFile    = Path(defaultLogDir , 'log', prjName + time.strftime('_%Y-%m-%d') + '.log')
+    defaultLogFile    = Path(defaultLogDir , 'log', prjName + strftime('_%Y-%m-%d') + '.log')
     defaultConfigFile = Path(programDir , 'conf', prjName + '.ini')
-    defaultCallerDir  = Path(sysArgv[0]).resolve().parent
+    defaultRootDir    = Path(sysArgv[0]).resolve().parent
 
 
     mainHelp=""
@@ -100,12 +100,12 @@ def ParseInput():
                                 default=defaultLogFile,
                                 help=myHELP('Specifies log fileName...', defaultLogFile))
 
-    myParser.add_argument('--callerDir',
+    myParser.add_argument('--rootDir',
                                 metavar='',
                                 type=_fileCheck,
                                 required=False,
-                                default=defaultCallerDir,
-                                help=myHELP('Specifies caller directory', defaultCallerDir))
+                                default=defaultRootDir,
+                                  help=myHELP('Specifies caller directory', defaultRootDir))
 
     args = vars(myParser.parse_args())
 

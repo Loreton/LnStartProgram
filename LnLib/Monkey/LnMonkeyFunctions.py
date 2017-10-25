@@ -13,7 +13,7 @@ from time import strftime
 # Copia solo se size diverso e se mtime diverso
 ################################################
 import shutil
-def LnMonkey_copy(self, target, vSize=True, vMTime=False, logger=None):
+def LnPathCopy(self, target, vSize=True, vMTime=False, logger=None):
     assert self.is_file()
 
     target = Path(target)
@@ -38,7 +38,7 @@ def LnMonkey_copy(self, target, vSize=True, vMTime=False, logger=None):
 ######################################################
 #
 ######################################################
-def LnMonkey_backup(self, targetDir=None, logger=None):
+def LnPathBackup(self, targetDir=None, logger=None):
     import shutil
     assert self.is_file()
 
@@ -51,5 +51,5 @@ def LnMonkey_backup(self, targetDir=None, logger=None):
 
 
 # Path.copy   = LnMonkey_copy
-Path.LnCopy   = LnMonkey_copy
-Path.LnBackup = LnMonkey_backup
+Path.LnCopy   = LnPathCopy
+Path.LnBackup = LnPathBackup

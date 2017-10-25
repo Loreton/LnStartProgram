@@ -6,9 +6,9 @@
 # ######################################################################################
 import collections
 import inspect, os
-from sys import exit as sysExit, _getframe as getFrame
+import sys
 
-from    LnLib.Common.LnColor  import LnColor
+from LnLib.Common.LnColor  import LnColor
 cPrint=LnColor()
 
 # colori delle righe
@@ -36,7 +36,7 @@ def PrintDictionary(myDict, myDictTYPES=[], keyList=[], level=0, whatPrint='LTKV
     if level > maxDepth: return
 
     # per evitare LOOP
-    if level > 100: sysExit()
+    if level > 100: sys.exit()
 
     myTAB=' '*4*level   # Indent del dictionary
     for key, val in sorted(myDict.items()):                  # per tutte le chiavi del dict
@@ -68,25 +68,7 @@ def PrintDictionary(myDict, myDictTYPES=[], keyList=[], level=0, whatPrint='LTKV
     if level == 0:
         if fEXIT:
             PrintHeader('END - ', header, stackLevel=stackLevel+1)
-            sysExit()
-        elif fPAUSE:
-            PrintHeader('END - ', header, stackLevel=stackLevel+1)
-            print()
-            exitKeyLIST = ["x", "q"]
-            msg = "...press: [{0}] to continue - {1} to exit ==> ".format("ENTER", exitKeyLIST)
-            while True:
-                choice      = input(msg).strip()
-                # choiceLOW   = choice.lower()
-                if choice == '':    # diamo priorità alla exit
-                    break
-
-                elif choice.lower() in exitKeyLIST:
-                    sysExit()
-
-                else:
-                    cPrint.Cyan('\n... try again\n')
-
-
+            sys.exit()
         else:
             # return LINEDATA_LIST
             return keyList
@@ -111,9 +93,9 @@ def PrintHeader(prefix, header, stackLevel=3):
 
         # da errore su window anche se non sempre
     except:
-        fileName    = getFrame(stackLevel).f_code.co_filename
-        funcLineNO  = getFrame(stackLevel).f_lineno
-        funcName    = getFrame(stackLevel).f_code.co_name
+        fileName    = sys._getframe(stackLevel).f_code.co_filename
+        funcLineNO  = sys._getframe(stackLevel).f_lineno
+        funcName    = sys._getframe(stackLevel).f_code.co_name
         lineCode    = ['dummy line. real line was not detected']
 
     finally:
@@ -125,7 +107,7 @@ def PrintHeader(prefix, header, stackLevel=3):
         # ---- Cerchiamo di catturare il dictionary richiamato
         # ---- da verificare con attenzione
     if not header:
-        if '.PrintTree' in lineCode[0]:
+        if '.PrintTreez' in lineCode[0]:
             dictionaryName = (lineCode[0].split('.PrintTree')[0].split()[-1])
             header = "dictionary: {0}".format(dictionaryName)
         else:

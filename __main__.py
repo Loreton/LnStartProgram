@@ -17,12 +17,14 @@ from LnLib.System.SetOsEnv        import SetEnvVars  as LnSetEnvVars
 from LnLib.System.SetOsEnv        import SetEnvPaths as LnSetEnvPaths
 from LnLib.System.RunProgram      import RunProgram  as LnRunProgram
 
+from Source.CalculateMainDirs      import CalculateMainDirs as prjCalculateMainDirs
+
 
 if __name__ == '__main__':
     # gv        = myFunc.LnClass() # definita nell __init__.py
     # gv.env    = myFunc.LnClass()
     gv        = LnDict()
-    gv.env    = LnDict()
+    # gv.env    = LnDict()
     gv.Prj    = Prj
     # gv.Ln     = Ln
 
@@ -40,7 +42,13 @@ if __name__ == '__main__':
 
 
 
-    gv.Prj.CalculateMainDirs(gv, args)
+        # -----------------------------------------------
+        # imposta Ln.Drive, Ln.rootDir e Ln.StartDir.
+        # in teoria sono già impostati ma serve in caso
+        # di subst perché li modifica opportunamente.
+        # -----------------------------------------------
+    # gv.Prj.CalculateMainDirs(gv, args)
+    prjCalculateMainDirs(args, fDEBUG=gv.fDEBUG)
 
     iniFile = LnReadIniFile(gv.args.config_file, strict=True, logger=logger)
     iniFile.setDebug(False)
@@ -62,8 +70,8 @@ if __name__ == '__main__':
     # gv.env.OSbits = winreg.EnumValue(reg_obj, 1)[1].split()[0]   # ('Identifier', 'Intel64 Family 6 Model 69 Stepping 1', 1)
     # winreg.CloseKey(reg_obj)
 
-    gv.env.OSbits = platform.architecture()[0]
-    logger.info("Windows OS bits: {}".format(gv.env.OSbits))
+    # OSbits = platform.architecture()[0]
+    # logger.info("Windows OS bits: {}".format(OSbits))
 
     # prev_cwd = Path.cwd() # Save current directory
     if gv.args.program.lower().strip() in ['tc', 'totalcommander']:

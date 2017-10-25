@@ -168,7 +168,7 @@ class DotMap(OrderedDict):
 
 
         def PrintTree(self, fEXIT=False, fPAUSE=False, maxDepth=10, header=None, whatPrint='LTKV', stackLevel=1):
-            LnPrintDictionary(self, myDictTYPES=MY_DICT_TYPES, whatPrint=whatPrint, fEXIT=fEXIT, fPAUSE=False, maxDepth=maxDepth, header=header, stackLevel=stackLevel+1)
+            LnPrintDictionary(self, myDictTYPES=MY_DICT_TYPES, whatPrint=whatPrint, fEXIT=fEXIT, fPAUSE=fPAUSE, maxDepth=maxDepth, header=header, stackLevel=stackLevel+1)
 
         printDict = PrintTree
         printTree = PrintTree
