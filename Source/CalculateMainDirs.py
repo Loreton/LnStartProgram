@@ -3,7 +3,7 @@
 # Scope:  Programma per ...........
 #
 # __author__  : 'Loreto Notarantonio'
-# __version__ : '25-10-2017 17.20.02'
+# __version__ : '25-10-2017 17.32.14'
 #
 # -----------------------------------------------
 
@@ -61,9 +61,9 @@ def CalculateMainDirs(myArgs, fDEBUG=False):
                 subst.StartDir   = LnVerifyPath(subst.Drive.joinpath('/LnStart'))
 
                     # - setting and logging
-                LnDetOsEnv('Ln.subst.Drive'     ,subst.Drive)
-                LnDetOsEnv('Ln.subst.MountDir'  ,subst.MountDir)
-                LnDetOsEnv('Ln.subst.StartDir'  ,subst.StartDir)
+                LnDetOsEnv('Ln_subst_Drive'     ,subst.Drive)
+                LnDetOsEnv('Ln_subst_MountDir'  ,subst.MountDir)
+                LnDetOsEnv('Ln_subst_StartDir'  ,subst.StartDir)
 
             else:
                 logger.warning("il comando di SUBST non ha avuto successo...")
@@ -77,11 +77,11 @@ def CalculateMainDirs(myArgs, fDEBUG=False):
 
 
     # - re-impostiamo le vriabili di ambientez
-    LnDetOsEnv('Ln.Drive'     ,ln.Drive)
-    LnDetOsEnv('Ln.RootDir'   ,ln.RootDir)
-    LnDetOsEnv('Ln.StartDir'  ,ln.StartDir)
+    LnDetOsEnv('Ln_Drive'     ,ln.Drive)
+    LnDetOsEnv('Ln_RootDir'   ,ln.RootDir)
+    LnDetOsEnv('Ln_StartDir'  ,ln.StartDir)
 
     if fDEBUG:
-        subst.printTree(header="subst variables", fPAUSE=False)
-        ln.printTree(header="ln. variables", fPAUSE=True)
+        subst.printTree(header="subst_variables", fPAUSE=False)
+        ln.printTree(header="ln_variables", fPAUSE=True)
 
