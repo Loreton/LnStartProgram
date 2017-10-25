@@ -2,12 +2,12 @@
 
 rem ###################################################
 rem __author__  : 'Loreto Notarantonio'
-rem __version__ : '25-10-2017 10.54.47'
+rem __version__ : '25-10-2017 12.16.25'
 rem
 rem mi aspetto le seguenti variabili:
-rem     Ln.RootDir
-rem     Ln.StartDir
 rem     PROGRAM_TO_START
+rem ed assumiamo che questo script si trovi dentro:
+rem     <any_path>\LnStart\LnStartProgram\LnStartProgram.cmd
 rem
 rem ###################################################
 
@@ -17,13 +17,13 @@ rem ####################################################
 rem # :CalculateRootDir
 rem ####################################################
 :CalculateRootDir
-    if not exist "%Ln.RootDir%" (
+    :: if not exist "%Ln.RootDir%" (
         echo.
         chdir /D  "%~dp0..\..\"              &:: e spostiamoci sulla presunta RootDIR
         set "Ln.Drive=%~d0"
         set "Ln.RootDir=%CD%"                   &:: impostiamo la ROOT dir
-        set "Ln.StartDir=%Ln.RootDir%LnStart"
-    )
+        set "Ln.StartDir=%Ln.RootDir%\LnStart"
+    :: )
 
     @echo "Ln.Drive      : %Ln.Drive%"
     @echo "Ln.RootDir    : %Ln.RootDir%"

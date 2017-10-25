@@ -2,7 +2,7 @@
 #  updated by Loreto: 24-10-2017 14.24.09
 #
 
-import  Functions as Prj
+import  Source as Prj
 import  platform
 
 import  winreg
@@ -21,22 +21,13 @@ from Source.CalculateMainDirs      import CalculateMainDirs as prjCalculateMainD
 
 
 if __name__ == '__main__':
-    # gv        = myFunc.LnClass() # definita nell __init__.py
-    # gv.env    = myFunc.LnClass()
     gv        = LnDict()
-    # gv.env    = LnDict()
-    gv.Prj    = Prj
-    # gv.Ln     = Ln
 
 
     args      = gv.Prj.ParseInput() # ; print (args)
     gv.args   = LnDict(args)
     gv.fDEBUG = gv.args.debug
     logger    = InitLogger(toFILE=gv.args.log_file, toCONSOLE=gv.args.log_console, ARGS=args)
-    # gv.logger = logger
-
-
-
 
 
 
