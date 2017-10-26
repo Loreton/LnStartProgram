@@ -35,12 +35,11 @@ if __name__ == '__main__':
 
 
         # -----------------------------------------------
-        # imposta Ln.Drive, Ln.rootDir e Ln.StartDir.
+        # imposta Ln_Drive, Ln_rootDir e Ln_StartDir.
         # in teoria sono già impostati ma serve in caso
         # di subst perché li modifica opportunamente.
         # -----------------------------------------------
-
-    prjCalculateMainDirs(args, fDEBUG=gv.fDEBUG)
+    prjCalculateMainDirs(args, fDEBUG=gv.fDEBUG) # set Ln_Drive, Ln_rootDir e Ln_StartDir
 
     iniFile = LnReadIniFile(gv.args.config_file, strict=True, logger=logger)
     iniFile.setDebug(False)
@@ -53,19 +52,6 @@ if __name__ == '__main__':
     LnSetEnvPaths(gv.cfgFile.PATHS)
 
 
-        # =====================================================================
-        # * Verifichiamo la versione del sistema operativo
-        # * Set "RegQry=HKLM\Hardware\Description\System\CentralProcessor\0"
-        # * "%SystemRoot%\system32\REG.exe"  Query %RegQry%
-        # =====================================================================
-    # reg_obj = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r'Hardware\Description\System\CentralProcessor\0',0, (winreg.KEY_WOW64_64KEY+ winreg.KEY_READ))
-    # gv.env.OSbits = winreg.EnumValue(reg_obj, 1)[1].split()[0]   # ('Identifier', 'Intel64 Family 6 Model 69 Stepping 1', 1)
-    # winreg.CloseKey(reg_obj)
-
-    # OSbits = platform.architecture()[0]
-    # logger.info("Windows OS bits: {}".format(OSbits))
-
-    # prev_cwd = Path.cwd() # Save current directory
     if gv.args.program.lower().strip() in ['tc', 'totalcommander']:
         CMDList = prjSetTotalCommander(gv.cfgFile.TOTAL_COMMANDER, fDEBUG=gv.fDEBUG)
         LnRunProgram('TotalCommander command list:', CMDList)

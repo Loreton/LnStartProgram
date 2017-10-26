@@ -1,8 +1,9 @@
 @echo off
-
+    set "workDir=%CD%"
     SET "PROGRAM_TO_START=TotalCommander"
     :: call "%~dp0\LnStartProgram.cmd" --debug %*
     call "%~dp0\LnStartProgram.cmd" %*
-    echo %ERRORLEVEL%
+    echo "%ERRORLEVEL: %ERRORLEVEL%"
 :EOF
-if not "%ERRORLEVEL%" == "0" pause
+    CD /D "%workDir%"
+    if not "%ERRORLEVEL%" == "0" pause
