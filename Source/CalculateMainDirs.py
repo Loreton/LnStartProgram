@@ -3,7 +3,7 @@
 # Scope:  Programma per ...........
 #
 # __author__  : 'Loreto Notarantonio'
-# __version__ : '26-10-2017 08.38.04'
+# __version__ : '26-10-2017 17.53.21'
 #
 # -----------------------------------------------
 
@@ -11,10 +11,12 @@ import  os, sys
 from    pathlib import Path, PurePath         # dalla versione 3.4
 from    time import sleep
 
-from LnLib.Common.LnLogger     import SetLogger   as LnSetLogger
+from LnLib.Common.LnLogger import SetLogger
+
 from LnLib.Common.Exit         import Exit        as LnExit
 from LnLib.Dict.LnDict_DotMap  import DotMap      as LnDict
-from LnLib.System.SetOsEnv     import setOsEnv    as LnDetOsEnv
+# from LnLib.System.SetOsEnv     import setOsEnv    as LnDetOsEnv
+import LnLib.System.SetOsEnv      as  OsEnv
 from LnLib.File.VerifyPath     import VerifyPath  as LnVerifyPath
 from LnLib.System.RunProgram   import RunProgram  as LnRunProgram
 from LnLib.File.VerifyPath     import VerifyPath  as LnVerifyPath
@@ -26,7 +28,7 @@ from LnLib.File.VerifyPath     import VerifyPath  as LnVerifyPath
 # -     di subst perché li modifica opportunamente.
 #########################################################################
 def CalculateMainDirs(myArgs, fDEBUG=False):
-    logger = LnSetLogger(__package__)
+    logger = SetLogger(__package__)
 
         # ---------------------------------------------------------------
         # - prepare dirs
@@ -63,8 +65,8 @@ def CalculateMainDirs(myArgs, fDEBUG=False):
                 # subst.StartDir   = LnVerifyPath(subst.Drive.joinpath('/LnStart'))
 
                     # - setting and logging
-                LnDetOsEnv('Ln_subst_Drive'     ,subst.Drive)
-                LnDetOsEnv('Ln_subst_MountDir'  ,subst.MountDir)
+                OsEnv.setVar('Ln_subst_Drive'     ,subst.Drive)
+                OsEnv.setVar('Ln_subst_MountDir'  ,subst.MountDir)
                 # LnDetOsEnv('Ln_subst_StartDir'  ,subst.StartDir)
 
             else:
@@ -79,8 +81,8 @@ def CalculateMainDirs(myArgs, fDEBUG=False):
 
 
     # - re-impostiamo le vriabili di ambientez
-    LnDetOsEnv('Ln_Drive'     ,ln.Drive)
-    LnDetOsEnv('Ln_RootDir'   ,ln.RootDir)
+    OsEnv.setVar('Ln_Drive'     ,ln.Drive)
+    OsEnv.setVar('Ln_RootDir'   ,ln.RootDir)
     # LnDetOsEnv('Ln_StartDir'  ,ln.StartDir)
 
     if fDEBUG:

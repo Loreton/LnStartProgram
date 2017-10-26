@@ -1,6 +1,6 @@
 @echo off
     set "workDir=%CD%"
-    SET "PROGRAM_TO_START=TotalCommander"
+    SET "PROGRAM_TO_START=Unknown"
     :: call "%~dp0\LnStartProgram.cmd" --debug %*
     call "%~dp0\LnStartProgram.cmd" %*
     echo "%ERRORLEVEL: %ERRORLEVEL%"

@@ -8,11 +8,11 @@ from    sys     import exit as sysExit
 from    pathlib import Path, PurePath
 
 from LnLib.Common.Exit          import Exit       as LnExit
-from LnLib.Common.LnLogger      import SetLogger as LnSetLogger
+from LnLib.Common.LnLogger      import SetLogger
 
 
 def VerifyPath(path, exitOnError=True):
-    logger = LnSetLogger(__package__)
+    logger = SetLogger(__package__)
 
     logger.info('verifying path: {}'.format(path))
 

@@ -11,7 +11,7 @@ import collections
 import configparser
 import codecs
 
-# from ..LnCommon.LnLogger import SetLogger
+from LnLib.Common.LnLogger import SetLogger
 from LnLib.Common.LnColor  import LnColor
 
 class ReadIniFile(object):
@@ -92,7 +92,7 @@ class ReadIniFile(object):
     # # https://docs.python.org/3/library/configparser.html
     # ######################################################
     def read(self, onlySection=None, returnOrderedDict=False, resolveEnvVars=False):
-        # logger  = self._logger
+        logger  = SetLogger(package=__package__)
         self._onlySection       = onlySection
         self._returnOrderedDict = returnOrderedDict
         self._resolveEnvVars    = resolveEnvVars
@@ -112,18 +112,18 @@ class ReadIniFile(object):
             # - Se Key-Val esistono esse sono rimpiazzate
             # ------------------------------------------------------------------
         for sectionName in self._extraSections:
-            self._logger.info('adding Section: {SECTION}'.format(SECTION=sectionName))
-            self._logger.info('          data: {EXTRA}'.format(EXTRA=extraSections[sectionName]))
+            logger.info('adding Section: {SECTION}'.format(SECTION=sectionName))
+            logger.info('          data: {EXTRA}'.format(EXTRA=extraSections[sectionName]))
             extraSection = extraSections[sectionName]
 
             if not self._configMain.has_section(sectionName):
-                self._logger.debug('creating Section: {0}'.format(sectionName))
+                logger.debug('creating Section: {0}'.format(sectionName))
                 self._configMain.add_section(sectionName)
 
             for key, val in extraSection.items():
-                self._logger.debug('adding on Section {0}:'.format(sectionName))
-                self._logger.debug('   key: {0}'.format(key))
-                self._logger.debug('   val: {0}'.format(val))
+                logger.debug('adding on Section {0}:'.format(sectionName))
+                logger.debug('   key: {0}'.format(key))
+                logger.debug('   val: {0}'.format(val))
                 self._configMain.set(sectionName, key, val)
 
 
@@ -142,7 +142,7 @@ class ReadIniFile(object):
     #                  interpretare la stessa come section+subsection
     ############################################################
     def _iniConfigAsDict(self):
-        # logger  = SetLogger(package=__name__)
+        logger  = SetLogger(package=__package__)
         C = LnColor()
         """
         Converts a ConfigParser object into a dictionary.
@@ -199,7 +199,7 @@ class ReadIniFile(object):
                                 else:
                                     msg = 'nome della variabile di ambiente: [{VAR}] non trovato.'.format(VAR=envVarName)
                                     # C.Yellow(msg, tab=4)
-                                    self._logger.warning(msg)
+                                    logger.warning(msg)
                                     if self._fDEBUG: C.Yellow(msg, tab=4)
 
                     currSECT[key] = val

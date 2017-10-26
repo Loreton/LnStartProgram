@@ -6,14 +6,15 @@
 # ####################################################################################################################
 
 from os                           import environ, getenv
-from LnLib.Common.LnLogger        import SetLogger    as LnSetLogger
+from LnLib.Common.LnLogger import SetLogger
 from LnLib.File.VerifyPath        import VerifyPath   as LnVerifyPath
 
 #########################################################################
 #
 #########################################################################
-def setOsEnv(varName, varValue, fDEBUG=False):
-    logger = LnSetLogger(__package__)
+# def setOsEnv(varName, varValue, fDEBUG=False):
+def setVar(varName, varValue, fDEBUG=False):
+    logger = SetLogger(__package__)
     msg = '{0:<20} : {1}'.format(varName, varValue)
     logger.info(msg)
     if fDEBUG: print (msg)
@@ -24,7 +25,7 @@ def setOsEnv(varName, varValue, fDEBUG=False):
 # - Setting PATH
 #########################################################################
 def setPath(pathName, pathValue, fMANDATORY=True, sepChar=';'):
-    logger = LnSetLogger(__package__)
+    logger = SetLogger(__package__)
     newPATH = getenv(pathName)
     paths = pathValue.split(sepChar)
     for path in paths:
@@ -33,14 +34,14 @@ def setPath(pathName, pathValue, fMANDATORY=True, sepChar=';'):
         newPATH = newPATH.replace(path, '')     # delete if exists
         newPATH = path + newPATH                # add new one
 
-    setOsEnv(pathName, newPATH, fDEBUG=False)
+    setVar(pathName, newPATH, fDEBUG=False)
 
 
 #########################################################################
 # imposta le variabili passate come dictionary
 #########################################################################
-def SetEnvVars(dictVARS, fDEBUG=False):
-    logger = LnSetLogger(__package__)
+def setVars(dictVARS, fDEBUG=False):
+    logger = SetLogger(__package__)
 
         # -------------------------------------------------
         # - Setting delle variabili
@@ -52,15 +53,15 @@ def SetEnvVars(dictVARS, fDEBUG=False):
         else:
             fMANDATORY = True
         path = LnVerifyPath(varValue, exitOnError=fMANDATORY)
-        setOsEnv(varName, path, fDEBUG=fDEBUG)
+        setVar(varName, path, fDEBUG=fDEBUG)
 
 
 
 #########################################################################
 # imposta le path passate come dictionary
 #########################################################################
-def SetEnvPaths(dictVARS):
-    logger = LnSetLogger(__package__)
+def setPaths(dictVARS):
+    logger = SetLogger(__package__)
     for pathName, pathValue in dictVARS.items():
         if pathName.startswith('opt.'):
             fMANDATORY = False

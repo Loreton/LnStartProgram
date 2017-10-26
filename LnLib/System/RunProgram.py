@@ -7,13 +7,13 @@ from  subprocess import Popen
 from  pathlib import PureWindowsPath, WindowsPath         # dalla versione 3.4
 
 
-from LnLib.Common.LnLogger      import SetLogger as LnSetLogger
+from LnLib.Common.LnLogger      import SetLogger
 
 #########################################################################
 #
 #########################################################################
 def RunProgram(textMsg, CMDList):
-    logger = LnSetLogger(__package__)
+    logger = SetLogger(__package__)
 
         # --------------------------------------------------
         # - Nella lista del comando potrebbero essere presenti

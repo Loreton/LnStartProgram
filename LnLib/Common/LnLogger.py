@@ -20,11 +20,31 @@ modulesToLog = []
 #   %(funcName)s    Name of function containing the logging call.
 #   %(lineno)d      Source line number where the logging call was issued (if available).
 # =============================================
-def InitLogger(toFILE=None, toCONSOLE=False, ARGS=None):
+def init(toFILE=None, toCONSOLE=False, ARGS=None):
     global myLOGGER, modulesToLog
 
-    if toCONSOLE == []: toCONSOLE = '!ALL!'
-    modulesToLog = toCONSOLE
+     # impostazione relativamente complessa ai moduli... forse conviene farlo con un altro parametro.
+    if   toCONSOLE == False and toFILE == False:
+        modulesToLog = False
+
+    elif toCONSOLE == [] or toFILE == []:
+        modulesToLog = ['!ALL!']
+
+    elif toCONSOLE and toFILE:
+        modulesToLog = toCONSOLE + toFILE  # somma di LIST
+
+    elif toCONSOLE:
+        modulesToLog = toCONSOLE
+    elif toFILE:
+        modulesToLog = toFILE
+
+    if   toFILE == False:   pass
+    elif toFILE == []:      toFILE = ['!ALL!']
+
+
+    modulesToLog = toCONSOLE if toCONSOLE else False
+    modulesToLog += toFILE   if toFILE    else False
+    modulesToLog.extend(toFILE)
 
     if not toFILE and not toCONSOLE:
         myLOGGER = None
@@ -78,7 +98,7 @@ def InitLogger(toFILE=None, toCONSOLE=False, ARGS=None):
 
     myLOGGER = logger
     return logger
-
+# InitLogger = init
 
 # ====================================================================================
 # - dal package passato come parametro cerchiamo di individuare se la fuzione/modulo
@@ -92,25 +112,26 @@ def SetLogger(package, stackNum=0):
     # print ('..................', modulesToLog)
 
     stackLevel = stackNum + 1                 # aggiungiamo quello richiesto dal caller
-    print (stackLevel)
+    # print (stackLevel)
     funcName    = getframe(stackLevel).f_code.co_name
     if funcName == '<module>': funcName = '__main__'
 
 
         # - tracciamo la singola funzione oppure modulo oppure libreria od altro
-    if modulesToLog == '!ALL!':
+    if modulesToLog == False:
+        LOG_LEVEL = None
+
+    elif '!ALL!' in modulesToLog:
         LOG_LEVEL = logging.DEBUG
 
     elif modulesToLog:
         LOG_LEVEL = None # default
         fullPkg = (package + funcName).lower()
-        print (fullPkg)
         for moduleStr in modulesToLog:
             if moduleStr.lower() in fullPkg:
                 LOG_LEVEL = logging.DEBUG
 
-    else:       # False
-        LOG_LEVEL = None # default
+
 
 
     logger = logging.getLogger(package)

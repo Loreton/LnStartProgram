@@ -2,7 +2,7 @@
 
 rem ###################################################
 rem __author__  : 'Loreto Notarantonio'
-rem __version__ : '26-10-2017 08.44.44'
+rem __version__ : '26-10-2017 10.22.21'
 rem
 rem mi aspetto le seguenti variabili:
 rem     PROGRAM_TO_START
@@ -18,16 +18,20 @@ rem # :CalculateRootDir
 rem ####################################################
 :CalculateRootDir
 
-    chdir   /D "%~dp0..\..\"                    &:: e spostiamoci sulla presunta RootDIR
-    set     "Ln_Drive=%~d0"
-    set     "Ln_RootDir=%CD%"                   &:: impostiamo la ROOT dir
-    set     "Ln_StartDir=%Ln_RootDir%\LnStart"
+    if "%Ln_myENV%" == "PROD" (
+        chdir   /D "%~dp0..\..\"                    &:: e spostiamoci sulla presunta RootDIR
+        set     "Ln_Drive=%~d0"
+        set     "Ln_RootDir=%CD%"                   &:: impostiamo la ROOT dir
+        set     "Ln_StartDir=%Ln_RootDir%\LnStart"
+    ) else (
+        echo "assumiamo che la ROOT directory sia già definita."
+    )
 
 
     @echo.
     @echo "Ln_Drive      : %Ln_Drive%"
     @echo "Ln_RootDir    : %Ln_RootDir%"
-    :: @echo "Ln_StartDir   : %Ln_StartDir%"
+    @echo "Ln_StartDir   : %Ln_StartDir%"
     @echo.
 
     exit /b
@@ -37,10 +41,16 @@ rem ####################################################
 rem # :process
 rem ###################################################
 :Process
-    set "Ln_myENV=DEVEL"
     set "Ln_myENV=PROD"
+    set "Ln_myENV=DEVEL"
 
     call :CalculateRootDir
+    if not exist "%Ln_StartDir%" (
+        echo "%Ln_StartDir% doesn't exists"
+        set "ERRORLEVEL=3"
+        goto :Esci
+    )
+
     SET "Ln_PythonDir=%Ln_RootDir%\LnFree\Pgm\WinPython-64bit-3.5.3.1Qt5\python-3.5.3.amd64"
     SET "Ln_PythonExe=%Ln_PythonDir%\python.exe"
 
@@ -51,7 +61,7 @@ rem ###################################################
         rem -----  StartDir ----
     ) else (
         rem -----  GIT-REPO ----
-        SET "CONFIG_FILE=%Ln_RootDir%\GIT-REPO\Python3\LnStartProgram\conf\LnStartProgram_2.ini"
+        SET "CONFIG_FILE=%Ln_RootDir%\GIT-REPO\Python3\LnStartProgram\conf\LnStartProgram.ini"
         SET "MainProgram=%Ln_RootDir%\GIT-REPO\Python3\LnStartProgram\bin\LnStartProgram_20171025.zip"
         SET "MainProgram=%Ln_RootDir%\GIT-REPO\Python3\LnStartProgram\__main__.py"
         rem -----  GIT-REPO ----

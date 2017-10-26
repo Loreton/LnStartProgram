@@ -11,7 +11,7 @@ __version__ = 'LnVer_2017-06-28_16.34.25'
 import sys, os
 import inspect
 
-from LnLib.Common.LnLogger import SetLogger as LnSetLogger
+from LnLib.Common.LnLogger import SetLogger
 from LnLib.Common.LnColor  import LnColor
 from LnLib.Common.Exit     import Exit      as LnExit
 
@@ -23,7 +23,7 @@ from LnLib.Common.Exit     import Exit      as LnExit
 # * 01-01-2014 - modificato il validKeysLIST.
 # ###########################################################################
 def getKeyboardInput(msg, validKeys='ENTER', exitKey='X', deepLevel=1, keySep="|", fDEBUG=False):
-    logger = LnSetLogger(package=__name__)
+    logger = SetLogger(package=__name__)
     cPrint = LnColor()
     exitKeyUPP = exitKey.upper()
 

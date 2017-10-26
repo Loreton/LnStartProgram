@@ -7,15 +7,17 @@ from os     import chdir
 import  platform
 # from pathlib import Path
 
-from LnLib.Common.LnLogger import SetLogger  as LnSetLogger
-from LnLib.System.SetOsEnv import setOsEnv   as LnDetOsEnv
+from LnLib.Common.LnLogger import SetLogger
+
+# from LnLib.System.SetOsEnv import setOsEnv   as LnDetOsEnv
+import LnLib.System.SetOsEnv      as  OsEnv
 from LnLib.File.VerifyPath import VerifyPath as LnVerifyPath
 
 # =============================================
 # = Parsing
 # =============================================
 def SetTotalCommander(iniVar, fDEBUG=False):
-    logger = LnSetLogger(__package__)
+    logger = SetLogger(__package__)
     CMDList = []
 
         # -------------------------------------------------
@@ -30,7 +32,7 @@ def SetTotalCommander(iniVar, fDEBUG=False):
 
         # salviamolo in formato Path
         iniVar[varName] = LnVerifyPath(varValue, exitOnError=fMANDATORY)
-        LnDetOsEnv(varName, iniVar[varName])
+        OsEnv.setVar(varName, iniVar[varName])
         if varName.lower() == 'workingdir':
             chdir(str(iniVar[varName]))
 
