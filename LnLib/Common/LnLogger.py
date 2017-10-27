@@ -20,31 +20,31 @@ modulesToLog = []
 #   %(funcName)s    Name of function containing the logging call.
 #   %(lineno)d      Source line number where the logging call was issued (if available).
 # =============================================
-def init(toFILE=None, toCONSOLE=False, ARGS=None):
+def init(toFILE=None, toCONSOLE=False, logfilename=None, ARGS=None):
     global myLOGGER, modulesToLog
 
-     # impostazione relativamente complessa ai moduli... forse conviene farlo con un altro parametro.
-    if   toCONSOLE == False and toFILE == False:
-        modulesToLog = False
+
+
+        # ----------------------------------------------------------------
+        # - impostazione relativamente complessa ai moduli...
+        # - toCONSOLE & toFILE  non dovrebbero mai essere contemporanei
+        # - perché bloccati dal ParseInput
+        # ----------------------------------------------------------------
+    if toFILE:
+        modulesToLog = toFILE
+
+    elif toCONSOLE:
+        modulesToLog = toCONSOLE
 
     elif toCONSOLE == [] or toFILE == []:
         modulesToLog = ['!ALL!']
 
-    elif toCONSOLE and toFILE:
-        modulesToLog = toCONSOLE + toFILE  # somma di LIST
-
-    elif toCONSOLE:
-        modulesToLog = toCONSOLE
-    elif toFILE:
-        modulesToLog = toFILE
-
-    if   toFILE == False:   pass
-    elif toFILE == []:      toFILE = ['!ALL!']
+    else:
+        modulesToLog = False
 
 
-    modulesToLog = toCONSOLE if toCONSOLE else False
-    modulesToLog += toFILE   if toFILE    else False
-    modulesToLog.extend(toFILE)
+    print('modulesToLog..................', modulesToLog)
+
 
     if not toFILE and not toCONSOLE:
         myLOGGER = None
@@ -63,13 +63,8 @@ def init(toFILE=None, toCONSOLE=False, ARGS=None):
     logger.setLevel(logging.DEBUG)
         # log to file
     if toFILE:
-        ''' impostalo manualmente
-            LOG_DIR = Path(toFILE)
-            LOG_DIR.mkdir(parents=True, exist_ok=True) # se esiste non dare errore
-            LOG_FILE_NAME = LOG_DIR.joinpath('LnStartProgra_' + time.strftime('%Y-%m-%d') + '.log')
-        '''
-        LOG_FILE_NAME = toFILE
-        LOG_DIR = Path(toFILE).parent
+        LOG_FILE_NAME = logfilename
+        LOG_DIR = Path(logfilename).parent
         LOG_DIR.mkdir(parents=True, exist_ok=True) # se esiste non dare errore
 
         print ('using log file:', LOG_FILE_NAME)

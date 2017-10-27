@@ -1,5 +1,6 @@
 #
-#  updated by Loreto: 24-10-2017 14.24.09
+# __author__  : 'Loreto Notarantonio'
+# __version__ : '27-10-2017 11.38.58'
 #
 
 
@@ -37,7 +38,8 @@ if __name__ == '__main__':
     args      = Prj.ParseInput() # ; print (args)
     gv.args   = LnDict(args)
     gv.fDEBUG = gv.args.debug
-    logger    = initLogger(toFILE=gv.args.log_filename, toCONSOLE=gv.args.log_console, ARGS=args)
+
+    logger    = initLogger(toFILE=gv.args.log, logfilename=gv.args.log_filename, toCONSOLE=gv.args.log_console, ARGS=args)
 
 
 

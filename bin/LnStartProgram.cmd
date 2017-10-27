@@ -2,7 +2,7 @@
 
 rem ###################################################
 rem __author__  : 'Loreto Notarantonio'
-rem __version__ : '26-10-2017 10.22.21'
+rem __version__ : '27-10-2017 10.10.08'
 rem
 rem mi aspetto le seguenti variabili:
 rem     PROGRAM_TO_START
@@ -10,6 +10,7 @@ rem ed assumiamo che questo script si trovi dentro:
 rem     <any_path>\LnStart\LnStartProgram\LnStartProgram.cmd
 rem
 rem ###################################################
+@setlocal EnableDelayedExpansion
 
 goto :Process
 
@@ -17,17 +18,19 @@ rem ####################################################
 rem # :CalculateRootDir
 rem ####################################################
 :CalculateRootDir
-
     if "%Ln_myENV%" == "PROD" (
-        chdir   /D "%~dp0..\..\"                    &:: e spostiamoci sulla presunta RootDIR
+            rem ... spostiamoci sulla presunta RootDIR
+        chdir   /D "%~dp0..\..\"
         set     "Ln_Drive=%~d0"
-        set     "Ln_RootDir=%CD%"                   &:: impostiamo la ROOT dir
-        set     "Ln_StartDir=%Ln_RootDir%\LnStart"
+        set     "Ln_RootDir=%CD%"
     ) else (
-        echo "assumiamo che la ROOT directory sia già definita."
+            rem "assumiamo che la ROOT directory sia già definita."
+        set     "Ln_Drive=Y:"
+        set     "Ln_RootDir=!Ln_Drive!"
     )
 
 
+    set "Ln_StartDir=!Ln_RootDir!\LnStart"
     @echo.
     @echo "Ln_Drive      : %Ln_Drive%"
     @echo "Ln_RootDir    : %Ln_RootDir%"
@@ -45,11 +48,14 @@ rem ###################################################
     set "Ln_myENV=DEVEL"
 
     call :CalculateRootDir
-    if not exist "%Ln_StartDir%" (
-        echo "%Ln_StartDir% doesn't exists"
+    if not exist "%Ln_RootDir%" (
+        echo.
+        echo "  Ln_RootDir doesn't exists"
+        echo.
         set "ERRORLEVEL=3"
         goto :Esci
     )
+
 
     SET "Ln_PythonDir=%Ln_RootDir%\LnFree\Pgm\WinPython-64bit-3.5.3.1Qt5\python-3.5.3.amd64"
     SET "Ln_PythonExe=%Ln_PythonDir%\python.exe"

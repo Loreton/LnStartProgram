@@ -11,6 +11,9 @@ import  argparse
 
 class LnClass(): pass
 gVar = LnClass()
+from . import Parse_positionalParameters    as posParam
+from . import Parse_logParameters           as logParam
+from . import Parse_debugParameters         as debugParam
 
 
 
