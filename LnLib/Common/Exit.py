@@ -21,11 +21,13 @@ EXIT_STACK  = -32
 # - Ad esempio la Prj.exit() chimaera wuesta exit con stackLevel=2 in modo
 # - da saltare se stessa.
 # =======================================================================
-def Exit(rcode, text, printStack=True, stackLevel=9, console=True):
+def Exit(rcode, text=None, printStack=True, stackLevel=9, console=True):
     logger  = SetLogger(package=__name__)
     cPrint       = LnColor()
 
-    if text == None:
+    if text == None and rcode == 9999:
+        textList = ['exiting for debbugging reason!']
+    elif text == None:
         textList = ['No error message passed']
     elif isinstance(text, list):
         textList = text

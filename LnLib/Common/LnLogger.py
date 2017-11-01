@@ -43,7 +43,7 @@ def init(toFILE=None, toCONSOLE=False, logfilename=None, ARGS=None):
         modulesToLog = False
 
 
-    print('modulesToLog..................', modulesToLog)
+    print(__file__, 'modulesToLog..................', modulesToLog)
 
 
     if not toFILE and not toCONSOLE:
@@ -128,6 +128,7 @@ def SetLogger(package, stackNum=0):
 
 
 
+    print(__file__, 'LOG_LEVEL..................', LOG_LEVEL)
 
     logger = logging.getLogger(package)
 

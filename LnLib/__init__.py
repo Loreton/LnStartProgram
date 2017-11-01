@@ -3,7 +3,12 @@
 
 from  sys import version_info as sysVersion, path as sysPath, exit as sysExit
 import platform
-from pathlib import Path
+# from pathlib import Path
+
+# migliore implementazione di pathlib.Path
+#    https://pathpy.readthedocs.io/en/latest/
+# from LnLib.File.LnPath import Path as Path
+
 '''
 scriptMain  = Path(sys.argv[0]).resolve()
 projectDir  = scriptMain.parent
@@ -46,34 +51,3 @@ else:
 isUnix    = not isWindows
 # ############### OpSy type & version
 
-'''
-from . LnCommon.LnLogger_New2                import SetLogger
-from . LnCommon.LnLogger_New2                import InitLogger
-# from . LnCommon.LnLogger                import SetNullLogger
-from . LnCommon.LnColor                 import LnColor
-from . LnCommon.Exit                    import Exit
-
-from . System.GetKeyboardInput          import getKeyboardInput
-from . System.ExecRcode                 import ExecRcode
-from . LnMonkey import LnMonkeyFunctions
-# from . LnMonkey import LnLoggerClass
-
-from . LnDict.LnDict_DotMap             import DotMap  as LnDict
-
-from . LnFile.ReadIniFile_Class         import ReadIniFile
-
-
-# from . LnNet.InterfacesCl               import Interfaces
-# from . LnNet.httpClient                 import httpGet
-
-
-# from . LnFile.DirList                   import DirList
-# from . LnFile.FileStatus                import FileModificationTime as Fmtime
-# from . LnFile.ReadWriteTextFile         import readTextFile
-# from . LnFile.ReadWriteTextFile         import writeTextFile
-
-
-# from . SqLite.LnSqLite_Class                import LnSqLite
-
-
-'''

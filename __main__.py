@@ -14,26 +14,43 @@ from LnLib.Common.LnLogger import init as initLogger
 from LnLib.Common.Exit            import Exit        as LnExit
 from LnLib.Dict.LnDict_DotMap     import DotMap      as LnDict
 from LnLib.File.ReadIniFile_Class import ReadIniFile as LnReadIniFile
-# from LnLib.System.SetOsEnv        import SetEnvVars  as LnSetEnvVars
-# from LnLib.System.SetOsEnv        import SetEnvPaths as LnSetEnvPaths
 
 from LnLib.System.RunProgram      import RunProgram  as runProgram
 
 import  Source as Prj
-# ... oppure
-# from Source.CalculateMainDirs      import CalculateMainDirs as CalculateMainDirs
-# from Source.SetTotalCommander      import SetTotalCommander as SetTotalCommander
-# from Source.SetExecutor            import SetExecutor       as SetExecutor
-# from Source.ParseInput             import ParseInput        as ParseInput
 
 
+# from pathlib import Path
+from LnLib.File.LnPath import Path
 
 if __name__ == '__main__':
     gv        = LnDict()
-    for module in dir():
-        if not module.startswith('__'):
-            print ('    ', module)
 
+
+    # myDirectory = Path('.')
+    # myDirectory = Path('d:\Loreto\LnDisk\GIT-REPO\Python3')
+    # myDirectory = Path('d:\\')
+
+    # for f in myDirectory.iterdir():
+    #     print(f)
+    #     if f.is_dir() and f.name == 'LnStart':
+    #         print('foune', f)
+    #         break
+
+    # pattern = 'LnStart'
+    # for f in myDirectory.walkdirs(pattern):
+    #     print(f)
+        # if f.name == 'LnStart':
+        #     print('foune', f)
+        #     break
+
+
+
+
+
+
+
+    # LnExit(9999, 'ciai')
 
     args      = Prj.ParseInput() # ; print (args)
     gv.args   = LnDict(args)

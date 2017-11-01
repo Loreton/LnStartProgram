@@ -9,17 +9,24 @@
 
 import  os, sys
 from    pathlib import Path, PurePath         # dalla versione 3.4
+
+# migliore implementazione di pathlib.Path
+#    https://pathpy.readthedocs.io/en/latest/
+from    LnLib.File.LnPath import Path as LnPath
+
 from    time import sleep
 
-from LnLib.Common.LnLogger import SetLogger
+from    LnLib.Common.LnLogger import SetLogger
 
-from LnLib.Common.Exit         import Exit        as LnExit
-from LnLib.Dict.LnDict_DotMap  import DotMap      as LnDict
-# from LnLib.System.SetOsEnv     import setOsEnv    as LnDetOsEnv
-import LnLib.System.SetOsEnv      as  OsEnv
-from LnLib.File.VerifyPath     import VerifyPath  as LnVerifyPath
-from LnLib.System.RunProgram   import RunProgram  as LnRunProgram
-from LnLib.File.VerifyPath     import VerifyPath  as LnVerifyPath
+from    LnLib.Common.Exit         import Exit        as LnExit
+from    LnLib.Dict.LnDict_DotMap  import DotMap      as LnDict
+import  LnLib.System.SetOsEnv                        as OsEnv
+from    LnLib.File.VerifyPath     import VerifyPath  as LnVerifyPath
+from    LnLib.System.RunProgram   import RunProgram  as LnRunProgram
+from    LnLib.File.VerifyPath     import VerifyPath  as LnVerifyPath
+
+from LnLib.File.DirList           import DirList as LnDirList
+
 
 
 #########################################################################
@@ -35,13 +42,45 @@ def CalculateMainDirs(myArgs, fDEBUG=False):
         # - devo partire dalla directory del caller in quanto mi serve
         # - la root di partenza di LnDisk
         # ---------------------------------------------------------------
-    scriptMain         = Path(sys.argv[0]).resolve()
+
+        # ---------------------------------------------------------------
+        # - oppure posso cercare LnStart...
+        # -  nel path di scriptMain
+        # -  ricerca a partire dalla root per maxDepth=10
+        # ---------------------------------------------------------------
+    # scriptMain1         = Path(sys.argv[0]).resolve()
+    scriptMain         = LnPath(sys.argv[0]).realpath()
+    scriptMainParts    = LnPath(scriptMain).splitall()
+    myPatternDir = 'LnDisk'
+    myPatternDir = 'LnStart'
+
+    drive, *rest = scriptMainParts
+
+    if myPatternDir in rest:
+        for dir in rest:
+            rootDir = rootDir.joinpath(dir)
+            if dir == myPatternDir: break
+
+    else:
+        # rootDir = scriptMain1.drive
+        # dirs = Path('D:\\').rglob('*.py')
+        # for dir in dirs:
+        #     print (dir)
+        dirs = LnDirList(drive, patternLIST=[myPatternDir], onlyDir=True, maxDeep=5)
+        rootDir = dirs[0]
+        # print (dirs)
+
+    print (type(rootDir), rootDir)
+    LnExit(9999)
+
+
+    scriptMain         = LnPath(sys.argv[0]).realpath()
+    # print (type(scriptMain), scriptMain)
 
 
     ln = LnDict()
     ln.RootDir    = LnVerifyPath(myArgs['rootDir'])
     ln.Drive      = LnVerifyPath(ln.RootDir.drive)
-    # ln.StartDir   = LnVerifyPath(ln.RootDir.joinpath('LnStart'))
 
     if fDEBUG: ln.printTree(header="ln. variables", fPAUSE=True)
 
@@ -62,28 +101,26 @@ def CalculateMainDirs(myArgs, fDEBUG=False):
             subst.FreeDir = LnVerifyPath(Path(substDrive).joinpath('/LnFree'), exitOnError=False)
             if subst.FreeDir:
                 subst.Drive      = LnVerifyPath(Path(substDrive))
-                # subst.StartDir   = LnVerifyPath(subst.Drive.joinpath('/LnStart'))
 
                     # - setting and logging
                 OsEnv.setVar('Ln_subst_Drive'     ,subst.Drive)
                 OsEnv.setVar('Ln_subst_MountDir'  ,subst.MountDir)
-                # LnDetOsEnv('Ln_subst_StartDir'  ,subst.StartDir)
 
             else:
                 logger.warning("il comando di SUBST non ha avuto successo...")
                 input()
 
-            # - se abbiamo attivato il SUBST,
-            # - modifichiamo anche le MAIN variables
-            ln.Drive        = subst.Drive
-            ln.RootDir      = subst.Drive
-            # ln.StartDir     = subst.StartDir
+                # ----------------------------------------
+                # - se abbiamo attivato il SUBST,
+                # - modifichiamo anche le MAIN variables
+                # ----------------------------------------
+            ln.Drive   = subst.Drive
+            ln.RootDir = subst.Drive
 
 
-    # - re-impostiamo le vriabili di ambientez
+        # - re-impostiamo le vriabili di ambientez
     OsEnv.setVar('Ln_Drive'     ,ln.Drive)
     OsEnv.setVar('Ln_RootDir'   ,ln.RootDir)
-    # LnDetOsEnv('Ln_StartDir'  ,ln.StartDir)
 
     if fDEBUG:
         subst.printTree(header="subst_variables", fPAUSE=False)
