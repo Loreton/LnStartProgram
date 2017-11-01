@@ -1,7 +1,9 @@
+from . S110_MyHelp import myHELP
+
 #######################################################
 # LOG options
 #######################################################
-def _logParameters(myParser, required=False):
+def logParameters(myParser, gVar, required=False):
     logGroup = myParser.add_mutually_exclusive_group(required=False)  # True indica obbligatorietà di uno del gruppo
     myParser.add_argument('---------------log-options ----',
                                 required=False,
@@ -35,7 +37,30 @@ def _logParameters(myParser, required=False):
         # definizione file di log
     myParser.add_argument('--log-filename',
                                 metavar='',
+                                # str=_fileCheck,
                                 required=False,
                                 default=gVar.defaultLogFile,
                                 help=myHELP('Specifies log fileName...', gVar.defaultLogFile))
+
+
+
+
+
+####################################
+# # _fileCheck()
+####################################
+def _fileCheck(fileName):
+    fileName = fileName.strip().strip("'").strip()
+
+    try:
+        fileName = Path(fileName).resolve()     # strict=True dalla 3.6
+
+    except Exception as why:
+        print()
+        print (str(why))
+        # LnColor.printYellow ('  {FILE} is not a valid file...'.format(FILE=fileName) + LnColor.RESET)
+        print()
+        sysExit()
+
+    return fileName
 

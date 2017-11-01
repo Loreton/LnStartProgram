@@ -1,7 +1,11 @@
+
+from . S110_MyHelp import myHELP
+
+
 #######################################################
 # DEBUG options
 #######################################################
-def _debugParameters(myParser, required=False):
+def debugParameters(myParser, required=False):
     myParser.add_argument('---------------debug-options ----',
                                 required=False,
                                 action='store_true',
@@ -22,3 +26,5 @@ def _debugParameters(myParser, required=False):
                                 required=False,
                                 action='store_true',
                                 help=myHELP('Display input paramenters..', False))
+
+

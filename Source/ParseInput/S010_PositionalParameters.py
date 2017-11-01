@@ -1,8 +1,10 @@
 
+from . S110_MyHelp import myHELP
+
 #######################################################
 # PROGRAM POSITIONAL parameters
 #######################################################
-def _programPositionaParameters(myParser, required=False):
+def positionaParameters(myParser, required=False):
     # mandatory = cPrint.getMagentaH('is MANDATORY - ') if required else cPrint.getCyanH('is OPTIONAL - ')
 
     posizARGS = 1
@@ -75,3 +77,12 @@ def _programPositionaParameters(myParser, required=False):
     '''
 
 
+
+
+####################################
+# # _fileCheck()
+####################################
+def _checkPositionaParam(value):
+    print (value)
+
+    return value
