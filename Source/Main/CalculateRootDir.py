@@ -27,7 +27,7 @@ from    LnLib.System             import SetOsEnv    as OsEnv
 #########################################################################
 # - Ln_Drive, Ln_rootDir e Ln_StartDir e GIT-REPO.
 #########################################################################
-def CalculateMainDirs(myArgs, fDEBUG=False):
+def CalculateRootDir(myArgs, fDEBUG=False):
     logger = SetLogger(__package__)
 
         # ---------------------------------------------------------------
@@ -119,3 +119,4 @@ def CalculateMainDirs(myArgs, fDEBUG=False):
         if myArgs['subst']: subst.printTree(header="subst_variables", fPAUSE=False)
         ln.printTree(header="ln_variables", fPAUSE=True)
 
+    return ln.Drive, ln.RootDir

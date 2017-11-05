@@ -111,6 +111,7 @@ class ReadIniFile(object):
             # - per tutte le sezioni che sono extra facciamo il merge.
             # - Se Key-Val esistono esse sono rimpiazzate
             # ------------------------------------------------------------------
+        extraSections = self._extraSections
         for sectionName in self._extraSections:
             logger.info('adding Section: {SECTION}'.format(SECTION=sectionName))
             logger.info('          data: {EXTRA}'.format(EXTRA=extraSections[sectionName]))

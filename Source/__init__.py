@@ -8,7 +8,7 @@ from   Source.ParseInput.S000_MainParseInput import ParseInput
 
 
 
-from   Source.Main.CalculateMainDirs import CalculateMainDirs
+from   Source.Main.CalculateRootDir import CalculateRootDir
 from   Source.Main.SetExecutor import SetExecutor
 from   Source.Main.SetTotalCommander import SetTotalCommander
 

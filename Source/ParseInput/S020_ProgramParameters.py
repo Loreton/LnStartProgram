@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # Scope:  Programma per ...........
-# LnVer_2017-11-05_16.39.02
+# LnVer_2017-11-05_18.26.32
 # -----------------------------------------------
 
 from . S110_MyHelp      import myHELP
@@ -16,12 +16,6 @@ def programParameters(myParser, gVar, required=False):
                                 required=False,
                                 action='store_true',
                                 help=myHELP('', None))
-
-    myParser.add_argument('--program',
-                                required=False,
-                                default='noProgram',
-                                metavar='program',
-                                help=myHELP('Specify the program to start', default='noProgram'))
 
     myParser.add_argument('--subst',
                                 required=False,

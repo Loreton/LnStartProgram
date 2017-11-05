@@ -63,10 +63,16 @@ class LnColor:
     def getColored(self, **args):
         return self.printColored (fGET=True, **args)
 
-    def printColored(self, color=None, text='', tab=0, end='\n', reset=True, string_encode='latin-1', fGET=False):
+    def printColored(self, color=None, text=None, tab=0, end='\n', reset=True, string_encode='latin-1', fGET=False):
         endColor = self.RESET if reset else ''
         thisTAB = ' '*tab
 
+        # if text == None:
+        #     text = 'None'
+        # elif text == False:
+        #     text = 'False'
+        # elif text == True:
+        #     text = 'True'
         # ----------------------------------------------
         # - intercettazione del tipo text per fare un
         # - print più intelligente.
@@ -91,6 +97,8 @@ class LnColor:
             text = '\n'.join(myMsg)
             thisTAB = ''
 
+        # PAD=' '*5
+        # outText = '{0}{1}{2}{3}{4}'.format(thisTAB, color, text, endColor, PAD)
         outText = '{0}{1}{2}{3}'.format(thisTAB, color, text, endColor)
 
         # ----------------------------------------------

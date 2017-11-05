@@ -40,11 +40,19 @@ if __name__ == '__main__':
         # in teoria sono già impostati ma serve in caso
         # di subst perché li modifica opportunamente.
         # -----------------------------------------------
-    Prj.CalculateMainDirs(args, fDEBUG=gv.fDEBUG) # set Ln_Drive, Ln_rootDir e Ln_StartDir
+    myDrive, myRootDir = Prj.CalculateRootDir(args, fDEBUG=gv.fDEBUG) # set Ln_Drive, Ln_rootDir e Ln_StartDir
+
+
+    extraSect = {}
+    extraSect['VARS']  = {}
+    extraSect['VARS']['Ln_RootDir'] = myRootDir
+    extraSect['VARS']['Ln_Drive']   = myDrive
+
 
     iniFile = LnReadIniFile(gv.args.config_file, strict=True, logger=logger)
     iniFile.setDebug(False)
-    iniFile.read(resolveEnvVars=True)
+    iniFile.extraSections(extraSect)
+    iniFile.read(resolveEnvVars=False)
     gv.cfgFile = LnDict(iniFile.dict)
     if gv.fDEBUG: gv.cfgFile.printTree(fPAUSE=True)
 
@@ -52,19 +60,19 @@ if __name__ == '__main__':
     OsEnv.setVars(gv.cfgFile.VARS)
     OsEnv.setPaths(gv.cfgFile.PATHS)
 
-
-    if gv.args.program.lower().strip() in ['tc', 'totalcommander']:
+    programToStart = gv.args.programToStart
+    if programToStart.lower().strip() in ['tc', 'totalcommander']:
         CMDList = Prj.SetTotalCommander(gv.cfgFile.TOTAL_COMMANDER, fDEBUG=gv.fDEBUG)
         runProgram('TotalCommander command list:', CMDList)
 
-    elif gv.args.program.lower().strip() in ['executor']:
+    elif programToStart.lower().strip() in ['executor']:
         CMDList = Prj.SetExecutor(gv.cfgFile.EXECUTOR)
         runProgram('Executor command list:', CMDList)
 
     else:
-        LnExit(1, "Program: {} not yet implemented".format(gv.args.program))
+        LnExit(1, "Program: {} not yet implemented".format(programToStart))
 
-    LnExit(0, "Process completed, {} has been started".format(gv.args.program))
+    LnExit(0, "Process completed, {} has been started".format(programToStart))
 
 
 

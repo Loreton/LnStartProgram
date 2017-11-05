@@ -1,12 +1,13 @@
 
 from . S110_MyHelp import myHELP
-
+from LnLib.Common.Exit import Exit as LnExit
 from LnLib.Common.LnColor import LnColor
 C=LnColor()
 #######################################################
 # PROGRAM POSITIONAL parameters
 #######################################################
-def positionaParameters(myParser, required=False):
+def positionalParameters(myParser, paramName):
+    global positionalParametersDict
     # mandatory = cPrint.getMagentaH('is MANDATORY - ') if required else cPrint.getCyanH('is OPTIONAL - ')
 
     posizARGS = 1
@@ -24,71 +25,32 @@ def positionaParameters(myParser, required=False):
         cmdList.append('\n')
         cmdList.append('          {0:<20} : {1}'.format(key, valColor))
 
+
+
         # -------------------------------------------------------
         # - con nargs viene tornata una lista con nArgs
         # - deve prendere il comando primario e poi il sottocomando
         # -------------------------------------------------------
-    myParser.add_argument('mainCommand',
+    myParser.add_argument(paramName,
                 metavar=''.join(cmdList),
                 type=_checkPositionaParam,
-                nargs=1,
+                nargs=posizARGS,
                 help='')
         #         help=C.getColored(color=C.yellowH, text='''
         # immettere uno dei comandi sopra elencati'''))
 
-    '''
-    cmdList = []
-    for key, val in positionalActionsDict.items():
-        cmdList.append('\n')
-        cmdList.append('          {0:<30} : {1}'.format(key, val))
-    positionalParametersString = ''.join(cmdList)
-    metavarStr = cPrint.getCyanH('primaryCommand\n')
-    helpStr    = 'comando come elencato di seguito.'
-
-
-
-    mainHelp="""
-        Immettere uno dei seguenti valori/comandi/action:
-        (con il parametro -h se si desidera lo specifico help)
-                {CMDLIST}\n""".format(CMDLIST=cmdList)
-
-        # -------------------------------------------------------
-        # - con nargs viene tornata una lista con nArgs
-        # - deve prendere il comando primario e poi il sottocomando
-        # -------------------------------------------------------
-    myParser.add_argument('mainCommand',
-                metavar=metavarStr + cPrint.getYellow(mainHelp),
-                type=str,
-                nargs=posizARGS,
-                help=helpStr
-                )
-
-
-        # ----------------------------------------------------------
-        # - lanciamo il parse dei parametri subito dopo quelli posizionali
-        # ----------------------------------------------------------
-    mainArgs         = myParser.parse_args(sys.argv[1:posizARGS+1])
-    primaryCommand   = mainArgs.mainCommand[0]
-
-        # print dell'HELP per il primaryCommand errato
-    if not (primaryCommand in positionalActionsDict.keys()):
-        myParser.print_help()
-        cPrint.Yellow(".... Unrecognized command [{0}]. Valid values are:".format(primaryCommand), tab=8)
-        for positionalParm in positionalActionsDict.keys():
-            cPrint.Yellow (positionalParm, tab=16)
-        exit(1)
-
-
-    return mainArgs
-    '''
-
-
 
 
 ####################################
-# # _fileCheck()
+# # _checkPositionaParam()
 ####################################
 def _checkPositionaParam(value):
-    print (value)
+    # print (type(value),value)
+
+    if not value in positionalParametersDict.keys():
+        errMsg = '{VALUE} - in NOT a valid parameter'.format(VALUE=value)
+        C.printColored(color=C.cyanH, text=errMsg, tab=4)
+        LnExit(2, errMsg, printStack=False)
+
 
     return value

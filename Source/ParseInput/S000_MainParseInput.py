@@ -7,10 +7,11 @@ from    sys     import argv as sysArgv, exit as sysExit
 from    pathlib import Path
 from    time import  strftime
 import  argparse
-
+from LnLib.Common.LnColor import LnColor
+C=LnColor()
 
 class LnClass(): pass
-from . S010_PositionalParameters import positionaParameters
+from . S010_PositionalParameters import positionalParameters
 from . S080_DebugParameters      import debugParameters
 from . S020_ProgramParameters    import programParameters
 from . S070_LogParameters        import logParameters
@@ -67,10 +68,12 @@ def ParseInput(programVersion=0.1):
                             version='{PROG}  Version: {VER}'.format (PROG=prjName, VER=programVersion ),
                             help=myHELP("show program's version number and exit") )
 
-    positionaParameters(myParser)
+    posParamName='programToStart'
+    positionalParameters(myParser, paramName=posParamName)
     programParameters(myParser, gVar)
     logParameters(myParser, gVar)
     debugParameters(myParser)
+
 
 
 
@@ -84,6 +87,9 @@ def ParseInput(programVersion=0.1):
         # --------------------------------------------
     if args['log'] == False: args['log_filename'] = None
 
+    # siccome ho un solo parametro posizipnale... eliminialo la LIST
+    args[posParamName] = args[posParamName][0]
+
 
         # -----------------------
         # - print dei parametri
@@ -93,7 +99,9 @@ def ParseInput(programVersion=0.1):
         for key, val in args.items():
             if 'options ____' in key:
                 continue
-            print('     {0:<20}: {1}'.format(key,val))
+            # keyColor = C.getColored(color=C.yellowH, text=key)
+            # valColor = C.getColored(color=C.yellow, text=val)
+            print('     {0:<20}: {1}'.format(key, val))
         print()
         choice = input('press Enter to continue... (q|x to exit): ')
         if choice.lower() in ('x', 'q'): sysExit()
