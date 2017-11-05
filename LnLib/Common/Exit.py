@@ -23,7 +23,7 @@ EXIT_STACK  = -32
 # =======================================================================
 def Exit(rcode, text=None, printStack=True, stackLevel=9, console=True):
     logger  = SetLogger(package=__name__)
-    cPrint       = LnColor()
+    C       = LnColor()
 
     if text == None and rcode == 9999:
         textList = ['exiting for debbugging reason!']
@@ -39,13 +39,13 @@ def Exit(rcode, text=None, printStack=True, stackLevel=9, console=True):
         # - Display dell'Errore
         # -------------------------------
     if rcode == 0:
-        printColor = cPrint.Green
+        printColor = C.green
         logWrite = logger.debug
     elif rcode >9000: # uscite per debugging
-        printColor = cPrint.Warning
+        printColor = C.warning
         logWrite = logger.warning
     else:
-        printColor = cPrint.Error
+        printColor = C.error
         logWrite = logger.error
 
 
@@ -55,10 +55,10 @@ def Exit(rcode, text=None, printStack=True, stackLevel=9, console=True):
         # -------------------------------
 
     if console:
-        printColor("  RCODE       : {0}".format(rcode), tab=4)
-        printColor("  TEXT Message: ", tab=4 )
+        C.printColored(color=printColor, text="  RCODE       : {0}".format(rcode), tab=4)
+        C.printColored(color=printColor, text="  TEXT Message: ", tab=4 )
         for line in textList:
-            printColor (line, tab=8)
+            C.printColored(color=printColor, text=line, tab=8)
 
     else:
         logWrite("  RCODE       : {0}".format(rcode))
@@ -74,7 +74,7 @@ def Exit(rcode, text=None, printStack=True, stackLevel=9, console=True):
             if not 'index out of range' in caller:
                 logWrite("    {0}".format(caller))
                 if console:
-                    printColor(caller, tab=8)
+                    C.printColored(color=printColor, text=caller, tab=8)
     sys.exit(rcode)
 
 

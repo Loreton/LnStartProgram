@@ -55,6 +55,7 @@ if __name__ == '__main__':
     args      = Prj.ParseInput() # ; print (args)
     gv.args   = LnDict(args)
     gv.fDEBUG = gv.args.debug
+    if gv.fDEBUG: gv.args.printTree(fPAUSE=True)
 
     logger    = initLogger(toFILE=gv.args.log, logfilename=gv.args.log_filename, toCONSOLE=gv.args.log_console, ARGS=args)
 

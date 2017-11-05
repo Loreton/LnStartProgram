@@ -9,17 +9,8 @@ import inspect, os
 from sys import exit as sysExit, _getframe as getFrame
 
 from    LnLib.Common.LnColor  import LnColor
-cPrint=LnColor()
+C=LnColor()
 
-# colori delle righe
-# DICT_LINE   = cPrint.CyanH
-# VALUE_LINE  = cPrint.Yellow
-# VALUE_LINE  = cPrint.Cyan
-# VALUE_DATA  = cPrint.GreenH
-
-# getDICT_LINE   = cPrint.getCyanH
-# getVALUE_LINE  = cPrint.Cyan
-# getVALUE_DATA  = cPrint.GreenH
 
 # LINEDATA_LIST=[]
 # #######################################################
@@ -56,7 +47,7 @@ def PrintDictionary(myDict, myDictTYPES=[], keyList=[], level=0, whatPrint='LTKV
             if 'L' in whatPrint: line0 = '[{LVL:2}]'.format(LVL=level)
             if 'T' in whatPrint: line0 = '{LINE0} {TYPE:<8}'.format(LINE0=line0, TYPE=thisTYPE)
             if 'K' in whatPrint: line0 = '{LINE0} {TAB}{KEY}'.format(LINE0=line0, TAB=myTAB, KEY=key)
-            cPrint(C.cyanH, line0, tab=4)
+            C.printColored(color=C.cyanH, text=line0, tab=4)
             # LINEDATA_LIST.append(line0)
             # ---- recursive iteration
             PrintDictionary(val, myDictTYPES=myDictTYPES, keyList=keyList, level=level+1, whatPrint=whatPrint, fPRINT=fPRINT, maxDepth=maxDepth)    # in questo caso il return value non mi interessa
@@ -84,7 +75,7 @@ def PrintDictionary(myDict, myDictTYPES=[], keyList=[], level=0, whatPrint='LTKV
                     sysExit()
 
                 else:
-                    cPrint.Cyan('\n... try again\n')
+                    C.printColored(color=C.cyan, text='\n... try again\n')
 
 
         else:
@@ -133,10 +124,10 @@ def PrintHeader(prefix, header, stackLevel=3):
 
 
     print()
-    cPrint.Cyan("*"*60, tab=8)
-    cPrint.Cyan("*     {0}".format(caller), tab=8)
-    if header: cPrint.Cyan("*     {0}{1}".format(prefix, header), tab=8)
-    cPrint.Cyan("*"*60, tab=8)
+    C.printColored(color=C.cyan, text="*"*60, tab=8)
+    C.printColored(color=C.cyan, text="*     {0}".format(caller), tab=8)
+    if header: C.printColored(color=C.cyan, text="*     {0}{1}".format(prefix, header), tab=8)
+    C.printColored(color=C.cyan, text="*"*60, tab=8)
 
 
 
@@ -179,7 +170,7 @@ def getDictValue(key, value, level, myDictTYPES, whatPrint='LT', fPRINT=True):
         """
             # indentiamo leggermete i valori
         for item in value:
-            listOfValue.append(cPrint.getMagenta('   {0}'.format(item)))
+            listOfValue.append(C.printColored(color=C.magenta, text=('   {0}'.format(item))))
 
         listOfValue.append(']')
 
@@ -201,27 +192,27 @@ def getDictValue(key, value, level, myDictTYPES, whatPrint='LT', fPRINT=True):
 
     line0 = line0.ljust(baseStartValue)
     if not 'V' in whatPrint:
-        cPrint(C.cyan, line0, tab=4)
+        C.printColored(color=C.cyan, text=line0, tab=4)
         return
 
-    cPrint(C.cyan, line0, tab=4, end='')
+    C.printColored(color=C.cyan, text=line0, tab=4, end='')
 
-    cPrint(C.greenH, ': ', end='')
+    C.printColored(color=C.greenH, text=': ', end='')
 
 
         # - print del valore della prima entry della lista
     if len(listOfValue) == 0:
         line  = ''
-        cPrint(C.greenH, line)
+        C.printColored(color=C.greenH, text=line)
 
     else:
         line  = '{VAL}'.format(VAL=listOfValue[0])
-        cPrint(C.greenH, line)
+        C.printColored(color=C.greenH, text=line)
 
             # - print delle altre righe se presenti
         for line in listOfValue[1:]:
             line  = '{LINE:<{LUN}}  {VAL}'.format(LINE=' ', LUN=baseStartValue, VAL=line)
-            cPrint(C.greenH, line, tab=4)
+            C.printColored(color=C.greenH, text=line, tab=4)
         else:
             retValue[key] = value
 

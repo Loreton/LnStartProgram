@@ -61,12 +61,10 @@ class LnColor:
 
 
     def getColored(self, **args):
-        return self.printColored (**args)
+        return self.printColored (fGET=True, **args)
 
-    def printColored(self, color, text='', tab=0, end='\n', reset=True, string_encode='latin-1'):
+    def printColored(self, color=None, text='', tab=0, end='\n', reset=True, string_encode='latin-1', fGET=False):
         endColor = self.RESET if reset else ''
-        # print (text)
-        # print (type(text))
         thisTAB = ' '*tab
 
         # ----------------------------------------------
@@ -76,7 +74,6 @@ class LnColor:
             # - convertiamo bytes in string
         if isinstance(text, bytes):
             text = text.decode('utf-8')
-            # print (type(text))
 
             # - convertiamo list in string (con il tab in ogni riga)
         if isinstance(text, list):
@@ -85,7 +82,6 @@ class LnColor:
                 myMsg.append('{}{}'.format(thisTAB, line))
             text = '\n'.join(myMsg)
             thisTAB = ''
-            # outText = '{0}{1}{2}'.format(color, text, endColor)
 
             # - aggiungiamo il tab in ogni riga
         elif '\n' in text:
@@ -94,17 +90,17 @@ class LnColor:
                 myMsg.append('{}{}'.format(thisTAB, line))
             text = '\n'.join(myMsg)
             thisTAB = ''
-            # outText = '{0}{1}{2}'.format(color, text, endColor)
 
-        # else:
         outText = '{0}{1}{2}{3}'.format(thisTAB, color, text, endColor)
 
         # ----------------------------------------------
         # - print
         # ----------------------------------------------
 
-        callerFunc = sys._getframe(1).f_code.co_name
-        if callerFunc.startswith('get'):
+        # callerFunc = sys._getframe(1).f_code.co_name
+        # if callerFunc.startswith('get'):
+        #     return outText
+        if fGET:
             return outText
         else:
             try:
