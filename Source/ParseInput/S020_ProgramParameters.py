@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # Scope:  Programma per ...........
-# LnVer_2017-11-05_11.53.00
+# LnVer_2017-11-05_13.04.30
 # -----------------------------------------------
 
 from . S110_MyHelp      import myHELP
@@ -41,8 +41,9 @@ def programParameters(myParser, gVar, required=False):
                                 metavar='',
                                 type=check_file,
                                 required=False,
-                                default=gVar.defaultRootDir,
-                                  help=myHELP('Specifies caller directory', default=gVar.defaultRootDir))
+                                # default=gVar.defaultRootDir,
+                                default=None,
+                                  help=myHELP('Specifies LnDisk ROOT directory (ex: D:\LnDisk)', default=None))
 
 
 

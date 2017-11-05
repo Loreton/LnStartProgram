@@ -54,53 +54,30 @@ def CalculateMainDirs(myArgs, fDEBUG=False):
     # myPatternDir = 'LnDisk'
     # myPatternDir = 'LnStart'
 
-    drive, *rest = scriptMainParts
 
-    FOUND = False
-    # rootDir = scriptMain.drive.realpath()
-    rootDir = drive.realpath()
-    print (rootDir)
-    myDirectories = ('LnStart', 'Loretox', 'LnFree', 'GIT-REPO')
-    for dirname in rest:
-        # print (dirname, rootDir)
-        if dirname in myDirectories:
-            FOUND = True
-            break
-        else:
-            rootDir = rootDir.joinpath(dirname)
+    if myArgs['rootDir']:
+        rootDir = myArgs['rootDir']
+        drive, *rest = rootDir
+    else:
+        FOUND = False
+        drive, *rest = scriptMainParts
+        rootDir = drive.realpath()
+        myDirectories = ('LnStart', 'Loretox', 'LnFree', 'GIT-REPO')
+        for dirname in rest:
+            if dirname in myDirectories:
+                FOUND = True
+                break
+            else:
+                rootDir = rootDir.joinpath(dirname)
 
-    if not FOUND:
-        print (rootDir)
-        LnExit(21, "{}: NOT found.")
-
-
-
-    # if myPatternDir in rest:
-    #     for dir in rest:
-    #         rootDir = rootDir.joinpath(dir)
-    #         if dir == myPatternDir: break
-
-    # else:
-    #     rootDir = scriptMain.drive
-    #     # dirs = Path('D:\\').rglob('*.py')
-    #     dirs = Path(scriptMain.drive).rglob('LnStart')
-    #     for dir in dirs:
-    #         print (dir)
-    #     # dirs = LnDirList(drive, patternLIST=[myPatternDir], onlyDir=True, maxDeep=5)
-    #     # rootDir = dirs[0]
-    #     # print (dirs)
-
-
-
-    # scriptMain         = LnPath(sys.argv[0]).realpath()
-    # print (type(scriptMain), scriptMain)
+        if not FOUND:
+            print (rootDir)
+            LnExit(21, "{}: NOT found.")
 
 
     ln = LnDict()
     ln.RootDir    = LnVerifyPath(rootDir)
     ln.Drive      = LnVerifyPath(drive)
-    # ln.RootDir    = LnVerifyPath(myArgs['rootDir'])
-    # ln.Drive      = LnVerifyPath(ln.RootDir.drive)
 
     if fDEBUG: ln.printTree(header="ln. variables", fPAUSE=True)
 
@@ -143,6 +120,6 @@ def CalculateMainDirs(myArgs, fDEBUG=False):
     OsEnv.setVar('Ln_RootDir'   ,ln.RootDir)
 
     if fDEBUG:
-        subst.printTree(header="subst_variables", fPAUSE=False)
+        if myArgs['subst']: subst.printTree(header="subst_variables", fPAUSE=False)
         ln.printTree(header="ln_variables", fPAUSE=True)
 

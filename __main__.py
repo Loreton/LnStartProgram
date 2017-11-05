@@ -26,32 +26,6 @@ from LnLib.File.LnPath import Path
 if __name__ == '__main__':
     gv        = LnDict()
 
-
-    # myDirectory = Path('.')
-    # myDirectory = Path('d:\Loreto\LnDisk\GIT-REPO\Python3')
-    # myDirectory = Path('d:\\')
-
-    # for f in myDirectory.iterdir():
-    #     print(f)
-    #     if f.is_dir() and f.name == 'LnStart':
-    #         print('foune', f)
-    #         break
-
-    # pattern = 'LnStart'
-    # for f in myDirectory.walkdirs(pattern):
-    #     print(f)
-        # if f.name == 'LnStart':
-        #     print('foune', f)
-        #     break
-
-
-
-
-
-
-
-    # LnExit(9999, 'ciai')
-
     args      = Prj.ParseInput() # ; print (args)
     gv.args   = LnDict(args)
     gv.fDEBUG = gv.args.debug
