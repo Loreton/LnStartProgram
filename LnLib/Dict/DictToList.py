@@ -8,7 +8,7 @@ import collections
 import sys
 
 from LnLib.Common.LnColor  import LnColor
-cPrint=LnColor()
+cPrint=LnColor().printColored
 
 
 # #######################################################
@@ -109,7 +109,7 @@ def getValue(mainRootDict, listOfQualifiers, myDictTYPES, fPRINT=True):
         if "DotMap" in thisTYPE: thisTYPE = 'LnDict'
         if fPRINT:
             line = '[{LVL:2}] - {TYPE:<8}- {TAB}{KEY}'.format(LVL=level, TAB=myTAB*level, TYPE=thisTYPE, KEY=key)
-            cPrint.YellowH(line, tab=4)
+            cPrint(C.YellowH, line, tab=4)
         level += 1
 
         # - dict forzato nell'ordine di immissione
@@ -122,7 +122,7 @@ def getValue(mainRootDict, listOfQualifiers, myDictTYPES, fPRINT=True):
                 thisTYPE = str(type(val)).split("'")[1]
                 line0 = '[{LVL:2}] - {TYPE:<8}- {TAB}{KEY}'.format(LVL=level, TAB=myTAB*level, TYPE=thisTYPE, KEY=key)
                 line  = '{LINE:<{LUN}}: {VAL}'.format(LINE=line0, LUN=baseStartValue, VAL=val)
-                cPrint.GreenH(line, tab=4)
+                cPrint(C.greenH, line, tab=4)
 
 
     if fPRINT: print()

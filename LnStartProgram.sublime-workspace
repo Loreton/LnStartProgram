@@ -1,0 +1,1130 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"root",
+				"rootDir〔variable〕"
+			],
+			[
+				"split",
+				"splitall〔function〕"
+			],
+			[
+				"pa",
+				"parts"
+			],
+			[
+				"is",
+				"isItForMe"
+			],
+			[
+				"valie",
+				"validAddresses"
+			],
+			[
+				"ra",
+				"rawData〔variable〕"
+			],
+			[
+				"ora",
+				"oraLista"
+			],
+			[
+				"sect",
+				"sectID"
+			],
+			[
+				"produ",
+				"producerUser"
+			],
+			[
+				"consumer",
+				"consumerUser"
+			],
+			[
+				"consum",
+				"consumerUser"
+			],
+			[
+				"for",
+				"ForegroundColor"
+			],
+			[
+				"con",
+				"ConsumerID"
+			],
+			[
+				"write-hos",
+				"Write-Host"
+			],
+			[
+				"memb",
+				"members"
+			],
+			[
+				"mem",
+				"members"
+			],
+			[
+				"exists",
+				"existsCN"
+			],
+			[
+				"comando",
+				"comando1"
+			],
+			[
+				"my",
+				"myPause〔function〕"
+			],
+			[
+				"Python",
+				"PythonDir"
+			],
+			[
+				"arra",
+				"arrayCMD"
+			],
+			[
+				"CN",
+				"CNExists"
+			],
+			[
+				"user",
+				"userName"
+			],
+			[
+				"gr",
+				"group"
+			],
+			[
+				"User",
+				"userTYPE"
+			],
+			[
+				"GL",
+				"Global"
+			],
+			[
+				"Write",
+				"Write-Host"
+			],
+			[
+				"Q",
+				"QueueFullPath"
+			],
+			[
+				"env",
+				"envArg"
+			],
+			[
+				"write",
+				"Write-Host"
+			],
+			[
+				"Que",
+				"QueueName"
+			],
+			[
+				"bas",
+				"baseRSyncCMD〔variable〕"
+			],
+			[
+				"rSync",
+				"rSyncCMD〔variable〕"
+			],
+			[
+				"sourt",
+				"sourcePART"
+			],
+			[
+				"sub",
+				"subDir〔argument〕"
+			],
+			[
+				"opt",
+				"optKEYs〔variable〕"
+			],
+			[
+				"printR",
+				"printTree"
+			],
+			[
+				"LOG",
+				"LOGFile"
+			],
+			[
+				"command",
+				"commandList〔variable〕"
+			],
+			[
+				"usb",
+				"usb1"
+			],
+			[
+				"err",
+				"errData〔variable〕"
+			],
+			[
+				"fiel",
+				"fieldsToPrint〔variable〕"
+			],
+			[
+				"EXC",
+				"EXCLUDE_DATA〔variable〕"
+			],
+			[
+				"NOT",
+				"NOT_STR〔variable〕"
+			],
+			[
+				"sys",
+				"system〔function〕"
+			],
+			[
+				"serverName",
+				"serverNameLOWER〔variable〕"
+			],
+			[
+				"server",
+				"serverName〔argument〕"
+			],
+			[
+				"pri",
+				"primaryCols"
+			],
+			[
+				"lista",
+				"listaFile〔variable〕"
+			],
+			[
+				"Va",
+				"newVaultEntry"
+			],
+			[
+				"csv",
+				"csvType"
+			],
+			[
+				"LIST",
+				"LISTtype"
+			],
+			[
+				"defaul",
+				"defaultInclude〔variable〕"
+			],
+			[
+				"config",
+				"configMain"
+			],
+			[
+				"file",
+				"fileName"
+			],
+			[
+				"fi",
+				"fileName"
+			],
+			[
+				"def",
+				"defSetLogger〔module〕"
+			],
+			[
+				"L",
+				"LnLogger〔module〕"
+			],
+			[
+				"data",
+				"dataListOfList"
+			],
+			[
+				"start",
+				"startCell"
+			],
+			[
+				"star",
+				"startCell"
+			],
+			[
+				"full",
+				"fullRange"
+			],
+			[
+				"call",
+				"caller〔variable〕"
+			],
+			[
+				"path",
+				"pathsep〔variable〕"
+			],
+			[
+				"log",
+				"logConfigFileName〔variable〕"
+			],
+			[
+				"l",
+				"logConfigFileName"
+			],
+			[
+				"ser",
+				"setLogger"
+			],
+			[
+				"__",
+				"__file__〔variable〕"
+			],
+			[
+				"_",
+				"_dynamicDotMap"
+			],
+			[
+				"JB",
+				"JBossName〔variable〕"
+			],
+			[
+				"thre",
+				"thread"
+			],
+			[
+				"th",
+				"thread〔argument〕"
+			],
+			[
+				"TIMEO",
+				"TIMEOUT_OCCURRED"
+			],
+			[
+				"TIME",
+				"TIMEOUT_OCCURRED〔variable〕"
+			],
+			[
+				"servi",
+				"servicePtr〔argument〕"
+			],
+			[
+				"service",
+				"serviceType"
+			],
+			[
+				"fun",
+				"functionPtr〔variable〕"
+			],
+			[
+				"de",
+				"debug"
+			],
+			[
+				"seer",
+				"serviceType〔variable〕"
+			],
+			[
+				"JBoss",
+				"JBossName"
+			],
+			[
+				"func",
+				"functionName〔variable〕"
+			],
+			[
+				"servic",
+				"serviceType〔variable〕"
+			],
+			[
+				"Memo",
+				"MemoryService"
+			],
+			[
+				"jolokia",
+				"jolokiaVar〔variable〕"
+			],
+			[
+				"word",
+				"wordCleaned〔variable〕"
+			],
+			[
+				"exp",
+				"exceptedOut〔variable〕"
+			],
+			[
+				"jolo",
+				"jolokiaBase〔variable〕"
+			],
+			[
+				"prin",
+				"printDict"
+			],
+			[
+				"joloki",
+				"jolokiaBase〔variable〕"
+			],
+			[
+				"Data",
+				"DatasourceMbeans"
+			],
+			[
+				"proce",
+				"processServices"
+			],
+			[
+				"cmk",
+				"cmkService"
+			],
+			[
+				"inp",
+				"inpQ"
+			],
+			[
+				"inputQ",
+				"inputQueue"
+			],
+			[
+				"print",
+				"print_lock〔argument〕"
+			],
+			[
+				"que",
+				"queueName〔argument〕"
+			],
+			[
+				"LnL",
+				"LnLibDir〔variable〕"
+			],
+			[
+				"LN",
+				"LN_LIB〔variable〕"
+			],
+			[
+				"logg",
+				"logging〔module〕"
+			],
+			[
+				"para",
+				"parameters〔variable〕"
+			],
+			[
+				"slee",
+				"sleep"
+			],
+			[
+				"ptr",
+				"ptrFunctions"
+			],
+			[
+				"skip",
+				"skipDirs"
+			],
+			[
+				"st",
+				"stackTrace〔variable〕"
+			],
+			[
+				"mbe",
+				"mbean〔variable〕"
+			],
+			[
+				"sta",
+				"stackTrace〔variable〕"
+			],
+			[
+				"stack",
+				"stackLevel〔variable〕"
+			],
+			[
+				"cell",
+				"cellCenterAlignTemplate"
+			],
+			[
+				"Cre",
+				"CreatedCount"
+			],
+			[
+				"Activ",
+				"ActiveCount"
+			],
+			[
+				"max",
+				"maxPoolSize"
+			],
+			[
+				"ma",
+				"mainArgs〔variable〕"
+			],
+			[
+				"ds",
+				"dsName〔variable〕"
+			],
+			[
+				"S",
+				"System"
+			],
+			[
+				"boud",
+				"boundPort"
+			],
+			[
+				"attribu",
+				"attributes〔variable〕"
+			],
+			[
+				"reqAtt",
+				"reqAttribute〔variable〕"
+			],
+			[
+				"reps",
+				"respData"
+			],
+			[
+				"json",
+				"jsonRequest〔variable〕"
+			],
+			[
+				"re",
+				"req_MB〔variable〕"
+			],
+			[
+				"attrib",
+				"attribField〔variable〕"
+			],
+			[
+				"row",
+				"rowName〔variable〕"
+			],
+			[
+				"ex",
+				"excludedKeys〔variable〕"
+			],
+			[
+				"resp",
+				"respArray〔variable〕"
+			],
+			[
+				"colN",
+				"colNames〔variable〕"
+			],
+			[
+				"reqA",
+				"reqAttrName〔variable〕"
+			],
+			[
+				"respB",
+				"respValue〔variable〕"
+			],
+			[
+				"col",
+				"colNames〔variable〕"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "sf",
+		"selected_items":
+		[
+			[
+				"sf",
+				"SFTP: Show Panel"
+			],
+			[
+				"",
+				"AlignTab"
+			],
+			[
+				"Package Control: remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			],
+			[
+				"te",
+				"Text Pastry: Menu"
+			],
+			[
+				"todo",
+				"TodoReview: Project and Open Files"
+			],
+			[
+				"align",
+				"AlignTab: Table Mode"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"Set Syntax: p",
+				"Set Syntax: Python"
+			],
+			[
+				"dele",
+				"File: Delete"
+			],
+			[
+				"cop",
+				"File: Copy Path"
+			],
+			[
+				"cm",
+				"git: commit"
+			],
+			[
+				"rename",
+				"File: Rename"
+			],
+			[
+				"Package Control: install",
+				"Package Control: Install Package"
+			],
+			[
+				"Set Syntax: j",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"Package Control: inst",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control:ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Set Syntax: ",
+				"Set Syntax: INI"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"tod",
+				"TodoReview: Project and Open Files"
+			],
+			[
+				"ta",
+				"Tasks: New document"
+			],
+			[
+				"to",
+				"TodoReview: Project and Open Files"
+			],
+			[
+				"task",
+				"Tasks: New document"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"Set Syntax: ba",
+				"Set Syntax: Batch File"
+			],
+			[
+				"Set Syntax: i",
+				"Set Syntax: INI"
+			],
+			[
+				"Set Syntax: b",
+				"Set Syntax: Batch File"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"prv",
+				"PackageResourceViewer: Extract Package"
+			],
+			[
+				"Set Syntax: bat",
+				"Set Syntax: Batch File"
+			],
+			[
+				"Set Syntax: bas",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"opt",
+				"PackageResourceViewer: Extract Package"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"Set Syntax: batc",
+				"Set Syntax: Batch File"
+			],
+			[
+				"Snippet: ",
+				"Snippet: For Loop"
+			]
+		],
+		"width": 528.0
+	},
+	"console":
+	{
+		"height": 264.0,
+		"history":
+		[
+			"import os;print (os.sys.path)",
+			"print (os.sys.path)",
+			"print ('ciao')",
+			"echo %PATH%",
+			"\"Git: Status\"",
+			"Git: Status",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/__main__.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/LnLib/File/VerifyPath.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/LnLib/Common/Exit.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/Main/CalculateMainDirs.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/LnLib/System/SetOsEnv.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/LnLib/File/DirList.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/LnLib/__init__.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/LnLib/Common/LnLogger.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/LnLib/File/LnPath.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/ParseInput/S000_MainParseInput.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/ParseInput/S010_PositionalParameters.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/conf/LnStartProgram.ini",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/ParseInput/S020_ProgramParameters.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/__init__.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/ParseInput/__init__.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/ParseInput/S070_LogParameters.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/ParseInput/S080_DebugParameters.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/ParseInput/S100_check_file.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/ParseInput/S110_MyHelp.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/ParseInput/MainParseInput.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/ParseInput/LogParameters.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/ParseInput/DebugParameters.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/ParseInput/PositionalParameters.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/ParseInput/ProgramParameters.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/ParseInput/check_file.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/Setup/ParseInput.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/Setup/MyHelp.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/Setup/ProgramParameters.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/Setup/Parse_positionalParameters.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/Setup/Parse_logParameters.py",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/Setup/Parse_debugParameters.py",
+		"/D/Loreto/LnDisk/LnStart/LnToDo.ini",
+		"/D/Loreto/LnDisk/GIT-REPO/homeLoreto/.ssh/config",
+		"/D/Loreto/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/ParseInput.py",
+		"/D/Loreto/LnDisk/GIT-REPO/homeLoreto/.gitconfig",
+		"/D/zTemp/WinSCP/scp04058/Loreto%2FRaspBerry%2FLoreto%2F192.168.1.23/home/pi/GIT-REPO/LnProtocol/Arduino/LnRs485/src/Relay.ino",
+		"/D/zTemp/WinSCP/scp31204/Loreto%2FRaspBerry%2FLoreto%2F192.168.1.23/home/pi/GIT-REPO/LnProtocol/RaspBerry/LnLib/LnRS485/LnRs485_Class_New.py",
+		"/D/zTemp/WinSCP/scp52073/Loreto%2FRaspBerry%2FLoreto%2F192.168.1.23/home/pi/GIT-REPO/LnProtocol/Arduino/LnRs485/src/PollingSimulation.ino",
+		"/D/zTemp/WinSCP/scp05685/Loreto%2FRaspBerry%2FLoreto%2F192.168.1.23/home/pi/GIT-REPO/LnProtocol/Arduino/LnRs485/src/LnRs485.ino",
+		"/D/zTemp/WinSCP/scp43040/Loreto%2FRaspBerry%2FLoreto%2F192.168.1.23/home/pi/GIT-REPO/LnProtocol/Arduino/LnLibraries/RS485_protocol/LnRS485_protocol.h",
+		"/D/zTemp/WinSCP/scp02254/Loreto%2FRaspBerry%2FLoreto%2F192.168.1.23/home/pi/GIT-REPO/LnProtocol/Arduino/LnLibraries/RS485_protocol/LnRS485_protocol.cpp",
+		"/D/zTemp/WinSCP/scp58064/Loreto%2FRaspBerry%2FLoreto%2F192.168.1.23/home/pi/GIT-REPO/LnProtocol/Arduino/LnRs485/src/Slave.ino",
+		"/D/zTemp/WinSCP/scp24721/Loreto%2FRaspBerry%2FLoreto%2F192.168.1.23/home/pi/GIT-REPO/LnProtocol/RaspBerry/Source/Actions/Polling.py",
+		"/D/zTemp/WinSCP/scp23380/Loreto%2FRaspBerry%2FLoreto%2F192.168.1.23/home/pi/GIT-REPO/LnProtocol/RaspBerry/Source/Main/Main.py",
+		"/D/zTemp/WinSCP/scp31131/Loreto%2FRaspBerry%2FLoreto%2F192.168.1.23/home/pi/GIT-REPO/LnProtocol/RaspBerry/LnLib/__init__.py",
+		"/D/zTemp/WinSCP/scp37360/Loreto%2FRaspBerry%2FLoreto%2F192.168.1.23/home/pi/GIT-REPO/LnProtocol/RaspBerry/LnLib/System/GetKeyboardInput.py",
+		"/D/zTemp/WinSCP/scp51857/Loreto%2FRaspBerry%2FLoreto%2F192.168.1.23/home/pi/GIT-REPO/LnProtocol/RaspBerry/Source/Functions/DisplayRawData.py",
+		"/D/zTemp/WinSCP/scp23973/Loreto%2FRaspBerry%2FLoreto%2F192.168.1.23/home/pi/GIT-REPO/LnProtocol/RaspBerry/Source/Actions/Monitor.py",
+		"/D/zTemp/WinSCP/scp52470/Loreto%2FRaspBerry%2FLoreto%2F192.168.1.23/home/pi/GIT-REPO/LnProtocol/RaspBerry/Source/__init__.py",
+		"/D/zTemp/WinSCP/scp24639/Loreto%2FRaspBerry%2FLoreto%2F192.168.1.23/home/pi/GIT-REPO/LnProtocol/RaspBerry/Source/Actions/Master.py",
+		"/D/Loreto/LnDisk/LnFree/SynchBackup/FreeFileSync/LnFreeFileSync_BATCH.cmd",
+		"/D/Loreto/LnDisk/LnFree/Files/Manager/Loreto Prova/WinCmd.sh",
+		"/D/Loreto/LnDisk/LnStart/LnPortablePaths.cmd",
+		"/D/Loreto/LnDisk/LnFree/Desktop/Executor/Executor.cmd",
+		"/D/Loreto/LnDisk/LnFree/Files/Manager/WinCmd-LN/WinCmd.cmd",
+		"/D/Loreto/LnDisk/LnFree/Files/Manager/WinCmd-LN/WinCmd.sh",
+		"/D/Loreto/LnDisk/LnFree/Files/Manager/Loreto Prova/WinCmd.cmd",
+		"/F/LnFree/SynchBackup/FreeFileSync/LnFreeFileSync_BATCH.cmd",
+		"/F/LnStart/LnPortablePaths.cmd",
+		"/F/LnStart/setPythonAssociation.cmd",
+		"/F/GIT-REPO/Scripts/python/Sources/KittyFromWinScp/bin/kitty-from-WinScp.cmd",
+		"/G/zTemp/WinSCP/scp48447/Loreto%2FSteve%2Fstevetdr.no-ip.org - CNTLM 60080/home/pi/485d_Loreto/rs485-Full/pioMake.sh",
+		"/G/zTemp/WinSCP/scp59373/Loreto%2FSteve%2Fstevetdr.no-ip.org - CNTLM 60080/home/pi/485d_Loreto/Arduino/rs485-Full/src/RS-485_Main.ino",
+		"/G/zTemp/WinSCP/scp06767/Loreto%2FSteve%2Fstevetdr.no-ip.org - CNTLM 60080/home/pi/485d_Loreto/Arduino/rs485-Full/pioMake.sh",
+		"/G/zTemp/WinSCP/scp09929/Loreto%2FSteve%2Fstevetdr.no-ip.org - CNTLM 60080/home/pi/485d_Loreto/Arduino/rs485-Full/pioSteve.sh",
+		"/G/Loreto/DOC/Loreto/A4_ImageSize.txt",
+		"/D/Dati/Profili/f602250/Documents/Amministrazione/Locale/Elenco_telefonico_interno_2013-07-08.txt",
+		"/G/Loreto/DOC/Agenzia Entrate/DeskTopTelematico/doc per destktop telematico.txt",
+		"/D/Dati/Profili/f602250/Documents/Amministrazione/Locale/Elenco_Telefonico_Esterni.txt",
+		"/G/LnStart/DosKeyMacros.cmd",
+		"/G/LnStart/LnPortablePaths.cmd",
+		"/G/LnFree/Pgm/Java/setJAVA.cmd",
+		"/G/LnStart/LnToDo.ini",
+		"/D/Dati/Profili/f602250/Downloads/AgEntrate/a",
+		"/G/zTemp/WinSCP/scp14288/Loreto%2FSteve%2Fstevetdr.no-ip.org - CNTLM 60080/home/pi/485d_Loreto/Arduino/rs485-Full/platformio.ini",
+		"/G/zTemp/WinSCP/scp51095/Loreto%2FSteve%2Fstevetdr.no-ip.org - CNTLM 60080/home/pi/Loreto/GIT-REPO/LnProtcol/Arduino/rs485-Full/src/RS-485_Full.h",
+		"/G/zTemp/WinSCP/scp53097/Loreto%2FSteve%2Fstevetdr.no-ip.org - CNTLM 60080/home/pi/485d_Loreto/rs485-Full/src/RS-485_Main.ino",
+		"/G/zTemp/WinSCP/scp25720/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/Arduino/pioMake.sh",
+		"/G/zTemp/WinSCP/scp35524/Loreto%2FSteve%2Fstevetdr.no-ip.org - CNTLM 60080/home/pi/485d_Loreto/rs485-Full/pioSteve.sh",
+		"/G/zTemp/WinSCP/scp44621/Loreto%2FSteve%2Fstevetdr.no-ip.org - CNTLM 60080/home/pi/steve/programmi/485Test/src/RS-485_Main.ino",
+		"/G/zTemp/WinSCP/scp26012/Loreto%2FSteve%2Fstevetdr.no-ip.org - CNTLM 60080/home/pi/485d_Loreto/rs485-Full/clean.sh",
+		"/G/zTemp/WinSCP/scp25303/Loreto%2FSteve%2Fstevetdr.no-ip.org - CNTLM 60080/home/pi/485d_Loreto/rs485-Full/piomake.ini",
+		"/G/zTemp/WinSCP/scp24518/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/Arduino/platformio.ini",
+		"/G/zTemp/WinSCP/scp19210/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/Arduino/LnLibraries/RS485_protocol/LnRS485_protocol.cpp",
+		"/G/zTemp/WinSCP/scp59759/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/Arduino/LnLibraries/RS485_protocol/LnRS485_protocol.h",
+		"/G/zTemp/WinSCP/scp20166/Loreto%2FSteve%2Fstevetdr.no-ip.org - CNTLM 60080/home/pi/485d_Loreto/rs485-Full/src/RS-485_Full.h",
+		"/G/zTemp/WinSCP/scp08674/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/Arduino/rs485-Full/src/RS-485_Full.h",
+		"/G/zTemp/WinSCP/scp37788/Loreto%2FSteve%2Fstevetdr.no-ip.org - CNTLM 60080/home/pi/steve/programmi/m485/src/m485.ino",
+		"/G/zTemp/WinSCP/scp38527/Loreto%2FSteve%2Fstevetdr.no-ip.org - CNTLM 60080/home/pi/steve/programmi/m485/src/RS-485_Slave.h",
+		"/G/zTemp/WinSCP/scp02336/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/RaspBerry/Source/Actions/MasterRS485.py",
+		"/G/zTemp/WinSCP/scp07906/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/RaspBerry/conf/LnProtocol_config.ini",
+		"/G/zTemp/WinSCP/scp59712/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/RaspBerry/Source/Main/Main.py",
+		"/G/zTemp/WinSCP/scp49296/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/RaspBerry/Source/Actions/EchoTest.py",
+		"/G/zTemp/WinSCP/scp00018/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/RaspBerry/LnLib/LnRS485/LnRs485_Class.py",
+		"/G/zTemp/WinSCP/scp27400/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/Arduino/rs485-Full/src/RS-485_Full.h",
+		"/G/zTemp/WinSCP/scp04987/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/RaspBerry/LnLib/LnDict/LnDict_DotMap.py",
+		"/G/zTemp/WinSCP/scp04582/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/RaspBerry/LnLib/LnDict/DictToList.py",
+		"/G/zTemp/WinSCP/scp03579/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/RaspBerry/Source/Actions/SendRS485.py",
+		"/G/zTemp/WinSCP/scp03243/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/RaspBerry/Source/Actions/MonitorRS485.py",
+		"/G/zTemp/WinSCP/scp03697/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/RaspBerry/Source/Actions/MonitorRaw.py",
+		"/G/zTemp/WinSCP/scp00018/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/RaspBerry/LnLib/LnRS485/aaa.py",
+		"/G/zTemp/WinSCP/scp58592/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/RaspBerry/Source/Setup/SetupLog.py",
+		"/G/zTemp/WinSCP/scp59647/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/RaspBerry/__main__.py",
+		"/G/GIT-REPO/Python3/LnRSync/__main__.py",
+		"/G/GIT-REPO/Python3/LnRSync/LnLib/LnCommon/LnColor.py",
+		"/G/zTemp/WinSCP/scp34865/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/RaspBerry/LnLib/LnCommon/LnColor.py",
+		"/G/zTemp/WinSCP/scp38162/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/RaspBerry/LnLib/LnCommon/colorama/__init__.py",
+		"/G/GIT-REPO/Python3/LnRSync/LnLib/__init__.py",
+		"/G/zTemp/WinSCP/scp54534/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/RaspBerry/Source/Setup/ImportLib.py",
+		"/G/zTemp/WinSCP/scp04900/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/RaspBerry/LnLib/__init__.py",
+		"/G/zTemp/WinSCP/scp33262/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/RaspBerry/LnLib/__init__.py.bak",
+		"/G/zTemp/WinSCP/scp33573/Loreto%2FRaspBerry%2FLnPi23%2Fpina.effers.com - CNTLM 60081/home/pi/GIT-REPO/LnProtocol/RaspBerry/LnLib/LnCommon/__init__.py",
+		"/G/GIT-REPO/HW-Projects/LnProtocol/RaspBerry/Source/Setup/ImportLib.py",
+		"/G/GIT-REPO/HW-Projects/LnProtocol/RaspBerry/LnLib/__init__.py",
+		"/G/GIT-REPO/Scripts/PowerShell/MyFunc/LnCreateQueueTree.ps1",
+		"/G/GIT-REPO/Scripts/PowerShell/AMQ_proceesFile.ps1",
+		"/G/GIT-REPO/Scripts/PowerShell/MyFunc/LnAddConsumerProducerUser.ps1",
+		"/G/GIT-REPO/Scripts/PowerShell/AMQ_AddConsumerProducer.ps1",
+		"/G/GIT-REPO/Scripts/PowerShell/MyFunc/LnFunctions.ps1",
+		"/G/GIT-REPO/Scripts/PowerShell/MyFunc/LnGlobalVars.ps1",
+		"/G/GIT-REPO/HW-Projects/LnProtocol/RaspBerry/Source/Setup/ParseInput.py_",
+		"/G/GIT-REPO/HW-Projects/LnProtocol/RaspBerry/Source/Setup/ParseInput.py",
+		"/G/GIT-REPO/Scripts/PowerShell/LnCreateQueueTree.ps1",
+		"/G/GIT-REPO/Scripts/PowerShell/LnFunctions.ps1",
+		"/G/GIT-REPO/HW-Projects/LnProtocol/RaspBerry/__main__.py",
+		"/G/GIT-REPO/Scripts/PowerShell/LnGlobalVars.ps1",
+		"/G/GIT-REPO/Scripts/PowerShell/AMQ_createQueueTree.ps1",
+		"/G/GIT-REPO/HW-Projects/LnProtocol/RaspBerry/Source/Setup/SetupEnv.py"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"P:\\JBossAdmin\\conf",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"LnExit",
+			"fnmatch",
+			"LnColor",
+			"walkdirs",
+			"walk",
+			"path",
+			"Path",
+			"path",
+			"Path",
+			"path",
+			"Path",
+			"path",
+			"Path",
+			"path",
+			"Path",
+			"path",
+			"Path",
+			"path",
+			"Path",
+			"LnPath",
+			"rmtr",
+			"path",
+			"Path",
+			"path",
+			"Path",
+			"path",
+			"Path",
+			"strftime",
+			"gVar.prjName",
+			"gVar.programDir",
+			"gVar",
+			"check_file",
+			"_logParameters",
+			"_programParameters",
+			"_debugParameters",
+			"_programParameters",
+			"_programPositionaParameters",
+			"_programParameters",
+			"myHELP",
+			"_logParameters",
+			"_debugParameters",
+			"logParameters",
+			"gVar",
+			"_debugParameters",
+			"_programPositionaParameters",
+			"PositionalParameters",
+			"_debugParameters",
+			"myHELP",
+			"myHelp",
+			"myHELP",
+			"myHelp",
+			"myHELP",
+			"myHelp",
+			"myHELP",
+			"myHelp",
+			"myHELP",
+			"_fileCheck",
+			"_checkPositionaParam",
+			"stx miss",
+			"fDisplayOther",
+			"fDisplayOtherFull",
+			"fDisplayOtherfull",
+			"fDisplayOtherFull",
+			"fDisplayOtherfull",
+			"fDisplayOtherData",
+			"fDisplayRawData",
+			"displayHeader",
+			"myEEpromAddress",
+			"isItForMe",
+			"it's",
+			"Pi-",
+			"[",
+			"setArrayTime",
+			"setPath",
+			"JAVA_HOME",
+			"setPath",
+			"JAVA_HOME",
+			"JAVA_HOME=G:\\LnFree\\Pgm\\Java\\jre1.8.0_66",
+			"java",
+			"Esegui",
+			"createLibraryLink",
+			"platformio ",
+			"Serial232",
+			"ECHO_CMD",
+			"displayF",
+			"gv.input.",
+			"sendData",
+			"serialRelayPort",
+			"gv.input.",
+			"color",
+			"local:usertype",
+			"QueueFullPath",
+			"C,",
+			"master",
+			"serial232",
+			"Serial232",
+			"piSerial232",
+			"usbPort",
+			"port",
+			"sendMessage",
+			"_amq_svil",
+			"numCols",
+			"range",
+			"for each",
+			"exists?",
+			"exists",
+			"crea",
+			"-foreground yellow",
+			"{Write-host \"$TAB04 exists: [$true ]\" -foreground yellow -NoNewline}",
+			" exists?",
+			"\"$TAB04 [$",
+			"exists ",
+			"user",
+			"Member",
+			"member",
+			"Member",
+			"member",
+			"$t",
+			"Write-host",
+			"isMemberInGroup",
+			"==",
+			"\"$TAB04 [",
+			"Write-host [",
+			"[$true",
+			"[$false]",
+			"nonew",
+			"exists",
+			"creaz"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"/",
+			"resp",
+			"    ",
+			"/",
+			"\\"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 40.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 130.0
+	},
+	"output.stino_build_panel":
+	{
+		"height": 0.0
+	},
+	"output.stino_log":
+	{
+		"height": 142.0
+	},
+	"output.stino_panel":
+	{
+		"height": 221.0
+	},
+	"pinned_build_system": "",
+	"project": "LnStartProgram.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": false,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"mbean",
+				"{\"mbean\": \"jboss.as:management-root=server\", \"attr"
+			],
+			[
+				"",
+				"L:\\LnFree\\_LnPortable\\PythonPATH.cmd"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"J:\\GIT-REPO\\SublimeText_Projects\\LnFunctions\\P_LnFunctions.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 60.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 220.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -8,7 +8,7 @@ def logParameters(myParser, gVar, required=False):
     myParser.add_argument('---------------log-options ----',
                                 required=False,
                                 action='store_true',
-                                help=myHELP('', None))
+                                help=myHELP('', default=None))
 
         # log debug su console
     logGroup.add_argument( "--log-console",
@@ -19,7 +19,7 @@ def logParameters(myParser, gVar, required=False):
                                 help=myHELP("""attivazione log sulla console.
     E' possibile indicare una o più stringhe
     per identificare le funzioni che si vogliono inserire nel log.
-    Possono essere anche porzioni di funcName separate da ' ' Es: pippo pluto ciao""", False))
+    Possono essere anche porzioni di funcName separate da ' ' Es: pippo pluto ciao""", default=False))
 
         # log debug su file
     logGroup.add_argument('--log',
@@ -31,7 +31,7 @@ def logParameters(myParser, gVar, required=False):
     E' possibile indicare una o più stringhe
     per identificare le funzioni che si vogliono inserire nel log.
     Possono essere anche porzioni di funcName separate da ' ' Es: pippo pluto ciao
-    verra' utilizzao il file di log definito tramite --log-filename.""", False))
+    verra' utilizzao il file di log definito tramite --log-filename.""", default=False))
 
 
         # definizione file di log
@@ -40,7 +40,7 @@ def logParameters(myParser, gVar, required=False):
                                 # str=_fileCheck,
                                 required=False,
                                 default=gVar.defaultLogFile,
-                                help=myHELP('Specifies log fileName...', gVar.defaultLogFile))
+                                help=myHELP('log fileName... (valid only with --log option specified)', default=gVar.defaultLogFile))
 
 
 

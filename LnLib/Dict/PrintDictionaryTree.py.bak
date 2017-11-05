@@ -12,14 +12,14 @@ from LnLib.Common.LnColor  import LnColor
 cPrint=LnColor()
 
 # colori delle righe
-DICT_LINE   = cPrint.CyanH
+# DICT_LINE   = cPrint.CyanH
 # VALUE_LINE  = cPrint.Yellow
-VALUE_LINE  = cPrint.Cyan
-VALUE_DATA  = cPrint.GreenH
+# VALUE_LINE  = cPrint.Cyan
+# VALUE_DATA  = cPrint.GreenH
 
-getDICT_LINE   = cPrint.getCyanH
-getVALUE_LINE  = cPrint.Cyan
-getVALUE_DATA  = cPrint.GreenH
+# getDICT_LINE   = cPrint.getCyanH
+# getVALUE_LINE  = cPrint.Cyan
+# getVALUE_DATA  = cPrint.GreenH
 
 # LINEDATA_LIST=[]
 # #######################################################
@@ -56,7 +56,7 @@ def PrintDictionary(myDict, myDictTYPES=[], keyList=[], level=0, whatPrint='LTKV
             if 'L' in whatPrint: line0 = '[{LVL:2}]'.format(LVL=level)
             if 'T' in whatPrint: line0 = '{LINE0} {TYPE:<8}'.format(LINE0=line0, TYPE=thisTYPE)
             if 'K' in whatPrint: line0 = '{LINE0} {TAB}{KEY}'.format(LINE0=line0, TAB=myTAB, KEY=key)
-            DICT_LINE(line0, tab=4)
+            cPrint(C.cyanH, line0, tab=4)
             # LINEDATA_LIST.append(line0)
             # ---- recursive iteration
             PrintDictionary(val, myDictTYPES=myDictTYPES, keyList=keyList, level=level+1, whatPrint=whatPrint, fPRINT=fPRINT, maxDepth=maxDepth)    # in questo caso il return value non mi interessa
@@ -183,27 +183,27 @@ def getDictValue(key, value, level, myDictTYPES, whatPrint='LT', fPRINT=True):
 
     line0 = line0.ljust(baseStartValue)
     if not 'V' in whatPrint:
-        VALUE_LINE(line0, tab=4)
+        cPrint(C.cyan, line0, tab=4)
         return
 
-    VALUE_LINE(line0, tab=4, end='')
+    cPrint(C.cyan, line0, tab=4, end='')
 
-    VALUE_DATA (': ', end='')
+    cPrint(C.greenH, ': ', end='')
 
 
         # - print del valore della prima entry della lista
     if len(listOfValue) == 0:
         line  = ''
-        VALUE_DATA(line)
+        cPrint(C.greenH, line)
 
     else:
         line  = '{VAL}'.format(VAL=listOfValue[0])
-        VALUE_DATA(line)
+        cPrint(C.greenH, line)
 
             # - print delle altre righe se presenti
         for line in listOfValue[1:]:
             line  = '{LINE:<{LUN}}  {VAL}'.format(LINE=' ', LUN=baseStartValue, VAL=line)
-            VALUE_DATA(line, tab=4)
+            cPrint(C.greenH, line, tab=4)
         else:
             retValue[key] = value
 

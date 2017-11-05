@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # Scope:  Programma per ...........
-# LnVer_2017-11-01_12.21.31
+# LnVer_2017-11-05_11.53.00
 # -----------------------------------------------
 
 from . S110_MyHelp      import myHELP
@@ -21,20 +21,20 @@ def programParameters(myParser, gVar, required=False):
                                 required=False,
                                 default='noProgram',
                                 metavar='program',
-                                help=myHELP('Specify the program to start', 'noProgram'))
+                                help=myHELP('Specify the program to start', default='noProgram'))
 
     myParser.add_argument('--subst',
                                 required=False,
                                 default=None,
                                 metavar='subst',
-                                help=myHELP('Specify the SUBST drive', None))
+                                help=myHELP('Specify the SUBST drive', default=None, required=False))
 
     myParser.add_argument('--config-file',
                                 metavar='',
                                 type=check_file,
                                 required=False,
                                 default=gVar.defaultConfigFile,
-                                help=myHELP('Specifies config fileName...', gVar.defaultConfigFile))
+                                help=myHELP('Specifies config fileName...', default=gVar.defaultConfigFile))
 
 
     myParser.add_argument('--rootDir',
@@ -42,7 +42,7 @@ def programParameters(myParser, gVar, required=False):
                                 type=check_file,
                                 required=False,
                                 default=gVar.defaultRootDir,
-                                  help=myHELP('Specifies caller directory', gVar.defaultRootDir))
+                                  help=myHELP('Specifies caller directory', default=gVar.defaultRootDir))
 
 
 
