@@ -1,6 +1,8 @@
 
 from . S110_MyHelp import myHELP
 
+from LnLib.Common.LnColor import LnColor
+C=LnColor()
 #######################################################
 # PROGRAM POSITIONAL parameters
 #######################################################
@@ -9,14 +11,18 @@ def positionaParameters(myParser, required=False):
 
     posizARGS = 1
     positionalParametersDict  =  {
-        'conf'      : "edit configuration file",
-        'LnDisk'    : "copia della directory Lndisk..",
+        'totalcommander'        : "Total Commander",
+        'tc'                    : "Total Commander",
+        'executor'              : "Executor",
     }
 
     cmdList = []
+    cmdList.append(C.getColored(color=C.magentaH, text='\n      Primary MANDATORY Parameters... enter one of them'))
     for key, val in positionalParametersDict.items():
+        keyColor = C.getColored(color=C.yellowH, text=key)
+        valColor = C.getColored(color=C.yellow, text=val)
         cmdList.append('\n')
-        cmdList.append('          {0:<30} : {1}'.format(key, val))
+        cmdList.append('          {0:<20} : {1}'.format(key, valColor))
 
         # -------------------------------------------------------
         # - con nargs viene tornata una lista con nArgs
@@ -26,9 +32,9 @@ def positionaParameters(myParser, required=False):
                 metavar=''.join(cmdList),
                 type=_checkPositionaParam,
                 nargs=1,
-                help='''
-        immettere uno dei comandi sopra elencati''')
-
+                help='')
+        #         help=C.getColored(color=C.yellowH, text='''
+        # immettere uno dei comandi sopra elencati'''))
 
     '''
     cmdList = []

@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # Scope:  Programma per ...........
-# LnVer_2017-11-05_13.04.30
+# LnVer_2017-11-05_16.39.02
 # -----------------------------------------------
 
 from . S110_MyHelp      import myHELP
@@ -37,7 +37,7 @@ def programParameters(myParser, gVar, required=False):
                                 help=myHELP('Specifies config fileName...', default=gVar.defaultConfigFile))
 
 
-    myParser.add_argument('--rootDir',
+    myParser.add_argument('--root-dir',
                                 metavar='',
                                 type=check_file,
                                 required=False,

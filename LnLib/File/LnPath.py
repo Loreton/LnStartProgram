@@ -34,7 +34,8 @@ Example::
     for f in d.files('*.py'):
         f.chmod(0o755)
 """
-
+# migliore implementazione di pathlib.Path
+#    https://pathpy.readthedocs.io/en/latest/
 from __future__ import unicode_literals
 
 import sys

@@ -27,7 +27,6 @@ def VerifyPath(path, exitOnError=True):
 
 
     if pathExists:
-        # retPath = PurePath(path)
         retPath = LnPath(path)
         logger.info('it exists.')
 

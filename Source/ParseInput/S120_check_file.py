@@ -1,4 +1,8 @@
-
+#
+from pathlib import Path
+from LnLib.Common.Exit     import Exit      as LnExit
+from LnLib.Common.LnColor  import LnColor
+C = LnColor()
 #
 ####################################
 # # _fileCheck()
@@ -11,10 +15,10 @@ def check_file(fileName):
 
     except Exception as why:
         print()
-        print (str(why))
-        # LnColor.printYellow ('  {FILE} is not a valid file...'.format(FILE=fileName) + LnColor.RESET)
+        C.printColored(color=C.yellow, text=str(why), tab=4)
         print()
-        sysExit()
+        LnExit(1, 'exiting... analysing file: {FILE}'.format(FILE=fileName))
+
 
     return fileName
 
