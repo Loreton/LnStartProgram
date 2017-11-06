@@ -3,13 +3,13 @@
 # Scope:  Programma per ...........
 #
 # __author__  : 'Loreto Notarantonio'
-# __version__ : '26-10-2017 17.53.21'
+# __version__ : '06-11-2017 18.23.29'
 #
 # -----------------------------------------------
 
 import  os, sys
 from    pathlib                  import Path, PurePath         # dalla versione 3.4
-from    LnLib.File.LnPath        import Path as LnPath
+# from    LnLib.File.LnPath        import Path as LnPath
 
 from    time                     import sleep
 
@@ -37,21 +37,19 @@ def CalculateRootDir(myArgs, fDEBUG=False):
         # ---------------------------------------------------------------
     myDirectories = ('LnStart', 'LnFree', 'GIT-REPO')
 
+        # - se la root dir viene passata prendiamola per ciò che è
     if myArgs['root_dir']:
-        rootDir = Path(myArgs['root_dir'])
+        rootDir = Path(myArgs['root_dir']).resolve()
         drive, *rest = rootDir.parts
+        logger.info("drive:   {}".format(drive))
+        logger.info("rootDir: {}".format(rootDir))
+
+        # - altrimenti la calcoliamo
     else:
         FOUND = False
-        ''' pathlib
         scriptMain   = Path(sys.argv[0]).resolve()
         drive, *rest = scriptMain.parts
         rootDir      = Path(drive).resolve()
-        '''
-
-        scriptMain   = LnPath(sys.argv[0]).realpath()
-        drive, *rest = scriptMain.splitall()
-        rootDir      = drive.realpath()
-
         for dirname in rest:
             if dirname in myDirectories:
                 FOUND = True
@@ -60,63 +58,71 @@ def CalculateRootDir(myArgs, fDEBUG=False):
                 rootDir = rootDir.joinpath(dirname)
 
         if not FOUND:
+            logger.error("root_dir NOT found.")
             LnExit(21, "root_dir NOT found.")
 
 
-    ln = LnDict()
-    ln.RootDir    = LnVerifyPath(rootDir)
-    ln.Drive      = LnVerifyPath(drive)
+    # ln = LnDict()
 
-    if fDEBUG: ln.printTree(header="ln. variables", fPAUSE=True)
+        # - rootdir di base
+    realDrive      = LnVerifyPath(drive)
+    realRootDir    = LnVerifyPath(rootDir)
+
+    logger.info("realDrive:    {}".format(realDrive))
+    logger.info("realRootDir:  {}".format(realRootDir))
 
         # --------------------------------------------
-        # - se e' richiesto un drive SUBST ...
-        # - impostiamo anche i path per quel drive
+        # - se e' richiesto un drive SUBST...
+        # - impostiamo tutti i path per quel drive
         # --------------------------------------------
     if myArgs['subst']:
-        subst = LnDict()
-        substDrive = LnPath(myArgs['subst'].strip())
-        if substDrive.lower() in ['x:', 'y:', 'w:', 'z:']:
-            subst.MountDir  = ln.RootDir
-            if not substDrive.exists():
-                LnRunProgram("executing SUBST command:", ['subst', substDrive, subst.MountDir])
-                sleep(1) #diamo tempo affinché avvenga il montaggio
-
-            # verifico che il comando di SUBST sia andato a buon fine...
-            subst.FreeDir = LnVerifyPath(substDrive.joinpath('LnFree'), exitOnError=False)
-            if subst.FreeDir:
-                subst.Drive      = LnVerifyPath(substDrive)
-
-                    # - setting and logging
-                OsEnv.setVar('Ln_subst_Drive'     ,subst.Drive)
-                OsEnv.setVar('Ln_subst_MountDir'  ,subst.MountDir)
-
-            else:
-                logger.warning("il comando di SUBST non ha avuto successo...")
-                input()
-
-                # ----------------------------------------
-                # - se abbiamo attivato il SUBST,
-                # - modifichiamo anche le MAIN variables
-                # ----------------------------------------
-            ln.Drive   = subst.Drive
-            ln.RootDir = subst.Drive
+        substDrive = createSUBSTDrive(substDrive=Path(myArgs['subst']), substMountDir=realRootDir)
+    else:
+        substDrive = None
 
 
         # ----------------------------------------
         # - verifica dell'esistenza delle myDirectories
         # ----------------------------------------
+    testRootDir = substDrive if substDrive else realRootDir
+    logger.info("testRootDir:  {}".format(testRootDir))
+    errore con questi parametri: executor --log-co
     for subdir in myDirectories:
-        LnVerifyPath(ln.RootDir.joinpath(subdir))
+        # LnVerifyPath(testRootDir.joinpath(subdir))
+        LnVerifyPath(testRootDir.absolute() / '/' / subdir)
 
-        # - re-impostiamo le vriabili di ambientez
-    OsEnv.setVar('Ln_Drive'     ,ln.Drive)
-    OsEnv.setVar('Ln_RootDir'   ,ln.RootDir)
-
+    return realDrive, realRootDir, substDrive
 
 
-    if fDEBUG:
-        if myArgs['subst']: subst.printTree(header="subst_variables", fPAUSE=False)
-        ln.printTree(header="ln_variables", fPAUSE=True)
 
-    return ln.Drive, ln.RootDir
+# ######################################################
+# - attiva il Sust
+# ######################################################
+def createSUBSTDrive(substDrive, substMountDir):
+    logger = SetLogger(__package__)
+
+    logger.info("parameter substDrive:    {}".format(substDrive))
+    logger.info("parameter substMountDir: {}".format(substMountDir))
+
+    # retVal = None
+
+    if not str(substDrive).lower() in ['x:', 'y:', 'w:', 'z:']:
+        errMsg = "il drive immesso [{DRIVE}] non è previsto...".format(DRIVE=substDrive)
+        logger.warning(errMsg)
+        LnExit(22, errMsg)
+
+
+    if substDrive.exists():
+        logger.info('SUBST drive {} alredy present'.format(substDrive))
+
+    else:
+        LnRunProgram("executing SUBST command:", ['subst', substDrive, substMountDir])
+        sleep(1) #diamo tempo affinché avvenga il montaggio
+
+            # verifico che il comando di SUBST sia andato a buon fine...
+        substDrive = LnVerifyPath(substDrive, exitOnError=False) # ritorna substDrive
+
+
+    logger.info("SUBST drive: {0}".format(substDrive))
+
+    return substDrive

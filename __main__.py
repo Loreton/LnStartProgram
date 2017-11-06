@@ -1,6 +1,6 @@
 #
 # __author__  : 'Loreto Notarantonio'
-# __version__ : '27-10-2017 11.38.58'
+# __version__ : '06-11-2017 17.34.56'
 #
 
 
@@ -40,21 +40,35 @@ if __name__ == '__main__':
         # in teoria sono già impostati ma serve in caso
         # di subst perché li modifica opportunamente.
         # -----------------------------------------------
-    myDrive, myRootDir = Prj.CalculateRootDir(args, fDEBUG=gv.fDEBUG) # set Ln_Drive, Ln_rootDir e Ln_StartDir
+    realDrive, realRootDir, substDrive = Prj.CalculateRootDir(args, fDEBUG=gv.fDEBUG) # set Ln_Drive, Ln_rootDir e Ln_StartDir
+    # my = Prj.CalculateRootDir(args, fDEBUG=gv.fDEBUG) # set Ln_Drive, Ln_rootDir e Ln_StartDir
+
+    realMountDir = realRootDir
+    if substDrive: # override
+        realDrive    = substDrive
+        realRootDir  = substDrive
+
 
 
     extraSect = {}
     extraSect['VARS']  = {}
-    extraSect['VARS']['Ln_RootDir'] = myRootDir
-    extraSect['VARS']['Ln_Drive']   = myDrive
+    extraSect['VARS']['Ln_Drive']   = realDrive
+    extraSect['VARS']['Ln_RootDir'] = realRootDir
 
+    # if substDrive:
+    extraSect['VARS']['Ln_subst_Drive']    = substDrive
+    extraSect['VARS']['Ln_subst_RootDir']  = substDrive
+    extraSect['VARS']['Ln_subst_MountDir'] = realMountDir
+
+    test = LnDict(extraSect)
+    test.printDict(header='Extra Section', fPAUSE=True)
 
     iniFile = LnReadIniFile(gv.args.config_file, strict=True, logger=logger)
     iniFile.setDebug(False)
     iniFile.extraSections(extraSect)
     iniFile.read(resolveEnvVars=False)
     gv.cfgFile = LnDict(iniFile.dict)
-    if gv.fDEBUG: gv.cfgFile.printTree(fPAUSE=True)
+    if gv.fDEBUG: gv.cfgFile.printTree(header="INI File", fPAUSE=True)
 
 
     OsEnv.setVars(gv.cfgFile.VARS)
@@ -63,15 +77,16 @@ if __name__ == '__main__':
     programToStart = gv.args.programToStart
     if programToStart.lower().strip() in ['tc', 'totalcommander']:
         CMDList = Prj.SetTotalCommander(gv.cfgFile.TOTAL_COMMANDER, fDEBUG=gv.fDEBUG)
-        runProgram('TotalCommander command list:', CMDList)
+        # runProgram('TotalCommander command list:', CMDList)
 
     elif programToStart.lower().strip() in ['executor']:
         CMDList = Prj.SetExecutor(gv.cfgFile.EXECUTOR)
-        runProgram('Executor command list:', CMDList)
+        # runProgram('Executor command list:', CMDList)
 
     else:
         LnExit(1, "Program: {} not yet implemented".format(programToStart))
 
+    # runProgram('{PROGRAM} command list:'.format(programToStart), CMDList)
     LnExit(0, "Process completed, {} has been started".format(programToStart))
 
 

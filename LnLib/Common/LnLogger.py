@@ -9,6 +9,7 @@ from    pathlib import Path
 import  inspect
 
 myLOGGER    = None
+fDEBUG    = False
 modulesToLog = []
 
 
@@ -20,35 +21,45 @@ modulesToLog = []
 #   %(funcName)s    Name of function containing the logging call.
 #   %(lineno)d      Source line number where the logging call was issued (if available).
 # =============================================
-def init(toFILE=None, toCONSOLE=False, logfilename=None, ARGS=None):
-    global myLOGGER, modulesToLog
+def init(toFILE=False, toCONSOLE=False, logfilename=None, ARGS=None):
+    global myLOGGER, modulesToLog, fDEBUG
 
+
+    if ARGS:
+        if 'debug' in ARGS:
+            fDEBUG = ARGS['debug']
 
 
         # ----------------------------------------------------------------
         # - impostazione relativamente complessa ai moduli...
         # - toCONSOLE & toFILE  non dovrebbero mai essere contemporanei
         # - perché bloccati dal ParseInput
+        # - toCONSOLE==[] significa tutti i moduli
         # ----------------------------------------------------------------
-    if toFILE:
-        modulesToLog = toFILE
+    if toCONSOLE==[]:
+        modulesToLog = ['!ALL!']
+        toCONSOLE = True
 
     elif toCONSOLE:
-        modulesToLog = toCONSOLE
+        modulesToLog = toCONSOLE # copy before modifying it
+        toCONSOLE = True
 
-    elif toCONSOLE == [] or toFILE == []:
+    elif toFILE==[]:
         modulesToLog = ['!ALL!']
+        toFILE = True
+
+    elif toFILE:
+        modulesToLog = toFILE   # copy before modifying it
+        toFILE = True
 
     else:
-        modulesToLog = False
-
-
-    print(__file__, 'modulesToLog..................', modulesToLog)
-
-
-    if not toFILE and not toCONSOLE:
+        # modulesToLog = []
         myLOGGER = None
+        if fDEBUG: print(__name__, 'no logger has been activated')
         return _setNullLogger()
+
+    if fDEBUG: print(__name__, 'modulesToLog..................', modulesToLog)
+
 
         # ------------------
         # set up Logger
@@ -58,7 +69,7 @@ def init(toFILE=None, toCONSOLE=False, logfilename=None, ARGS=None):
         # ------------------
     # logFormatter = logging.Formatter('[%(asctime)s] [%(name)-25s:%(lineno)4d] %(levelname)-5.5s - %(message)s','%m-%d %H:%M:%S')
     logFormatter = logging.Formatter('[%(asctime)s] [%(module)-25s:%(lineno)4d] %(levelname)-5.5s - %(message)s','%m-%d %H:%M:%S')
-    logFormatter = logging.Formatter('[%(asctime)s] [%(module)s:%(lineno)4d] %(levelname)-5.5s - %(message)s','%m-%d %H:%M:%S')
+    # logFormatter = logging.Formatter('[%(asctime)s] [%(module)s:%(lineno)4d] %(levelname)-5.5s - %(message)s','%m-%d %H:%M:%S')
     logger       = logging.getLogger()
     logger.setLevel(logging.DEBUG)
         # log to file
@@ -67,7 +78,7 @@ def init(toFILE=None, toCONSOLE=False, logfilename=None, ARGS=None):
         LOG_DIR = Path(logfilename).parent
         LOG_DIR.mkdir(parents=True, exist_ok=True) # se esiste non dare errore
 
-        print ('using log file:', LOG_FILE_NAME)
+        if fDEBUG: print ('using log file:', LOG_FILE_NAME)
 
         fileHandler = logging.FileHandler('{0}'.format(LOG_FILE_NAME))
         fileHandler.setFormatter(logFormatter)
@@ -75,21 +86,23 @@ def init(toFILE=None, toCONSOLE=False, logfilename=None, ARGS=None):
 
         # log to the console
     if toCONSOLE:
-        consoleFormatter = logFormatter
+        # consoleFormatter = logFormatter
+        consoleFormatter = logging.Formatter('[%(module)-25s:%(lineno)4d] %(levelname)-5.5s - %(message)s','%m-%d %H:%M:%S')
         consoleHandler   = logging.StreamHandler()
         consoleHandler.setFormatter(consoleFormatter)
         logger.addHandler(consoleHandler)
 
 
 
-    logger.info('\n'*3)
 
         # - logging dei parametri di input
+    logger.info('\n'*3)
     if ARGS:
         logger.info("--------- input ARGS ------- ")
         for key, val in ARGS.items():
             logger.info("{KEY:<20} : {VAL}".format(KEY=key, VAL=val))
         logger.info('--------------------------- ')
+    logger.info('\n'*3)
 
     myLOGGER = logger
     return logger
@@ -104,22 +117,18 @@ def SetLogger(package, stackNum=0):
     if not myLOGGER:
         return _setNullLogger()
 
-    # print ('..................', modulesToLog)
+    funcName        = getframe(stackNum + 1).f_code.co_name
+    funcName_prev    = getframe(stackNum).f_code.co_name
 
-    stackLevel = stackNum + 1                 # aggiungiamo quello richiesto dal caller
-    # print (stackLevel)
-    funcName    = getframe(stackLevel).f_code.co_name
     if funcName == '<module>': funcName = '__main__'
 
 
         # - tracciamo la singola funzione oppure modulo oppure libreria od altro
-    if modulesToLog == False:
-        LOG_LEVEL = None
 
-    elif '!ALL!' in modulesToLog:
+    if '!ALL!' in modulesToLog:
         LOG_LEVEL = logging.DEBUG
 
-    elif modulesToLog:
+    else:
         LOG_LEVEL = None # default
         fullPkg = (package + funcName).lower()
         for moduleStr in modulesToLog:
@@ -127,17 +136,25 @@ def SetLogger(package, stackNum=0):
                 LOG_LEVEL = logging.DEBUG
 
 
+    if False:
+        print(__name__, 'package..................', package)
+        print(__name__, 'funcName.................', funcName)
+        print(__name__, 'funcName_prev............', funcName_prev)
+        print(__name__, 'LOG_LEVEL................', LOG_LEVEL)
+        print()
 
-    print(__file__, 'LOG_LEVEL..................', LOG_LEVEL)
-
-    logger = logging.getLogger(package)
 
     if LOG_LEVEL:
+        logger = logging.getLogger(package)
         logger.setLevel(LOG_LEVEL)
+        # caller = inspect.stack()[stackNum]
+        # dummy, programFile, lineNumber, funcName, lineCode, rest = caller
+        logger.info('\n')
+        logger.info('{TARGET}......called by:{CALLER}'.format(TARGET=funcName_prev, CALLER=_GetCaller(stackNum+2)))
+
     else:
         logger = _setNullLogger()
 
-    logger.debug('......called by:{CALLER}'.format(CALLER=_GetCaller(stackLevel+1)))
     return logger
 
 
@@ -195,7 +212,10 @@ def _setNullLogger(package=None):
 
 
 ###############################################
-#
+# Ho scoperto che potrei anche usare la call seguente
+# ma non avrei il controllo sullo stackNO.
+#   fn, lno, func, sinfo = myLOGGER.findCaller(stack_info=False)
+#   print (fn, lno, func, sinfo)
 ###############################################
 def _GetCaller(deepLevel=0, funcName=None):
     try:
@@ -213,8 +233,10 @@ def _GetCaller(deepLevel=0, funcName=None):
     if funcName == '<module>':
         data = "[{0}:{1}]".format(fname, lineNumber)
     else:
-        data = "[{0}:{1}]".format(fname, lineNumber)
+        # data = "[{0}:{1}]".format(fname, lineNumber)
+        data = "[{0}:{1}]".format(funcName, lineNumber)
         # data = "[{0}.{1}:{2}]".format(fname, funcName, lineNumber)
+
 
     return data
 
@@ -242,3 +264,36 @@ class _ContextFilter(logging.Filter):
             # record.name   = getframe(stack).f_code.co_name
             record.lineno = getframe(self._stack).f_lineno
         return True
+
+
+'''
+    def findCaller(self, stack_info=False):
+        """
+        Find the stack frame of the caller so that we can note the source
+        file name, line number and function name.
+        """
+        f = currentframe()
+        #On some versions of IronPython, currentframe() returns None if
+        #IronPython isn't run with -X:Frames.
+        if f is not None:
+            f = f.f_back
+        rv = "(unknown file)", 0, "(unknown function)", None
+        while hasattr(f, "f_code"):
+            co = f.f_code
+            filename = os.path.normcase(co.co_filename)
+            if filename == _srcfile:
+                f = f.f_back
+                continue
+            sinfo = None
+            if stack_info:
+                sio = io.StringIO()
+                sio.write('Stack (most recent call last):\n')
+                traceback.print_stack(f, file=sio)
+                sinfo = sio.getvalue()
+                if sinfo[-1] == '\n':
+                    sinfo = sinfo[:-1]
+                sio.close()
+            rv = (co.co_filename, f.f_lineno, co.co_name, sinfo)
+            break
+        return rv
+'''

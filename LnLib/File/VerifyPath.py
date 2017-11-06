@@ -5,21 +5,23 @@
 #  https://docs.python.org/3/library/pathlib.html
 # -----------------------------------------------
 from    sys     import exit as sysExit
-# from    pathlib import Path, PurePath
+from    pathlib import Path, PurePath
 
-from LnLib.File.LnPath          import Path as LnPath
+# from LnLib.File.LnPath          import Path as LnPath
 
 from LnLib.Common.Exit          import Exit       as LnExit
 from LnLib.Common.LnLogger      import SetLogger
 
 
 def VerifyPath(path, exitOnError=True):
-    logger = SetLogger(__package__)
+    logger = SetLogger(__package__, stackNum=1) # log the caller
+
 
     logger.info('verifying path: {}'.format(path))
 
     try:
-        pathExists = LnPath(path).exists()
+        path = Path(path).resolve()
+        pathExists = path.exists()
 
     except (Exception) as why:
         pathExists = False
@@ -27,7 +29,7 @@ def VerifyPath(path, exitOnError=True):
 
 
     if pathExists:
-        retPath = LnPath(path)
+        retPath = Path(path)
         logger.info('it exists.')
 
     else:
