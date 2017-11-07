@@ -3,7 +3,7 @@
 # Scope:  Programma per ...........
 #
 # __author__  : 'Loreto Notarantonio'
-# __version__ : '06-11-2017 18.23.29'
+# __version__ : '07-11-2017 12.53.32'
 #
 # -----------------------------------------------
 
@@ -84,12 +84,12 @@ def CalculateRootDir(myArgs, fDEBUG=False):
         # ----------------------------------------
         # - verifica dell'esistenza delle myDirectories
         # ----------------------------------------
-    testRootDir = substDrive if substDrive else realRootDir
-    logger.info("testRootDir:  {}".format(testRootDir))
-    errore con questi parametri: executor --log-co
+    myRootDir = substDrive if substDrive else realRootDir
+    if str(myRootDir)[-1] == ':': myRootDir = myRootDir / '/'
+    logger.info("myRootDir:  {}".format(myRootDir))
     for subdir in myDirectories:
-        # LnVerifyPath(testRootDir.joinpath(subdir))
-        LnVerifyPath(testRootDir.absolute() / '/' / subdir)
+        myPath = myRootDir.joinpath(subdir)
+        LnVerifyPath(myRootDir.joinpath(subdir))
 
     return realDrive, realRootDir, substDrive
 
@@ -104,7 +104,6 @@ def createSUBSTDrive(substDrive, substMountDir):
     logger.info("parameter substDrive:    {}".format(substDrive))
     logger.info("parameter substMountDir: {}".format(substMountDir))
 
-    # retVal = None
 
     if not str(substDrive).lower() in ['x:', 'y:', 'w:', 'z:']:
         errMsg = "il drive immesso [{DRIVE}] non è previsto...".format(DRIVE=substDrive)

@@ -1,6 +1,6 @@
 #
 # __author__  : 'Loreto Notarantonio'
-# __version__ : '06-11-2017 17.34.56'
+# __version__ : '07-11-2017 14.10.09'
 #
 
 
@@ -52,16 +52,26 @@ if __name__ == '__main__':
 
     extraSect = {}
     extraSect['VARS']  = {}
-    extraSect['VARS']['Ln_Drive']   = realDrive
-    extraSect['VARS']['Ln_RootDir'] = realRootDir
+    extraSect['VARS']['Ln_Drive']   = str(realDrive)
+    extraSect['VARS']['Ln_RootDir'] = str(realRootDir)
+    extraSect['VARS']['Ln_subst_MountDir'] = str(realMountDir)
 
-    # if substDrive:
-    extraSect['VARS']['Ln_subst_Drive']    = substDrive
-    extraSect['VARS']['Ln_subst_RootDir']  = substDrive
-    extraSect['VARS']['Ln_subst_MountDir'] = realMountDir
+    if substDrive:
+        '''
+            set the SUBST drive
+        '''
+        extraSect['VARS']['Ln_subst_Drive']    = str(substDrive)
+        extraSect['VARS']['Ln_subst_RootDir']  = str(substDrive)
+    else:
+        '''
+            set the SUBST dirs to realRootDir
+        '''
+        extraSect['VARS']['Ln_subst_Drive']    = str(realDrive)
+        extraSect['VARS']['Ln_subst_RootDir']  = str(realRootDir)
 
-    test = LnDict(extraSect)
-    test.printDict(header='Extra Section', fPAUSE=True)
+    if gv.fDEBUG:
+        test = LnDict(extraSect)
+        test.printDict(header='Extra Section', fPAUSE=True)
 
     iniFile = LnReadIniFile(gv.args.config_file, strict=True, logger=logger)
     iniFile.setDebug(False)
@@ -77,18 +87,12 @@ if __name__ == '__main__':
     programToStart = gv.args.programToStart
     if programToStart.lower().strip() in ['tc', 'totalcommander']:
         CMDList = Prj.SetTotalCommander(gv.cfgFile.TOTAL_COMMANDER, fDEBUG=gv.fDEBUG)
-        # runProgram('TotalCommander command list:', CMDList)
 
     elif programToStart.lower().strip() in ['executor']:
         CMDList = Prj.SetExecutor(gv.cfgFile.EXECUTOR)
-        # runProgram('Executor command list:', CMDList)
 
     else:
         LnExit(1, "Program: {} not yet implemented".format(programToStart))
 
-    # runProgram('{PROGRAM} command list:'.format(programToStart), CMDList)
+    runProgram('{PRGNAME} command list:'.format(PRGNAME=programToStart), CMDList)
     LnExit(0, "Process completed, {} has been started".format(programToStart))
-
-
-
-

@@ -5,7 +5,7 @@
 #  https://docs.python.org/3/library/pathlib.html
 # -----------------------------------------------
 from    sys     import exit as sysExit
-from    pathlib import Path, PurePath
+from    pathlib import Path, PurePath, WindowsPath
 
 # from LnLib.File.LnPath          import Path as LnPath
 
@@ -16,11 +16,12 @@ from LnLib.Common.LnLogger      import SetLogger
 def VerifyPath(path, exitOnError=True):
     logger = SetLogger(__package__, stackNum=1) # log the caller
 
-
-    logger.info('verifying path: {}'.format(path))
+    logger.info('verifying path: {0} [{1}]'.format(path, type(path)))
 
     try:
-        path = Path(path).resolve()
+        if isinstance(path, str): path = Path(path)
+        path.resolve()
+
         pathExists = path.exists()
 
     except (Exception) as why:
