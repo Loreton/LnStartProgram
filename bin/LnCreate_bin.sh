@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # __author__  : 'Loreto Notarantonio'
-# __version__ : '25-10-2017 11.57.51'
+# __version__ : '07-11-2017 15.16.40'
 
 ACTION=$1
 
@@ -34,13 +34,15 @@ cd ${prjDir}
 echo
 echo "I am in directory:.. ${PWD}"
     zipFileName="${prjName}_$(date +"%Y%m%d").zip"
-    CMD="zip -r --exclude='*.git*' ${outDIR}/${zipFileName} $LnLibDir $sourceDir __main__.py"
+    CMD="zip -r --exclude='*.git*' --exclude='*/__pycache__/*' ${outDIR}/${zipFileName} $LnLibDir $sourceDir __main__.py"
     if [[ "$ACTION" == "--GO" ]]; then
         # $EXECUTE zip -r --exclude='*.git*' ${outDIR}/${zipFileName} $LnLibDir $sourceDir
         echo $CMD
         eval $CMD
     else
         echo $CMD
+        echo.
+        echo "immettere --GO per eseguire"
     fi
 echo
 

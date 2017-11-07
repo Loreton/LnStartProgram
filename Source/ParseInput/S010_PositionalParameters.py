@@ -47,7 +47,7 @@ def positionalParameters(myParser, paramName):
 def _checkPositionaParam(value):
     # print (type(value),value)
 
-    if not value in positionalParametersDict.keys():
+    if not value.lower() in positionalParametersDict.keys():
         errMsg = '{VALUE} - in NOT a valid parameter'.format(VALUE=value)
         C.printColored(color=C.cyanH, text=errMsg, tab=4)
         LnExit(2, errMsg, printStack=False)
