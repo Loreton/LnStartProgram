@@ -4,17 +4,19 @@
 # updated by Loreto: 24-10-2017 14.24.41
 # -----------------------------------------------
 from    pathlib import Path
-from    LnLib.Common.LnLogger import SetLogger
-
 import  platform
 
-import LnLib.Monkey.LnMonkeyFunctions # per .LnCopy e .LnBackup
+
+import Source as Prj
 
 # =============================================
 # = Parsing
 # =============================================
-def SetExecutor(iniVar):
-    logger = SetLogger(__package__)
+def SetExecutor(gv, iniVar):
+    # ----- common part into the Prj modules --------
+    Ln     = Prj.LnLib
+    logger = Ln.SetLogger(__package__)
+    # -----------------------------------------------
 
     CMDList = []
 
@@ -24,14 +26,15 @@ def SetExecutor(iniVar):
     OSbits = platform.architecture()[0]
     logger.info("Stiamo lavorando con Executor: {}".format(OSbits))
     if OSbits.lower() == "64bit":
-        myExe = Path(EXE64) # faccio uso delle LnMonkeyFunctions
+        myExe = Path(EXE64)
         myDll = Path(DLL64)
     else:
         myExe = Path(EXE32)
         myDll = Path(DLL32)
 
-    myExe.LnCopy(EXE, vSize=True, logger=logger)
-    myDll.LnCopy(DLL, vSize=True, logger=logger)
+        # faccio uso delle LnMonkeyFunctions
+    myExe.LnCopy(EXE, vSize=True)
+    myDll.LnCopy(DLL, vSize=True)
 
     myIni = Path(iniVar.iniFile)
     myIni.LnBackup(iniVar.backupDir)
@@ -41,5 +44,5 @@ def SetExecutor(iniVar):
 
 
     return CMDList
+    Ln.Exit(9999, 'exit temporanea')
 
-    # LnExit(9999, 'exit temporanea')

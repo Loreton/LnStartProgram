@@ -29,28 +29,41 @@ ACTION=$1
     echo
     echo "    outDIR    : $outDIR"
 
-# Creazione della LnPythonLib_YYYYMMDD.zip nella directory ${outDIR}
+# Creazione della Project_YYYYMMDD.zip nella directory ${outDIR}
 cd ${prjDir}
 echo
 echo "I am in directory:.. ${PWD}"
     zipFileName="${prjName}_$(date +"%Y%m%d").zip"
-    CMD="zip -r --exclude='*.git*' --exclude='*/__pycache__/*' ${outDIR}/${zipFileName} $LnLibDir $sourceDir __main__.py"
+    CMD="zip -r --exclude='*.git*' --exclude='*/__pycache__/*' ${outDIR}/${zipFileName} $sourceDir __main__.py"
     if [[ "$ACTION" == "--GO" ]]; then
         # $EXECUTE zip -r --exclude='*.git*' ${outDIR}/${zipFileName} $LnLibDir $sourceDir
         echo $CMD
         eval $CMD
     else
         echo $CMD
-        echo.
+        echo
         echo "immettere --GO per eseguire"
     fi
 echo
 
 
-# Creazione dello zip di DDNS nella directory ${outDIR}
-# cd ${ProjectDir}
-# echo
-# echo "I am in directory:.. ${PWD}"
-#     zipFileName="DDNS_$(date +"%Y%m%d").zip"
-#     $EXECUTE zip -r --exclude='*.git*' --exclude='bin*' --exclude='conf*' ${outDIR}/${zipFileName} *
-# echo
+
+# Creazione della LnLib_YYYYMMDD.zip nella directory ${outDIR}
+# cd ${prjDir}
+echo
+echo "I am in directory:.. ${PWD}"
+    zipFileName="LnLib_$(date +"%Y%m%d").zip"
+    CMD="zip -r --exclude='*.git*' --exclude='*/__pycache__/*' ${outDIR}/${zipFileName} $LnLibDir __main__.py"
+    if [[ "$ACTION" == "--GO" ]]; then
+        # $EXECUTE zip -r --exclude='*.git*' ${outDIR}/${zipFileName} $LnLibDir $sourceDir
+        echo $CMD
+        eval $CMD
+    else
+        echo $CMD
+        echo
+        echo "immettere --GO per eseguire"
+    fi
+echo
+
+
+

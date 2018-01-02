@@ -3,21 +3,21 @@
 # Scope:  Programma per ...........
 # updated by Loreto: 24-10-2017 14.24.47
 # -----------------------------------------------
-from os     import chdir
+import os
 import  platform
-# from pathlib import Path
 
-from LnLib.Common.LnLogger import SetLogger
+import Source as Prj
 
-# from LnLib.System.SetOsEnv import setOsEnv   as LnDetOsEnv
-import LnLib.System.SetOsEnv      as  OsEnv
-from LnLib.File.VerifyPath import VerifyPath as LnVerifyPath
 
 # =============================================
 # = Parsing
 # =============================================
 def SetTotalCommander(iniVar, fDEBUG=False):
-    logger = SetLogger(__package__)
+    # ----- common part into the Prj modules --------
+    Ln     = Prj.LnLib
+    logger = Ln.SetLogger(__package__)
+    # -----------------------------------------------
+    logger = Ln.SetLogger(__package__)
     CMDList = []
 
         # -------------------------------------------------
@@ -31,18 +31,18 @@ def SetTotalCommander(iniVar, fDEBUG=False):
             fMANDATORY = True
 
         # salviamolo in formato Path
-        iniVar[varName] = LnVerifyPath(varValue, exitOnError=fMANDATORY)
-        OsEnv.setVar(varName, iniVar[varName])
+        iniVar[varName] = Ln.VerifyPath(varValue, exitOnError=fMANDATORY)
+        Ln.OsEnv.setVar(varName, iniVar[varName])
         if varName.lower() == 'workingdir':
-            chdir(str(iniVar[varName]))
+            os.chdir(str(iniVar[varName]))
 
 
     OSbits = platform.architecture()[0]
     logger.info( "Stiamo lavorando con TotalCommander {}".format(OSbits))
     if OSbits.lower() == "64bit":
-        TCexe = LnVerifyPath(iniVar.Ln_TC_Dir.joinpath('realApp/WinCmd/TOTALCMD64.exe'))
+        TCexe = Ln.VerifyPath(iniVar.Ln_TC_Dir.joinpath('realApp/WinCmd/TOTALCMD64.exe'))
     else:
-        TCexe = LnVerifyPath(iniVar.Ln_TC_Dir.joinpath('realApp/WinCmd/TOTALCMD.exe'))
+        TCexe = Ln.VerifyPath(iniVar.Ln_TC_Dir.joinpath('realApp/WinCmd/TOTALCMD.exe'))
 
     if fDEBUG: iniVar.printTree("IniVars variables", fPAUSE=True)
 

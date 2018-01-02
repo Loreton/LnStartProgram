@@ -1,6 +1,5 @@
 
 
-# servono da riferimento ma per ogni riga verrà creata una variabile di ambiente
 [VARS]
 
     Ln_Drive           =            ; creata at run time
@@ -20,7 +19,7 @@
     Ln_subst_FreeDir    = ${Ln_subst_RootDir}\LnFree
     Ln_subst_GitRepoDir = ${Ln_subst_RootDir}\GIT-REPO
 
-    opt.Ln_BdiDir      = d:\Dati\Profili\f602250\Documents
+    opt.LN_BdiDir       = d:\Dati\Profili\f602250\Documents
 
     Ln_editor          = ${Ln_FreeDir}\Editors\SublimeText_3\sublime_text.exe
     Ln_SublimeEditor   = ${Ln_FreeDir}\Editors\SublimeText_3\sublime_text.exe
@@ -29,6 +28,7 @@
     Ln_PortableAppsDir = ${Ln_RootDir}\PortableApps\PortableApps
     Ln_pythonDir       = ${Ln_FreeDir}\Pgm\WinPython-64bit-3.5.3.1Qt5\python-3.5.3.amd64
     Ln_JAVA_HOME       = ${Ln_FreeDir}\Pgm\Java\jdk1.8.0_66
+    JAVA_HOME          = ${Ln_JAVA_HOME}
     Ln_myEditor        = ${Ln_FreeDir}\Editors\SublimeText_3\sublime_text.exe
     Ln_KittyEXE        = ${Ln_FreeDir}\Network\Telnet\Kitty/Kitty.exe
     Ln_WinScpEXE       = ${Ln_FreeDir}\Network\FTPc\WinSCP\winscp.exe
@@ -36,13 +36,9 @@
     Ln_WinScpKittyCmd  = ${Ln_GitRepoDir}\Scripts\python\Sources\KittyFromWinScp\bin\kitty-from-WinScp.cmd
     Ln_WinScpKittyPy   = ${Ln_GitRepoDir}\Scripts\python\Sources\KittyFromWinScp\__main__.py
 
-    JAVA_HOME          = ${Ln_JAVA_HOME}
-    opt.PYTHONPATH         = X:\GIT-REPO
-                            ${Ln_RootDir}\GIT-REPO\Python3 ; comoda per l'import di LnPythonLib
-
 
 [PATHS]
-    python             =  ${VARS:Ln_pythonDir}
+    python             = ${VARS:Ln_pythonDir}
                           ${VARS:Ln_pythonDir}\DLLs
                           ${VARS:Ln_pythonDir}\Lib
                           ${VARS:Ln_pythonDir}\Scripts

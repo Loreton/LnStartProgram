@@ -1,48 +1,54 @@
+# #############################################
 #
-# __author__  : 'Loreto Notarantonio'
-# __version__ : '07-11-2017 14.10.09'
+# updated by ...: Loreto Notarantonio
+# Version ......: 02-01-2018 17.34.36
 #
+# #############################################
+
+import sys; sys.dont_write_bytecode = True
 
 
-# import LnLib.System.SetOsEnv      as  SetEnv
-from  LnLib.System import SetOsEnv      as  OsEnv
+# -----------------------------------------
+# - impostiamo qui le variabili globali
+# - in modo che il resto dei moduli
+# - abbiamo accesso diretto ad esse
+# -----------------------------------------
+import      Source as Prj
 
-from LnLib.Common.LnLogger import init as initLogger
-
-# from LnLib.Common.LnLogger        import InitLogger
-
-from LnLib.Common.Exit            import Exit        as LnExit
-from LnLib.Dict.LnDict_DotMap     import DotMap      as LnDict
-from LnLib.File.ReadIniFile_Class import ReadIniFile as LnReadIniFile
-
-from LnLib.System.RunProgram      import RunProgram  as runProgram
-
-import  Source as Prj
+# -----------------------------------------
+# - inseriamo la LnLib all'interno della Prj
+# - in modo che ce la ritroviamo in tutti i moduli
+# - facendo il solo import della Prj
+# -----------------------------------------
+Prj.LnLib = Prj.GVM.LibPath('LnLib.dir')
+Prj.gv    = Prj.LnLib.Dict()
 
 
-# from pathlib import Path
-# from LnLib.File.LnPath import Path
 
+######################################
+# sample call:
+#    python.exe __main__.py TotalCommander --config-file .\LnStartProgram.ini --subst=y:
+#
+######################################
 if __name__ == '__main__':
-    gv        = LnDict()
+    # ----- common part into the Prj modules --------
+    Ln          = Prj.LnLib
+    gv          = Prj.gv
+    # -----------------------------------------------
 
-    args      = Prj.ParseInput() # ; print (args)
-    gv.args   = LnDict(args)
-    gv.fDEBUG = gv.args.debug
-    if gv.fDEBUG: gv.args.printTree(fPAUSE=True)
+    args        = Prj.ParseInput()  # ; print (args)
+    gv.args     = Ln.Dict(args)     # covert to DotMap()
 
-    logger    = initLogger(toFILE=gv.args.log, logfilename=gv.args.log_filename, toCONSOLE=gv.args.log_console, ARGS=args)
+    gv.fDEBUG   = gv.args.debug
+    if gv.fDEBUG: gv.args.printTree(fPAUSE=False)
 
+    logger  = Ln.InitLogger(toFILE=gv.args.log, logfilename=gv.args.log_filename, toCONSOLE=gv.args.log_console, ARGS=args, defaultLogLevel='debug')
 
 
         # -----------------------------------------------
-        # imposta Ln_Drive, Ln_rootDir e Ln_StartDir.
-        # in teoria sono già impostati ma serve in caso
-        # di subst perché li modifica opportunamente.
+        # - imposta Ln_Drive, Ln_rootDir e Ln_StartDir.
         # -----------------------------------------------
-    realDrive, realRootDir, substDrive = Prj.CalculateRootDir(args, fDEBUG=gv.fDEBUG) # set Ln_Drive, Ln_rootDir e Ln_StartDir
-    # my = Prj.CalculateRootDir(args, fDEBUG=gv.fDEBUG) # set Ln_Drive, Ln_rootDir e Ln_StartDir
-
+    realDrive, realRootDir, substDrive = Prj.CalculateRootDir(gv, args) # set Ln_Drive, Ln_rootDir e Ln_StartDir
     realMountDir = realRootDir
     if substDrive: # override
         realDrive    = substDrive
@@ -50,10 +56,15 @@ if __name__ == '__main__':
 
 
 
-    extraSect = {}
-    extraSect['VARS']  = {}
-    extraSect['VARS']['Ln_Drive']   = str(realDrive)
-    extraSect['VARS']['Ln_RootDir'] = str(realRootDir)
+        # -----------------------------------------------
+        # - prima di leggere il file INI impostiamo
+        # - alcune dati utili per la risoluzione
+        # - delle variabili rial-time
+        # -----------------------------------------------
+    extraSect                              = {}
+    extraSect['VARS']                      = {}
+    extraSect['VARS']['Ln_Drive']          = str(realDrive)
+    extraSect['VARS']['Ln_RootDir']        = str(realRootDir)
     extraSect['VARS']['Ln_subst_MountDir'] = str(realMountDir)
 
     if substDrive:
@@ -70,29 +81,28 @@ if __name__ == '__main__':
         extraSect['VARS']['Ln_subst_RootDir']  = str(realRootDir)
 
     if gv.fDEBUG:
-        test = LnDict(extraSect)
+        test = Ln.Dict(extraSect)
         test.printDict(header='Extra Section', fPAUSE=True)
 
-    iniFile = LnReadIniFile(gv.args.config_file, strict=True, logger=logger)
+    iniFile = Ln.ReadIniFile(gv.args.config_file, strict=True, logger=logger)
     iniFile.setDebug(False)
     iniFile.extraSections(extraSect)
     iniFile.read(resolveEnvVars=False)
-    gv.cfgFile = LnDict(iniFile.dict)
+    gv.cfgFile = Ln.Dict(iniFile.dict)
     if gv.fDEBUG: gv.cfgFile.printTree(header="INI File", fPAUSE=True)
 
+    Ln.OsEnv.setVars(gv.cfgFile.VARS)
+    Ln.OsEnv.setPaths(gv.cfgFile.PATHS)
 
-    OsEnv.setVars(gv.cfgFile.VARS)
-    OsEnv.setPaths(gv.cfgFile.PATHS)
-
-    programToStart = gv.args.programToStart
+    programToStart = gv.args.firstPosParameter
     if programToStart.lower().strip() in ['tc', 'totalcommander']:
         CMDList = Prj.SetTotalCommander(gv.cfgFile.TOTAL_COMMANDER, fDEBUG=gv.fDEBUG)
 
     elif programToStart.lower().strip() in ['executor']:
-        CMDList = Prj.SetExecutor(gv.cfgFile.EXECUTOR)
+        CMDList = Prj.SetExecutor(gv, gv.cfgFile.EXECUTOR)
 
     else:
-        LnExit(1, "Program: {} not yet implemented".format(programToStart))
+        Ln.Exit(1, "Program: {} not yet implemented".format(programToStart))
 
-    runProgram('{PRGNAME} command list:'.format(PRGNAME=programToStart), CMDList)
-    LnExit(0, "Process completed, {} has been started".format(programToStart))
+    Ln.runProgram('{PRGNAME} command list:'.format(PRGNAME=programToStart), CMDList)
+    Ln.Exit(0, "Process completed, {} has been started".format(programToStart))

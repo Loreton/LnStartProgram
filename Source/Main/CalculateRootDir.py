@@ -7,28 +7,29 @@
 #
 # -----------------------------------------------
 
-import  os, sys
-from    pathlib                  import Path, PurePath         # dalla versione 3.4
-# from    LnLib.File.LnPath        import Path as LnPath
-
+import  sys
+from    pathlib                  import Path         # dalla versione 3.4
 from    time                     import sleep
 
-from    LnLib.Common.LnLogger    import SetLogger
-
-from    LnLib.Common.Exit        import Exit        as LnExit
-from    LnLib.Dict.LnDict_DotMap import DotMap      as LnDict
-from    LnLib.File.VerifyPath    import VerifyPath  as LnVerifyPath
-from    LnLib.System.RunProgram  import RunProgram  as LnRunProgram
-from    LnLib.System             import SetOsEnv    as OsEnv
-
-
-
+import      Source as Prj
 
 #########################################################################
 # - Ln_Drive, Ln_rootDir e Ln_StartDir e GIT-REPO.
 #########################################################################
-def CalculateRootDir(myArgs, fDEBUG=False):
-    logger = SetLogger(__package__)
+def CalculateRootDir(gv, myArgs):
+    '''
+    calculate root directory for LnDisk
+        args:
+        gv    : DotMap() formmat of global Vars
+        myArgs: command line input arguments
+    '''
+
+    # ----- common part into the Prj modules --------
+    global Ln
+    Ln     = Prj.LnLib
+    logger = Ln.SetLogger(__package__)
+    # -----------------------------------------------
+
 
         # ---------------------------------------------------------------
         # - prepare dirs
@@ -59,14 +60,12 @@ def CalculateRootDir(myArgs, fDEBUG=False):
 
         if not FOUND:
             logger.error("root_dir NOT found.")
-            LnExit(21, "root_dir NOT found.")
+            Ln.Exit(21, "root_dir NOT found.")
 
-
-    # ln = LnDict()
 
         # - rootdir di base
-    realDrive      = LnVerifyPath(drive)
-    realRootDir    = LnVerifyPath(rootDir)
+    realDrive      = Ln.VerifyPath(drive)
+    realRootDir    = Ln.VerifyPath(rootDir)
 
     logger.info("realDrive:    {}".format(realDrive))
     logger.info("realRootDir:  {}".format(realRootDir))
@@ -88,8 +87,8 @@ def CalculateRootDir(myArgs, fDEBUG=False):
     if str(myRootDir)[-1] == ':': myRootDir = myRootDir / '/'
     logger.info("myRootDir:  {}".format(myRootDir))
     for subdir in myDirectories:
-        myPath = myRootDir.joinpath(subdir)
-        LnVerifyPath(myRootDir.joinpath(subdir))
+        # myPath = myRootDir.joinpath(subdir)
+        Ln.VerifyPath(myRootDir.joinpath(subdir))
 
     return realDrive, realRootDir, substDrive
 
@@ -99,7 +98,11 @@ def CalculateRootDir(myArgs, fDEBUG=False):
 # - attiva il Sust
 # ######################################################
 def createSUBSTDrive(substDrive, substMountDir):
-    logger = SetLogger(__package__)
+    '''
+    execute SUBST windows command to create a virtualDrive pointing to a path
+    '''
+
+    logger = Ln.SetLogger(__package__)
 
     logger.info("parameter substDrive:    {}".format(substDrive))
     logger.info("parameter substMountDir: {}".format(substMountDir))
@@ -108,18 +111,18 @@ def createSUBSTDrive(substDrive, substMountDir):
     if not str(substDrive).lower() in ['x:', 'y:', 'w:', 'z:']:
         errMsg = "il drive immesso [{DRIVE}] non è previsto...".format(DRIVE=substDrive)
         logger.warning(errMsg)
-        LnExit(22, errMsg)
+        Ln.Exit(22, errMsg)
 
 
     if substDrive.exists():
         logger.info('SUBST drive {} alredy present'.format(substDrive))
 
     else:
-        LnRunProgram("executing SUBST command:", ['subst', substDrive, substMountDir])
+        Ln.RunProgram("executing SUBST command:", ['subst', substDrive, substMountDir])
         sleep(1) #diamo tempo affinché avvenga il montaggio
 
             # verifico che il comando di SUBST sia andato a buon fine...
-        substDrive = LnVerifyPath(substDrive, exitOnError=False) # ritorna substDrive
+        substDrive = Ln.VerifyPath(substDrive, exitOnError=False) # ritorna substDrive
 
 
     logger.info("SUBST drive: {0}".format(substDrive))

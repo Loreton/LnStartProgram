@@ -1,15 +1,16 @@
 #!/usr/bin/python3.5
 #
-# Scope:  Programma per ...........
-# updated by Loreto: 24-10-2017 12.48.27
+# updated by ...: Loreto Notarantonio
+# Version ......: 02-01-2018 17.29.02
+#
 # -----------------------------------------------
 
-from   Source.ParseInput.S000_MainParseInput import ParseInput
 
-
+from   Source.ParseInput.Main_ParseInput import ParseInput
 
 from   Source.Main.CalculateRootDir import CalculateRootDir
-from   Source.Main.SetExecutor import SetExecutor
-from   Source.Main.SetTotalCommander import SetTotalCommander
+from   Source.Main.Executor         import SetExecutor
+from   Source.Main.TotalCommander   import SetTotalCommander
 
+from   . Setup import GlobalVars_Module   as GVM
 

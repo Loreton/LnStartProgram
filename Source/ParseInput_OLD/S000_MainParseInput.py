@@ -7,7 +7,10 @@ from    sys     import argv as sysArgv, exit as sysExit
 from    pathlib import Path
 from    time import  strftime
 import  argparse
+import Source as Prj
+
 from LnLib.Common.LnColor import LnColor
+# C = Prj.LnLib.Common.LnColor.LnColor()
 C=LnColor()
 
 class LnClass(): pass
@@ -24,6 +27,7 @@ from . S110_MyHelp               import myHELP
 # ParseInput
 #######################################################
 def ParseInput(programVersion=0.1):
+    ''' funzione per la raccolta dei parametri di input '''
     gVar = LnClass()
     if len(sysArgv) == 1: sysArgv.append('-h')
 

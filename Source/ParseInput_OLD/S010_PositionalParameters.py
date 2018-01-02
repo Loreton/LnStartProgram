@@ -15,6 +15,7 @@ def positionalParameters(myParser, paramName):
         'totalcommander'        : "Total Commander",
         'tc'                    : "Total Commander",
         'executor'              : "Executor",
+        'vscode'                : "Visual Studio code",
     }
 
     cmdList = []
