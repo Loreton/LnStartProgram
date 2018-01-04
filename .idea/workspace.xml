@@ -2,43 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7b1a6d6-537d-4e4d-a15a-8e4c705b808a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/Common/Exit.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/Common/LnColor.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/Common/LnLogger.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/Common/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/Common/colorama/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/Common/colorama/ansi.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/Common/colorama/ansitowin32.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/Common/colorama/initialise.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/Common/colorama/win32.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/Common/colorama/winterm.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/Dict/DictToList.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/Dict/LnDict_DotMap.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/Dict/PrintDictionaryTree.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/Dict/PrintDictionaryTree.py.bak" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/Dict/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/File/DirList.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/File/LnPath.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/File/ReadIniFile_Class.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/File/ReadWriteTextFile.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/File/VerifyPath.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/File/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/Monkey/LnMonkeyFunctions.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/Monkey/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/System/ExecRcode.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/System/GetKeyboardInput.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/System/RunProgram.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/System/SetOsEnv.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/System/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/LnLib/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/CopyLnLibModules.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/CopyLnLibModules.py.bak" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Source/ParseInput_OLD/S000_MainParseInput.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Source/ParseInput_OLD/S010_PositionalParameters.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Source/ParseInput_OLD/S020_ProgramParameters.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Source/ParseInput_OLD/S070_LogParameters.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Source/ParseInput_OLD/S080_DebugParameters.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Source/ParseInput_OLD/S110_MyHelp.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Source/ParseInput_OLD/S120_check_file.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Source/ParseInput_OLD/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/LnCreate_bin.sh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/conf/LnStartProgram.ini.bak" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/setLnLibPath_Sample.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.vscode/launch.json" afterPath="$PROJECT_DIR$/.vscode/launch.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/Main/CalculateRootDir.py" afterPath="$PROJECT_DIR$/Source/Main/CalculateRootDir.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/Main/SetTotalCommander.py" afterPath="$PROJECT_DIR$/Source/Main/SetTotalCommander.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/ParseInput/S010_PositionalParameters.py" afterPath="$PROJECT_DIR$/Source/ParseInput/S010_PositionalParameters.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Source/Setup/GlobalVars_Module.py" afterPath="$PROJECT_DIR$/Source/Setup/GlobalVars_Module.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/__main__.py" afterPath="$PROJECT_DIR$/__main__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/LnCreate_bin.sh" afterPath="$PROJECT_DIR$/bin/LnCreate_bin.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/LnStartProgram.ini" afterPath="$PROJECT_DIR$/conf/LnStartProgram.ini" />
     </list>
     <ignored path="LnStartProgram.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,7 +41,7 @@
       <file leaf-file-name="__main__.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/__main__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.014925373">
+            <state vertical-scroll-proportion="0.021144278">
               <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding />
             </state>
@@ -119,6 +98,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -130,7 +110,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -327,7 +306,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="13" y="5" width="1250" height="941" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959481" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -409,6 +388,14 @@
     <entry file="file://$PROJECT_DIR$/__main__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__main__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
           <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding />
         </state>
@@ -434,14 +421,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/LnED/Lacie232/Filu/LnDisk/GIT-REPO/Python3/LnStartProgram/LnLib/File/VerifyPath.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -476,13 +455,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://E:/LnED/Lacie232/Filu/LnDisk/GIT-REPO/Python3/LnStartProgram/LnLib/Common/LnLogger.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44067797">
-          <caret line="48" column="7" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://Y:/LnFree/Pgm/WinPython-64bit-3.5.3.1Qt5/python-3.5.3.amd64/Lib/logging/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5169492">
@@ -511,14 +483,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://E:/LnED/Lacie232/Filu/LnDisk/GIT-REPO/Python3/LnStartProgram/LnLib/File/VerifyPath.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.64830506">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydev_monkey_qt.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33262712">
@@ -533,13 +497,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Main/SetExecutor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Source/Main/CalculateRootDir.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2549751">
@@ -550,7 +507,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/__main__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.014925373">
+        <state vertical-scroll-proportion="0.021144278">
           <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding />
         </state>

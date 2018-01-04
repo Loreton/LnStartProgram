@@ -1,0 +1,1 @@
+# Modulo che conterrà tutte le variabili globali del progetto

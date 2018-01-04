@@ -1,26 +1,32 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 02-01-2018 17.34.36
+# Version ......: 04-01-2018 16.02.32
 #
 # #############################################
 
 import sys; sys.dont_write_bytecode = True
-
+# from pathlib import Path
 
 # -----------------------------------------
 # - impostiamo qui le variabili globali
 # - in modo che il resto dei moduli
 # - abbiamo accesso diretto ad esse
 # -----------------------------------------
-import      Source as Prj
+# thisDir  = Path(sys.argv[0]).resolve().parent
+# sys.path.insert(0, str(thisDir))
+import  Source as Prj
 
-# -----------------------------------------
-# - inseriamo la LnLib all'interno della Prj
+
+myLibName = ['LnLib', 'LnLib_2018-01-04.zip']
+LnLib     = Prj.SPE.LibPath(myLibName, fDEBUG=False)
+
+# -------------------------------------------------------
+# - inseriamo la LnLib e le gVars all'interno della Prj
 # - in modo che ce la ritroviamo in tutti i moduli
 # - facendo il solo import della Prj
-# -----------------------------------------
-Prj.LnLib = Prj.GVM.LibPath('LnLib.dir')
+# -------------------------------------------------------
+Prj.LnLib = LnLib
 Prj.gv    = Prj.LnLib.Dict()
 
 

@@ -1,8 +1,11 @@
 #
+# updated by ...: Loreto Notarantonio
+# Version ......: 03-01-2018 10.14.39
+#
 from pathlib import Path
-from LnLib.Common.Exit     import Exit      as LnExit
-from LnLib.Common.LnColor  import LnColor
-C = LnColor()
+
+from  ... Common.LnColor import LnColor; C=LnColor()
+from  ... Common.Exit    import Exit as LnExit
 #
 ####################################
 # # _fileCheck()
