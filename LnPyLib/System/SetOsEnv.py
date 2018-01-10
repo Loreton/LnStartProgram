@@ -2,7 +2,7 @@
 # -*- coding: iso-8859-15 -*-
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 02-01-2018 10.58.07
+# Version ......: 10-01-2018 08.24.12
 #
 # ####################################################################################################################
 
@@ -14,7 +14,7 @@ from .. File.VerifyPath import VerifyPath   as LnVerifyPath
 #
 #########################################################################
 def setVar(varName, varValue, fDEBUG=False):
-    logger = SetLogger(__package__)
+    logger = SetLogger(__name__)
     msg = '{0:<20} : {1}'.format(varName, varValue)
     logger.info(msg)
     os.environ[varName] = str(varValue)

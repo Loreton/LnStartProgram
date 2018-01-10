@@ -3,7 +3,7 @@
 # Scope:  Programma per ...........
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 02-01-2018 10.57.58
+# Version ......: 10-01-2018 15.29.43
 #
 #  https://docs.python.org/3/library/pathlib.html
 # -----------------------------------------------
@@ -13,23 +13,24 @@ from .. Common.Exit          import Exit       as LnExit
 from .. Common.LnLogger      import SetLogger
 
 
+
 def VerifyPath(path, exitOnError=True):
     '''
     verify if the path exists.
     return:
-        realPath: if exists
         None    : if NOT exists
+        realPath: if exists
     '''
-    logger = SetLogger(__name__, stackNum=1) # log the caller
+    logger = SetLogger(__name__) # log the caller
 
     logger.info('verifying path: {0} [{1}]'.format(path, type(path)))
 
-    retPath = None
+    realPath = None
     try:
         if isinstance(path, str):
             path = Path(path)
-        retPath = path.resolve()
-        retPath.exists()   # exeption if not exists
+        realPath = path.resolve()
+        realPath.exists()   # exeption if not exists
 
     except (Exception) as why:
         logger.error(str(why))
@@ -38,5 +39,6 @@ def VerifyPath(path, exitOnError=True):
             LnExit(10, "{} doesn't exists".format(path))
 
 
-    logger.info('returning path: {0} [{1}]'.format(retPath, type(retPath)))
-    return retPath
+    logger.info('returning path: {0} [{1}]'.format(realPath, type(realPath)))
+    SetLogger(__name__, reset=True) # log the caller
+    return realPath

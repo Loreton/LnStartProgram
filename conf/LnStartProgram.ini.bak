@@ -30,7 +30,6 @@
     Ln_pythonDir       = ${Ln_FreeDir}\Pgm\WinPython-64bit-3.5.3.1Qt5\python-3.5.3.amd64
     Ln_JAVA_HOME       = ${Ln_FreeDir}\Pgm\Java\jdk1.8.0_66
     Ln_myEditor        = ${Ln_FreeDir}\Editors\SublimeText_3\sublime_text.exe
-    Ln_myBrowser       = ${Ln_FreeDir}\Network\Browser\Opera\launcher.exe
     Ln_KittyEXE        = ${Ln_FreeDir}\Network\Telnet\Kitty/Kitty.exe
     Ln_WinScpEXE       = ${Ln_FreeDir}\Network\FTPc\WinSCP\winscp.exe
     Ln_PythonExe       = ${Ln_pythonDir}\python.exe

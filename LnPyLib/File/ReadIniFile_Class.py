@@ -92,7 +92,7 @@ class ReadIniFile(object):
     # # https://docs.python.org/3/library/configparser.html
     # ######################################################
     def read(self, onlySection=None, returnOrderedDict=False, resolveEnvVars=False):
-        logger  = SetLogger(package=__package__)
+        logger  = SetLogger(package=__name__)
         self._onlySection       = onlySection
         self._returnOrderedDict = returnOrderedDict
         self._resolveEnvVars    = resolveEnvVars
@@ -143,7 +143,7 @@ class ReadIniFile(object):
     #                  interpretare la stessa come section+subsection
     ############################################################
     def _iniConfigAsDict(self):
-        logger  = SetLogger(package=__package__)
+        logger  = SetLogger(package=__name__)
         C = LnColor()
         """
         Converts a ConfigParser object into a dictionary.

@@ -11,23 +11,24 @@ import  sys
 from    pathlib                  import Path         # dalla versione 3.4
 from    time                     import sleep
 
-import      Source as Prj
+import   Source as Prj
 
 #########################################################################
 # - Ln_Drive, Ln_rootDir e Ln_StartDir e GIT-REPO.
 #########################################################################
-def CalculateRootDir(gv, myArgs):
+def CalculateRootDir():
     '''
     calculate root directory for LnDisk
         args:
         gv    : DotMap() formmat of global Vars
-        myArgs: command line input arguments
+        gv.args: command line input arguments
     '''
 
     # ----- common part into the Prj modules --------
-    global Ln
+    global Ln, gv
     Ln     = Prj.LnLib
-    logger = Ln.SetLogger(__package__)
+    logger = Ln.SetLogger(__name__)
+    gv      = Prj.gv
     # -----------------------------------------------
 
 
@@ -39,8 +40,8 @@ def CalculateRootDir(gv, myArgs):
     myDirectories = ('LnStart', 'LnFree', 'GIT-REPO')
 
         # - se la root dir viene passata prendiamola per ciò che è
-    if myArgs['root_dir']:
-        rootDir = Path(myArgs['root_dir']).resolve()
+    if gv.args['root_dir']:
+        rootDir = Path(gv.args['root_dir']).resolve()
         drive, *rest = rootDir.parts
         logger.info("drive:   {}".format(drive))
         logger.info("rootDir: {}".format(rootDir))
@@ -69,28 +70,30 @@ def CalculateRootDir(gv, myArgs):
 
     logger.info("realDrive:    {}".format(realDrive))
     logger.info("realRootDir:  {}".format(realRootDir))
-
         # --------------------------------------------
         # - se e' richiesto un drive SUBST...
         # - impostiamo tutti i path per quel drive
         # --------------------------------------------
-    if myArgs['subst']:
-        substDrive = createSUBSTDrive(substDrive=Path(myArgs['subst']), substMountDir=realRootDir)
+    print (gv.args['subst'])
+    if gv.args['subst']:
+        mountDir = createSUBSTDrive(substDrive=Path(gv.args['subst']), substMountDir=realRootDir)
     else:
-        substDrive = None
+        mountDir = None
+
 
 
         # ----------------------------------------
         # - verifica dell'esistenza delle myDirectories
         # ----------------------------------------
-    myRootDir = substDrive if substDrive else realRootDir
+    myRootDir = mountDir if mountDir else realRootDir
     if str(myRootDir)[-1] == ':': myRootDir = myRootDir / '/'
     logger.info("myRootDir:  {}".format(myRootDir))
     for subdir in myDirectories:
-        # myPath = myRootDir.joinpath(subdir)
         Ln.VerifyPath(myRootDir.joinpath(subdir))
 
-    return realDrive, realRootDir, substDrive
+    Ln.SetLogger(__name__, reset=True) # log the caller
+    Ln.Exit(9999, 'debugging exit')
+    return realDrive, realRootDir, mountDir
 
 
 
@@ -102,29 +105,37 @@ def createSUBSTDrive(substDrive, substMountDir):
     execute SUBST windows command to create a virtualDrive pointing to a path
     '''
 
-    logger = Ln.SetLogger(__package__)
+    logger = Ln.SetLogger(__name__)
 
     logger.info("parameter substDrive:    {}".format(substDrive))
     logger.info("parameter substMountDir: {}".format(substMountDir))
 
-
-    if not str(substDrive).lower() in ['x:', 'y:', 'w:', 'z:']:
-        errMsg = "il drive immesso [{DRIVE}] non è previsto...".format(DRIVE=substDrive)
+    validDrives = ('j:','k:','l:','m:','n:','o:','p:','q:','r:','s:','t:','u:','v:','w:','x:','y:','z:')
+    # if not str(substDrive).lower() in ['x:', 'y:', 'w:', 'z:']:
+    if not str(substDrive).lower() in validDrives:
+        errMsg = """il drive immesso [{DRIVE}] non è valido...
+    immettere uno delle seguenti: {DRIVES}
+        """.format(DRIVE=substDrive, DRIVES=validDrives)
         logger.warning(errMsg)
         Ln.Exit(22, errMsg)
 
 
     if substDrive.exists():
         logger.info('SUBST drive {} alredy present'.format(substDrive))
+        # mountDir = substDrive
 
     else:
-        Ln.RunProgram("executing SUBST command:", ['subst', substDrive, substMountDir])
+        # if gv.args['execute']:
+        Ln.runProgram("executing SUBST command:", ['subst', substDrive, substMountDir])
         sleep(1) #diamo tempo affinché avvenga il montaggio
 
             # verifico che il comando di SUBST sia andato a buon fine...
+        # print ('1.{}.'.format(substDrive))
+        # Ln.VerifyPath(substDrive, exitOnError=True) # ritorna substDrive
         substDrive = Ln.VerifyPath(substDrive, exitOnError=False) # ritorna substDrive
+        # print ('2.{}.'.format(substDrive))
 
 
     logger.info("SUBST drive: {0}".format(substDrive))
-
+    Ln.SetLogger(__name__, reset=True) # log the caller
     return substDrive

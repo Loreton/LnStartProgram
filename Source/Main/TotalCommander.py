@@ -15,9 +15,8 @@ import Source as Prj
 def SetTotalCommander(iniVar, fDEBUG=False):
     # ----- common part into the Prj modules --------
     Ln     = Prj.LnLib
-    logger = Ln.SetLogger(__package__)
+    logger = Ln.SetLogger(__name__)
     # -----------------------------------------------
-    logger = Ln.SetLogger(__package__)
     CMDList = []
 
         # -------------------------------------------------

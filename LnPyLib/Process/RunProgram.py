@@ -13,7 +13,7 @@ from .. Common.LnLogger      import SetLogger
 #
 #########################################################################
 def StartProgram(textMsg, CMDList):
-    logger = SetLogger(__package__)
+    logger = SetLogger(__name__)
 
         # --------------------------------------------------
         # - Nella lista del comando potrebbero essere presenti

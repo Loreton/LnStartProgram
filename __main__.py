@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 04-01-2018 16.02.32
+# Version ......: 09-01-2018 15.55.00
 #
 # #############################################
 
@@ -18,7 +18,7 @@ import sys; sys.dont_write_bytecode = True
 import  Source as Prj
 
 
-myLibName = ['LnLib', 'LnLib_2018-01-04.zip']
+myLibName = ['LnPyLib', 'LnLib_2018-01-04xxx.zip']
 LnLib     = Prj.SPE.LibPath(myLibName, fDEBUG=False)
 
 # -------------------------------------------------------
@@ -51,15 +51,44 @@ if __name__ == '__main__':
     logger  = Ln.InitLogger(toFILE=gv.args.log, logfilename=gv.args.log_filename, toCONSOLE=gv.args.log_console, ARGS=args, defaultLogLevel='debug')
 
 
+        # ------------------------------------------------------------------
+        # leggiamo il file.ini solo per prelevare il SubstDrive
+        # se viene passato da riga di comando prevale
+        # altrimenti prendiamo quello definito nel file.ini (se esiste)
+        # ------------------------------------------------------------------
+    iniFile = Ln.ReadIniFile(gv.args.config_file, strict=True, logger=logger)
+    iniFile.read(resolveEnvVars=False)
+    gv.cfgFile = Ln.Dict(iniFile.dict)
+
+    if not args['subst']:
+        if 'Subst_Drive' in gv.cfgFile.MAIN:
+            args['subst'] = gv.cfgFile.MAIN.Subst_Drive
+
+
+
+
+
         # -----------------------------------------------
         # - imposta Ln_Drive, Ln_rootDir e Ln_StartDir.
         # -----------------------------------------------
-    realDrive, realRootDir, substDrive = Prj.CalculateRootDir(gv, args) # set Ln_Drive, Ln_rootDir e Ln_StartDir
-    realMountDir = realRootDir
+    realDrive, realMountDir, substDrive = Prj.CalculateRootDir() # set Ln_Drive, Ln_rootDir e Ln_StartDir
+    realRootDir = realMountDir
+
+    # logger.info('realDrive   : {}'.format(realDrive))
+    # logger.info('realRootDir : {}'.format(realRootDir))
+    # logger.info('substDrive  : {}'.format(substDrive))
+
     if substDrive: # override
         realDrive    = substDrive
         realRootDir  = substDrive
 
+    # logger.info('realDrive   : {}'.format(realDrive))
+    # logger.info('realRootDir : {}'.format(realRootDir))
+    # logger.info('substDrive  : {}'.format(substDrive))
+
+    print ('Real Mount dir: {}.'.format(realMountDir))
+    print ('substDrive    : {}'.format(substDrive))
+    print ('realDrive     : {}'.format(realDrive))
 
 
         # -----------------------------------------------
@@ -110,5 +139,10 @@ if __name__ == '__main__':
     else:
         Ln.Exit(1, "Program: {} not yet implemented".format(programToStart))
 
-    Ln.runProgram('{PRGNAME} command list:'.format(PRGNAME=programToStart), CMDList)
-    Ln.Exit(0, "Process completed, {} has been started".format(programToStart))
+    if args['execute']:
+        Ln.runProgram('{PRGNAME} command list:'.format(PRGNAME=programToStart), CMDList)
+        msg = "Process completed, {} has been started".format(programToStart)
+    else:
+        msg = "enter --go to launch the program: {}".format(programToStart)
+
+    Ln.Exit(0, msg)

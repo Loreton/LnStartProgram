@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 02-01-2018 17.17.50
+# Version ......: 09-01-2018 14.37.44
 #
 # -----------------------------------------------
 
@@ -13,7 +13,7 @@ import  Source as Prj
 # La directory option conterrà i file che verranno
 # richiamati in base ai parametri di input.
 # -----------------------------------------------------
-from . import options as functionsLibPtr
+from . import Options as functionsLibPtr
 
 
 
@@ -31,7 +31,13 @@ def ParseInput(description='Loreto Start Program', programVersion='V0.1'):
         'vscode'                : "Visual Studio code",
     }
 
-
+    ''' DEBUG
+    msg = []
+    for item in vars(functionsLibPtr):
+        if item.startswith('__'): continue
+        msg.append(item)
+    Ln.Exit(1, msg)
+    '''
 
     inpArgs = Ln.processInput(
             nPosArgs=posizARGS,

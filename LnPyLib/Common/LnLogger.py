@@ -3,9 +3,13 @@
 # Scope:  Programma per ...........
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 02-01-2018 11.53.45
+# Version ......: 10-01-2018 15.33.46
 # -----------------------------------------------
-import  sys
+
+'''
+purtroppo una volta impostato il nome
+'''
+import  sys, os
 import  logging
 # from logging.handlers import RotatingFileHandler
 from    pathlib import Path
@@ -14,14 +18,80 @@ import  inspect
 myLOGGER   = None
 myLogLevel = logging.INFO
 fDEBUG     = False
+
+class LnClass(): pass
+
+
 # modulesToLog = []
+
+
+
+   # if printStack:
+   #      logWrite("EXIT STACK:")
+   #      print()
+   #      for i in reversed(list(range(1, stackLevel))):
+   #          caller = _calledBy(i)
+   #          if not 'index out of range' in caller:
+   #              logWrite("    {0}".format(caller))
+   #              if console:
+   #                  C.printColored(color=printColor, text=caller, tab=8)
+   #  sys.exit(rcode)
+
+
+# http://stackoverflow.com/questions/16203908/how-to-input-variables-in-logger-formatter
+class ContextFilter(logging.Filter):
+    """
+    This is a filter which injects contextual information into the log.
+
+    Rather than use actual contextual information, we just use random
+    data in this demo.
+    """
+    def __init__(self, defaultStack=5):
+        self._defaultStack  = defaultStack
+        self._line          = None
+        self._LnFuncName    = None      # creata da me
+        self._stack         = defaultStack
+        '''
+        ho verificato che con 5 sembra andare bene
+        usato quando chiamato direttamete dal logger
+        quando lo chiamo dal SetLogger devo impostaro a 6
+        '''
+
+    def setLineNO(self, number):
+        self._line = number
+
+    def setFuncName(self, name):
+        self._LnFuncName = name
+
+    def setStack(self, number):
+        self._stack = number if number else self._defaultStack
+
+    def filter(self, record):
+        # print (record)
+        if self._line:
+            record.lineno = self._line
+        else:
+            record.lineno = sys._getframe(self._stack).f_lineno
+
+        if self._LnFuncName:
+            record.LnFuncName  = self._LnFuncName
+        else:
+            record.LnFuncName  = sys._getframe(self._stack).f_code.co_name
+
+        return True
 
 
 
 ###########################################################
 # permette di iniettare campi custom nel log-Record
+# il problema di questa routine è che se imposto il nome
+# di una funzione chiamata, mi rimane valido ache all'uscita
+# finché qualcun altro non resetta tale nome con un'altra setLogger()...
 ###########################################################
 def setMyLogRecord(myFuncName='nameNotPassed', lineNO=0):
+    if fDEBUG:
+        print ('setting funcName to:', myFuncName)
+
     old_factory = logging.getLogRecordFactory()
     def record_factory(*args, **kwargs):
         record = old_factory(*args, **kwargs)
@@ -122,7 +192,7 @@ def init(   toFILE=False,
             interval=60,
             ):
 
-    global myLOGGER
+    global myLOGGER, LnFilter
 
     _fLOG, _fCONSOLE, _fFILE = prepareLogEnv(toFILE=toFILE, toCONSOLE=toCONSOLE, logfilename=logfilename, ARGS=ARGS, loglevel=defaultLogLevel)
     if not _fLOG:
@@ -135,19 +205,25 @@ def init(   toFILE=False,
         # logFormatter = logging.Formatter("%(asctime)s - [%(name)-20.20s:%(lineno)4d] - %(levelname)-5.5s - %(message)s", datefmt='%H:%M:%S')
         # logFormatter = logging.Formatter('[%(asctime)s] [%(module)s:%(funcName)s:%(lineno)d] %(levelname)-5.5s - %(message)s','%m-%d %H:%M:%S')
         # ------------------
+
+    ''' --- con myLogRecord
+    '''
     fileFMT    = '[%(asctime)s] [%(LnFuncName)-20s:%(lineno)4d] %(levelname)-5.5s - %(message)s'
     consoleFMT = '[%(LnFuncName)-20s:%(lineno)4d] %(levelname)-5.5s - %(message)s'
 
 
     logger = logging.getLogger()
+
+    # - inserimento contextFilter
+    LnFilter    = ContextFilter()
+    logger.addFilter(LnFilter)
     logger.setLevel(myLogLevel)
-    # print (myLogLevel)
-    setMyLogRecord('Ln-Initialize')
+
+    # setMyLogRecord('Ln-Initialize')
 
 
         # log to file
     if _fFILE:
-        # LOG_FILE_NAME = logfilename
         LOG_DIR = Path(logfilename).parent
 
             # se esiste non dare errore
@@ -155,7 +231,6 @@ def init(   toFILE=False,
             LOG_DIR.mkdir(parents=True)
         except (FileExistsError):
             pass
-
 
 
         if ROTATE == 'time':
@@ -198,48 +273,34 @@ def init(   toFILE=False,
     myLOGGER = logger
     return logger
 
-
 # ====================================================================================
 # - dal package passato come parametro cerchiamo di individuare se la fuzione/modulo
 # - è tra quelli da fare il log.
 # - Il package mi server per verficare se devo loggare il modulo o meno
 # ====================================================================================
-def SetLogger(package, stackNum=0):
+def SetLogger(package, stackNum=0, reset=False):
+    global fDEBUG
+    fDEBUG = False
+    if fDEBUG:
+        print ('...')
+        print (package)
+
     if not myLOGGER:
         return _setNullLogger()
 
-    # comoda ... ma non ho il controllo sullo stackNO.
-    # fn, lno, func, sinfo = myLOGGER.findCaller(stack_info=False)
-    # print (fn, lno, func, sinfo)
+    CALLER = []
+    for stacklevel in [0,1,2,3]:
+        caller = _GetCaller(stacklevel)
+        CALLER.append(caller)
 
-    funcName       = sys._getframe(stackNum+1).f_code.co_name
-    funcLineNO     = sys._getframe(stackNum+1).f_lineno
-    thisFuncName   = sys._getframe(stackNum).f_code.co_name
-
-    if funcName == '<module>': funcName = '__main__'
-    caller = '{}.{}({})'.format(package, funcName, funcLineNO)
-
-    _token = package.split('.')
-    _LnFuncName = '{FIRST}.{LAST}.{FUNC}'.format(FIRST=_token[0], LAST=_token[-1], FUNC=funcName)
-
-    if len(_LnFuncName) > 19:
-        # _LnFuncName = '{LAST}.{FUNC}'.format(LAST=_token[-1], FUNC=funcName)
-        _LnFuncName = '{FUNC}'.format(FUNC=funcName)
-
-
-    if False:
-        print(__name__, 'package..................', package)
-        print(__name__, 'funcName -2..............', sys._getframe(stackNum-2).f_code.co_name, sys._getframe(stackNum-2).f_lineno)
-        print(__name__, 'funcName -1..............', sys._getframe(stackNum-1).f_code.co_name, sys._getframe(stackNum-1).f_lineno)
-        print(__name__, 'funcName ................', sys._getframe(stackNum).f_code.co_name, sys._getframe(stackNum).f_lineno)
-        print(__name__, 'funcName +1..............', sys._getframe(stackNum+1).f_code.co_name, sys._getframe(stackNum+1).f_lineno)
-        print(__name__, 'funcName +2..............', sys._getframe(stackNum+2).f_code.co_name, sys._getframe(stackNum+2).f_lineno)
-        try:
-            print(__name__, 'funcName +3..............', sys._getframe(stackNum+3).f_code.co_name, sys._getframe(stackNum+3).f_lineno)
-        except:
-            pass
-        print(__name__, 'called by..............', _LnFuncName, funcLineNO)
-        print()
+    if fDEBUG:
+        TAB= ' '*4
+        for stacklevel in [0,1,2,3]:
+            print('stacklevel..:', stacklevel)
+            caller = CALLER[stacklevel]
+            for key, val in caller0.items():
+                print (TAB, '{:<15}: {}'.format(key, val))
+            print()
 
 
 
@@ -247,34 +308,54 @@ def SetLogger(package, stackNum=0):
         # - individuiamo se è un modulo
         # - da tracciare o meno
         # ---------------------------------
+    fullPkg = (package + '.' + CALLER[1]._funcname)
     if '!ALL!' in modulesToLog:
         LOG_LEVEL = myLogLevel
 
     else:
+        fullPkg_LOW = fullPkg.lower()
         LOG_LEVEL = None
-        fullPkg = (package + funcName).lower()
         for moduleStr in modulesToLog:
-            if moduleStr.lower() in fullPkg:
+            if moduleStr.lower() in fullPkg_LOW:
                 LOG_LEVEL = myLogLevel
 
 
+    if fDEBUG:
+        print ('fullPkg   :', fullPkg )
+        print ('LOG_LEVEL :', LOG_LEVEL )
 
-    if LOG_LEVEL:
-        logger = logging.getLogger(package)
-        logger.setLevel(LOG_LEVEL)
 
-        # - set temporaneo dei nomi per scrivere SetLogger come funzione
-        setMyLogRecord(myFuncName=thisFuncName)
-
-        logger.info('\n')
-        logger.info('......called by: {CALLER}'.format(CALLER=caller))
-
-        # - set nomi del caller
-        setMyLogRecord(myFuncName=_LnFuncName)
-    else:
+    if not LOG_LEVEL:
         logger = _setNullLogger()
+        return logger
+
+
+    logger = logging.getLogger(package)
+    logger.setLevel(LOG_LEVEL)
+
+        # --------------------------------------------------
+        # - aggiungiamo il ContextFilter
+        # - IMPORTANTE in quanto quello inserito nel init
+        # - contiene i valori di default usati quando
+        # - chiamato dall logger.xxx()
+        # --------------------------------------------------
+    logger.addFilter(LnFilter)
+    LnFilter.setStack(6)    # cambio lo stackNum
+
+    if reset:
+        logger.info('.... exiting\n')
+        LnFilter.setStack(None)    # cambio lo stackNum
+        return
+
+
+    logger.info('.... entering called by: {CALLER}'.format(CALLER=CALLER[3]._fullcaller))
+    LnFilter.setStack(None)    # cambio lo stackNum
+
+    if fDEBUG:
+        print ('...\n')
 
     return logger
+
 
 
 
@@ -317,3 +398,34 @@ def _setNullLogger(package=None):
             print (str)
 
     return nullLogger()
+
+
+
+
+
+###############################################
+#
+###############################################
+def _GetCaller(stackLevel=0):
+    retCaller = LnClass()
+
+    try:
+        dummy, programFile, lineNumber, funcName, lineCode, rest = inspect.stack()[stackLevel]
+
+    except Exception as why:
+        retCaller._fullcaller  = str(why)
+        return myCaller   # potrebbe essere out of stack ma ritorniamo comunque la stringa
+
+
+    if funcName == '<module>': funcName = '__main__'
+
+    retCaller._funcname   = funcName
+    retCaller._linecode   = lineCode
+    retCaller._lineno     = lineNumber
+    retCaller._fullfname  = programFile
+
+    fname                   = os.path.basename(programFile).split('.')[0]
+    retCaller._fname      = fname
+    retCaller._fullcaller = "[{0}.{1}:{2}]".format(fname, funcName, lineNumber)
+
+    return retCaller

@@ -1,0 +1,69 @@
+[01-10 09:30:54] [Ln-Initialize       : 236] INFO  - 
+
+
+
+[01-10 09:30:54] [Ln-Initialize       : 238] INFO  - --------- input ARGS ------- 
+[01-10 09:30:54] [Ln-Initialize       : 240] INFO  - firstPosParameter    : executor
+[01-10 09:30:54] [Ln-Initialize       : 240] INFO  - dis_parameters       : False
+[01-10 09:30:54] [Ln-Initialize       : 240] INFO  - log_console          : False
+[01-10 09:30:54] [Ln-Initialize       : 240] INFO  - debug                : False
+[01-10 09:30:54] [Ln-Initialize       : 240] INFO  - ini_file             : E:\LnED\Lacie232\Filu\LnDisk\GIT-REPO\Python3\LnStartProgram\conf\LnStartProgram.ini
+[01-10 09:30:54] [Ln-Initialize       : 240] INFO  - subst                : None
+[01-10 09:30:54] [Ln-Initialize       : 240] INFO  - execute              : False
+[01-10 09:30:54] [Ln-Initialize       : 240] INFO  - log                  : []
+[01-10 09:30:54] [Ln-Initialize       : 240] INFO  - root_dir             : None
+[01-10 09:30:54] [Ln-Initialize       : 240] INFO  - config_file          : E:\LnED\Lacie232\Filu\LnDisk\GIT-REPO\Python3\LnStartProgram\conf\LnStartProgram.ini
+[01-10 09:30:54] [Ln-Initialize       : 240] INFO  - log_filename         : E:\LnED\Lacie232\Filu\LnDisk\GIT-REPO\Python3\LnStartProgram\log\LnStartProgram_2018-01-10.log
+[01-10 09:30:54] [Ln-Initialize       : 240] INFO  - loglevel             : info
+[01-10 09:30:54] [Ln-Initialize       : 241] INFO  - --------------------------- 
+[01-10 09:30:54] [Ln-Initialize       : 242] INFO  - 
+
+
+
+[01-10 09:30:54] [SetLogger           : 374] INFO  - .... read:95              called by: __main__:60
+[01-10 09:30:54] [SetLogger           : 374] INFO  - .... _iniConfigAsDict:146 called by: read:134
+[01-10 09:30:54] [SetLogger           : 374] INFO  - .... CalculateRootDir:31  called by: __main__:74
+[01-10 09:30:54] [SetLogger           : 374] INFO  - .... VerifyPath:24        called by: CalculateRootDir:69
+[01-10 09:30:54] [VerifyPath          :  26] INFO  - verifying path: E:\ [<class 'str'>]
+[01-10 09:30:54] [VerifyPath          :  42] INFO  - returning path: E:\ [<class 'pathlib.WindowsPath'>]
+[01-10 09:30:54] [SetLogger           : 367] INFO  - .... VerifyPath:43        - exiting
+[01-10 09:30:54] [SetLogger           : 374] INFO  - .... VerifyPath:24        called by: CalculateRootDir:70
+[01-10 09:30:54] [VerifyPath          :  26] INFO  - verifying path: E:\LnED\Lacie232\Filu\LnDisk [<class 'pathlib.WindowsPath'>]
+[01-10 09:30:54] [VerifyPath          :  42] INFO  - returning path: E:\LnED\Lacie232\Filu\LnDisk [<class 'pathlib.WindowsPath'>]
+[01-10 09:30:54] [SetLogger           : 367] INFO  - .... VerifyPath:43        - exiting
+[01-10 09:30:54] [CalculateRootDir    :  72] INFO  - realDrive:    E:\
+[01-10 09:30:54] [CalculateRootDir    :  73] INFO  - realRootDir:  E:\LnED\Lacie232\Filu\LnDisk
+[01-10 09:30:54] [SetLogger           : 374] INFO  - .... Exit:25              called by: CalculateRootDir:74
+[01-10 09:30:54] [Exit                :  70] WARNI - EXIT STACK:
+[01-10 09:30:54] [Exit                :  75] WARNI -     [__main__:74]
+[01-10 09:30:54] [Exit                :  75] WARNI -     [CalculateRootDir.CalculateRootDir:74]
+[01-10 09:31:43] [Ln-Initialize       : 236] INFO  - 
+
+
+
+[01-10 09:31:43] [Ln-Initialize       : 238] INFO  - --------- input ARGS ------- 
+[01-10 09:31:43] [Ln-Initialize       : 240] INFO  - log_console          : False
+[01-10 09:31:43] [Ln-Initialize       : 240] INFO  - firstPosParameter    : executor
+[01-10 09:31:43] [Ln-Initialize       : 240] INFO  - execute              : False
+[01-10 09:31:43] [Ln-Initialize       : 240] INFO  - loglevel             : info
+[01-10 09:31:43] [Ln-Initialize       : 240] INFO  - log_filename         : E:\LnED\Lacie232\Filu\LnDisk\GIT-REPO\Python3\LnStartProgram\log\LnStartProgram_2018-01-10.log
+[01-10 09:31:43] [Ln-Initialize       : 240] INFO  - dis_parameters       : False
+[01-10 09:31:43] [Ln-Initialize       : 240] INFO  - root_dir             : None
+[01-10 09:31:43] [Ln-Initialize       : 240] INFO  - debug                : False
+[01-10 09:31:43] [Ln-Initialize       : 240] INFO  - subst                : None
+[01-10 09:31:43] [Ln-Initialize       : 240] INFO  - config_file          : E:\LnED\Lacie232\Filu\LnDisk\GIT-REPO\Python3\LnStartProgram\conf\LnStartProgram.ini
+[01-10 09:31:43] [Ln-Initialize       : 240] INFO  - ini_file             : E:\LnED\Lacie232\Filu\LnDisk\GIT-REPO\Python3\LnStartProgram\conf\LnStartProgram.ini
+[01-10 09:31:43] [Ln-Initialize       : 240] INFO  - log                  : ['veri']
+[01-10 09:31:43] [Ln-Initialize       : 241] INFO  - --------------------------- 
+[01-10 09:31:43] [Ln-Initialize       : 242] INFO  - 
+
+
+
+[01-10 09:31:43] [SetLogger           : 374] INFO  - .... VerifyPath:24        - called by: CalculateRootDir:69
+[01-10 09:31:43] [VerifyPath          :  26] INFO  - verifying path: E:\ [<class 'str'>]
+[01-10 09:31:43] [VerifyPath          :  42] INFO  - returning path: E:\ [<class 'pathlib.WindowsPath'>]
+[01-10 09:31:43] [SetLogger           : 367] INFO  - .... VerifyPath:43        - exiting
+[01-10 09:31:43] [SetLogger           : 374] INFO  - .... VerifyPath:24        - called by: CalculateRootDir:70
+[01-10 09:31:43] [VerifyPath          :  26] INFO  - verifying path: E:\LnED\Lacie232\Filu\LnDisk [<class 'pathlib.WindowsPath'>]
+[01-10 09:31:43] [VerifyPath          :  42] INFO  - returning path: E:\LnED\Lacie232\Filu\LnDisk [<class 'pathlib.WindowsPath'>]
+[01-10 09:31:43] [SetLogger           : 367] INFO  - .... VerifyPath:43        - exiting

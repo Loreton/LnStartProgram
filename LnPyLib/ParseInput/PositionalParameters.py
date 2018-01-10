@@ -1,6 +1,6 @@
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 02-01-2018 17.44.46
+# Version ......: 09-01-2018 16.03.12
 #
 
 import sys
@@ -92,7 +92,7 @@ def positionalParameters(myParser, nARGS, positionalParametersDict):
 ####################################
 def checkPositionaParam(myParser, posParam, positionalParametersDict):
 
-    primaryCommand   = posParam[0]
+    primaryCommand   = posParam[0].lower()
     if not (primaryCommand in positionalParametersDict.keys()):
         myParser.print_help()
         C.printColored(color=C.yellow, text=".... Unrecognized command [{0}]. Valid values are:".format(primaryCommand), tab=8)
@@ -103,7 +103,7 @@ def checkPositionaParam(myParser, posParam, positionalParametersDict):
 
     if posizARGS == 2:
         ptr = positionalParametersDict[primaryCommand]
-        secondaryCommand = posParam[1]
+        secondaryCommand = posParam[1].lower()
         if not secondaryCommand in ptr.keys():
             myParser.print_help()
             print()

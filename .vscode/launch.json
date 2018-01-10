@@ -13,9 +13,9 @@
             "pythonPath": "${config:python.pythonPath}",
             "program": "${file}",
             "args": [
-                "tc",
-                "--debug"
-            ],            
+                "totalcommander",
+                "--subst=y:"
+            ],
             "cwd": "${workspaceRoot}",
             "debugOptions": [
                 "WaitOnAbnormalExit",

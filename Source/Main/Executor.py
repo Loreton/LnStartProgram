@@ -15,7 +15,7 @@ import Source as Prj
 def SetExecutor(gv, iniVar):
     # ----- common part into the Prj modules --------
     Ln     = Prj.LnLib
-    logger = Ln.SetLogger(__package__)
+    logger = Ln.SetLogger(__name__)
     # -----------------------------------------------
 
     CMDList = []
