@@ -92,7 +92,7 @@ def CalculateRootDir():
         Ln.VerifyPath(myRootDir.joinpath(subdir))
 
     Ln.SetLogger(__name__, reset=True) # log the caller
-    Ln.Exit(9999, 'debugging exit to test logger')
+    # Ln.Exit(9999, 'debugging exit to test logger')
     return realDrive, realRootDir, mountDir
 
 
@@ -111,7 +111,6 @@ def createSUBSTDrive(substDrive, substMountDir):
     logger.info("parameter substMountDir: {}".format(substMountDir))
 
     validDrives = ('j:','k:','l:','m:','n:','o:','p:','q:','r:','s:','t:','u:','v:','w:','x:','y:','z:')
-    # if not str(substDrive).lower() in ['x:', 'y:', 'w:', 'z:']:
     if not str(substDrive).lower() in validDrives:
         errMsg = """il drive immesso [{DRIVE}] non è valido...
     immettere uno delle seguenti: {DRIVES}
@@ -122,7 +121,6 @@ def createSUBSTDrive(substDrive, substMountDir):
 
     if substDrive.exists():
         logger.info('SUBST drive {} alredy present'.format(substDrive))
-        # mountDir = substDrive
 
     else:
         # if gv.args['execute']:
@@ -130,10 +128,7 @@ def createSUBSTDrive(substDrive, substMountDir):
         sleep(1) #diamo tempo affinché avvenga il montaggio
 
             # verifico che il comando di SUBST sia andato a buon fine...
-        # print ('1.{}.'.format(substDrive))
-        # Ln.VerifyPath(substDrive, exitOnError=True) # ritorna substDrive
-        substDrive = Ln.VerifyPath(substDrive, exitOnError=False) # ritorna substDrive
-        # print ('2.{}.'.format(substDrive))
+        substDrive = Ln.VerifyPath(substDrive, exitOnError=False) # ritorna mountDir
 
 
     logger.info("SUBST drive: {0}".format(substDrive))

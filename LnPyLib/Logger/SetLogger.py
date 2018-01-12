@@ -31,6 +31,7 @@ def SetLogger(package, reset=False):
     ''' otteniamo i caller che ci servono '''
     CALLER = [1,2,3,4,5,6,7]
     CALLER[1] = GetCaller(1)
+    # CALLER[2] = GetCaller(2)
     CALLER[3] = GetCaller(3)
 
         # ---------------------------------
@@ -60,14 +61,14 @@ def SetLogger(package, reset=False):
 
     logger.setLevel(LOG_LEVEL)
 
-    # cambiamo lo stackNO per inserire la function:lineno corretti
-    _LnFilter.addStack(1)    # cambio lo stackNum
+    _LnFilter.addStack(0)    # cambio lo stackNum
+
     if reset:
         logger.info('.... exiting\n')
     else:
         logger.info('.... entering called by: {CALLER}'.format(CALLER=CALLER[3]._fullcaller))
 
-    # _LnFilter.setStack(None)    # reset dello stackNum NON server se autoReset == True
+    _LnFilter.setStack(None)    # reset dello stackNum NON server se autoReset == True
     return logger
 
 

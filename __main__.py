@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 10-01-2018 18.01.58
+# Version ......: 12-01-2018 16.50.20
 #
 # #############################################
 
@@ -71,6 +71,7 @@ if __name__ == '__main__':
         # -----------------------------------------------
         # - imposta Ln_Drive, Ln_rootDir e Ln_StartDir.
         # -----------------------------------------------
+    logger.info('Real Mount dir prima:')
     realDrive, realMountDir, substDrive = Prj.CalculateRootDir() # set Ln_Drive, Ln_rootDir e Ln_StartDir
     realRootDir = realMountDir
 

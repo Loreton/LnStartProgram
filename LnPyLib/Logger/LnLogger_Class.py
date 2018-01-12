@@ -69,7 +69,7 @@ class LnLogger(logging.getLoggerClass()):
 
         self._myLogger          = logging.getLogger(self._name)
         self._nullLogger        = nullLogger()
-        self._LnFilter           = ContextFilter(defaultStack=5, autoReset=True)
+        self._LnFilter          = ContextFilter(defaultStack=6, autoReset=True)
 
         if name not in self.loggers:
             self.loggers.add(name)
@@ -114,6 +114,7 @@ class LnLogger(logging.getLoggerClass()):
 
 
         self._myLogger.setLevel(self._level)
+        self.info('initialised.....')
         # self._LnFilter.setFuncName(None) # reset al nome del modulo chiamante
 
 
