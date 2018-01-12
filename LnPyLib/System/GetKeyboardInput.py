@@ -3,15 +3,15 @@
 # -O Optimize e non scrive il __debug__
 #
 # -----------------------------------------------
-__author__  = 'Loreto Notarantonio'
-__version__ = 'LnVer_2017-06-28_16.34.25'
+# updated by ...: Loreto Notarantonio
+# Version ......: 12-01-2018 15.09.02
 # -----------------------------------------------
 #
 # ####################################################################################################################
 import sys, os
 import inspect
 
-from .. Common.LnLogger import SetLogger
+from .. Logger.SetLogger import SetLogger
 from .. Common.LnColor  import LnColor
 from .. Common.Exit     import Exit      as LnExit
 

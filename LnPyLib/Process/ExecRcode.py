@@ -5,9 +5,9 @@
 # -O Optimize e non scrive il __debug__
 #
 # ####################################################################################################################
-import sys, subprocess
+import subprocess
 
-from LnLib.Common.LnLogger import SetLogger
+from .. Logger.SetLogger import SetLogger
 # from LnLib.Common.LnColor  import LnColor
 # from LnLib.Common.Exit     import Exit
 

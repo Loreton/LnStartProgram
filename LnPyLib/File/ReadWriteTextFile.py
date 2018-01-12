@@ -2,7 +2,7 @@
 # -*- coding: iso-8859-1 -*-
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 22-12-2017 17.14.01
+# Version ......: 12-01-2018 15.09.12
 #
 # ######################################################################################
 
@@ -10,7 +10,8 @@
 
 # import os, sys
 
-from LnLib.Common.LnLogger import SetLogger
+from .. Logger.SetLogger import SetLogger
+from .. Common.Exit import Exit as LnExit
 
 def readTextFile(inputFname, encoding='utf-8', strip=True):
     logger = SetLogger(package=__name__)
@@ -19,7 +20,7 @@ def readTextFile(inputFname, encoding='utf-8', strip=True):
     try:
         f = open(inputFname, "r", encoding=encoding)
     except (Exception) as why:
-        gv.Ln.Exit(1, str(why), printStack=True)
+        LnExit(1, str(why), printStack=True)
 
     for line in f:
         if strip:

@@ -7,7 +7,7 @@ from  subprocess import Popen
 from  pathlib import PureWindowsPath, WindowsPath         # dalla versione 3.4
 
 
-from .. Common.LnLogger      import SetLogger
+from .. Logger.SetLogger import SetLogger
 
 #########################################################################
 #

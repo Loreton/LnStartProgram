@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 09-01-2018 15.55.00
+# Version ......: 10-01-2018 18.01.58
 #
 # #############################################
 
@@ -78,17 +78,17 @@ if __name__ == '__main__':
     # logger.info('realRootDir : {}'.format(realRootDir))
     # logger.info('substDrive  : {}'.format(substDrive))
 
-    if substDrive: # override
-        realDrive    = substDrive
-        realRootDir  = substDrive
+    # if substDrive: # override
+        # realDrive    = substDrive
+        # realRootDir  = substDrive
 
     # logger.info('realDrive   : {}'.format(realDrive))
     # logger.info('realRootDir : {}'.format(realRootDir))
     # logger.info('substDrive  : {}'.format(substDrive))
 
-    print ('Real Mount dir: {}.'.format(realMountDir))
-    print ('substDrive    : {}'.format(substDrive))
-    print ('realDrive     : {}'.format(realDrive))
+    logger.info('Real Mount dir: {}'.format(realMountDir))
+    logger.info('substDrive    : {}'.format(substDrive))
+    logger.info('realDrive     : {}'.format(realDrive))
 
 
         # -----------------------------------------------

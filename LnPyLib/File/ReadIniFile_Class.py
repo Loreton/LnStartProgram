@@ -11,7 +11,7 @@ import collections
 import configparser
 import codecs
 
-from  .. Common.LnLogger import SetLogger
+from .. Logger.SetLogger import SetLogger
 from  .. Common.LnColor  import LnColor
 
 class ReadIniFile(object):

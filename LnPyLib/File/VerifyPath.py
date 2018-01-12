@@ -3,14 +3,14 @@
 # Scope:  Programma per ...........
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 10-01-2018 15.29.43
+# Version ......: 12-01-2018 15.09.11
 #
 #  https://docs.python.org/3/library/pathlib.html
 # -----------------------------------------------
 from    pathlib import Path
 
 from .. Common.Exit          import Exit       as LnExit
-from .. Common.LnLogger      import SetLogger
+from .. Logger.SetLogger import SetLogger
 
 
 

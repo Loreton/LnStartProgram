@@ -2,11 +2,10 @@
 # -*- coding: iso-8859-1 -*-
 
 import os, fnmatch
-import types
 
 
 # from LnLib.Common.Exit          import Exit       as LnExit
-from LnLib.Common.LnLogger      import SetLogger
+from .. Logger.SetLogger import SetLogger
 # #########################################################################
 # - dirList()
 #   Return a list of file names found in directory 'dirName'

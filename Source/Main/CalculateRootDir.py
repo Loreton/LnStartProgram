@@ -74,7 +74,7 @@ def CalculateRootDir():
         # - se e' richiesto un drive SUBST...
         # - impostiamo tutti i path per quel drive
         # --------------------------------------------
-    print (gv.args['subst'])
+    logger.info("subst required:  {}".format(gv.args['subst']))
     if gv.args['subst']:
         mountDir = createSUBSTDrive(substDrive=Path(gv.args['subst']), substMountDir=realRootDir)
     else:
@@ -92,7 +92,7 @@ def CalculateRootDir():
         Ln.VerifyPath(myRootDir.joinpath(subdir))
 
     Ln.SetLogger(__name__, reset=True) # log the caller
-    Ln.Exit(9999, 'debugging exit')
+    Ln.Exit(9999, 'debugging exit to test logger')
     return realDrive, realRootDir, mountDir
 
 

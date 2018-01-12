@@ -2,12 +2,12 @@
 # -*- coding: iso-8859-15 -*-
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 10-01-2018 08.24.12
+# Version ......: 12-01-2018 15.04.25
 #
 # ####################################################################################################################
 
 import os
-from .. Common.LnLogger import SetLogger
+from .. Logger.SetLogger import SetLogger
 from .. File.VerifyPath import VerifyPath   as LnVerifyPath
 
 #########################################################################

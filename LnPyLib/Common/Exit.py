@@ -5,9 +5,9 @@
 # Version 0.01 08/04/2010:  Starting
 # ####################################################################################################################
 
-import types, os, inspect, sys
+import os, inspect, sys
 
-from . LnLogger import SetLogger       # OK funziona dalla upperDir del package
+from .. Logger.SetLogger import SetLogger       # OK funziona dalla upperDir del package
 from . LnColor  import LnColor
 
 

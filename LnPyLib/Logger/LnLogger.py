@@ -3,7 +3,7 @@
 # Scope:  Programma per ...........
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 10-01-2018 15.33.46
+# Version ......: 10-01-2018 18.00.44
 # -----------------------------------------------
 
 '''
@@ -76,7 +76,9 @@ class ContextFilter(logging.Filter):
         if self._LnFuncName:
             record.LnFuncName  = self._LnFuncName
         else:
-            record.LnFuncName  = sys._getframe(self._stack).f_code.co_name
+            funcname = sys._getframe(self._stack).f_code.co_name
+            if funcname == '<module>': funcname = '__main__'
+            record.LnFuncName  = funcname
 
         return True
 
