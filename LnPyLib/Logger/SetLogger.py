@@ -56,7 +56,6 @@ def SetLogger(package, reset=False):
 
 
     if not LOG_LEVEL:
-        # logger = LnLogger.nullLogger
         return _nullLogger
 
     logger.setLevel(LOG_LEVEL)
@@ -68,7 +67,8 @@ def SetLogger(package, reset=False):
     else:
         logger.info('.... entering called by: {CALLER}'.format(CALLER=CALLER[3]._fullcaller))
 
-    _LnFilter.setStack(None)    # reset dello stackNum NON server se autoReset == True
+    # reset dello stackNum NON server se autoReset == True
+    # _LnFilter.setStack(None)
     return logger
 
 

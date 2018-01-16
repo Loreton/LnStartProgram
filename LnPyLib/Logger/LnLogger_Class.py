@@ -332,18 +332,32 @@ class ContextFilter(logging.Filter):
 
     def filter(self, record):
         dummy, programFile, lineNO, funcName, lineCode, rest = inspect.stack()[self._stack]
+        if self._autoReset: self._stack = self._defaultStack
+
         if funcName == '<module>': funcName = '__main__'
 
+            # - modifica della riga
+        if self._line:
+            record.lineno = self._line
+            if self._autoReset: self._line = None
+        else:
+            record.lineno = lineNO
 
-        record.lineno     = self._line       if self._line       else lineNO
-        record.LnFuncName = self._LnFuncName if self._LnFuncName else funcName
-        record.name       = self._name       if self._name       else funcName
+            # - modifica della LnFuncName
+        if self._LnFuncName:
+            record.LnFuncName = self._LnFuncName
+            if self._autoReset: self._LnFuncName = None
+        else:
+            record.LnFuncName = funcName
 
-        if self._autoReset:
-            self._line       = None
-            self._LnFuncName = None
-            self._name       = None
-            self._stack      = self._defaultStack
+
+            # - modifica del name
+        if self._name:
+            record.name = self._name
+            if self._autoReset: self._name = None
+        else:
+            record.name = funcName
+
 
         return True
 
