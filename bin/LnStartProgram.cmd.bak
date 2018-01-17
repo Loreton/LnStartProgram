@@ -26,17 +26,15 @@
     rem -----  StartDir ----
     SET "Ln_PythonExe=..\..\LnFree\Pgm\WinPython-64bit-3.5.3.1Qt5\python-3.5.3.amd64\python.exe"
     SET "ProgramName=LnStartProgram_20171107"
-    SET "ProgramName=LnStartProgram_2018-01-17"
 
-
-    SET "CONFIG_FILE=%myDIR%\%ProgramName%.ini"
-    SET "MainProgram=%myDIR%\%ProgramName%.zip"
+    SET "MainProgram=.\%ProgramName%.zip"
+    SET "CONFIG_FILE=.\%ProgramName%.ini"
     rem -----  StartDir ----
     goto :Process
 
 
 :Process
-    set "CMD=%Ln_PythonExe% %MainProgram% %1 --config-file %CONFIG_FILE% --subst=y: --execute" %2 %3 %4 %5 %6 %7 %8 %9
+    set "CMD=%Ln_PythonExe% %MainProgram% %1 --config-file %CONFIG_FILE% --subst=y:" %2 %3 %4 %5 %6 %7 %8 %9
     echo.
     echo %CMD%
     echo.

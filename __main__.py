@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 12-01-2018 16.50.20
+# Version ......: 17-01-2018 11.24.54
 #
 # #############################################
 
@@ -144,6 +144,6 @@ if __name__ == '__main__':
         Ln.runProgram('{PRGNAME} command list:'.format(PRGNAME=programToStart), CMDList)
         msg = "Process completed, {} has been started".format(programToStart)
     else:
-        msg = "enter --go to launch the program: {}".format(programToStart)
+        msg = "enter --execute to launch the program: {}".format(programToStart)
 
     Ln.Exit(0, msg)

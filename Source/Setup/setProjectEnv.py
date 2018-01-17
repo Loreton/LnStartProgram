@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 04-01-2018 15.58.19
+# Version ......: 17-01-2018 11.06.28
 #
 
 # -----------------------------------------------
@@ -32,8 +32,10 @@ def LibPath(myLibName, fDEBUG=True):
     thisDir  = thisfile.parent
     thisExt  = thisfile.suffix.lower()
     if fDEBUG:
-        print ('thisDir:', thisDir)
-        print ('thisExt:', thisExt)
+        TAB=' '*4
+        print ('\n\n')
+        print (TAB, 'thisDir:', thisDir)
+        print (TAB, 'thisExt:', thisExt)
 
     myPaths = []
     for lib in myLibName:
@@ -41,8 +43,8 @@ def LibPath(myLibName, fDEBUG=True):
         libExt  = libName.suffix.lower()
 
         if fDEBUG:
-            print ('libName:', libName)
-            print ('libExt:', libExt)
+            print (TAB, 'libName:', libName)
+            print (TAB, 'libExt:', libExt)
 
         if thisExt == '.zip':
             myPaths.append(Path(thisDir) / libName)
@@ -54,7 +56,7 @@ def LibPath(myLibName, fDEBUG=True):
             myPaths.append(thisDir)
 
     for path in myPaths:
-        if fDEBUG: print ('path:', path)
+        if fDEBUG: print (TAB, 'path:', path)
         sys.path.insert(0, str(path))  # deve essere una stringa e non WindowsPath
 
     # load library with name in variable string
