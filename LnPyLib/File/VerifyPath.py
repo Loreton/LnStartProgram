@@ -3,15 +3,14 @@
 # Scope:  Programma per ...........
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 12-01-2018 15.09.11
+# Version ......: 31-01-2018 14.49.30
 #
 #  https://docs.python.org/3/library/pathlib.html
 # -----------------------------------------------
 from    pathlib import Path
 
 from .. Common.Exit          import Exit       as LnExit
-from .. Logger.SetLogger import SetLogger
-
+from .. Logger.LnLogger import SetLogger
 
 
 def VerifyPath(path, exitOnError=True):
@@ -40,5 +39,5 @@ def VerifyPath(path, exitOnError=True):
 
 
     logger.info('returning path: {0} [{1}]'.format(realPath, type(realPath)))
-    SetLogger(__name__, reset=True) # log the caller
+    SetLogger(__name__, exiting=True) # log the caller
     return realPath

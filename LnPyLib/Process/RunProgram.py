@@ -7,7 +7,9 @@ from  subprocess import Popen
 from  pathlib import PureWindowsPath, WindowsPath         # dalla versione 3.4
 
 
-from .. Logger.SetLogger import SetLogger
+# from .. Logger.SetLogger import SetLogger
+# from .. Logger.LnLogger import SetLogger
+from .. Logger.LnLogger import SetLogger       # OK funziona dalla upperDir del package
 
 #########################################################################
 #

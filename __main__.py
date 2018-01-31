@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 17-01-2018 11.24.54
+# Version ......: 31-01-2018 16.46.19
 #
 # #############################################
 
@@ -48,79 +48,25 @@ if __name__ == '__main__':
     gv.fDEBUG   = gv.args.debug
     if gv.fDEBUG: gv.args.printTree(fPAUSE=False)
 
-    logger  = Ln.InitLogger(toFILE=gv.args.log, logfilename=gv.args.log_filename, toCONSOLE=gv.args.log_console, ARGS=args, defaultLogLevel='debug')
 
+        # -------------------------------
+        # - Inizializzazione del logger
+        # -------------------------------
+    logger    = Ln.InitLogger(  name='LnLoggerClass',
+                                logfilename=gv.args.log_filename,
+                                toFILE=gv.args.log,
+                                toCONSOLE=gv.args.log_console,
+                                defaultLogLevel=gv.args.loglevel,
+                                # rotationType='time', when="m", interval=60,
+                                rotationType='size', maxBytes=500000,
+                                backupCount=5,
+                            )
 
-        # ------------------------------------------------------------------
-        # leggiamo il file.ini solo per prelevare il SubstDrive
-        # se viene passato da riga di comando prevale
-        # altrimenti prendiamo quello definito nel file.ini (se esiste)
-        # ------------------------------------------------------------------
-    iniFile = Ln.ReadIniFile(gv.args.config_file, strict=True, logger=logger)
-    iniFile.read(resolveEnvVars=False)
-    gv.cfgFile = Ln.Dict(iniFile.dict)
+    logger.info(gv.args, dictTitle='command line parameters...')
 
-    if not args['subst']:
-        if 'Subst_Drive' in gv.cfgFile.MAIN:
-            args['subst'] = gv.cfgFile.MAIN.Subst_Drive
+    extraSect = Prj.prepareEnv()
 
-
-
-
-
-        # -----------------------------------------------
-        # - imposta Ln_Drive, Ln_rootDir e Ln_StartDir.
-        # -----------------------------------------------
-    logger.info('Real Mount dir prima:')
-    realDrive, realMountDir, substDrive = Prj.CalculateRootDir() # set Ln_Drive, Ln_rootDir e Ln_StartDir
-    realRootDir = realMountDir
-
-    # logger.info('realDrive   : {}'.format(realDrive))
-    # logger.info('realRootDir : {}'.format(realRootDir))
-    # logger.info('substDrive  : {}'.format(substDrive))
-
-    # if substDrive: # override
-        # realDrive    = substDrive
-        # realRootDir  = substDrive
-
-    # logger.info('realDrive   : {}'.format(realDrive))
-    # logger.info('realRootDir : {}'.format(realRootDir))
-    # logger.info('substDrive  : {}'.format(substDrive))
-
-    logger.info('Real Mount dir: {}'.format(realMountDir))
-    logger.info('substDrive    : {}'.format(substDrive))
-    logger.info('realDrive     : {}'.format(realDrive))
-
-
-        # -----------------------------------------------
-        # - prima di leggere il file INI impostiamo
-        # - alcune dati utili per la risoluzione
-        # - delle variabili rial-time
-        # -----------------------------------------------
-    extraSect                              = {}
-    extraSect['VARS']                      = {}
-    extraSect['VARS']['Ln_Drive']          = str(realDrive)
-    extraSect['VARS']['Ln_RootDir']        = str(realRootDir)
-    extraSect['VARS']['Ln_subst_MountDir'] = str(realMountDir)
-
-    if substDrive:
-        '''
-            set the SUBST drive
-        '''
-        extraSect['VARS']['Ln_subst_Drive']    = str(substDrive)
-        extraSect['VARS']['Ln_subst_RootDir']  = str(substDrive)
-    else:
-        '''
-            set the SUBST dirs to realRootDir
-        '''
-        extraSect['VARS']['Ln_subst_Drive']    = str(realDrive)
-        extraSect['VARS']['Ln_subst_RootDir']  = str(realRootDir)
-
-    if gv.fDEBUG:
-        test = Ln.Dict(extraSect)
-        test.printDict(header='Extra Section', fPAUSE=True)
-
-    iniFile = Ln.ReadIniFile(gv.args.config_file, strict=True, logger=logger)
+    iniFile = Ln.ReadIniFile(gv.args.config_file, strict=True)
     iniFile.setDebug(False)
     iniFile.extraSections(extraSect)
     iniFile.read(resolveEnvVars=False)
@@ -131,11 +77,15 @@ if __name__ == '__main__':
     Ln.OsEnv.setPaths(gv.cfgFile.PATHS)
 
     programToStart = gv.args.firstPosParameter
+
     if programToStart.lower().strip() in ['tc', 'totalcommander']:
         CMDList = Prj.SetTotalCommander(gv.cfgFile.TOTAL_COMMANDER, fDEBUG=gv.fDEBUG)
 
     elif programToStart.lower().strip() in ['executor']:
         CMDList = Prj.SetExecutor(gv, gv.cfgFile.EXECUTOR)
+
+    elif programToStart.lower().strip() in ['winscp']:
+        CMDList = Prj.SetWinscp(gv, gv.cfgFile.WINSCP)
 
     else:
         Ln.Exit(1, "Program: {} not yet implemented".format(programToStart))

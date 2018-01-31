@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 04-01-2018 16.18.16
+# Version ......: 31-01-2018 14.13.12
 #
 
 import  sys
@@ -18,7 +18,14 @@ from .. Common.Exit          import Exit                 as LnExit
 #######################################################
 # ParseInput
 #######################################################
-def processInput(nPosArgs, parmDict, funcLibPtr, defFuncToCall='programOptions', progrVersion=None, prjDescr='', prjDir=None, prjName=None):
+def processInput(nPosArgs,
+                    parmDict,
+                    funcLibPtr,
+                    defFuncToCall='programOptions',
+                    progrVersion='v001',
+                    prjDescr='',
+                    prjDir=None,
+                    prjName=None):
     '''
         process command line input
         funcLibPtr: where to looking for the function to be called
@@ -80,7 +87,7 @@ def processInput(nPosArgs, parmDict, funcLibPtr, defFuncToCall='programOptions',
         # ====================================================
         # = OPTIONAL PARAMETERs
         # ====================================================
-    defaultIniFile = str(Path(prjDir , 'conf', prjName + '.ini'))
+    defaultIniFile = str(Path(prjDir , 'conf', prjName + '_' + progrVersion + '.ini'))
     defaultLogFile = Path(prjDir , 'log', prjName + strftime('_%Y-%m-%d') + '.log')
 
         # - create PARSER for optional parameters

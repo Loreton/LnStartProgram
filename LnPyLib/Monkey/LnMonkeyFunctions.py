@@ -9,7 +9,8 @@ import shutil
 from pathlib import Path
 from time import strftime
 
-from .. Logger.SetLogger import SetLogger
+from .. Logger.LnLogger import SetLogger
+
 
 ################################################
 ################################################

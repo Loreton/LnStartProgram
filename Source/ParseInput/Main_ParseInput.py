@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 09-01-2018 14.37.44
+# Version ......: 31-01-2018 14.10.36
 #
 # -----------------------------------------------
 
@@ -20,7 +20,7 @@ from . import Options as functionsLibPtr
 #######################################################
 # USER ParseInput
 #######################################################
-def ParseInput(description='Loreto Start Program', programVersion='V0.1'):
+def ParseInput(description='Loreto Start Program', programVersion='v2018.01.31'):
     Ln = Prj.LnLib
 
     posizARGS = 1
@@ -29,6 +29,7 @@ def ParseInput(description='Loreto Start Program', programVersion='V0.1'):
         'tc'                    : "Total Commander",
         'executor'              : "Executor",
         'vscode'                : "Visual Studio code",
+        'winscp'                : "WinSCP",
     }
 
     ''' DEBUG
