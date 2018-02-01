@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 31-01-2018 16.49.12
+# Version ......: 01-02-2018 15.56.00
 #
 # -----------------------------------------------
 import  Source as Prj
@@ -19,8 +19,26 @@ def programOptions(myParser):
         # ---------------------------------------
     mySeparatorText = '-' + C.getColored(color=C.magentaH, text='---------------program options ----')
     myParser.add_argument(mySeparatorText,
-                                required=False,
-                                action='store_true',
-                                help=Ln.coloredHelp('', None))
+                required=False,
+                action='store_true',
+                help=Ln.coloredHelp('', None))
 
+
+    myParser.add_argument('--server',
+                required=True,
+                default=None,
+                metavar='serverName',
+                help=Ln.coloredHelp('Specify the SERVER name', default=None, required=True))
+
+
+    myParser.add_argument('--port',
+                required=False,
+                default=22,
+                metavar='portNO',
+                help=Ln.coloredHelp('Specify the port number', default=22, required=False))
+
+    myParser.add_argument('--new-instance',
+                required=False,
+                action='store_true',
+                help=Ln.coloredHelp('Specify if NEW winScp-GUI must be started', default=False, required=False))
 

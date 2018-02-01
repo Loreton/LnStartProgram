@@ -193,6 +193,9 @@ def prepareEnv():
     extraSect['VARS']['Ln_RootDir']        = str(realRootDir)
     extraSect['VARS']['Ln_subst_MountDir'] = str(realMountDir)
 
+    programDIR = Path(sys.argv[0]).resolve().parent
+    extraSect['VARS']['Ln_ProgramDIR'] = str(programDIR)
+
     if substDrive:
         '''
             set the SUBST drive

@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 31-01-2018 16.46.19
+# Version ......: 01-02-2018 15.41.50
 #
 # #############################################
 
@@ -85,7 +85,7 @@ if __name__ == '__main__':
         CMDList = Prj.SetExecutor(gv, gv.cfgFile.EXECUTOR)
 
     elif programToStart.lower().strip() in ['winscp']:
-        CMDList = Prj.SetWinscp(gv, gv.cfgFile.WINSCP)
+        CMDList = Prj.SetWinSCP(gv.cfgFile.WINSCP)
 
     else:
         Ln.Exit(1, "Program: {} not yet implemented".format(programToStart))
