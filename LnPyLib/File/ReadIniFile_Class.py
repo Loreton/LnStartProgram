@@ -127,6 +127,8 @@ class ReadIniFile(object):
                 logger.debug('adding on Section {0}:'.format(sectionName))
                 logger.debug('   key: {0}'.format(key))
                 logger.debug('   val: {0}'.format(val))
+                if isinstance(val, int):
+                    val = str(val)
                 self._configMain.set(sectionName, key, val)
 
 
@@ -137,7 +139,7 @@ class ReadIniFile(object):
         else:
             self.dict = self._configMain
 
-        logger  = self._SetLogger(package=__name__, exiting=True)
+        self._SetLogger(package=__name__, exiting=True)
 
 
 
