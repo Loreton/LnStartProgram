@@ -20,8 +20,8 @@ def getHostName(serverName, serverListFile, exitOnNotFound=False):
     serverFOUND = None
 
     iniFile = Ln.ReadIniFile(serverListFile, strict=True)
-    iniFile.read(resolveEnvVars=False)
-    serverList = Ln.Dict(iniFile.dict)
+    serverList = iniFile.toDict(dictType=Ln.Dict)
+    # serverList = Ln.Dict(iniFile.dict)
     # serverList.printTree(fPAUSE=True)
     C.printColored(color=C.yellowH, text='searching for server...: {}'.format(serverName), tab=4)
 

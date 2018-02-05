@@ -11,33 +11,57 @@ import collections
 import configparser
 import codecs
 
-# from  .. Logger.SetLogger import SetLogger
-from  .. Logger.LnLogger import SetLogger
-# from .. Logger.LnLogger_Class import SetLogger       # OK funziona dalla upperDir del package
-from  .. Common.LnColor  import LnColor
+from pathlib import Path
 
+from  .. Logger.LnLogger import SetLogger
+from  .. Common.LnColor  import LnColor
+from  .. Common.Exit     import Exit as LnExit
+
+TAB = 4*' '
 class ReadIniFile(object):
     """docstring for ClassName"""
-    def __init__(self, fileName, strict=True):
+    # def __init__(self, fileName, strict=True):
+
+    def __init__(self,
+                    fileName,
+                    strict=True,
+                    kvDelimiters=('=', ':'),
+                    comment_prefixes=('#',';'),
+                    inline_comment_prefixes=None,  # (';')
+                    extraSections={},
+                    subSectionChar=[],
+                    resolveEnvVars=False,
+                    ):
+
+        assert type(kvDelimiters)           == list or type(kvDelimiters) == tuple
+        assert type(comment_prefixes)       == list or type(comment_prefixes) == tuple
+
         self._filename                = str(fileName) # potrebbe essere della classe pathlib
-        self._delimiters              = ('=', ':')
-        self._comment_prefixes        = ('#',';')
-        self._inline_comment_prefixes = (';',)
+        self._kvDelimiters            = kvDelimiters
+        self._comment_prefixes        = comment_prefixes
+        self._inline_comment_prefixes = inline_comment_prefixes
         self._strict                  = strict # True: impone unique key/session
         self._empty_lines_in_values   = True
         self._default_section         = 'DEFAULT'
         self._interpolation           = configparser.ExtendedInterpolation()
         self._returnRAW               = False
-        self._returnOrderedDict       = False
-        self._extraSections           = []
+        # self._returnOrderedDict       = False
         self._allow_no_value          = False
-        self._resolveEnvVars          = False
-        self._fDEBUG                  = False
         self._subSectionChar          = []   # es ('\\', '/' , '.')
         self._exitOnError             = False
-        self._SetLogger                 = SetLogger
+        self._SetLogger               = SetLogger
+
+        # self._onlySection       = onlySection
+        self._subSectionChar    = subSectionChar
+        self._resolveEnvVars    = resolveEnvVars
+        self._extraSections     = extraSections
+
+        self._myDict            = collections.OrderedDict # default
 
         self._SetParser()
+
+        self._parsingFile()
+
 
 
 
@@ -45,7 +69,7 @@ class ReadIniFile(object):
             # Setting del parser
         self._configMain = configparser.ConfigParser(
                 allow_no_value          = self._allow_no_value,
-                delimiters              = self._delimiters,
+                delimiters              = self._kvDelimiters,
                 comment_prefixes        = self._comment_prefixes,
                 inline_comment_prefixes = self._inline_comment_prefixes,
                 strict                  = self._strict,
@@ -56,22 +80,40 @@ class ReadIniFile(object):
         self._configMain.optionxform = str        # mantiene il case nei nomi delle section e delle Keys (Assicurarsi che i riferimenti a vars interne siano case-sensitive)
 
 
-    def delimiters(self, delimiters):
-        self._delimiters = delimiters
-        self._SetParser()
 
-    def commentPrefix(self, comment_prefixes):
-        self._comment_prefixes = comment_prefixes
-        self._SetParser()
 
-    def extraSections(self, extraSections=[]):
-        self._extraSections = extraSections
 
-    def resolveEnvVars(self, flag):
-        self._resolveEnvVars = flag
+    # ######################################################
+    # # https://docs.python.org/3/library/configparser.html
+    # ######################################################
+    def _parsingFile(self):
+        logger  = self._SetLogger(package=__name__)
+        logger.info("Reading ini file: {FILE}".format(FILE=self._filename))
 
-    def setDebug(self, flag):
-        self._fDEBUG = flag
+        try:
+            data = codecs.open(self._filename, "r", "utf8")
+            self._configMain.readfp(data)
+
+        except (Exception) as why:
+            print(TAB, "Errore nella lettura del file: {FILE} - {WHY}".format(FILE=self._filename, WHY=str(why)))
+            sys.exit(-1)
+
+        if self._extraSections:
+            self.updateSection(reqSections=self._extraSections)
+
+        logger  = self._SetLogger(package=__name__, exiting=True)
+
+    ############################################################
+    #
+    ############################################################
+    def __getMaxKeyLen_Raw(self, data):
+        MAX_KEY_LEN = 0
+        for sectionName in data.sections():
+            for key, val in data.items(sectionName, raw=True):
+                keyLen = len(key)
+                if keyLen > MAX_KEY_LEN: MAX_KEY_LEN = keyLen
+
+        return MAX_KEY_LEN
 
     def exitOnError(self, flag):
         self._exitOnError = flag
@@ -79,45 +121,21 @@ class ReadIniFile(object):
     def returnRAW(self, flag):
         self._returnRAW = flag
 
-    # def setLogger(self, logger):
-    #     self._logger = logger
-
-    def subSectionChar(self, charList):
-        if isinstance(charList, str):
-            charList = [charList]
-        self._subSectionChar = charsList
-
-
-
-
-    # ######################################################
-    # # https://docs.python.org/3/library/configparser.html
-    # ######################################################
-    def read(self, onlySection=None, returnOrderedDict=False, resolveEnvVars=False):
-        logger  = self._SetLogger(package=__name__)
-        self._onlySection       = onlySection
-        self._returnOrderedDict = returnOrderedDict
-        self._resolveEnvVars    = resolveEnvVars
-
-        configMain = self._configMain
-
-        try:
-            data = codecs.open(self._filename, "r", "utf8")
-            self._configMain.readfp(data)
-
-        except (Exception) as why:
-            print("Errore nella lettura del file: {FILE} - {WHY}".format(FILE=self._filename, WHY=str(why)))
-            sys.exit(-1)
-
+    ############################################################
+    # updateSection()
+    #   add dictType-section to configparserType-section
+    ############################################################
+    def updateSection(self, reqSections={}):
+        assert type(reqSections) ==  dict
+        logger = SetLogger(package=__name__)
             # ------------------------------------------------------------------
             # - per tutte le sezioni che sono extra facciamo il merge.
             # - Se Key-Val esistono esse sono rimpiazzate
             # ------------------------------------------------------------------
-        extraSections = self._extraSections
-        for sectionName in self._extraSections:
-            logger.info('adding Section: {SECTION}'.format(SECTION=sectionName))
-            logger.info('          data: {EXTRA}'.format(EXTRA=extraSections[sectionName]))
-            extraSection = extraSections[sectionName]
+        for sectionName in reqSections:
+            logger.debug('adding Section: {SECTION}'.format(SECTION=sectionName))
+            logger.debug('          data: {EXTRA}'.format(EXTRA=reqSections[sectionName]))
+            extraSection = reqSections[sectionName]
 
             if not self._configMain.has_section(sectionName):
                 logger.debug('creating Section: {0}'.format(sectionName))
@@ -131,36 +149,130 @@ class ReadIniFile(object):
                     val = str(val)
                 self._configMain.set(sectionName, key, val)
 
+        return self.toDict(dictType=self._myDict)
 
 
-            # Parsing del file
-        if type(self._configMain) in [configparser.ConfigParser]:
-            self.dict = self._iniConfigAsDict()
+    # def writeIniFile(gv, fileName, configDict, excludeSections=[], RAW=False, INDENT=False, REMOVE_BLANK_LINES=True):
+    def updateFile(  self,
+                newFileName=None,
+                replace=False,
+                backup=False,
+                excludeSections=[],
+                RAW=False,
+                INDENT=False,
+                REMOVE_BLANK_LINES=True):
+
+        logger = SetLogger(package=__name__)
+
+            # get fileName
+        if newFileName:
+            fileName = newFileName
+
+        elif replace:
+            fileName = self._filename
+
         else:
-            self.dict = self._configMain
+            LnExit(1002, "missing newFileName and replace==False")
+
+            # if backup required
+        if backup:
+            myFile = Path(fileName)
+            if myFile.is_file():
+                myFile.LnBackup()
+
+        logger.info('writing file: {}'.format(fileName))
+
+        data = self._configMain
+        FILE = None
+        if INDENT:
+            try:
+                MAX_KEY_LEN = self.__getMaxKeyLen_Raw(data)
+                FILE = open(fileName, "wb")
+                for sectionName in sorted(data.sections()):
+                    if sectionName in excludeSections: continue
+                    sectionLine = '\n\n[{}]\n'.format(sectionName)                              # SECTION Line
+                    FILE.write(bytes(sectionLine, 'UTF-8'))
+                    for key, val in data.items(sectionName, raw=RAW):
+                        indent = ' '*4
+                        lines = val.split('\n')     # potrebbe essere multiline
+                        if len(lines) > 1:
+                            myLine = "{0}{1:{2}} = {3}\n".format(indent, key, MAX_KEY_LEN, lines[0])
+                            indent = ' '*(4 + MAX_KEY_LEN + 2)     # imposto indent per all'ineamento al primo valore
+                            for line in lines[1:]:      # ogni riga
+                                if REMOVE_BLANK_LINES and line.strip() == '': continue
+                                myLine += "{}{}\n".format(indent+' ', line)         # la aggiungiamo indentata al newVal
+
+                            myLine += "\n"         # Una riga BLANk di separazione (solo dopo una MultiLine)
+
+                        else:
+                            myLine = '{0}{1:{2}} = {3}\n'.format(indent, key, MAX_KEY_LEN, val)
+
+                        FILE.write(bytes(myLine, 'UTF-8'))
+
+            except (configparser.InterpolationMissingOptionError) as why:
+                print(TAB, gv.LN.cRED)
+                print(TAB, "\n"*2)
+                print(TAB, "="*60)
+                print(TAB, "- ERRORE nella validazione del file:\n{}".format(gv.LN.cYELLOW + data))
+                print(TAB, "-"*60)
+                print(TAB, gv.LN.cRED + str(why))
+                print(TAB, "="*60)
+                gv.LN.exit(gv, 1501, "ERRORE nella validazione del file:\n{}".format(data))
+
+            finally:
+                if FILE: FILE.close()
+
+        else:
+            with open(fileName, 'w') as outFile:
+                data.write(outFile)
+
 
         self._SetLogger(package=__name__, exiting=True)
 
 
 
+
     ############################################################
-    # subSectionChar:  carattere da individuare nel nome della section per
-    #                  interpretare la stessa come section+subsection
+    # update:
     ############################################################
-    def _iniConfigAsDict(self):
-        logger  = self._SetLogger(package=__name__)
-        C = LnColor()
+    def update(self):
+        logger = SetLogger(package=__name__)
+        logger.info('writing file: {}'.format(self._filename))
+
+        data = self._configMain
+
+        with open(self._filename, 'w') as outFile:
+            data.write(outFile)
+
+
+        self._SetLogger(package=__name__, exiting=True)
+
+
+
+
+    ############################################################
+    # getAsDict
+    ############################################################
+    def toDict(self, dictType=None):
         """
         Converts a ConfigParser object into a dictionary.
 
         The resulting dictionary has sections as keys which point to a dict of the
         sections options as key => value pairs.
         """
+        logger  = self._SetLogger(package=__name__)
+        C = LnColor()
 
-        the_dict = collections.OrderedDict({}) if self._returnOrderedDict else {}
+        if dictType: self._myDict = dictType
+
+        # myDict = dictType if dictType else self._myDict
+        retDict = self._myDict()
+        logger.debug('requested dictType: {}'.format(retDict))
 
         try:
             for section in self._configMain.sections():
+                logger.debug('')
+                logger.debug('[{SECT}]'.format(SECT=section))
                 # -----------------------------------------------------------------------
                 # - questo blocco serve per splittare eventuali section in cui il nome
                 # - contiene un separatore (es. '.') ed interpretarli come subSections
@@ -170,25 +282,20 @@ class ReadIniFile(object):
                     tempSep = '$@$@$'
                     for sep in self._subSectionChar:
                         myStr = myStr.replace(sep, tempSep)
-                    # subSection = section.split(self._subSectionChar)
                     subSection = myStr.split(tempSep)
 
                 else:
                     subSection = [section]  # una sola section
 
-                currSECT = the_dict  # top
+                currSECT = retDict  # top
                 for sect in subSection:
                     if not sect in currSECT:
-                        currSECT[sect] = collections.OrderedDict({}) if self._returnOrderedDict else {}
+                        currSECT[sect] = self._myDict()
                     currSECT = currSECT[sect] #  aggiorna pointer
 
-                if self._fDEBUG:
-                    print()
-                    print('[{SECT}]'.format(SECT=section))
 
-
-                # for key, val in self._configMain.items(section):
                 for key, val in self._configMain.items(section, raw=self._returnRAW):
+                    # logger.debug('  {KEY:<30} = {VAL}'.format(KEY=key, VAL=val))
 
                     # ---------------------------------------------------------------
                     # - cerchiamo di risolvere eventuali variabili di ambiente
@@ -198,42 +305,27 @@ class ReadIniFile(object):
                         envVars = val.split('%')
                         for index, envVarName in enumerate(envVars):
                             if index%2:
-                                # print(envVarName)
+                                # print(TAB, envVarName)
                                 envVarValue = os.getenv(envVarName)
                                 if envVarValue:
                                     val = val.replace('%{}%'.format(envVarName), envVarValue)
                                 else:
                                     msg = 'nome della variabile di ambiente: [{VAR}] non trovato.'.format(VAR=envVarName)
-                                    # C.Yellow(msg, tab=4)
                                     logger.warning(msg)
-                                    if self._fDEBUG: C.Yellow(msg, tab=4)
 
                     currSECT[key] = val
-                    if self._fDEBUG: print('    {KEY:<30} : {VAL}'.format(KEY=key, VAL=val))
-
-        except (configparser.InterpolationMissingOptionError) as why:
-            print("\n"*2)
-            print("="*60)
-            print("ERRORE nella validazione del file")
-            print("-"*60)
-            print(str(why))
-            print("="*60)
-            sys.exit(-2)
+                    logger.debug('    {KEY:<30} = {VAL}'.format(KEY=key, VAL=val))
 
         except (Exception) as why:
-            print("\n"*2)
-            print("="*60)
-            print("ERRORE nella validazione del file")
-            print("-"*60)
-            print(str(why))
-            print("="*60)
+            print(TAB, "\n"*2)
+            print(TAB, "="*60)
+            print(TAB, "- ERRORE nella validazione del file")
+            print(TAB, "-"*60)
+            print(TAB, '-', str(why))
+            print(TAB, "="*60)
             sys.exit(-2)
 
 
-        if self._onlySection:
-            retDict = the_dict[self._onlySection]
-        else:
-            retDict = the_dict
 
         logger  = self._SetLogger(package=__name__, exiting=True)
         return retDict

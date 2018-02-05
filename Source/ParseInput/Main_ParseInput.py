@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 31-01-2018 14.10.36
+# Version ......: 05-02-2018 12.33.54
 #
 # -----------------------------------------------
 
@@ -29,7 +29,8 @@ def ParseInput(description='Loreto Start Program', programVersion='v2018.01.31')
         'tc'                    : "Total Commander",
         'executor'              : "Executor",
         'vscode'                : "Visual Studio code",
-        'winscp'                : "WinSCP",
+        'winscp_bdi'            : "WinSCP con il winscp_bdi.ini",
+        'winscp_loreto'         : "WinSCP con il winscp_loreto.ini",
     }
 
     ''' DEBUG

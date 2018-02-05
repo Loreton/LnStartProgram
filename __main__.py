@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 01-02-2018 15.41.50
+# Version ......: 05-02-2018 12.38.59
 #
 # #############################################
 
@@ -64,13 +64,10 @@ if __name__ == '__main__':
 
     logger.info(gv.args, dictTitle='command line parameters...')
 
-    extraSect = Prj.prepareEnv()
 
-    iniFile = Ln.ReadIniFile(gv.args.config_file, strict=True)
-    iniFile.setDebug(False)
-    iniFile.extraSections(extraSect)
-    iniFile.read(resolveEnvVars=False)
-    gv.cfgFile = Ln.Dict(iniFile.dict)
+    extraSect   = Prj.prepareEnv()
+    iniFile     = Ln.ReadIniFile(gv.args.config_file, extraSections=extraSect, strict=True)
+    gv.cfgFile  = iniFile.toDict(dictType=Ln.Dict)
     if gv.fDEBUG: gv.cfgFile.printTree(header="INI File", fPAUSE=True)
 
     Ln.OsEnv.setVars(gv.cfgFile.VARS)
@@ -84,7 +81,7 @@ if __name__ == '__main__':
     elif programToStart.lower().strip() in ['executor']:
         CMDList = Prj.SetExecutor(gv, gv.cfgFile.EXECUTOR)
 
-    elif programToStart.lower().strip() in ['winscp']:
+    elif programToStart.lower().strip() in ['winscp_bdi', 'winscp_loreto_ini']:
         CMDList = Prj.SetWinSCP(gv.cfgFile.WINSCP)
 
     else:

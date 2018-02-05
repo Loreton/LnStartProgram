@@ -2,7 +2,7 @@
 # -*- coding: iso-8859-1 -*-
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 31-01-2018 14.35.14
+# Version ......: 05-02-2018 11.39.25
 #
 
 
@@ -12,6 +12,8 @@ from . Logger.LnLogger                  import SetLogger        as SetLogger
 
 from . Common.Exit                     import Exit             as Exit
 from . Common.LnColor                  import LnColor          as Color
+
+from . Common import MonkeyFunctions # per Path.LnCopy, Path.LnBackup
 
 
 # ---------- LnLIB PARSE INPUT ------
@@ -42,5 +44,3 @@ from . System.GetKeyboardInput         import getKeyboardInput as KeyboardInput
 from . Process.RunProgram              import ExecGetOut       as runGetOut
 from . Process.RunProgram              import StartProgram     as runProgram
 from . Process.RunProgram              import OutOnFile        as runGetOnfile
-
-from . Monkey import LnMonkeyFunctions # per Path.LnCopy, Path.LnBackup

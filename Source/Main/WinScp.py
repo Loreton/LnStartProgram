@@ -25,12 +25,12 @@ def SetWinSCP(sectionVars):
     Ln     = Prj.LnLib
     gv      = Prj.gv
     C       = Ln.Color()
+    inpArgs = Ln.Dict(gv.args)
 
-    logger = Ln.SetLogger(__name__)
-    inpArgs = gv.args
+    logger     = Ln.SetLogger(__name__)
 
-    destServer = inpArgs['server']
-    port       = inpArgs['port']
+    destServer = inpArgs.server
+    port       = inpArgs.port
 
     if '@' in destServer:
         userName, server = destServer.split('@')
@@ -38,57 +38,112 @@ def SetWinSCP(sectionVars):
         server      = destServer
         userName    = os.getlogin()
 
+    if inpArgs.firstPosParameter == 'winscp_loreto':
+        winscpIniFname = str(Path(sectionVars['winScp_loreto_INI']).resolve())
+    else:
+        winscpIniFname = str(Path(sectionVars['winScp_bdi_INI']).resolve())
 
     hostName, JBoossGuiPort, sshPort = Prj.getHostName(serverName=server, serverListFile=sectionVars.ServerListFile, exitOnNotFound=False)
-    sessionName = hostName.split('.')[0]
-    sectionName = 'Sessions\{}'.format(sessionName)
 
-    # if userName: hostName = "{}@{}".format(userName, hostName)
+
+    # - create winscp command[]
     WINSCP_commandLIST = []
-
-    extraSection                = {}
-    extraSection[sectionName]    = {}
-    sessID                   = extraSection[sectionName]
-    sessID['HostName']       = hostName
-    sessID['PortNumber']     = sshPort
-    sessID['UserName']       = userName
-    sessID['PingType']       = 2        # 1=...., 2=....
-    sessID['PublicKeyFile']  = 'E:%5CLnDisk%5CLnFree%5CSecurity%5CMyKeys%5CLoreto%5CF602250_id_rsa.ppk'
-    # sessID.ProxyMethod       = {PROXY_METHOD}
-    # sessID.ProxyHost         = {PROXY_HOST}
-    # sessID.ProxyPort         = 8081
-    # sessID.ProxyUsername     = itacavdf
-    sessID['FSProtocol']        = 0    # 0= SCP
-    # sessID.RemoteDirectory   = {REMOTE_DIRECTORY}
-    # sessID.UpdateDirectories = 0
-    # sessID.Shell             = 'sudo%20su%20-'
-    # sessID.ProxyDNS          = 2
-    sessID['Color']             = 12379095
-
-
-
-    # lettura del file ini
-    iniFile = Ln.ReadIniFile(fileName=sectionVars.winScpINI, strict=False)
-    iniFile.extraSections(extraSection)
-    iniFile.read(resolveEnvVars=False)
-    serverList = Ln.Dict(iniFile.dict)
-    serverList.printTree(fPAUSE=True)
-
-
-
-
     WINSCP_commandLIST.append(sectionVars.winScpEXE)
-    iniFile = Path(sectionVars.winScpINI).resolve()
+
+
+    myKey = 'privateKey.{}'.format(userName)
+    '''
+        privateKey.root     = ${VARS:Ln_FreeDir}\Security\MyKeys\myRoot\myRoot_id.rsa.ppk
+        privateKey.f602250  = ${VARS:Ln_FreeDir}\Security\MyKeys\Loreto\F602250_id_rsa.ppk
+    '''
+    if myKey in sectionVars:
+        privateKeyFile = Path(sectionVars[myKey]).resolve()
+        # WINSCP_commandLIST.append('/privatekey={}'.format(str(privateKeyFile)))
+    else:
+        privateKeyFile = None
+
+
+        # read winscp.ini file
+    winscpIni  = Ln.ReadIniFile(fileName=winscpIniFname, kvDelimiters=['='], strict=True)
+    winscpDict = winscpIni.toDict(dictType=Ln.Dict)
+
+
+    # Section Samples:
+    #   [Sessions\Domestic/Osiride2/osi2-phys-601]
+    #   [Sessions\JBoss_WF2/Sterope/WEFALF49%20-%20Collaudo]
+
+    sessionName = hostName.split('.')[0]            # name of winscp SESSION TAB
+
+
+    EXISTS = False
+    C.printColored(color=C.cyanH, text='searching for session: {}'.format(sessionName), tab=4)
+
+    for section in winscpDict.keys():
+        if section.startswith('Sessions\\'):
+            sectionToken = section.lower().replace('/', ' ').replace('\\', ' ').replace ('%20', ' ').split()
+            if sessionName in sectionToken:
+                C.printColored(color=C.cyanH, text='FOUND: {}'.format(section), tab=4)
+                EXISTS = True
+                sessionName = section.split('Sessions\\')[1] # prendo il nome della section attuale....
+                # token = sessionName.replace('/', ' ').replace('\\', ' ').replace ('%20', ' ').split()
+                displaySessName = section.rsplit('/', 1)[1].replace('%20', '.').replace('.-.', '-')
+                # if len(token) > 1:
+                #     displaySessName = '.'.join(token[-2:]) # last two qulifiers
+                # else:
+                #     displaySessName = '.'.join(token) # all (one) qulifiers
+                break
+
+
+
+    if EXISTS:
+        sectionName = section
+    else:
+        sessionName = '{}.{}'.format(hostName.split('.')[0], userName)  # hostname.ussername
+        sectionName = 'Sessions\{}'.format(sessionName)
+
+
+        # creiamo la section con i nostri parametri
+    mySection              = {}
+    mySection[sectionName] = {}
+    sectID                 = mySection[sectionName]
+    sectID['HostName']     = hostName
+    sectID['PortNumber']   = sshPort
+    sectID['UserName']     = userName
+    sectID['PingType']     = 2        # 1           = ...., 2 = ....
+    sectID['FSProtocol']   = 0    # 0               = SCP
+    sectID['Color']        = 12379095
+
+    if privateKeyFile:
+        sectID['PublicKeyFile']   = str(privateKeyFile)
+
+    if userName == 'root':
+        sectID['RemoteDirectory'] = '/root'
+    else:
+        sectID['RemoteDirectory'] = '/home/{}'.format(userName)
+
+    # sectID.ProxyMethod       = {PROXY_METHOD}
+    # sectID.ProxyHost         = {PROXY_HOST}
+    # sectID.ProxyPort         = 8081
+    # sectID.ProxyUsername     = itacavdf
+    # sectID.UpdateDirectories = 0
+    # sectID.Shell             = 'sudo%20su%20-'
+    # sectID.ProxyDNS          = 2
+
+        # inject mySection
+    winscpDict = winscpIni.updateSection(mySection)
+    if gv.fDEBUG: winscpDict[section].printTree(fPAUSE=True)
+        # save new config data
+    winscpIni.updateFile(replace=True, backup=True)
+
+
+    WINSCP_commandLIST.append(sessionName)
+
+    WINSCP_commandLIST.append('/ini={}'.format(winscpIniFname))
+    WINSCP_commandLIST.append('/log={}'.format('D:/temp/winscp.log'))
     if inpArgs['new_instance']:
         WINSCP_commandLIST.append('/newinstance')
-    WINSCP_commandLIST.append('/ini={}'.format(str(iniFile)))
 
-    if 'privateKey' in sectionVars:
-        privateKeyFile = Path(sectionVars.privateKey).resolve()
-        WINSCP_commandLIST.append('/privatekey={}'.format(str(privateKeyFile)))
-
-    WINSCP_commandLIST.append('/sessionname={}'.format(sessionName.upper()))
-    WINSCP_commandLIST.append(sessionName)
+    WINSCP_commandLIST.append('/sessionname={}'.format(displaySessName.upper()))
     print ()
     for item in WINSCP_commandLIST:
         C.printColored(color=C.yellowH, text=item, tab=4)
@@ -96,6 +151,7 @@ def SetWinSCP(sectionVars):
 
 
     return WINSCP_commandLIST
+
 
 
 

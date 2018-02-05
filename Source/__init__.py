@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 01-02-2018 17.49.21
+# Version ......: 02-02-2018 10.26.21
 #
 # -----------------------------------------------
 
@@ -15,8 +15,8 @@ from   Source.Main.TotalCommander   import SetTotalCommander
 
 from   Source.Main.HostNames        import getHostName
 
-# from   Source.Main.WinScp           import SetWinSCP # bisogna ancora scrivere il file.ini
-from   Source.Main.WinScp           import SetWinSCP_rawsetting as SetWinSCP
+from   Source.Main.WinScp           import SetWinSCP # bisogna ancora scrivere il file.ini
+# from   Source.Main.WinScp           import SetWinSCP_rawsetting as SetWinSCP
 
 from   . Setup import setProjectEnv   as SPE
 

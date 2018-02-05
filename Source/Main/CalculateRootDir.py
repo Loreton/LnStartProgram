@@ -156,9 +156,8 @@ def prepareEnv():
         # se viene passato da riga di comando prevale
         # altrimenti prendiamo quello definito nel file.ini (se esiste)
         # ------------------------------------------------------------------
-    iniFile = Ln.ReadIniFile(gv.args.config_file, strict=True)
-    iniFile.read(resolveEnvVars=False)
-    gv.cfgFile = Ln.Dict(iniFile.dict)
+    iniFile     = Ln.ReadIniFile(gv.args.config_file, strict=True)
+    gv.cfgFile  = iniFile.toDict(dictType=Ln.Dict)
 
     if 'subst' in gv.args:
     # if not gv.args['subst']:
@@ -210,7 +209,10 @@ def prepareEnv():
         extraSect['VARS']['Ln_subst_RootDir']  = str(realRootDir)
 
     if gv.fDEBUG:
+        print (type(extraSect), extraSect)
+
         test = Ln.Dict(extraSect)
         test.printDict(header='Extra Section', fPAUSE=True)
+
 
     return extraSect
