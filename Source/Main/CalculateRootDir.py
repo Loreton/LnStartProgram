@@ -78,13 +78,9 @@ def CalculateRootDir():
         # - se e' richiesto un drive SUBST...
         # - impostiamo tutti i path per quel drive
         # --------------------------------------------
-    # if gv.args['subst']:
-    try:
-        mountDir = createSUBSTDrive(substDrive=Path(gv.args['subst']), substMountDir=realRootDir)
-        logger.info("subst required:  {}".format(gv.args['subst']))
-    except:
-        mountDir = None
 
+    mountDir = createSUBSTDrive(substDrive=Path(gv.args['subst']), substMountDir=realRootDir)
+    logger.info("subst required:  {}".format(gv.args['subst']))
 
 
         # ----------------------------------------
@@ -109,13 +105,13 @@ def createSUBSTDrive(substDrive, substMountDir):
     '''
     execute SUBST windows command to create a virtualDrive pointing to a path
     '''
-
     logger = Ln.SetLogger(__name__)
 
     logger.info("parameter substDrive:    {}".format(substDrive))
     logger.info("parameter substMountDir: {}".format(substMountDir))
 
     validDrives = ('j:','k:','l:','m:','n:','o:','p:','q:','r:','s:','t:','u:','v:','w:','x:','y:','z:')
+
     if not str(substDrive).lower() in validDrives:
         errMsg = """il drive immesso [{DRIVE}] non è valido...
     immettere uno delle seguenti: {DRIVES}
@@ -123,7 +119,8 @@ def createSUBSTDrive(substDrive, substMountDir):
         logger.warning(errMsg)
         Ln.Exit(22, errMsg)
 
-
+    # sys.exit()
+    # print ('?????')
     if substDrive.exists():
         logger.info('SUBST drive {} alredy present'.format(substDrive))
 
@@ -156,7 +153,7 @@ def prepareEnv():
         # se viene passato da riga di comando prevale
         # altrimenti prendiamo quello definito nel file.ini (se esiste)
         # ------------------------------------------------------------------
-    iniFile     = Ln.ReadIniFile(gv.args.config_file, strict=True)
+    iniFile     = Ln.ReadIniFile(gv.args.config_file, inline_comment_prefixes=(';'), strict=True)
     gv.cfgFile  = iniFile.toDict(dictType=Ln.Dict)
 
     if 'subst' in gv.args:

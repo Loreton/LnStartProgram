@@ -14,6 +14,7 @@
     SET "ProgramName=__main__.py"
     SET "ProgramName=LnStartProgram_20171107"
     SET "ProgramName=LnStartProgram_2018-01-17"
+    SET "ProgramName=LnStartProgram_2018-02-05"
 
     SET "CONFIG_FILE=%myDIR%\%ProgramName%.ini"
     SET "MainProgram=%myDIR%\%ProgramName%.zip"
@@ -27,6 +28,7 @@
     SET "Ln_PythonExe=..\..\LnFree\Pgm\WinPython-64bit-3.5.3.1Qt5\python-3.5.3.amd64\python.exe"
     SET "ProgramName=LnStartProgram_20171107"
     SET "ProgramName=LnStartProgram_2018-01-17"
+    SET "ProgramName=LnStartProgram_2018-02-05"
 
 
     SET "CONFIG_FILE=%myDIR%\%ProgramName%.ini"

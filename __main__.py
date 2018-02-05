@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 05-02-2018 12.38.59
+# Version ......: 05-02-2018 17.02.50
 #
 # #############################################
 
@@ -42,7 +42,7 @@ if __name__ == '__main__':
     gv          = Prj.gv
     # -----------------------------------------------
 
-    args        = Prj.ParseInput()  # ; print (args)
+    args        = Prj.ParseInput(programVersion='v2018.02.05')  # ; print (args)
     gv.args     = Ln.Dict(args)     # covert to DotMap()
 
     gv.fDEBUG   = gv.args.debug
@@ -66,7 +66,7 @@ if __name__ == '__main__':
 
 
     extraSect   = Prj.prepareEnv()
-    iniFile     = Ln.ReadIniFile(gv.args.config_file, extraSections=extraSect, strict=True)
+    iniFile     = Ln.ReadIniFile(gv.args.config_file, extraSections=extraSect, inline_comment_prefixes=(';'), strict=True)
     gv.cfgFile  = iniFile.toDict(dictType=Ln.Dict)
     if gv.fDEBUG: gv.cfgFile.printTree(header="INI File", fPAUSE=True)
 

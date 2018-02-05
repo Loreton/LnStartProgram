@@ -76,7 +76,7 @@ class LnLogger(logging.getLoggerClass()):
             # ---------------------------------------------
         self.Pointers.rootName      = self._name
         self.Pointers.ClassInstance = self   # <=== class pointer
-        self._myLogger           = logging.getLogger(self._name)
+        self._myLogger              = logging.getLogger(self._name)
 
 
 
@@ -426,6 +426,9 @@ class ContextFilter(logging.Filter):
 def SetLogger(package, exiting=False, offsetSL=0):
 
     pointers = LnLogger.static_getMainPointers()
+    if not 'ClassInstance' in pointers:
+        return LnLogger.nullLogger()
+
         # importante prendere questo pointer in quanto mi porta dietro anche i .info, .debug, ...
     logger = pointers.ClassInstance
     logger._LnFilter.setPackageName(package)

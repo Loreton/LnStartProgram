@@ -1,6 +1,6 @@
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 02-01-2018 17.42.50
+# Version ......: 05-02-2018 16.55.57
 #
 
 
@@ -12,7 +12,8 @@ from . ColoredHelp import coloredHelp
 #######################################################
 def iniFileOptions(myParser, defaultIniFile):
 
-    myParser.add_argument('--ini-file', '--config-file',
+    # myParser.add_argument('--ini-file', '--config-file',
+    myParser.add_argument('--ini-file',
                                 metavar='',
                                 type=check_file,
                                 required=False,
