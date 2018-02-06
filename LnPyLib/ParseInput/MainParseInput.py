@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 31-01-2018 14.13.12
+# Version ......: 06-02-2018 10.54.21
 #
 
 import  sys
@@ -129,7 +129,7 @@ def processInput(nPosArgs,
         # - --log=False azzera anche il --log-filename]
         # --------------------------------------------
     if args['log'] == False: args['log_filename'] = None
-    args['config_file'] = args['ini_file']
+    # args['config_file'] = args['ini_file']
 
 
         # ----------------------------------------
@@ -147,9 +147,9 @@ def processInput(nPosArgs,
 
 
         # ----------------------------------------
-        # - ... e print dei parametri
+        # - ... e display dei parametri
         # ----------------------------------------
-    if args['dis_parameters']:
+    if args['parameters']:
         print()
         for key, val in args.items():
             print('     {0:<20}: {1}'.format(key, val))

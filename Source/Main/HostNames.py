@@ -6,6 +6,7 @@
 
 import sys
 import Source as Prj
+
 ########################################################
 # Ricerca di un nome
 ########################################################
@@ -19,18 +20,17 @@ def getHostName(serverName, serverListFile, exitOnNotFound=False):
         # cerchiamo il server richiesto...
     serverFOUND = None
 
-    iniFile = Ln.ReadIniFile(serverListFile, strict=True)
+
+
+    logger.info ('going to read file....: {}'.format(serverListFile))
+    iniFile    = Ln.ReadIniFile(serverListFile, strict=True)
     serverList = iniFile.toDict(dictType=Ln.Dict)
-    # serverList = Ln.Dict(iniFile.dict)
-    # serverList.printTree(fPAUSE=True)
     C.printColored(color=C.yellowH, text='searching for server...: {}'.format(serverName), tab=4)
 
     SECTIONS = []
     for sectName in serverList:
         if sectName.startswith('Server.'):
             SECTIONS.append(sectName)
-
-
 
 
     serverNameLOWER = serverName.lower()
@@ -70,7 +70,7 @@ def getHostName(serverName, serverListFile, exitOnNotFound=False):
 
     else:
         ''' tentiamo di individuare il dominio...'''
-        C.printColored(color=C.yellowH, text='server NOT found in serverList, trying anyway...: {}'.format(serverName), tab=4)
+        C.printColored(color=C.yellowH, text='server NOT found in serverList, trying anyway...', tab=4)
         if not '.' in serverName:
             webFarmPrefix = [
                             'wefal',
@@ -99,6 +99,7 @@ def getHostName(serverName, serverListFile, exitOnNotFound=False):
             elif namePrefix in serverFarmPrefix:
                 serverName += '.utenze.bankit.it'
 
+        C.printColored(color=C.yellowH, text='returning server: {}'.format(serverName), tab=4)
         return serverName, 9990, 22   # cont default port value
 
     return None, None, None

@@ -66,7 +66,8 @@ class LnColor:
     def printColored(self, color=None, text=None, tab=0, end='\n', reset=True, string_encode='latin-1', fGET=False):
         endColor = self.RESET if reset else ''
         thisTAB = ' '*tab
-
+        if not isinstance(text, str):
+            text = str(text)
         # if text == None:
         #     text = 'None'
         # elif text == False:

@@ -1,6 +1,6 @@
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 03-01-2018 10.14.25
+# Version ......: 06-02-2018 09.50.49
 #
 
 from   . ColoredHelp import coloredHelp
@@ -34,7 +34,7 @@ def debugOptions(myParser):
                                 action='store_true',
                                 help=coloredHelp('Specifies if program must be started', default=False))
 
-    myParser.add_argument('--dis-parameters',
+    myParser.add_argument('--parameters',
                                 required=False,
                                 action='store_true',
                                 help=coloredHelp('Display input paramenters..', default=False))

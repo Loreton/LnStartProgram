@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 05-02-2018 17.02.50
+# Version ......: 06-02-2018 10.56.13
 #
 # #############################################
 
@@ -38,11 +38,12 @@ Prj.gv    = Prj.LnLib.Dict()
 ######################################
 if __name__ == '__main__':
     # ----- common part into the Prj modules --------
-    Ln          = Prj.LnLib
-    gv          = Prj.gv
+    Ln      = Prj.LnLib
+    gv      = Prj.gv
+    C       = Ln.Color()
     # -----------------------------------------------
 
-    args        = Prj.ParseInput(programVersion='v2018.02.05')  # ; print (args)
+    args        = Prj.ParseInput(programVersion='v2018-02-06')  # ; print (args)
     gv.args     = Ln.Dict(args)     # covert to DotMap()
 
     gv.fDEBUG   = gv.args.debug
@@ -52,7 +53,7 @@ if __name__ == '__main__':
         # -------------------------------
         # - Inizializzazione del logger
         # -------------------------------
-    logger    = Ln.InitLogger(  name='LnLoggerClass',
+    logger    = Ln.InitLogger(  name='MAIN',
                                 logfilename=gv.args.log_filename,
                                 toFILE=gv.args.log,
                                 toCONSOLE=gv.args.log_console,
@@ -66,7 +67,7 @@ if __name__ == '__main__':
 
 
     extraSect   = Prj.prepareEnv()
-    iniFile     = Ln.ReadIniFile(gv.args.config_file, extraSections=extraSect, inline_comment_prefixes=(';'), strict=True)
+    iniFile     = Ln.ReadIniFile(gv.args.ini_file, extraSections=extraSect, inline_comment_prefixes=(';'), strict=True)
     gv.cfgFile  = iniFile.toDict(dictType=Ln.Dict)
     if gv.fDEBUG: gv.cfgFile.printTree(header="INI File", fPAUSE=True)
 
@@ -91,6 +92,10 @@ if __name__ == '__main__':
         Ln.runProgram('{PRGNAME} command list:'.format(PRGNAME=programToStart), CMDList)
         msg = "Process completed, {} has been started".format(programToStart)
     else:
+        print ()
+        for item in CMDList:
+            C.printColored(color=C.yellowH, text=item, tab=4)
+        print ()
         msg = "enter --execute to launch the program: {}".format(programToStart)
 
     Ln.Exit(0, msg)

@@ -13,6 +13,83 @@ from    time                     import sleep
 
 import   Source as Prj
 
+
+################################################
+# Preparazione dell'ambiente in caso di
+# totalCommander o Executor
+################################################
+def prepareEnv():
+    Ln     = Prj.LnLib
+    logger = Ln.SetLogger(__name__)
+    gv     = Prj.gv
+    inpArgs = gv.args
+        # ------------------------------------------------------------------
+        # leggiamo il file.ini solo per prelevare il SubstDrive
+        # se viene passato da riga di comando prevale
+        # altrimenti prendiamo quello definito nel file.ini (se esiste)
+        # ------------------------------------------------------------------
+    iniFile     = Ln.ReadIniFile(inpArgs.ini_file, inline_comment_prefixes=(';'), strict=True)
+    gv.cfgFile  = iniFile.toDict(dictType=Ln.Dict)
+
+    # if 'subst' in gv.args:
+    # if not gv.args['subst']:
+        # if 'Subst_Drive' in gv.cfgFile.MAIN:
+            # gv.args['subst'] = gv.cfgFile.MAIN.Subst_Drive
+
+
+
+
+
+        # -----------------------------------------------
+        # - imposta Ln_Drive, Ln_rootDir e Ln_StartDir.
+        # -----------------------------------------------
+    logger.info('Real Mount dir prima:')
+    realDrive, realMountDir, substDrive = CalculateRootDir() # set Ln_Drive, Ln_rootDir e Ln_StartDir
+    realRootDir = realMountDir
+
+
+    logger.info('Real Mount dir: {}'.format(realMountDir))
+    logger.info('substDrive    : {}'.format(substDrive))
+    logger.info('realDrive     : {}'.format(realDrive))
+
+
+        # -----------------------------------------------
+        # - prima di leggere il file INI impostiamo
+        # - alcune dati utili per la risoluzione
+        # - delle variabili rial-time
+        # -----------------------------------------------
+    extraSect                              = {}
+    extraSect['VARS']                      = {}
+    extraSect['VARS']['Ln_Drive']          = str(realDrive)
+    extraSect['VARS']['Ln_RootDir']        = str(realRootDir)
+    extraSect['VARS']['Ln_subst_MountDir'] = str(realMountDir)
+
+    programDIR = Path(sys.argv[0]).resolve().parent
+    extraSect['VARS']['Ln_ProgramDIR'] = str(programDIR)
+
+    if substDrive:
+        '''
+            set the SUBST drive
+        '''
+        extraSect['VARS']['Ln_subst_Drive']    = str(substDrive)
+        extraSect['VARS']['Ln_subst_RootDir']  = str(substDrive)
+    else:
+        '''
+            set the SUBST dirs to realRootDir
+        '''
+        extraSect['VARS']['Ln_subst_Drive']    = str(realDrive)
+        extraSect['VARS']['Ln_subst_RootDir']  = str(realRootDir)
+
+    if gv.fDEBUG:
+        print (type(extraSect), extraSect)
+
+        test = Ln.Dict(extraSect)
+        test.printDict(header='Extra Section', fPAUSE=True)
+
+
+    return extraSect
+
+
 #########################################################################
 # - Ln_Drive, Ln_rootDir e Ln_StartDir e GIT-REPO.
 #########################################################################
@@ -29,6 +106,7 @@ def CalculateRootDir():
     Ln     = Prj.LnLib
     logger = Ln.SetLogger(__name__)
     gv      = Prj.gv
+    inpArgs = gv.args
     # -----------------------------------------------
 
 
@@ -45,7 +123,7 @@ def CalculateRootDir():
     # print(gv.args['root_dir'])
     # if ('root_dir' in gv.args) and gv.args['root_dir']:
     try:
-        rootDir = Path(gv.args['root_dir']).resolve()
+        rootDir = Path(inpArgs['root_dir']).resolve()
         drive, *rest = rootDir.parts
         logger.info("drive:   {}".format(drive))
         logger.info("rootDir: {}".format(rootDir))
@@ -78,9 +156,12 @@ def CalculateRootDir():
         # - se e' richiesto un drive SUBST...
         # - impostiamo tutti i path per quel drive
         # --------------------------------------------
+    if 'subst' in inpArgs and inpArgs.subst:
+        logger.info("subst required:  {}".format(inpArgs['subst']))
+        mountDir = createSUBSTDrive(substDrive=Path(inpArgs['subst']), substMountDir=realRootDir)
+    else:
+        mountDir = None
 
-    mountDir = createSUBSTDrive(substDrive=Path(gv.args['subst']), substMountDir=realRootDir)
-    logger.info("subst required:  {}".format(gv.args['subst']))
 
 
         # ----------------------------------------
@@ -139,77 +220,3 @@ def createSUBSTDrive(substDrive, substMountDir):
 
 
 
-################################################
-# Preparazione dell'ambiente in caso di
-# totalCommander o Executor
-################################################
-def prepareEnv():
-    Ln     = Prj.LnLib
-    logger = Ln.SetLogger(__name__)
-    gv     = Prj.gv
-
-        # ------------------------------------------------------------------
-        # leggiamo il file.ini solo per prelevare il SubstDrive
-        # se viene passato da riga di comando prevale
-        # altrimenti prendiamo quello definito nel file.ini (se esiste)
-        # ------------------------------------------------------------------
-    iniFile     = Ln.ReadIniFile(gv.args.config_file, inline_comment_prefixes=(';'), strict=True)
-    gv.cfgFile  = iniFile.toDict(dictType=Ln.Dict)
-
-    if 'subst' in gv.args:
-    # if not gv.args['subst']:
-        if 'Subst_Drive' in gv.cfgFile.MAIN:
-            gv.args['subst'] = gv.cfgFile.MAIN.Subst_Drive
-
-
-
-
-
-        # -----------------------------------------------
-        # - imposta Ln_Drive, Ln_rootDir e Ln_StartDir.
-        # -----------------------------------------------
-    logger.info('Real Mount dir prima:')
-    realDrive, realMountDir, substDrive = CalculateRootDir() # set Ln_Drive, Ln_rootDir e Ln_StartDir
-    realRootDir = realMountDir
-
-
-    logger.info('Real Mount dir: {}'.format(realMountDir))
-    logger.info('substDrive    : {}'.format(substDrive))
-    logger.info('realDrive     : {}'.format(realDrive))
-
-
-        # -----------------------------------------------
-        # - prima di leggere il file INI impostiamo
-        # - alcune dati utili per la risoluzione
-        # - delle variabili rial-time
-        # -----------------------------------------------
-    extraSect                              = {}
-    extraSect['VARS']                      = {}
-    extraSect['VARS']['Ln_Drive']          = str(realDrive)
-    extraSect['VARS']['Ln_RootDir']        = str(realRootDir)
-    extraSect['VARS']['Ln_subst_MountDir'] = str(realMountDir)
-
-    programDIR = Path(sys.argv[0]).resolve().parent
-    extraSect['VARS']['Ln_ProgramDIR'] = str(programDIR)
-
-    if substDrive:
-        '''
-            set the SUBST drive
-        '''
-        extraSect['VARS']['Ln_subst_Drive']    = str(substDrive)
-        extraSect['VARS']['Ln_subst_RootDir']  = str(substDrive)
-    else:
-        '''
-            set the SUBST dirs to realRootDir
-        '''
-        extraSect['VARS']['Ln_subst_Drive']    = str(realDrive)
-        extraSect['VARS']['Ln_subst_RootDir']  = str(realRootDir)
-
-    if gv.fDEBUG:
-        print (type(extraSect), extraSect)
-
-        test = Ln.Dict(extraSect)
-        test.printDict(header='Extra Section', fPAUSE=True)
-
-
-    return extraSect

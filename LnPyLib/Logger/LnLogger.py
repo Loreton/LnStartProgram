@@ -28,11 +28,14 @@ class LnLogger(logging.getLoggerClass()):
         # - variabili che saranno condivise da tutti i chiamanti.
         # - inserisco i pointer ed i valori basilari per condividere la classe
         # ----------------------------------------------------------------------------
-    loggerNames    = set() # univoco MA... non mantiene l'ordine di iserimento
-    Pointers   = LnClass()
+    # loggerNames    = set() # univoco MA... non mantiene l'ordine di iserimento
+    # Pointers   = LnClass()
+    # Pointers   = {}
+    LOGGERS   = {}  # mantiene la lista dei logger aperti
 
-    def __init__(   self,
-                    name='LnLoggerClass',
+    def __init__(self,
+                    name,
+                    # name='LnLoggerClass',
                     toFILE=False,
                     toCONSOLE=False,
                     logfilename=None,
@@ -68,17 +71,31 @@ class LnLogger(logging.getLoggerClass()):
 
 
 
+            # ---------------------------------------------
+            # - dreiamo un'instanza di NULL_LOGGER
+            # - e la inseriamo nella lista del LOGGERS
+            # ---------------------------------------------
+        if 'NULL_LOGGER' not in self.LOGGERS.keys():
+            nullLogger = NullLogger()
+            self.LOGGERS['NULL_LOGGER']                  = {}
+            self.LOGGERS['NULL_LOGGER']['ClassInstance'] = nullLogger   # <=== class pointer
+
+            # add logger to myLoggersList
+        # if name not in self.loggerNames:
+            # self.loggerNames.add(name)
 
             # ---------------------------------------------
             # - inseriamo alcuni puntatori per permettere
             # - agli altri di accedere alla stessa istanza
             # - di logger
             # ---------------------------------------------
-        self.Pointers.rootName      = self._name
-        self.Pointers.ClassInstance = self   # <=== class pointer
-        self._myLogger              = logging.getLogger(self._name)
+        if name not in self.LOGGERS.keys():
+            self.LOGGERS[self._name]                  = {}
+            self.LOGGERS[self._name]['ClassInstance'] = self   # <=== class pointer
 
 
+
+        self._myLogger = logging.getLogger(self._name)
 
             # put Console to override file settings
         if not toCONSOLE == False:
@@ -100,22 +117,23 @@ class LnLogger(logging.getLoggerClass()):
         self._LnFilter.setModuleToLog(self._modulesToLog)
         self._LnFilter.setFuncName('initializing logger')
         if funcname =='M+F': self._LnFilter.setModuleFuncName(True)
-
-            # add logger to myLoggersList
-        if name not in self.loggerNames:
-            self.loggerNames.add(name)
-            self._myLogger.addFilter(self._LnFilter)
+        self._myLogger.addFilter(self._LnFilter)
 
 
         if False:
-            print('pointers.rootName     = ', self.Pointers.rootName)
-            print('pointers.ClassInstance= ', self.Pointers.ClassInstance)
+            for key in self.LOGGERS.keys():
+                print('logger name     = ', key)
+                print('ClassInstance   = ', self.LOGGERS[key]['ClassInstance'])
 
         ''' setting LogLevel '''
         if   defaultLogLevel.lower() == 'debug':    self._logLevel = logging.DEBUG
         elif defaultLogLevel.lower() == 'warning':  self._logLevel = logging.WARNING
         self._myLogger.setLevel(self._logLevel)
-        self.info('initialised.....')
+        self.info('')
+        self.info('{}'.format('-'*60))
+        self.info('loggerName: {} has been initialised.....'.format(self._name))
+        self.info('{}'.format('-'*60))
+        self.info('')
 
 
 
@@ -203,7 +221,7 @@ class LnLogger(logging.getLoggerClass()):
     ##############################################################
     @staticmethod
     def static_getMainPointers():
-        return LnLogger.Pointers
+        return LnLogger.LOGGERS
 
 
     ##############################################################
@@ -251,29 +269,6 @@ class LnLogger(logging.getLoggerClass()):
 
 
 
-
-##############################################################################
-# - classe che mi permette di lavorare nel caso il logger non sia richiesto
-##############################################################################
-class nullLogger():
-    def __init__(self, package=None, stackNum=1, extra=None): pass
-    def info(self, data, dictTitle=None):       self.print(data)
-    def debug(self, data, dictTitle=None):      self._dummy(data)
-    def error(self, data, dictTitle=None):      self._dummy(data)
-    def warning(self, data, dictTitle=None):    self._dummy(data)
-    def _dummy(self, data): pass
-
-    def _print(self, data, stackNum=2):
-        TAB = 4
-        data = '{0}{1}'.format(TAB*' ',data)
-        caller = inspect.stack()[stackNum]
-        dummy, programFile, lineNumber, funcName, lineCode, rest = caller
-        if funcName == '<module>': funcName = '__main__'
-        pkg = package.split('.', 1)[1] + '.' +funcName
-        str = "[{FUNC:<20}:{LINENO}] - {DATA}".format(FUNC=pkg, LINENO=lineNumber, DATA=data)
-        print (str)
-    '''
-    '''
 
 
 
@@ -411,6 +406,34 @@ class ContextFilter(logging.Filter):
 
 
 
+##############################################################################
+# - classe che mi permette di lavorare nel caso il logger non sia richiesto
+##############################################################################
+class NullLogger():
+    def __init__(self, msg=None, extra=None, dictTitle=None):
+        pass
+
+    def info(self, msg, extra=None, dictTitle=None):       self._print(data=msg, level='INFO')
+    def debug(self, msg, extra=None, dictTitle=None):      self._dummy(data=msg, level='DEBUG')
+    def error(self, msg, extra=None, dictTitle=None):      self._dummy(data=msg, level='ERROR')
+    def warning(self, msg, extra=None, dictTitle=None):    self._dummy(data=msg, level='WARNING')
+
+    def _dummy(self, data, level):
+        pass
+
+    def _print(self, data, level, stackNum=2):
+        TAB = 4
+        data = '{0}{1}'.format(TAB*' ',data)
+        caller = inspect.stack()[stackNum]
+        dummy, programFile, lineNumber, funcName, lineCode, rest = caller
+        if funcName == '<module>': funcName = '__main__'
+        fname = os.path.basename(programFile).split('.')[0]
+        pkg = fname + '.' + funcName
+        pkg = 'NULLLOGGER.' + funcName
+        str = "[{FUNC:<30}:{LINENO:4}] {LEVEL} {DATA}".format(FUNC=pkg, LINENO=lineNumber, DATA=data, LEVEL=level[:4])
+        print (str)
+
+
 
 
 
@@ -423,20 +446,39 @@ class ContextFilter(logging.Filter):
 # - è tra quelli da fare il log.
 # - Il package mi server per verficare se devo loggare il modulo o meno
 # ====================================================================================
-def SetLogger(package, exiting=False, offsetSL=0):
+def SetLogger(package, exiting=False, offsetSL=0, loggerName='MAIN'):
 
-    pointers = LnLogger.static_getMainPointers()
-    if not 'ClassInstance' in pointers:
-        return LnLogger.nullLogger()
+        # - get list of logger
+    LOGGERS = LnLogger.static_getMainPointers()
+
+    logger = None
+
+        # - get loggerName pointer
+    for name in LOGGERS.keys():
+        if name == loggerName:
+            logger = LOGGERS[name]['ClassInstance']
+            break
+
+        # -----------------------------------------------
+        # - assumiamo che sia definito....
+        # - quindi qualcuno ha fatto init del logger
+        # -----------------------------------------------
+    if not logger:
+        logger = LOGGERS['NULL_LOGGER']['ClassInstance']
+        return logger
+        # return NullLogger
 
         # importante prendere questo pointer in quanto mi porta dietro anche i .info, .debug, ...
-    logger = pointers.ClassInstance
+    # logger = pointers.ClassInstance
     logger._LnFilter.setPackageName(package)
 
     # if logger._logEnabled:   #  by Loreto:  22-01-2018 09.15.02
     if False:
-        print ('package            :', package )
-        print ('logger._logEnabled :', logger._logEnabled )
+        print ('-'*40)
+        for key in LOGGERS.keys():
+            print('logger name     = ', key)
+            print('ClassInstance   = ', LOGGERS[key]['ClassInstance'])
+        print ('-'*40)
 
     caller_03 = GetCaller(3)
 
@@ -449,67 +491,6 @@ def SetLogger(package, exiting=False, offsetSL=0):
         logger.info('.... entering called by: {CALLER}'.format(CALLER=caller_03._fullcaller))
         return logger
 
-
-
-
-
-
-
-
-
-    fDEBUG = False
-    if fDEBUG:
-        print('     rootName      = ', logger._name)
-        print('     realLogger    = ', logger._realLogger)
-        print('     ClassInstance = ', logger)
-        print('     LnFilter      = ', logger._LnFilter)
-        print('     modulesToLog  = ', logger._modulesToLog)
-        print('     logLevel      = ', logger._logLevel)
-        # print('     nullLogger    = ', logger._nullLogger)
-
-
-    caller_01 = GetCaller(1)
-
-
-        # ---------------------------------
-        # - individuiamo se è un modulo
-        # - da tracciare o meno
-        # ---------------------------------
-    fullPkg = (package + '.' + caller_01._funcname)
-
-    logger._logEnabled = False
-    # if '_ALL_' in logger._modulesToLog:
-        # logger._logEnabled = True
-
-    # else:
-    fullPkg_LOW = fullPkg.lower()
-    # if 'all' in logger._modulesToLog:  Crea problemi sulla lettura dalla RS232
-    #     logger._logEnabled = True
-    for moduleStr in logger._modulesToLog:
-        if moduleStr.lower() in fullPkg_LOW:
-            logger._logEnabled = True
-            break
-
-
-    print ('......', logger._logEnabled, fullPkg.lower(), pointers.modulesToLog)
-    if fDEBUG:
-        print ('package            :', package )
-        print ('fullPkg            :', fullPkg )
-        print ('logger._logEnabled :', logger._logEnabled )
-
-
-
-    if logger._logEnabled:   #  by Loreto:  22-01-2018 09.15.02
-        # logger.setLevel(LOG_LEVEL)
-        logger._LnFilter.addStack(1+offsetSL)    # cambio lo stackNum
-        caller_03 = GetCaller(3)
-        if exiting:
-            logger.info('.... exiting\n')
-        else:
-            logger.info('.... entering called by: {CALLER}'.format(CALLER=caller_03._fullcaller))
-
-
-    return logger
 
 
 
