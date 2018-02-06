@@ -3,11 +3,10 @@
 # Scope:  Programma per ...........
 # updated by Loreto: 24-10-2017 14.24.47
 # -----------------------------------------------
-import os
-import  platform
-from pathlib import Path
-
-import Source as Prj
+import  os
+from    pathlib import Path
+import  socket
+import  Source as Prj
 
 
 ##############################################
@@ -59,7 +58,10 @@ def SetWinSCP(sectionVars):
 
         # - ottieni il nome dell'host cercandolo nel file serverListFile
     hostName, JBoossGuiPort, sshPort = Prj.getHostName(serverName=server, serverListFile=myServerListFile, exitOnNotFound=False)
-
+    try:
+        hostName=socket.gethostbyaddr(hostName)[0]
+    except (Exception) as why:
+        Ln.Exit(1200, '{} - for host: {}'.format(str(why), hostName ))
 
     # - create winscp command[]
     WINSCP_commandLIST = []
@@ -156,7 +158,10 @@ def SetWinSCP(sectionVars):
     if isinstance(sectID, dict):
         sectID = Ln.Dict(sectID)
     sectID.printTree(fPAUSE=False)
-    winscpDict = winscpIni.updateSection(mySection)
+
+    if inpArgs['execute']:
+        winscpDict = winscpIni.updateSection(mySection)
+
     if gv.fDEBUG: winscpDict[section].printTree(fPAUSE=True)
         # save new config data
     winscpIni.updateFile(replace=True, backup=True)

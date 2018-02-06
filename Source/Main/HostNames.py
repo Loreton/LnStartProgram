@@ -90,6 +90,8 @@ def getHostName(serverName, serverListFile, exitOnNotFound=False):
                             'soa3l',
                             'soadl',
                             'wfapl',
+                            'gedi',
+                            'gedi-',
                             ]
 
             namePrefix = serverName.lower()[:5]
@@ -99,7 +101,11 @@ def getHostName(serverName, serverListFile, exitOnNotFound=False):
             elif namePrefix in serverFarmPrefix:
                 serverName += '.utenze.bankit.it'
 
+            else:   # ... comunque
+                serverName += '.utenze.bankit.it'
+
         C.printColored(color=C.yellowH, text='returning server: {}'.format(serverName), tab=4)
+
         return serverName, 9990, 22   # cont default port value
 
     return None, None, None
