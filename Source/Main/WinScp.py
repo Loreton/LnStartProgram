@@ -59,7 +59,9 @@ def SetWinSCP(sectionVars):
         # - ottieni il nome dell'host cercandolo nel file serverListFile
     hostName, JBoossGuiPort, sshPort = Prj.getHostName(serverName=server, serverListFile=myServerListFile, exitOnNotFound=False)
     try:
-        hostName=socket.gethostbyaddr(hostName)[0]
+        # ignore return value perché in caso di cluster
+        # potrebbe ritornare il valore del singolo server
+        ignore_value=socket.gethostbyaddr(hostName)[0]
     except (Exception) as why:
         Ln.Exit(1200, '{} - for host: {}'.format(str(why), hostName ))
 

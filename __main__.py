@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 06-02-2018 10.56.13
+# Version ......: 07-02-2018 16.47.55
 #
 # #############################################
 
@@ -82,7 +82,7 @@ if __name__ == '__main__':
     elif programToStart.lower().strip() in ['executor']:
         CMDList = Prj.SetExecutor(gv, gv.cfgFile.EXECUTOR)
 
-    elif programToStart.lower().strip() in ['winscp_bdi', 'winscp_loreto_ini']:
+    elif programToStart.lower().strip() in ['winscp_bdi', 'winscp_loreto']:
         CMDList = Prj.SetWinSCP(gv.cfgFile.WINSCP)
 
     else:
