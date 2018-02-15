@@ -1,12 +1,13 @@
 #!/usr/bin/python3.5
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 02-02-2018 10.26.21
+# Version ......: 15-02-2018 15.15.27
 #
 # -----------------------------------------------
 
 
 from   Source.ParseInput.Main_ParseInput import ParseInput
+from   Source.ParseInput.Main_ParseInput import EditPrjConfig
 
 # from   Source.Main.CalculateRootDir import CalculateRootDir
 from   Source.Main.CalculateRootDir import prepareEnv

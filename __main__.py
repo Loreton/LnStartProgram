@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 07-02-2018 16.47.55
+# Version ......: 15-02-2018 16.12.36
 #
 # #############################################
 
@@ -82,8 +82,11 @@ if __name__ == '__main__':
     elif programToStart.lower().strip() in ['executor']:
         CMDList = Prj.SetExecutor(gv, gv.cfgFile.EXECUTOR)
 
-    elif programToStart.lower().strip() in ['winscp_bdi', 'winscp_loreto']:
-        CMDList = Prj.SetWinSCP(gv.cfgFile.WINSCP)
+    elif programToStart.lower().strip() in ['winscp_bdi']:
+        CMDList = Prj.SetWinSCP(gv.cfgFile.WINSCP_BDI)
+
+    elif programToStart.lower().strip() in ['winscp_loreto']:
+        CMDList = Prj.SetWinSCP(gv.cfgFile.WINSCP_LORETO)
 
     else:
         Ln.Exit(1, "Program: {} not yet implemented".format(programToStart))
@@ -99,3 +102,7 @@ if __name__ == '__main__':
         msg = "enter --execute to launch the program: {}".format(programToStart)
 
     Ln.Exit(0, msg)
+
+
+
+# E:\LnED\Lacie232\Filu\LnDisk\LnFree\Network\FTPc\WinSCP\winscp.exe ssh-loreton.loreton /ini=E:\LnED\Lacie232\Filu\LnDisk\LnFree\Network\FTPc\WinSCP\Ln_ini\WinSCP_Loreto.ini /log=D:/temp/winscp.log /sessionname=SSH-LORETON

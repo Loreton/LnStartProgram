@@ -1,6 +1,6 @@
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 05-02-2018 16.55.57
+# Version ......: 15-02-2018 14.10.06
 #
 
 
@@ -19,3 +19,8 @@ def iniFileOptions(myParser, defaultIniFile):
                                 required=False,
                                 default=defaultIniFile,
                                 help=coloredHelp('Specifies ini configuration fileName...', default=defaultIniFile))
+
+    myParser.add_argument('--edit-ini',
+                                required=False,
+                                action='store_true',
+                                help=coloredHelp('Edit ini configuration fileName...', default=False))

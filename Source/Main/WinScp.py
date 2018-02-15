@@ -26,9 +26,14 @@ def SetWinSCP(sectionVars):
     C       = Ln.Color()
     inpArgs = Ln.Dict(gv.args)
 
+    # - create winscp command[]
+    WINSCP_commandLIST = []
+    WINSCP_commandLIST.append(sectionVars.winScpEXE)
+
     logger     = Ln.SetLogger(__name__)
 
     destServer = inpArgs.server
+
     port       = inpArgs.port
 
     if '@' in destServer:
@@ -37,10 +42,16 @@ def SetWinSCP(sectionVars):
         server      = destServer
         userName    = os.getlogin()
 
-    if inpArgs.firstPosParameter == 'winscp_loreto':
-        winscpIniFname = str(Path(sectionVars['winScp_loreto_INI']).resolve())
-    else:
-        winscpIniFname = str(Path(sectionVars['winScp_bdi_INI']).resolve())
+    winscpIniFname = str(Path(sectionVars['winScpINI']).resolve())
+
+    if inpArgs['firstPosParameter'] not in ['winscp_bdi'] or server.lower() in ['dummy', 'vuoto', 'prova']:
+        WINSCP_commandLIST.append('/ini={}'.format(winscpIniFname))
+        WINSCP_commandLIST.append('/log={}'.format('D:/temp/winscp.log'))
+        if inpArgs['new_instance']:
+            WINSCP_commandLIST.append('/newinstance')
+        return WINSCP_commandLIST
+
+        # EditPrjConfig(inpArgs['ini_file'])
 
         # ---------------------------------------
         # - individua il serverList.ini file
@@ -53,21 +64,26 @@ def SetWinSCP(sectionVars):
             myServerListFile = fname
             logger.info('ServerListFile FOUND: {}'.format(fname))
             break
+
+        # editing dei files di configurazione....
+    if inpArgs['edit_ini']:
+        Prj.EditPrjConfig(inpArgs['ini_file'], winscpIniFname, myServerListFile)
+
     if not myServerListFile:
         Ln.Exit(965, 'Server list file non found: {}'.format(sectionVars.ServerListFile))
 
+
         # - ottieni il nome dell'host cercandolo nel file serverListFile
     hostName, JBoossGuiPort, sshPort = Prj.getHostName(serverName=server, serverListFile=myServerListFile, exitOnNotFound=False)
-    try:
-        # ignore return value perché in caso di cluster
-        # potrebbe ritornare il valore del singolo server
-        ignore_value=socket.gethostbyaddr(hostName)[0]
-    except (Exception) as why:
-        Ln.Exit(1200, '{} - for host: {}'.format(str(why), hostName ))
 
-    # - create winscp command[]
-    WINSCP_commandLIST = []
-    WINSCP_commandLIST.append(sectionVars.winScpEXE)
+    if inpArgs['checkdns']:
+        try:
+            # ignore return value perché in caso di cluster
+            # potrebbe ritornare il valore del singolo server
+            ignore_value=socket.gethostbyaddr(hostName)[0]
+        except (Exception) as why:
+            Ln.Exit(1200, '{} - for host: {}'.format(str(why), hostName ))
+
 
 
     myKey = 'privateKey.{}'.format(userName)
@@ -117,7 +133,7 @@ def SetWinSCP(sectionVars):
         mySection[sectionName] = winscpDict[sectionName]
 
     else:
-        sessionName     = '{}.{}'.format(hostName.split('.')[0], userName)  # hostname.ussername
+        sessionName     = '{}_{}'.format(hostName.split('.')[0], userName)  # hostname.ussername
         sectionName     = 'Sessions\{}'.format(sessionName)
         displaySessName = hostName.split('.')[0]
 
@@ -163,10 +179,11 @@ def SetWinSCP(sectionVars):
 
     if inpArgs['execute']:
         winscpDict = winscpIni.updateSection(mySection)
+        # save new config data
+        winscpIni.updateFile(replace=True, backup=True)
+
 
     if gv.fDEBUG: winscpDict[section].printTree(fPAUSE=True)
-        # save new config data
-    winscpIni.updateFile(replace=True, backup=True)
 
 
     WINSCP_commandLIST.append(sessionName)

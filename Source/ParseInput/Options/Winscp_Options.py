@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 01-02-2018 15.56.00
+# Version ......: 15-02-2018 16.00.32
 #
 # -----------------------------------------------
 import  Source as Prj
@@ -41,4 +41,9 @@ def programOptions(myParser):
                 required=False,
                 action='store_true',
                 help=Ln.coloredHelp('Specify if NEW winScp-GUI must be started', default=False, required=False))
+
+    myParser.add_argument('--checkdns',
+                required=False,
+                action='store_true',
+                help=Ln.coloredHelp('Specify if launch gethostbyname before start winsco', default=False, required=False))
 

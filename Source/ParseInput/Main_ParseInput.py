@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 05-02-2018 12.33.54
+# Version ......: 15-02-2018 15.19.07
 #
 # -----------------------------------------------
 
@@ -52,6 +52,44 @@ def ParseInput(description='Loreto Start Program', programVersion='v2018.01.31')
             prjName=None)
 
     # inpArgs['programToStart'] = inpArgs['firstPosParameter']
+
+    # if inpArgs['edit_ini']:
+    #     EditPrjConfig(inpArgs['ini_file'])
+
     return  inpArgs
     Ln.Exit(9999)
 
+
+
+
+
+
+
+import os, platform, sys
+# ------------------------------------------
+# - EDIT nel caso di comandi ad un livello
+# ------------------------------------------
+def EditPrjConfig(filename01, filename02='', filename03=''):
+    myEditor = (os.environ.get('LN_EDITOR'))
+
+
+    if not myEditor:
+        if platform.system() == 'Windows':
+            myEditor = 'notepad.exe'
+        else:
+            myEditor = 'vi'
+
+
+    command = [
+                myEditor,
+                filename01,
+                filename02,
+                filename03,
+
+            ]
+
+    # print ('running command:', command)
+    rCode = os.system(' '.join(command))
+
+    # cPrint.Cyan('configuration file can be edited [RCODE: {}]'.format(rCode), tab=4)
+    sys.exit()

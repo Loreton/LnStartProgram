@@ -14,6 +14,7 @@ def getHostName(serverName, serverListFile, exitOnNotFound=False):
     Ln     = Prj.LnLib
     gv     = Prj.gv
 
+
     logger = Ln.SetLogger(__name__)
     C      = Ln.Color()
 
@@ -72,37 +73,17 @@ def getHostName(serverName, serverListFile, exitOnNotFound=False):
         ''' tentiamo di individuare il dominio...'''
         C.printColored(color=C.yellowH, text='server NOT found in serverList, trying anyway...', tab=4)
         if not '.' in serverName:
-            webFarmPrefix = [
-                            'wefal',
-                            ]
-
-            serverFarmPrefix = [
-                            'anacl',
-                            'asbil',
-                            'deasl',
-                            'gestl',
-                            'gurul',
-                            'jbdcl',
-                            'pkial',
-                            'riadl',
-                            'sefal',
-                            'sflnx',
-                            'soa3l',
-                            'soadl',
-                            'wfapl',
-                            'gedi',
-                            'gedi-',
-                            ]
-
             namePrefix = serverName.lower()[:5]
-            if namePrefix in webFarmPrefix:
-                serverName += '.webfarm.bancaditalia.it'
+            sectPtr = serverList['MAIN']
+            defDomain = serverList['MAIN']['DEFALT_DOMAIN']
 
-            elif namePrefix in serverFarmPrefix:
-                serverName += '.utenze.bankit.it'
+            for domain, val in serverList['MAIN'].items():
+                if namePrefix in val.split('.'):
+                    defDomain = domain
+                    break
 
-            else:   # ... comunque
-                serverName += '.utenze.bankit.it'
+
+            serverName += '.{}'.format(defDomain)
 
         C.printColored(color=C.yellowH, text='returning server: {}'.format(serverName), tab=4)
 
