@@ -2,7 +2,7 @@
 # -*- coding: iso-8859-15 -*-
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 31-01-2018 14.37.18
+# Version ......: 05-03-2018 10.30.33
 #
 # ####################################################################################################################
 
@@ -38,22 +38,22 @@ def setPath(pathName, pathValue, fMANDATORY=True, sepChar=';'):
 #########################################################################
 # imposta le variabili passate come dictionary
 #########################################################################
-def setVars(dictVARS, fDEBUG=False):
+def setVars(dictVARS, mandatory=False, fDEBUG=False):
 
         # -------------------------------------------------
         # - Setting delle variabili
         # -------------------------------------------------
     for varName, varValue in dictVARS.items():
-        if varName.startswith('opt.'):
-            varName = varName[4:]
-            fMANDATORY = False
-        else:
-            fMANDATORY = True
+        # if varName.startswith('opt.'):
+        #     varName = varName[4:]
+        #     fMANDATORY = False
+        # else:
+        #     fMANDATORY = True
 
         paths = []
 
         for path in varValue.split('\n'):
-            realPath = LnVerifyPath(path, exitOnError=fMANDATORY)
+            realPath = LnVerifyPath(path, exitOnError=mandatory)
             if realPath:
                 paths.append(str(realPath))
 

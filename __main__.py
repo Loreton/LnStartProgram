@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 05-03-2018 09.46.24
+# Version ......: 05-03-2018 10.32.20
 #
 # #############################################
 
@@ -71,7 +71,8 @@ if __name__ == '__main__':
     gv.cfgFile  = iniFile.toDict(dictType=Ln.Dict)
     if gv.fDEBUG: gv.cfgFile.printTree(header="INI File", fPAUSE=True)
 
-    Ln.OsEnv.setVars(gv.cfgFile.VARS)
+    Ln.OsEnv.setVars(gv.cfgFile.VARS, mandatory=True)
+    Ln.OsEnv.setVars(gv.cfgFile.OPT_VARS, mandatory=False)
     Ln.OsEnv.setPaths(gv.cfgFile.PATHS)
 
     programToStart = gv.args.firstPosParameter
