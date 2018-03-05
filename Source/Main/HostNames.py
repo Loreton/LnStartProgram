@@ -4,7 +4,7 @@
 # ................-*- coding: iso-8859-15 -*-
 #!/usr/bin/python -O
 
-import sys
+# import sys
 import Source as Prj
 
 ########################################################
@@ -12,7 +12,7 @@ import Source as Prj
 ########################################################
 def getHostName(serverName, serverListFile, exitOnNotFound=False):
     Ln     = Prj.LnLib
-    gv     = Prj.gv
+    # gv     = Prj.gv
 
 
     logger = Ln.SetLogger(__name__)
@@ -74,7 +74,6 @@ def getHostName(serverName, serverListFile, exitOnNotFound=False):
         C.printColored(color=C.yellowH, text='server NOT found in serverList, trying anyway...', tab=4)
         if not '.' in serverName:
             namePrefix = serverName.lower()[:5]
-            sectPtr = serverList['MAIN']
             defDomain = serverList['MAIN']['DEFALT_DOMAIN']
 
             for domain, val in serverList['MAIN'].items():

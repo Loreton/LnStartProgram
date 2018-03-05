@@ -34,7 +34,7 @@ def SetWinSCP(sectionVars):
 
     destServer = inpArgs.server
 
-    port       = inpArgs.port
+    # port       = inpArgs.port
 
     if '@' in destServer:
         userName, server = destServer.split('@')
@@ -133,7 +133,8 @@ def SetWinSCP(sectionVars):
         mySection[sectionName] = winscpDict[sectionName]
 
     else:
-        sessionName     = '{}_{}'.format(hostName.split('.')[0], userName)  # hostname.ussername
+        sessionName     = '{}_{}'.format(hostName.split('.')[0], userName)  # hostname.username
+        sessionName     = '{}'.format(hostName.split('.')[0])  # hostname e basta
         sectionName     = 'Sessions\{}'.format(sessionName)
         displaySessName = hostName.split('.')[0]
 
@@ -180,7 +181,7 @@ def SetWinSCP(sectionVars):
     if inpArgs['execute']:
         winscpDict = winscpIni.updateSection(mySection)
         # save new config data
-        winscpIni.updateFile(replace=True, backup=True)
+        # winscpIni.updateFile(replace=True, backup=True)
 
 
     if gv.fDEBUG: winscpDict[section].printTree(fPAUSE=True)
@@ -214,11 +215,11 @@ def SetWinSCP_rawsetting(sectionVars):
     gv      = Prj.gv
     C       = Ln.Color()
 
-    logger = Ln.SetLogger(__name__)
+    # logger = Ln.SetLogger(__name__)
     inpArgs = gv.args
 
     destServer = inpArgs['server']
-    port       = inpArgs['port']
+    # port       = inpArgs['port']
 
     if '@' in destServer:
         userName, server = destServer.split('@')
@@ -231,7 +232,7 @@ def SetWinSCP_rawsetting(sectionVars):
     hostName, JBoossGuiPort, sshPort = Prj.getHostName(serverName=server, serverListFile=sectionVars.ServerListFile, exitOnNotFound=False)
     sessionName = hostName.split('.')[0]
 
-    if userName: hostName = "{}@{}".format(userName, hostName)
+    # if userName: hostName = "{}@{}".format(userName, hostName)
 
     WINSCP_commandLIST = []
 

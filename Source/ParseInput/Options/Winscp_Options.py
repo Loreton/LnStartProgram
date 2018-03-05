@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 15-02-2018 16.00.32
+# Version ......: 05-03-2018 09.07.25
 #
 # -----------------------------------------------
 import  Source as Prj
@@ -25,10 +25,9 @@ def programOptions(myParser):
 
 
     myParser.add_argument('--server',
-                required=True,
-                default=None,
-                metavar='serverName',
-                help=Ln.coloredHelp('Specify the SERVER name', default=None, required=True))
+                required=False,
+                default='dummy',
+                help=Ln.coloredHelp('Specify the SERVER name', default='dummy', required=False))
 
 
     myParser.add_argument('--port',

@@ -31,14 +31,6 @@ def prepareEnv():
     iniFile     = Ln.ReadIniFile(inpArgs.ini_file, inline_comment_prefixes=(';'), strict=True)
     gv.cfgFile  = iniFile.toDict(dictType=Ln.Dict)
 
-    # if 'subst' in gv.args:
-    # if not gv.args['subst']:
-        # if 'Subst_Drive' in gv.cfgFile.MAIN:
-            # gv.args['subst'] = gv.cfgFile.MAIN.Subst_Drive
-
-
-
-
 
         # -----------------------------------------------
         # - imposta Ln_Drive, Ln_rootDir e Ln_StartDir.

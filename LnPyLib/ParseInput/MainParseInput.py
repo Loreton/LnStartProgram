@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 06-02-2018 10.54.21
+# Version ......: 05-03-2018 10.00.05
 #
 
 import  sys
@@ -88,6 +88,7 @@ def processInput(nPosArgs,
         # = OPTIONAL PARAMETERs
         # ====================================================
     defaultIniFile = str(Path(prjDir , 'conf', prjName + '_' + progrVersion + '.ini'))
+    defaultIniFile = str(Path(prjDir , 'conf', prjName + '.ini'))
     defaultLogFile = Path(prjDir , 'log', prjName + strftime('_%Y-%m-%d') + '.log')
 
         # - create PARSER for optional parameters
