@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 05-03-2018 10.32.20
+# Version ......: 06-04-2018 12.47.00
 #
 # #############################################
 
@@ -27,7 +27,7 @@ LnLib     = Prj.SPE.LibPath(myLibName, fDEBUG=False)
 # - facendo il solo import della Prj
 # -------------------------------------------------------
 Prj.LnLib = LnLib
-Prj.gv    = Prj.LnLib.Dict()
+Prj.gv    = LnLib.Dict()
 
 
 

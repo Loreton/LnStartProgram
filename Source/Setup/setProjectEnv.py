@@ -1,7 +1,7 @@
 #!/usr/bin/python3.5
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 17-01-2018 11.06.28
+# Version ......: 06-04-2018 12.44.11
 #
 
 # -----------------------------------------------
@@ -18,7 +18,6 @@ import  importlib
 # SET LIB PATH per la libreria LnLib
 ####################################################################
 def LibPath(myLibName, fDEBUG=True):
-    assert type(myLibName) == list
     '''
         insert the correct path to allow import of the libraryName passed.
         it works with myLib as directory or myLib.zip
@@ -27,6 +26,7 @@ def LibPath(myLibName, fDEBUG=True):
         myLibName[1]  = may be zip version of libraries
         myLibName[..] = may be zip version of libraries
     '''
+    assert type(myLibName) == list
     thisfile = Path(sys.argv[0]).resolve()
 
     thisDir  = thisfile.parent

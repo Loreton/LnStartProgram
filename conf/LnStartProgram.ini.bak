@@ -19,7 +19,6 @@
     Ln_subst_LoretoDir  = ${Ln_subst_RootDir}\Loreto
     Ln_subst_FreeDir    = ${Ln_subst_RootDir}\LnFree
     Ln_subst_LeslaDir   = ${Ln_subst_RootDir}\Lesla
-    Ln_TEMP             = ${Ln_Drive}\tmp
 
 
 [OPT_VARS]
@@ -60,8 +59,8 @@
     USERPROFILE        = ${VARS:Ln_FreeDir}\Ln_USERPROFILE
 
     # GO language
-    ; GOROOT             = ${VARS:Ln_FreeDir}\Pgm\go # Sembra che non sia necessaria  - vedi "go env"
-    GOPATH             = ${Ln_GitRepoDir}\GO
+    GOROOT             = ${VARS:Ln_FreeDir}\Pgm\go
+    GOPATH             = ${Ln_GitRepoDir}\go
 
     # VisualStudio Code
     VSCODE_APPDATA     = ${APPDATA}
@@ -78,10 +77,7 @@
                           ${OPT_VARS:Ln_pythonDir}\Lib\site-packages
                           ${OPT_VARS:Ln_pythonDir}\Lib\site-packages/win32com
 
-    ; go                 = ${OPT_VARS:GOROOT}\bin
-    go_product         = ${VARS:Ln_FreeDir}\Pgm\go\bin
-    go_path           = ${OPT_VARS:GOPATH}\bin
-
+    go                 = ${OPT_VARS:GOROOT}\bin
     java               = ${OPT_VARS:Ln_JAVA_HOME}\bin
 
     ; git                = ${OPT_VARS:Ln_GitRepoDir}\GIT-PRG\PortableGit-2.11.0\bin
@@ -135,7 +131,7 @@
     ServerListFile      = ${VARS:Ln_ProgramDIR}\Bdi_ServerList.ini, ${VARS:Ln_ProgramDIR}\conf\Bdi_ServerList.ini
     ; privateKey          = ${VARS:Ln_FreeDir}\Security\MyKeys\myRoot\myRoot_id.rsa
     privateKey.root     = ${VARS:Ln_FreeDir}\Security\MyKeys\myRoot\myRoot_id.rsa.ppk
-    privateKey.f602250  = ${VARS:Ln_FreeDir}\Security\MyKeys\Loreto\F602250_2018-04_id_rsa.ppk
+    privateKey.f602250  = ${VARS:Ln_FreeDir}\Security\MyKeys\Loreto\F602250_id_rsa.ppk
 
 
 [WINSCP_LORETO]
@@ -145,6 +141,6 @@
     ServerListFile      = ${VARS:Ln_ProgramDIR}\Ln_ServerList.ini, ${VARS:Ln_ProgramDIR}\conf\Ln_ServerList.ini
     ; privateKey          = ${VARS:Ln_FreeDir}\Security\MyKeys\myRoot\myRoot_id.rsa
     privateKey.root     = ${VARS:Ln_FreeDir}\Security\MyKeys\myRoot\myRoot_id.rsa.ppk
-    privateKey.f602250  = ${VARS:Ln_FreeDir}\Security\MyKeys\Loreto\F602250_2018-04_id_rsa.ppk
+    privateKey.f602250  = ${VARS:Ln_FreeDir}\Security\MyKeys\Loreto\F602250_id_rsa.ppk
 
 
