@@ -148,6 +148,7 @@ def CalculateRootDir():
         # - se e' richiesto un drive SUBST...
         # - impostiamo tutti i path per quel drive
         # --------------------------------------------
+    # import pdb;pdb.set_trace()
     if 'subst' in inpArgs and inpArgs.subst:
         logger.info("subst required:  {}".format(inpArgs['subst']))
         mountDir = createSUBSTDrive(substDrive=Path(inpArgs['subst']), substMountDir=realRootDir)
@@ -178,6 +179,7 @@ def createSUBSTDrive(substDrive, substMountDir):
     '''
     execute SUBST windows command to create a virtualDrive pointing to a path
     '''
+
     logger = Ln.SetLogger(__name__)
 
     logger.info("parameter substDrive:    {}".format(substDrive))
@@ -198,6 +200,7 @@ def createSUBSTDrive(substDrive, substMountDir):
         logger.info('SUBST drive {} alredy present'.format(substDrive))
 
     else:
+        # import pdb;pdb.set_trace()
         # if gv.args['execute']:
         Ln.runProgram("executing SUBST command:", ['subst', substDrive, substMountDir])
         sleep(1) #diamo tempo affinché avvenga il montaggio
