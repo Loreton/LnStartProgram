@@ -6,22 +6,18 @@
     "configurations": [
 
         {
-            "name": "Python",
+            "name": "TotalCommander",
             "type": "python",
             "request": "launch",
             "stopOnEntry": true,
             "pythonPath": "${config:python.pythonPath}",
-            "program": "${file}",
+            "program": "K:\\Filu\\LnDisk\\GIT-REPO\\LnStartProgram\\__main__.py",
             "args": [
-                "totalcommander",
-                "--subst=y:"
+                "--program=totalcommander",
+                ""
             ],
             "cwd": "${workspaceRoot}",
-            "debugOptions": [
-                "WaitOnAbnormalExit",
-                "WaitOnNormalExit",
-                "RedirectOutput"
-            ]
+
         },
         {
             "name": "PySpark",

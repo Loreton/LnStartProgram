@@ -1,0 +1,12 @@
+2019/06/04 19:10:22 - [LnLogger.setLogger: 226] INFO -> 
+
+
+
+
+ [list=6]:
+2019/06/04 19:10:22 - [LnLogger.setLogger: 226] INFO ->     [0000] - --------------------------------------------------
+2019/06/04 19:10:22 - [LnLogger.setLogger: 226] INFO ->     [0001] - - starting: 2019/06/04 19:10:22
+2019/06/04 19:10:22 - [LnLogger.setLogger: 226] INFO ->     [0002] - - dry-run:     False
+2019/06/04 19:10:22 - [LnLogger.setLogger: 226] INFO ->     [0003] - - debug level: 0
+2019/06/04 19:10:22 - [LnLogger.setLogger: 226] INFO ->     [0004] - --------------------------------------------------
+2019/06/04 19:10:22 - [LnLogger.setLogger: 226] INFO ->     [0005] - 

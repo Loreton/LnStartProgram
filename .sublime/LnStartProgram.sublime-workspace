@@ -1,0 +1,2328 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pa",
+				"parent"
+			],
+			[
+				"__",
+				"__name__ == '__main__':〔variable〕"
+			],
+			[
+				"proce",
+				"processed_vars〔variable〕"
+			],
+			[
+				"git",
+				"gitdir"
+			],
+			[
+				"da",
+				"skip-day-light"
+			],
+			[
+				"use",
+				"username〔argument〕"
+			],
+			[
+				"force",
+				"FORCE"
+			],
+			[
+				"Pr",
+				"Process_LnDisk"
+			],
+			[
+				"rea",
+				"reason"
+			],
+			[
+				"_",
+				"_dynamic"
+			],
+			[
+				"vali",
+				"valid_profiles〔variable〕"
+			],
+			[
+				"check",
+				"check_Gateway〔function〕"
+			],
+			[
+				"tra",
+				"set_trace〔function〕"
+			],
+			[
+				"data",
+				"data_str〔variable〕"
+			],
+			[
+				"gmai",
+				"gmail_account"
+			],
+			[
+				"user",
+				"user_name〔variable〕"
+			],
+			[
+				"pro",
+				"profile_data"
+			],
+			[
+				"local",
+				"local_files"
+			],
+			[
+				"loc",
+				"local_files"
+			],
+			[
+				"seq",
+				"seqNo"
+			],
+			[
+				"cyan",
+				"cyanH"
+			],
+			[
+				"drive",
+				"drive_file"
+			],
+			[
+				"removed",
+				"removed_items"
+			],
+			[
+				"remov",
+				"removed"
+			],
+			[
+				"fold",
+				"folder_name〔variable〕"
+			],
+			[
+				"fol",
+				"folder_name"
+			],
+			[
+				"_local",
+				"_localIsNewer〔variable〕"
+			],
+			[
+				"folde",
+				"folders_to_sync"
+			],
+			[
+				"folder_",
+				"folder_to_sync〔variable〕"
+			],
+			[
+				"log",
+				"log_dir"
+			],
+			[
+				"re",
+				"redH"
+			],
+			[
+				"resol",
+				"resolve_yaml_vars〔function〕"
+			],
+			[
+				"my_",
+				"my_json"
+			],
+			[
+				"incl",
+				"include_path"
+			],
+			[
+				"fil",
+				"filename〔argument〕"
+			],
+			[
+				"foldrs",
+				"folders"
+			],
+			[
+				"file",
+				"filename"
+			],
+			[
+				"ski",
+				"skipping_keys〔variable〕"
+			],
+			[
+				"skipp",
+				"skipping_keys"
+			],
+			[
+				"si",
+				"sizeof_fmt"
+			],
+			[
+				"uploaded",
+				"uploaded_folders"
+			],
+			[
+				"matchi",
+				"matching_size〔variable〕"
+			],
+			[
+				"downloa",
+				"downloaded"
+			],
+			[
+				"refre",
+				"refreshed_size"
+			],
+			[
+				"match",
+				"matching_files"
+			],
+			[
+				"upload",
+				"uploaded_files"
+			],
+			[
+				"ref",
+				"refreshed_files"
+			],
+			[
+				"folder",
+				"folderid"
+			],
+			[
+				"file_",
+				"file_size"
+			],
+			[
+				"crede",
+				"credentials"
+			],
+			[
+				"cre",
+				"credentials〔variable〕"
+			],
+			[
+				"get",
+				"get_credentials"
+			],
+			[
+				"gma",
+				"gmail_account〔variable〕"
+			],
+			[
+				"profil",
+				"profiles"
+			],
+			[
+				"path",
+				"parent_path"
+			],
+			[
+				"remo",
+				"removed_items〔variable〕"
+			],
+			[
+				"dupl",
+				"duplicated_remote_files〔variable〕"
+			],
+			[
+				"du",
+				"duplicated_remote_files〔variable〕"
+			],
+			[
+				"onl",
+				"only_local_files〔variable〕"
+			],
+			[
+				"stdo",
+				"stdout_colored_file〔variable〕"
+			],
+			[
+				"_f",
+				"_function_name"
+			],
+			[
+				"compl",
+				"completed"
+			],
+			[
+				"nex",
+				"nextPageToken"
+			],
+			[
+				"progre",
+				"progress_size"
+			],
+			[
+				"inp",
+				"inpArgs〔variable〕"
+			],
+			[
+				"in",
+				"inpArgs〔variable〕"
+			],
+			[
+				"par",
+				"parser"
+			],
+			[
+				"ma",
+				"maxBytes"
+			],
+			[
+				"is",
+				"isinstance〔function〕"
+			],
+			[
+				"diff",
+				"diffsize〔variable〕"
+			],
+			[
+				"Te",
+				"Test_01"
+			],
+			[
+				"med",
+				"media_body"
+			],
+			[
+				"CMD",
+				"CMD_ARGS"
+			],
+			[
+				"per",
+				"percent〔variable〕"
+			],
+			[
+				"skip",
+				"skipped_files"
+			],
+			[
+				"_new_",
+				"_new_sync"
+			],
+			[
+				"LO",
+				"LOCAL_ROOT_PATH"
+			],
+			[
+				"_lo",
+				"_local_file_path〔variable〕"
+			],
+			[
+				"MA",
+				"MAX_SIZE〔variable〕"
+			],
+			[
+				"remote",
+				"remote_time"
+			],
+			[
+				"retu",
+				"returnGMT"
+			],
+			[
+				"local_fol",
+				"local_folder_path〔argument〕"
+			],
+			[
+				"_remo",
+				"_remoteIsNewer"
+			],
+			[
+				"_remot",
+				"_remoteIsOlder〔variable〕"
+			],
+			[
+				"before",
+				"before_stat〔variable〕"
+			],
+			[
+				"tim",
+				"timeConvertion"
+			],
+			[
+				"sta",
+				"status_file〔variable〕"
+			],
+			[
+				"db",
+				"debug3"
+			],
+			[
+				"val",
+				"value〔argument〕"
+			],
+			[
+				"mod",
+				"modifiedTime"
+			],
+			[
+				"date",
+				"datetime"
+			],
+			[
+				"stat",
+				"status_data"
+			],
+			[
+				"st",
+				"status_file"
+			],
+			[
+				"exit",
+				"exitOnError"
+			],
+			[
+				"upl",
+				"uploadFile"
+			],
+			[
+				"uplo",
+				"uploaded_files〔variable〕"
+			],
+			[
+				"remove",
+				"removed_files"
+			],
+			[
+				"down",
+				"download_folder〔function〕"
+			],
+			[
+				"new",
+				"new_item〔variable〕"
+			],
+			[
+				"only_reo",
+				"only_remote_folders"
+			],
+			[
+				"ulo",
+				"uploadFile"
+			],
+			[
+				"creat",
+				"createRemoteFolder"
+			],
+			[
+				"upda",
+				"updateRemoteFile"
+			],
+			[
+				"foldr",
+				"folders"
+			],
+			[
+				"_re",
+				"_remote_files〔variable〕"
+			],
+			[
+				"remot",
+				"remote_files〔variable〕"
+			],
+			[
+				"lo",
+				"local.tree_list"
+			],
+			[
+				"key",
+				"key_name〔variable〕"
+			],
+			[
+				"paren",
+				"parent_id〔argument〕"
+			],
+			[
+				"fo",
+				"folder"
+			],
+			[
+				"rel",
+				"rel_path〔variable〕"
+			],
+			[
+				"crea",
+				"createRemoteFolder"
+			],
+			[
+				"read",
+				"readFolder"
+			],
+			[
+				"loca",
+				"local_folder_path〔variable〕"
+			],
+			[
+				"if",
+				"ifmain\tif __name__ == '__main__'"
+			],
+			[
+				"mode",
+				"mod_time"
+			],
+			[
+				"time",
+				"timeConvertion〔function〕"
+			],
+			[
+				"log_",
+				"log_prefix〔variable〕"
+			],
+			[
+				"el",
+				"else"
+			],
+			[
+				"refresh",
+				"refreshed_items"
+			],
+			[
+				"daa",
+				"data.only_local_folders"
+			],
+			[
+				"parent",
+				"parent_path"
+			],
+			[
+				"only_",
+				"only_local_folders"
+			],
+			[
+				"only_remote",
+				"only_remote_folders"
+			],
+			[
+				"pdb",
+				"pdb.set_trace"
+			],
+			[
+				"downl",
+				"download_file"
+			],
+			[
+				"up",
+				"upload"
+			],
+			[
+				"only_remo",
+				"only_remote_folders"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/K/Filu/LnDisk/GIT-REPO/LnStartProgram/myFunctions/LnYamlLoader.py",
+			"settings":
+			{
+				"buffer_size": 7765,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/K/Filu/LnDisk/GIT-REPO/LnStartProgram/__main__.py",
+			"settings":
+			{
+				"buffer_size": 6352,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/K/Filu/LnDisk/GIT-REPO/LnStartProgram/myFunctions/SetOsEnv.py",
+			"settings":
+			{
+				"buffer_size": 2870,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/K/Filu/LnDisk/GIT-REPO/LnStartProgram/conf/LnStartProgram.yml",
+			"settings":
+			{
+				"buffer_size": 1901,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/K/Filu/LnDisk/GIT-REPO/LnStartProgram/myFunctions/__init__.py",
+			"settings":
+			{
+				"buffer_size": 653,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "{\n    \"VARS\": {\n        \"Ln_Drive\": \"${Ln_AAA}\",\n        \"Ln_FreeDir\": \"${VARS:Ln_RootDir}/LnFree\",\n        \"Ln_FreeDir1\": \"_${:VARS.Ln_RootDir1}_/LnFree\",\n        \"Ln_FreeDir2\": \"${VAR:myVAR}/LnFree\",\n        \"Ln_LeslaDir\": \"${VARS:Ln_RootDir}/Lesla\",\n        \"Ln_LeslaDir1\": \"_${:VARS.Ln_RootDir1}_/Lesla\",\n        \"Ln_LeslaDir2\": \"${VAR:myVAR}/Lesla\",\n        \"Ln_LoretoDir\": \"${VARS:Ln_RootDir}/Loreto\",\n        \"Ln_LoretoDir1\": \"_${:VARS.Ln_RootDir}_/Loreto\",\n        \"Ln_LoretoDir2\": \"${VAR:myVAR}/Loreto\",\n        \"Ln_ProgramDIR\": \"${Ln_AAA}\",\n        \"Ln_RootDir\": \"${Ln_AAA}\",\n        \"Ln_RootDir1\": \"Ciao\",\n        \"Ln_StartDir\": \"${VARS:Ln_RootDir}/LnStart\",\n        \"Ln_StartDir1\": \"_${VARS.Ln_RootDir1}_/LnStart\",\n        \"Ln_StartDir2\": \"${VAR:myVAR}/LnStart\"\n    }\n}",
+			"settings":
+			{
+				"buffer_size": 781,
+				"line_ending": "Unix",
+				"name": "{"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"re",
+				"File: Rename"
+			],
+			[
+				"del",
+				"File: Delete"
+			],
+			[
+				"json",
+				"Pretty JSON: Format and Sort JSON"
+			],
+			[
+				"ren",
+				"File: Rename"
+			],
+			[
+				"dele",
+				"File: Delete"
+			],
+			[
+				"inc",
+				"Increment Selection"
+			],
+			[
+				"rena",
+				"File: Rename"
+			],
+			[
+				"incre",
+				"Increment Selection"
+			],
+			[
+				"compa",
+				"Compare with..."
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"syn",
+				"Side Bar: Enable Syncing"
+			],
+			[
+				"color hi",
+				"Color Scheme Editor: Goto next matching scope"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"prv",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"them",
+				"UI: Select Theme"
+			],
+			[
+				"pvr",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"colo",
+				"UI: Select Color Scheme"
+			],
+			[
+				"box",
+				"Boxy Theme: Configuration"
+			],
+			[
+				"boxy",
+				"Boxy Theme: Preferences"
+			],
+			[
+				"theme",
+				"UI: Select Theme"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"color",
+				"Color Scheme Editor: Goto next matching scope"
+			],
+			[
+				"vrc",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"case",
+				"Convert Case: Title Case"
+			],
+			[
+				"git",
+				"GitHub: Open Starred Gist in Editor"
+			],
+			[
+				"dis",
+				"Package Control: Disable Package"
+			],
+			[
+				"jnj",
+				"Set Syntax: Jinja2"
+			],
+			[
+				"anaco",
+				"Anaconda: Vagrant Status"
+			],
+			[
+				"enab",
+				"Package Control: Enable Package"
+			],
+			[
+				"ena",
+				"Package Control: Enable Package"
+			],
+			[
+				"disab",
+				"Package Control: Disable Package"
+			],
+			[
+				"anaconda",
+				"Anaconda: Goto object definition"
+			],
+			[
+				"anaconda sho",
+				"Anaconda: Show error list"
+			],
+			[
+				"insal",
+				"Package Control: Install Package"
+			],
+			[
+				"instak",
+				"Package Control: Install Package"
+			],
+			[
+				"ana",
+				"Anaconda: McCabe complexity check"
+			],
+			[
+				"anaconda sh",
+				"Anaconda: Show error list"
+			],
+			[
+				"goto",
+				"Anaconda: Goto object definition"
+			],
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			],
+			[
+				"de",
+				"File: Delete"
+			],
+			[
+				"todo",
+				"TodoReview: Project Files"
+			],
+			[
+				"incr",
+				"Increment Selection"
+			],
+			[
+				"sftp",
+				"SFTP: Edit Remote Mapping…"
+			],
+			[
+				"sft",
+				"SFTP: Browse Server…"
+			],
+			[
+				"sort",
+				"SortBy: Alphabetically"
+			],
+			[
+				"renam",
+				"File: Rename"
+			],
+			[
+				"tod",
+				"TodoReview: Open Files"
+			],
+			[
+				"match",
+				"BracketHighlighter: Find Matching Offscreen Bracket"
+			]
+		],
+		"width": 476.0
+	},
+	"console":
+	{
+		"height": 160.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram",
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/conf",
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/LnPyLib",
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/LnPyLib/Process",
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/LnPyLib/System",
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/log",
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/myFunctions",
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source",
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Main",
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Setup"
+	],
+	"file_history":
+	[
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/myFunctions/LnUtils.py",
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/log/LnStartProgram.log",
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/myFunctions/__init__.py",
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/log/LnStartProgram.stdout",
+		"/K/Filu/LnDisk/GIT-REPO/googleDriveSync/config/config.yml",
+		"/K/Filu/LnDisk/GIT-REPO/googleDriveSync/myFunctions/LnYamlLoader.py",
+		"/K/Filu/LnDisk/GIT-REPO/googleDriveSync/__main__.py",
+		"/K/Filu/LnDisk/GIT-REPO/Python3/LnStartProgram/__main__.py",
+		"/K/Filu/LnDisk/GIT-REPO/Python3/LnStartProgram/conf/LnStartProgram.yml",
+		"/K/Filu/LnDisk/LnStart/LnToDo.ini",
+		"/K/Filu/LnDisk/GIT-REPO/Python3/LnStartProgram/myFunctions/__init__.py",
+		"/K/Filu/LnDisk/GIT-REPO/Python3/LnStartProgram/Source/Main/Executor.py",
+		"/K/Filu/LnDisk/LnFree/SynchBackup/FreeFileSync/LnFreeFileSync.sh",
+		"/K/Filu/LnDisk/LnFree/SynchBackup/FreeFileSync/LnFreeFileSync.cmd",
+		"/K/Filu/LnDisk/LnStart/LnStartProgram.ini",
+		"/K/Filu/LnDisk/LnFree/Pgm/VSCode_134_insider/bin/LnCode_forse non serve piu.cmd",
+		"/K/Filu/LnDisk/LnFree/Pgm/VSCode_134_insider/bin/code-insiders.cmd",
+		"/K/Filu/LnDisk/LnFree/Pgm/VSCode_134_insider/bin/code-insiders",
+		"/K/Filu/LnDisk/LnFree/Editors/SublimeText_3/Data/Packages/User/Ln_RunMe.py",
+		"/K/Filu/LnDisk/LnStart/Executor.cmd",
+		"/K/Filu/LnDisk/LnFree/Desktop/Executor/Executor.cmd",
+		"/K/Filu/LnDisk/LnFree/SynchBackup/FreeFileSync/_LnProfiles/Main/@LnTemplate.ffs_gui",
+		"/K/Filu/LnDisk/LnFree/SynchBackup/FreeFileSync/_LnProfiles/GlobalSettings_base.xml",
+		"/K/Filu/LnDisk/LnFree/SynchBackup/FreeFileSync/_LnProfiles/Main/LnFree.ffs_gui",
+		"/C/Filu_C/LnDisk/LnFree/SynchBackup/FreeFileSync/LnFreeFileSync.cmd",
+		"/K/Filu/LnDisk/LnStart/Ubuntu.sh",
+		"/K/Filu/LnDisk/LnStart/Ubuntu.cmd",
+		"/C/Filu_C/LnDisk/LnFree/SynchBackup/FreeFileSync/_LnProfiles/Main/LnFree.ffs_gui",
+		"/C/extDisk/Filu/LnDisk/LnFree/SynchBackup/FreeFileSync/LnFreeFileSync.cmd",
+		"/C/extDisk/Filu/LnDisk/LnStart/LnStartProgram.ini",
+		"/C/extDisk/Filu/LnDisk/LnFree/Pgm/VSCode_134_insider/Ln_Config/config",
+		"/C/extDisk/Filu/LnDisk/LnFree/Pgm/VSCode_134_insider/bin/LnCode.cmd",
+		"/C/extDisk/Filu/LnDisk/LnFree/Pgm/VSCode_134_insider/bin/code-insiders.cmd",
+		"/C/extDisk/Filu/LnDisk/GIT-REPO/HW-Projects/CAD/KiCAD/LnReadME.txt",
+		"/C/extDisk/Filu/LnDisk/LnStart/LnToDo.ini",
+		"/C/extDisk/Filu/LnDisk/GIT-REPO/HW-Projects/CAD/KiCAD/LnLibrary/LnConnectors.lib",
+		"/C/extDisk/Filu/LnDisk/GIT-REPO/HW-Projects/Crepuscolare/KiCad/Crepuscolare.sch",
+		"/C/extDisk/Filu/LnDisk/GIT-REPO/homeLoreto/.ssh/config",
+		"/C/lnmnt/Filu/LnDisk/LnStart/Executor.cmd",
+		"/K/Filu/LnDisk/LnFree/Pgm/PortableGit-2.21.0/README.portable",
+		"/C/lnmnt/Filu/LnDisk/LnStart/LnStartProgram.ini",
+		"/F/CONFIG/network/my-network",
+		"/K/Filu/LnDisk/LnFree/SynchBackup/FreeFileSync/_LnProfiles/PI/PI_home.ffs_gui",
+		"/D/network/system-connections",
+		"/K/Filu/LnDisk/LnFree/SynchBackup/FreeFileSync/_LnProfiles/PI/PI_etc.ffs_gui",
+		"/K/Filu/LnDisk/LnFree/SynchBackup/FreeFileSync/_LnProfiles/PI/PI_home_a.ffs_gui",
+		"/K/Filu/LnDisk/LnFree/SynchBackup/FreeFileSync/_LnProfiles/GlobalSettings.xml",
+		"/K/Filu/LnDisk/LnFree/SynchBackup/FreeFileSync/_LnProfiles/Main/Technical-DOC.ffs_gui",
+		"/K/Filu/LnDisk/LnFree/SynchBackup/FreeFileSync/_LnProfiles/Main/LnTemplate.ffs_gui",
+		"/K/Filu/LnDisk/GIT-REPO/googleDriveSync/release/bin/Launch.sh",
+		"/K/Filu/LnDisk/GIT-REPO/googleDriveSync/release/bin/Launch.cmd",
+		"/K/Filu/LnDisk/GIT-REPO/googleDriveSync/release/config/config.yml",
+		"/K/Filu/LnDisk/GIT-REPO/googleDriveSync/GoogleFunctions/Ln_Upload.py",
+		"/K/Filu/LnDisk/GIT-REPO/googleDriveSync/GoogleFunctions/Create_Credentials.py",
+		"/K/Filu/LnDisk/Lesla/Bollette/Beverino Int. 7 - Pina/Telefono/06 -39379584/TIM/Tim Router Pina etichetta.jpg",
+		"/K/Filu/LnDisk/Lesla/Bollette/Beverino Int. 7 - Pina/Telefono/06 -39379584/TIM/Tim Router Pina wifi.txt",
+		"/C/Users/Loreto/AppData/Local/Temp/scp19307/HOME%2FLnPi23%2F192.168.1.23/etc/ssh/sshd_config",
+		"/C/Users/Loreto/AppData/Local/Temp/scp17341/HOME%2FLnPi3B1%2FLnPi3B1-eth0/etc/ssh/sshd_config",
+		"/K/Filu/LnDisk/Lesla/Apparati_DOC/Modem-Router/Pina/link2.url",
+		"/K/Filu/LnDisk/GIT-REPO/googleDriveSync/log/loretonota_True.status",
+		"/K/Download/Scheda da -anita.jpg",
+		"/K/Filu/LnDisk/GIT-REPO/googleDriveSync/log/googleDriveSync_colored.stdout",
+		"/K/Download/mb250_IMG_0623.jpg",
+		"/K/Filu/LnDisk/Lesla/Apparati_DOC/Stufe a pellet/Vescovi/IdroBox25 - Tips.txt",
+		"/K/Filu/LnDisk/LnFree/SynchBackup/FreeFileSync/_LnProfiles/Main/Lesla_gDrive.ffs_gui",
+		"/K/Filu/LnDisk/Lesla/Apparati_DOC/TV-Video/Samsung - UE40KU6000K/Samsung pin per supporto.txt",
+		"/K/Filu/LnDisk/GIT-REPO/googleDriveSync/GoogleFunctions/GDrive.py",
+		"/K/Filu/LnDisk/GIT-REPO/googleDriveSync/GoogleFunctions/Ln_Download.py",
+		"/K/Filu/LnDisk/GIT-REPO/googleDriveSync/log/nloreto_True.status",
+		"/K/Filu/LnDisk/GIT-REPO/googleDriveSync/log/googleDriveSync.log",
+		"/K/Filu/LnDisk/GIT-REPO/googleDriveSync/myFunctions/LnUtils.py",
+		"/Y/GIT-REPO/Python3/googleDriveSync/release/bin/Launch.sh",
+		"/Y/GIT-REPO/Python3/googleDriveSync/release/bin/Launch.cmd",
+		"/Y/GIT-REPO/Python3/googleDriveSync/_update_LnDevel.sh",
+		"/Y/GIT-REPO/Python3/googleDriveSync/release/config/config.yml",
+		"/Y/GIT-REPO/Python3/googleDriveSync/config/config.yml",
+		"/Y/GIT-REPO/Python3/googleDriveSync/__main__.py",
+		"/Y/GIT-REPO/Python3/googleDriveSync/GoogleFunctions/Ln_Upload.py",
+		"/Y/GIT-REPO/Python3/googleDriveSync/release/bin/loretonota.cmd",
+		"/Y/GIT-REPO/Python3/googleDriveSync/release/bin/start.cmd",
+		"/Y/GIT-REPO/Python3/googleDriveSync/_update_git.py",
+		"/Y/GIT-REPO/Python3/googleDriveSync/GoogleFunctions/GDrive.py",
+		"/Y/GIT-REPO/Python3/googleDriveSync/GoogleFunctions/Ln_Download.py",
+		"/Y/GIT-REPO/Python3/googleDriveSync/myFunctions/LnLogger.py",
+		"/Y/GIT-REPO/Python3/googleDriveSync/release/config/etonota.yml",
+		"/Y/GIT-REPO/Python3/googleDriveSync/config/new_config.yml",
+		"/Y/GIT-REPO/Python3/googleDriveSync/__main__New.py",
+		"/Y/GIT-REPO/Python3/googleDriveSync/myFunctions/__init__.py",
+		"/Y/GIT-REPO/Python3/googleDriveSync/release/bin/launch.cmd",
+		"/C/Users/Silvia/AppData/Local/Temp/scp47527/HOME%2FLnPi3B1%2FLnPi3B1-eth0/home/pi/PiProd/pyProc/_under_devel/checkIpGateway.py",
+		"/Y/GIT-REPO/LnPythonLib/.git/config",
+		"/Y/GIT-REPO/LnPythonLib/_update_git.sh",
+		"/Y/GIT-REPO/Python3/PhotosModifier/Ln_Funcs/Logger.py",
+		"/C/Users/Silvia/AppData/Local/Temp/scp07432/HOME%2FLnPi3B1%2FLnPi3B1-eth0/home/pi/PiProd/pyProc/_under_devel/checkIpGateway.py",
+		"/Y/GIT-REPO/@Bdi-Projects/KeepAlived/pyChecks/checks/IP_Gateway.py",
+		"/C/Users/Silvia/AppData/Local/Temp/scp02969/HOME%2FLnPi3B1%2FLnPi3B1-eth0/home/pi/PiProd/shProc/_under_devel/check_network.sh",
+		"/C/Users/Silvia/AppData/Local/Temp/scp04844/HOME%2FLnPi3B1%2FLnPi3B1-eth0/home/pi/PiProd/shProc/check_network.sh",
+		"/C/Users/Silvia/AppData/Local/Temp/scp05697/HOME%2FLnPi3B1%2FLnPi3B1-eth0/home/pi/PiProd/pyProc/_under_devel/checkNetwork.py",
+		"/C/Users/Silvia/AppData/Local/Temp/scp58173/HOME%2FLnPi3B1%2FLnPi3B1-eth0/home/pi/PiProd/shProc/ssh_Reverse_tunnel.sh",
+		"/C/Users/Silvia/AppData/Local/Temp/scp18141/HOME%2FLnPi23%2FLnPi23 rm-loreto.duckdns.org/home/pi/PiProd/shProc/ip_rule_eth0.sh",
+		"/C/Users/Silvia/AppData/Local/Temp/scp21627/HOME%2FLnPi23%2FLnPi23 rm-loreto.duckdns.org/home/pi/PiProd/pyProc/ipRoute2.py",
+		"/C/Users/Silvia/AppData/Local/Temp/scp35502/HOME%2FLnPi23%2FLnPi23 rm-loreto.duckdns.org/home/pi/PiProd/pyProc/ipRoute2_caller.sh",
+		"/C/Users/Silvia/AppData/Local/Temp/scp28433/HOME%2FLnPi23%2FLnPi23 rm-loreto.duckdns.org/home/pi/PiProd/pyProc/ipRoute2.py",
+		"/C/Users/Silvia/AppData/Local/Temp/scp29357/HOME%2FLnPi23%2FLnPi23 rm-loreto.duckdns.org/home/pi/PiProd/pyProc/restoreFromDLQ.sh",
+		"/C/Users/Silvia/AppData/Local/Temp/scp29114/HOME%2FLnPi23%2FLnPi23 rm-loreto.duckdns.org/home/pi/PiProd/pyProc/test_myIP",
+		"/C/Users/Silvia/AppData/Local/Temp/scp28961/HOME%2FLnPi23%2FLnPi23 rm-loreto.duckdns.org/home/pi/PiProd/pyProc/ipRoute2_prev.py",
+		"/C/Users/Silvia/AppData/Local/Temp/scp18243/HOME%2FLnPi3B1%2FLnPi3B1-eth0/home/pi/PiProd/shProc/ip_rule_eth0.sh",
+		"/C/Users/Silvia/AppData/Local/Temp/scp06217/HOME%2FLnPi23%2FLnPi23 rm-loreto.duckdns.org/home/pi/PiProd/shProc/myIP_New",
+		"/C/Users/Silvia/AppData/Local/Temp/scp04377/HOME%2FLnPi3B1%2FLnPi3B1-eth0/tmp/ssh_Reverse_tunnel_lnpi23_64032.log",
+		"/C/Users/Silvia/AppData/Local/Temp/scp29350/HOME%2FLnPi3B1%2FLnPi-Casetta_ipSteve/home/pi/PiProd/shProc/ssh_Reverse_tunnel.sh",
+		"/C/Users/Silvia/AppData/Local/Temp/scp38620/HOME%2FLnPi3B1%2FLnPi-Casetta_ipSteve/home/pi/PiProd/update_git",
+		"/C/Users/Silvia/AppData/Local/Temp/scp37157/HOME%2FLnPi23%2F192.168.1.23/home/pi/PiProd/shProc/myIP_New",
+		"/C/Users/Silvia/AppData/Local/Temp/scp31743/HOME%2FLnPi3B1%2FLnPi-Casetta_ipSteve/home/pi/PiProd/.git/config",
+		"/C/Users/Silvia/AppData/Local/Temp/scp05219/HOME%2FDirect%2F192.168.1.23/home/pi/PiProd/shProc/myIP_New",
+		"/C/Users/Silvia/AppData/Local/Temp/scp06163/HOME%2FDirect%2F192.168.1.23/home/pi/PiProd/shProc/myIP",
+		"/C/Users/Silvia/AppData/Local/Temp/scp55435/HOME%2FDirect%2F192.168.1.23/etc/network/interfaces",
+		"/C/Users/Silvia/AppData/Local/Temp/scp01714/HOME%2FDirect%2F192.168.1.23/home/pi/PiProd/DDNS/conf/DDNS_config.ini",
+		"/C/Users/Silvia/AppData/Local/Temp/scp00312/HOME%2FDirect%2F192.168.1.23/etc/wpa_supplicant/wpa_supplicant.conf",
+		"/C/Users/Silvia/AppData/Local/Temp/scp59890/HOME%2FDirect%2F192.168.1.23/etc/wpa_supplicant/wpa_Loreto_supplicant.conf",
+		"/C/Users/Silvia/AppData/Local/Temp/scp30264/HOME%2FDirect%2F192.168.1.23/etc/ssh/sshd_config",
+		"/C/Users/Silvia/AppData/Local/Temp/scp42996/HOME%2FLnPi3B1%2FLnPi-Casetta via ipSteve/home/pi/PiProd/shProc/ssh_Reverse_tunnel.sh",
+		"/Y/LnPi/LnPi_installation/LnPi3B1_installation.ini",
+		"/C/Users/Silvia/AppData/Local/Temp/scp31135/STEVE%2FDirect%2Fsteve.static.ip (88.149.198.156)/etc/ssh/sshd_config",
+		"/C/Users/Silvia/AppData/Local/Temp/scp57171/HOME%2FLnPi3B1%2FLnPi-Casetta_ipSteve/etc/wpa_supplicant/wpa_supplicant.conf",
+		"/C/tmp/wpa_supplicant.conf",
+		"/C/Users/Silvia/AppData/Local/Temp/scp04718/HOME%2FDirect%2F192.168.1.23/home/pi/PiProd/Ln_etc/rules.d/70-ln-network.rules",
+		"/C/Users/Silvia/AppData/Local/Temp/scp56315/HOME%2FLnPi3B1%2FLnPi-Casetta_ipSteve/etc/dhcpcd.conf",
+		"/C/Users/Silvia/AppData/Local/Temp/scp56936/HOME%2FLnPi3B1%2FLnPi-Casetta_ipSteve/etc/network/interfaces"
+	],
+	"find":
+	{
+		"height": 41.0
+	},
+	"find_in_files":
+	{
+		"height": 169.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"= ${VARS",
+			"${VARS:",
+			"Ln_ProgramDIR",
+			"Ln_Drive",
+			"_add_data",
+			"LoadYamFile",
+			"my_saved_files",
+			"_include_variable",
+			"script_dir_name",
+			"thisDir",
+			"ParseInput",
+			"mnt",
+			"wslpath",
+			"getwinvar",
+			"LnDisk",
+			"profileTemplate",
+			"LnSrc_RootDir",
+			"Process_LnDisk",
+			"Execute",
+			"exit",
+			"LnDisk",
+			"caldaia",
+			"Process_MyData",
+			"Filu",
+			"Filu\\My",
+			"dest",
+			"port",
+			"sip_",
+			"libra",
+			"Putty",
+			"openSSL",
+			"OpenSSH",
+			"HOME",
+			"home",
+			"HOME",
+			"pgm",
+			"From_LnPi31",
+			"prepareTemplate",
+			":Esegui",
+			"profileDir",
+			"Esegui",
+			"From_LnPi31",
+			"Process_LnPi23",
+			"GlobalConfigFile_base",
+			"cop",
+			"prepareTemplate",
+			"etonota",
+			"day_light",
+			"same size",
+			"same_si",
+			"same si",
+			"oauth2client",
+			"oauth2client.client",
+			"OAuth2WebServerFlow",
+			"gflags",
+			"args",
+			"httplib2",
+			"https://www.googleapis.com/auth/drive",
+			"SCOPES",
+			"veri",
+			"FUNCTION_NAME",
+			"KWll",
+			"KW",
+			"KWllRvu90d97kPMPlqWRMX9Y",
+			"KWllRvu9Od97kPMPlqWRMX9Y",
+			"Process_LnDisk_gDRIVE_nloreto",
+			"MY_PROFILE",
+			"Process_LnDisk",
+			"_execute_upload",
+			"encodig",
+			"writ",
+			"readTextFile",
+			"TAB5",
+			"TAB2",
+			"TAB4",
+			"day_light",
+			"fSKIP_DL",
+			"anal",
+			"python $program",
+			"lndi",
+			"LOCAL_ROOT_PATH",
+			"loretonota",
+			"notaloreto",
+			"nloreto",
+			"notaloreto",
+			"nloreto",
+			".nam",
+			"lndict",
+			"Dot",
+			"Ln.Dic",
+			"DotMap",
+			"Ln.Dict()",
+			"DotMap",
+			"account",
+			"profile.account",
+			"account[",
+			"profile.account",
+			"status_file",
+			"ppr",
+			"Upload",
+			"curretn",
+			"selectProfile",
+			"valid_data_profiles",
+			"data_profile",
+			"selectProfile",
+			"acco",
+			"pforma",
+			"Dict",
+			"DotMap",
+			"LORETO",
+			"self._dynamic",
+			"\\",
+			"socket",
+			"python3",
+			"defaul",
+			"echo \"      $Inter",
+			"echo \"$Interface",
+			"ACTION",
+			"8023",
+			"LnDisk",
+			"LnStart",
+			"local_paths",
+			"--da",
+			"data_profile",
+			"main.",
+			"user_name",
+			"data_profile",
+			"json_file"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/K/Filu/LnDisk/GIT-REPO/LnStartProgram/myFunctions/LnYamlLoader.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7765,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3481,
+								3481
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content"
+							],
+							"function_name_status_row": 103,
+							"incomplete_sync": null,
+							"origPos":
+							[
+								0.0,
+								1800.0
+							],
+							"remote_loading": false,
+							"syncScroll": false,
+							"synced": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1800.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/K/Filu/LnDisk/GIT-REPO/LnStartProgram/__main__.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6352,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4778,
+								4778
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										3526,
+										3527
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										3459,
+										3460
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content"
+							],
+							"function_name_status_row": 129,
+							"incomplete_sync": null,
+							"origPos":
+							[
+								0.0,
+								2340.0
+							],
+							"remote_loading": false,
+							"syncScroll": false,
+							"synced": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1800.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/K/Filu/LnDisk/GIT-REPO/LnStartProgram/myFunctions/SetOsEnv.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2870,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								731,
+								737
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content"
+							],
+							"function_name_status_row": 23,
+							"incomplete_sync": null,
+							"origPos":
+							[
+								0.0,
+								0.0
+							],
+							"remote_loading": false,
+							"syncScroll": false,
+							"synced": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/K/Filu/LnDisk/GIT-REPO/LnStartProgram/conf/LnStartProgram.yml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1901,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1098,
+								1098
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content"
+							],
+							"function_name_status_row": 27,
+							"incomplete_sync": null,
+							"origPos":
+							[
+								0.0,
+								0.0
+							],
+							"remote_loading": false,
+							"syncScroll": false,
+							"synced": false,
+							"syntax": "Packages/YAML/YAML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/K/Filu/LnDisk/GIT-REPO/LnStartProgram/myFunctions/__init__.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 653,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								611,
+								611
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_complete": false,
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content"
+							],
+							"function_name_status_row": 19,
+							"incomplete_sync": null,
+							"origPos":
+							[
+								0.0,
+								0.0
+							],
+							"remote_loading": false,
+							"syncScroll": false,
+							"synced": false,
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 781,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								781,
+								0
+							]
+						],
+						"settings":
+						{
+							"apply_syntax_touched": true,
+							"auto_name": "{",
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
+							],
+							"default_dir": "K:\\Filu\\LnDisk\\GIT-REPO\\LnStartProgram\\myFunctions",
+							"function_name_status_row": 0,
+							"incomplete_sync": null,
+							"origPos":
+							[
+								0.0,
+								0.0
+							],
+							"syncScroll": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 29.0
+	},
+	"input":
+	{
+		"height": 59.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 346.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.help":
+	{
+		"height": 132.0
+	},
+	"output.hex_viewer_inspector":
+	{
+		"height": 144.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 130.0
+	},
+	"output.stino_build_panel":
+	{
+		"height": 0.0
+	},
+	"output.stino_panel":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "LnStartProgram.sublime-project",
+	"replace":
+	{
+		"height": 54.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 139.0,
+		"last_filter": "vi",
+		"selected_items":
+		[
+			[
+				"vi",
+				"viewitems"
+			],
+			[
+				"",
+				"__getitem__"
+			]
+		],
+		"width": 392.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 256.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
