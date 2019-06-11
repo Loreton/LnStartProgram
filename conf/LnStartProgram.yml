@@ -3,43 +3,61 @@
 # servono da riferimento ma per ogni riga verrà creata una variabile di ambiente
 VARS:
     # Ln_Drive      : ${Ln_Drive}  # creata at run time
-    Ln_RootDir    : ${Ln_RootDir}     # ${Ln_RootDir} creata at run time
-    Ln_ProgramDir : ${Ln_ProgramDir}  # creata at run time - directory dello script
+    # Ln_RootDir         : ${env:Ln_RootDir}     # ${Ln_RootDir} creata at run time
+    # Ln_ProgramDir      : ${env:Ln_ProgramDir}  # creata at run time - directory dello script
 
 
-    Ln_StartDir        : ${VARS.Ln_RootDir}\LnStart
-    Ln_LoretoDir       : ${VARS.Ln_RootDir}\Loreto
-    Ln_FreeDir         : ${VARS.Ln_RootDir}\LnFree
-    Ln_LeslaDir        : ${VARS.Ln_RootDir}\Lesla
-    Ln_JAVA_HOME       : ${VARS.Ln_FreeDir}\Pgm\Java\jdk1.8.0_66
+    Ln_StartDir        : ${env:Ln_RootDir}\LnStart
+    Ln_LoretoDir       : ${env:Ln_RootDir}\Loreto
+    Ln_FreeDir         : ${env:Ln_RootDir}\LnFree
+    Ln_LeslaDir        : ${env:Ln_RootDir}\Lesla
 
 
-optVARS:
-    Ln_GitRepoDir      : ${VARS.Ln_RootDir}\GIT-REPO
+env_VARS:
+    Ln_GitRepoDir      : ${env:Ln_RootDir}\GIT-REPO
+    JAVA_HOME          : ${VARS.Ln_FreeDir}\Pgm\Java\jdk1.8.0_66
 
     # --- Editors
     Ln_SublimeEditor   : ${VARS.Ln_FreeDir}\Editors\SublimeText_3\sublime_text.exe
     Ln_Notepad++       : ${VARS.Ln_FreeDir}\Editors\NotePad++\notepad++.exe
 
     # --- Generic
-    Ln_PortableAppsDir : ${VARS.Ln_RootDir}\PortableApps\PortableApps
+    Ln_PortableAppsDir : ${env:Ln_RootDir}\PortableApps\PortableApps
     Ln_myEditor        : ${VARS.Ln_FreeDir}\Editors\SublimeText_3\sublime_text.exe
     Ln_myBrowser       : ${VARS.Ln_FreeDir}\Network\Browser\Opera\launcher.exe
-    JAVA_HOME          : ${VARS.Ln_JAVA_HOME}
+    # JAVA_HOME          : ${env.Ln_JAVA_HOME}
     gitdir             : ${VARS.Ln_FreeDir}\Pgm\PortableGit
 
     # --- Python
     Ln_pythonDir       : ${VARS.Ln_FreeDir}\Pgm\WPy-3710\python-3.7.1.amd64
     Ln_PythonExe       : ${VARS.Ln_FreeDir}\python.exe
     opt.PYTHONPATH     : X:\GIT-REPO
-                         ${VARS.Ln_RootDir}\GIT-REPO\Python3 # comoda per l'import di LnPythonLib
+                         ${env:Ln_RootDir}\GIT-REPO\Python3 # comoda per l'import di LnPythonLib
 
     # --- Winscp & Kitty
     Ln_WinScpDIR       : ${VARS.Ln_FreeDir}\Network\FTPc\WinSCP
-    Ln_WinScpKittyCmd  : ${VARS.Ln_RootDir}\GIT-REPO\Scripts\python\Sources\KittyFromWinScp\bin\kitty-from-WinScp.cmd
-    Ln_WinScpKittyPy   : ${VARS.Ln_RootDir}\GIT-REPO\Scripts\python\Sources\KittyFromWinScp\__main__.py
+    Ln_WinScpKittyCmd  : ${env:Ln_RootDir}\GIT-REPO\Scripts\python\Sources\KittyFromWinScp\bin\kitty-from-WinScp.cmd
+    Ln_WinScpKittyPy   : ${env:Ln_RootDir}\GIT-REPO\Scripts\python\Sources\KittyFromWinScp\__main__.py
     Ln_WinScpEXE       : ${VARS.Ln_FreeDir}\winscp.exe
     Ln_KittyEXE        : ${VARS.Ln_FreeDir}\Network\Telnet\Kitty/Kitty.exe
 
+
+
+PATHS:
+    # python:
+    - ${env:Ln_pythonDir}
+    - ${env:Ln_pythonDir}\DLLs
+    - ${env:Ln_pythonDir}\Lib
+    - ${env:Ln_pythonDir}\Scripts
+    - ${env:Ln_pythonDir}\Lib\site-packages
+    - ${env:Ln_pythonDir}\Lib\site-packages/win32com
+
+    # java:
+    - ${env:Ln_JAVA_HOME}\bin
+
+
+    #git:
+    - ${env:gitdir}\bin
+    - ${env:Ln_GitRepoDir}\gitUtils
 
 

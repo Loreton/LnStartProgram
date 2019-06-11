@@ -2,26 +2,28 @@
 # -*- coding: iso-8859-15 -*-
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 04-06-2019 19.10.10
+# Version ......: 05-06-2019 13.03.48
 #
 # ####################################################################################################################
 
 import os
-logger = None
+# logger = None
 # from .. Logger.LnLogger import SetLogger
 # from .. File.VerifyPath import VerifyPath   as LnVerifyPath
 
-def setLogger(myLogger):
-    global logger
-    logger = myLogger
+# def setLogger(myLogger):
+#     global logger
+#     logger = myLogger
 
 #########################################################################
 #
 #########################################################################
-def setVar(varName, varValue, fDEBUG=False):
-    logger = SetLogger(__name__)
+def setVar(varName, varValue, fDEBUG=False, logger=None):
+    # global logger
+    # logger = myLogger
+    # logger = SetLogger(__name__)
     msg = '{0:<20} : {1}'.format(varName, varValue)
-    logger.info(msg)
+    if logger: logger.info(msg)
     os.environ[varName] = str(varValue)
 
 

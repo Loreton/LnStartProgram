@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 04-06-2019 19.09.44
+# Version ......: 11-06-2019 18.41.35
 #
 # #############################################
 
@@ -100,8 +100,8 @@ if __name__ == '__main__':
     log_file = str(Path(script_path  / 'log' / '{0}.log'.format(prj_name)))
     lnLogger = Ln.setLogger(filename=os.path.abspath(log_file), debug_level=3, dry_run=not inpArgs.go, log_modules=inpArgs.log_modules, color=Ln.Color() )
     lnStdout = Ln.setLogger(filename=os.path.abspath(stdout_file), color=Ln.Color() )
-    gv.logger = lnLogger
-    gv.LnLogger = lnLogger
+    # gv.logger = lnLogger
+    # gv.LnLogger = lnLogger
     lnLogger.info('input arguments', vars(inpArgs))
 
 
@@ -127,7 +127,34 @@ if __name__ == '__main__':
     # gv.cfgFile  = iniFile.toDict(dictType=Ln.Dict)
     # if gv.fDEBUG: gv.cfgFile.printTree(header="INI File", fPAUSE=True)
 
-    Ln.setVars(config['VARS'], mandatory=True)
+
+        # -------------------------------------------------
+        # - Setting delle variabili
+        # -------------------------------------------------
+    for name, value in config['VARS'].items():
+        lnLogger.info('envar {0:<15}: {1}'.format(name, value))
+        os.environ[name] = str(value)
+
+    for name, value in config['env_VARS'].items():
+        lnLogger.info('envar {0:<15}: {1}'.format(name, value))
+        os.environ[name] = str(value)
+
+    myPath = os.getenv('PATH')
+    for path in config['PATHS']:
+        path = '{0};'.format(str(Path(path)))  # rimuove eventuali eccessi di \\\\\\
+        # path = '{0};'.format(path)           # add ;
+        myPath = myPath.replace(path, '')     # delete if exists
+        # lnLogger.info('adding path:', ('PATH', path))
+        # lnLogger.info('adding PATH: {0}'.format(path))
+        lnLogger.info('adding PATH', path)
+        myPath = '{0};{1}'.format(path, myPath)
+
+        # paths = pathValue.split(sepChar)
+        # for path in paths:
+        #     path    = LnVerifyPath(path, exitOnError=fMANDATORY)
+
+        # setVar(pathName, newPATH, fDEBUG=False)
+
     '''
     Ln.OsEnv.setVars(gv.cfgFile.OPT_VARS, mandatory=False)
     Ln.OsEnv.setPaths(gv.cfgFile.PATHS)

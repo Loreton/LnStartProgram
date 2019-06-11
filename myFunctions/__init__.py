@@ -1,5 +1,5 @@
 # updated by ...: Loreto Notarantonio
-# Version ......: 04-06-2019 19.09.29
+# Version ......: 05-06-2019 13.04.19
 
 from . LnLogger import setLogger
 
@@ -17,6 +17,6 @@ from . LnLogger import setLogger
 # from . ppretty import ppretty
 
 from . LnYamlLoader import LoadYamFile
-from . SetOsEnv import setVars
+from . OsEnvironment import setVars
 
 from . LnColor  import LnColor as Color

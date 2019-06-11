@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # updated by ...: Loreto Notarantonio
-# Version ......: 04-06-2019 18.23.44
+# Version ......: 11-06-2019 18.31.10
 import sys
 import os
 import re
@@ -93,50 +93,59 @@ def LoadYamFile(filename, prefix=r'${', suffix=r'}', errorOnNotFound=True, logge
 
 
 def _decode_variable(var_name):
+    _dict = yaml.load(data_str) # defaut currente data
 
-    if ':' in var_name:
-        _fname, dict_path = var_name.strip().split(':', 1) # format filename:key1.key2....
+    if var_name[:4].lower() in ('env:'):
+        _str = var_name[:4]
+        _name = var_name.strip().replace(_str, '') # format env:varname
+        _value = os.environ.get(_name, None)
+        return _value
+
+    elif ':' in var_name:
+        _fname, d_path = var_name.strip().split(':', 1) # format filename:key1.key2....
+
+        if _fname in ['']:
+            _dict = yaml.load(data_str) # get inside currente data
+
+        elif _fname in already_read_files:
+            _dict = already_read_files[_fname]
+
+        # - altrimenti leggilo
+        else:
+            filename, ext = os.path.splitext(_fname)
+            extensions = [ext] if ext else ['.yaml', '.yml']
+            # read file
+            for ext in extensions:
+                file = os.path.abspath(os.path.join(base_dir, '{0}{1}'.format(filename, ext)))
+                if os.path.isfile(file):
+                    with open(file, 'r') as fin:
+                        _dict = yaml.load(fin)
+                    already_read_files[_fname] = _dict
+                    break
+
+            if _dict is None:
+                raise IOError('File: {} NOT FOUND!'.format(file))
+
+
     elif '.' in var_name:
-        _fname = ''
-        dict_path = var_name
+        d_path = var_name
+
     else: # check in environment variables
         var_value = os.environ.get(var_name, None)
         return var_value
 
 
 
-    _dict = None
-    # - file gia in memoria...
-    if _fname in ['']:
-        _dict = yaml.load(data_str) # get inside currente data
-
-    elif _fname in already_read_files:
-        _dict = already_read_files[_fname]
-
-    # - altrimenti leggilo
-    else:
-        filename, ext = os.path.splitext(_fname)
-        extensions = [ext] if ext else ['.yaml', '.yml']
-        # read file
-        for ext in extensions:
-            file = os.path.abspath(os.path.join(base_dir, '{0}{1}'.format(filename, ext)))
-            if os.path.isfile(file):
-                with open(file, 'r') as fin:
-                    _dict = yaml.load(fin)
-                already_read_files[_fname] = _dict
-                break
-
-        if _dict is None:
-            raise IOError('File: {} NOT FOUND!'.format(file))
+    # _dict = None
 
 
     # - moving through the dict tree
     ptr = _dict
-    for item in dict_path.strip().split('.'):
+    for item in d_path.strip().split('.'):
         if item in ptr:
             ptr = ptr[item]
         else:
-            msg = 'key: {} not found in the dictionary'.format(dict_path)
+            msg = 'key: {} not found in the dictionary'.format(d_path)
             raise Exception('ERROR {}'.format(msg))
 
     return ptr
