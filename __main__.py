@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 17-06-2019 17.47.36
+# Version ......: 17-06-2019 19.02.19
 #
 # #############################################
 
@@ -74,17 +74,11 @@ if __name__ == '__main__':
     os.environ['Ln_Drive'] = str(script_path.drive)
     os.environ['Ln_RootDir'] = str(script_path.parent)
     os.environ['Ln_ProgramDir'] = str(script_path)
-    # all_env_Vars = os.environ
-    # for key, val in os.environ.items():
-    #     print ('{0:<25} = {1}'.format(key, val))
 
     stdout_file     = str(Path(script_path / 'log' / '{0}.stdout'.format(prj_name)))
     C               = Ln.Color(filename = stdout_file)
     printColored    = C.printColored
     gv              = DotMap(_dynamic=False)
-    # gv.Ln           = Ln
-    # gv.Color        = C
-    # gv.printColored = C.printColored
 
     # - Parse Input
     inpArgs = ParseInput()
@@ -106,7 +100,9 @@ if __name__ == '__main__':
 
     # - read configuration file
     yaml_config_file = str(Path(script_path / 'conf' / '{0}.yml'.format(prj_name)))
-    config = Ln.LoadYamFile(yaml_config_file, prefix=r'${', suffix=r'}', errorOnNotFound=False)
+    # config = Ln.LoadYmlFile(yaml_config_file, prefix=r'${', suffix=r'}', errorOnNotFound=False)
+    config_str = Ln.LoadYamlFile_2(yaml_config_file)
+    config = Ln.processYamlData(config_str, prefix=r'${', suffix=r'}', errorOnNotFound=False)
     lnLogger.info('configuration data', config)
 
 
@@ -130,11 +126,15 @@ if __name__ == '__main__':
         myPath = '{0};{1}'.format(str(path), myPath)
 
 
+    config = Ln.processYamlData(config, prefix=r'${', suffix=r'}', errorOnNotFound=False)
+    lnLogger.info('configuration data', config)
 
     programToStart = inpArgs.program
 
     if programToStart.lower().strip() in ['tc', 'totalcommander']:
         CMDList = Prj.SetTotalCommander(config['TOTAL_COMMANDER'], logger=lnLogger)
+    elif programToStart.lower().strip() in ['executor']:
+        CMDList = Prj.SetExecutor(config['EXECUTOR'], logger=lnLogger)
     else:
         Ln.Exit(1, "Program: {} not yet implemented".format(programToStart))
 
@@ -144,8 +144,6 @@ if __name__ == '__main__':
     Ln.OsEnv.setPaths(gv.cfgFile.PATHS)
 
 
-    if programToStart.lower().strip() in ['tc', 'totalcommander']:
-        CMDList = Prj.SetTotalCommander(gv.cfgFile.TOTAL_COMMANDER, fDEBUG=gv.fDEBUG)
 
     elif programToStart.lower().strip() in ['executor']:
         CMDList = Prj.SetExecutor(gv, gv.cfgFile.EXECUTOR)

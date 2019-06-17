@@ -51,6 +51,9 @@ export_vars:
     Ln_TC_configDir    : ${env:Ln_TC_Dir}\LnData\Config
     Ln_TC_Dir          : ${env:Ln_FreeDir}\Files\Manager\WinCmd-LN
 
+    # --- Executor
+    # Ln_ExecutorDir    : ${env:Ln_FreeDir}\Desktop\Executor_Test
+
 
 PATHS:
     # python:
@@ -87,4 +90,19 @@ TOTAL_COMMANDER:
 
     Ln_TC_IniFile      : ${env:Ln_TC_configDir}\WinCmd.ini
     Ln_TC_ftpIniFile   : ${env:Ln_TC_configDir}\Wcx_Ftp.ini
+
+
+EXECUTOR:
+    # workingDir: ${env:Ln_ExecutorDir}
+    workingDir: ${env:Ln_FreeDir}\Desktop\Executor
+    iniFile: ${EXECUTOR.workingDir}\executor.ini
+    backupDir: ${EXECUTOR.workingDir}\LnBackup
+    executorEXE:
+        - ${EXECUTOR.workingDir}\Executor.exe
+        - ${EXECUTOR.workingDir}\Executor_32.exe
+        - ${EXECUTOR.workingDir}\Executor_64.exe
+    hookwinrDLL:
+        - ${EXECUTOR.workingDir}\hookwinr.dll
+        - ${EXECUTOR.workingDir}\hookwinr_32.dll
+        - ${EXECUTOR.workingDir}\hookwinr_64.dll
 

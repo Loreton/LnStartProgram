@@ -20,6 +20,20 @@
 
         },
         {
+            "name": "Executor",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": true,
+            "pythonPath": "${config:python.pythonPath}",
+            "program": "K:\\Filu\\LnDisk\\GIT-REPO\\LnStartProgram\\__main__.py",
+            "args": [
+                "--program=executor",
+                ""
+            ],
+            "cwd": "${workspaceRoot}",
+
+        },
+        {
             "name": "PySpark",
             "type": "python",
             "request": "launch",

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # updated by ...: Loreto Notarantonio
-# Version ......: 17-06-2019 13.21.30
+# Version ......: 17-06-2019 18.52.50
 import sys
 import os
 import re
@@ -31,6 +31,79 @@ def log_it(*data):
     replacing it with dictionary_data.
     ... then start findall again
 """
+
+
+
+
+def LoadYamlFile_2(filename):
+    global base_dir
+    processed_vars = [] # variables already processed
+    base_dir = os.path.split(filename)[0] # directory of current file
+
+    with open(filename, 'r') as f:
+        data_str = f.read() # single string
+
+    """ removal of all commented lines to avoid solving
+    variables that could create errors"""
+    rows = []
+    for line in data_str.split('\n'):
+        if not line.strip(): continue
+        if line.strip()[0]=='#': continue
+        rows.append(line)
+
+    data_str = '\n'.join(rows)
+    return data_str
+
+
+def processYamlData(data, prefix=r'${', suffix=r'}', errorOnNotFound=True, logger=None):
+    assert isinstance(data, (dict, str))
+    global data_str, already_read_files
+    already_read_files = {}
+
+    data_str = data if isinstance(data, str) else json.dumps(data)
+    processed_vars = [] # variables already processed
+
+    _prefix = prefix.replace('$', '\\$')
+    _suffix = suffix.replace('$', '\\$')
+    """prefix - suffix: variable must be suffixed by non unicode
+                        characters to avoid parsing errors
+                        tested and cut: $, {}, §, ...
+    """
+    # - search for variables
+    strToFind = _prefix + r'(.*?)' + _suffix
+    while True:
+        var_names_list = re.findall(strToFind, data_str)
+        var_names_list = [x for x in var_names_list if x.strip()] # ignore empty vars --> {{ }}
+        var_names_list = [x for x in var_names_list if x not in processed_vars] # ignore already processed vars
+        if not var_names_list: # process completed
+            break
+
+        var_name = var_names_list[0] # get the first variable
+        # if var_name in ['VARS.Ln_RootDir']:
+        #     var_name = var_name
+        var_value = _decode_variable(var_name) # decode and search for it
+        if var_value:   # variable value FOUND
+            # remove DQuote around the string created by json.dumps
+            DQ = '"'
+            _new_data = json.dumps(var_value, indent=4, sort_keys=True).strip('"')
+            str_to_replace = prefix + var_name + suffix
+            data_str = data_str.replace(str_to_replace, _new_data)
+        else:
+            if errorOnNotFound:
+                msg = 'Variable {0} NOT FOUND'.format(prefix + var + suffix)
+                if logger:
+                    logger.error(msg)
+                else:
+                    print(msg)
+                sys.exit()
+            else:
+                processed_vars.append(var_name)
+
+
+    return yaml.load(data_str)
+    # return yaml.safe_load(data_str)
+
+
 
 def LoadYamFile(filename, prefix=r'${', suffix=r'}', errorOnNotFound=True, logger=None):
     _prefix = prefix.replace('$', '\\$')

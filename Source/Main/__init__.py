@@ -1,5 +1,5 @@
 # updated by ...: Loreto Notarantonio
-# Version ......: 17-06-2019 12.26.14
+# Version ......: 17-06-2019 18.19.32
 
 # from . LnLogger import setLogger
 
@@ -21,3 +21,4 @@
 
 # from . LnColor  import LnColor as Color
 from . TotalCommander import SetTotalCommander
+from . Executor import SetExecutor
