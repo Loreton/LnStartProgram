@@ -1,7 +1,8 @@
 # updated by ...: Loreto Notarantonio
-# Version ......: 05-06-2019 13.04.19
+# Version ......: 17-06-2019 17.11.20
 
 from . LnLogger import setLogger
+from . LnColor  import LnColor as Color
 
 # from . LnUtils import readYamlFile
 # from . LnUtils import writeYamlFile
@@ -18,5 +19,5 @@ from . LnLogger import setLogger
 
 from . LnYamlLoader import LoadYamFile
 from . OsEnvironment import setVars
+from . RunProgram import StartProgram as runProgram
 
-from . LnColor  import LnColor as Color

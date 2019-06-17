@@ -7,40 +7,49 @@ VARS:
     # Ln_ProgramDir      : ${env:Ln_ProgramDir}  # creata at run time - directory dello script
 
 
-    Ln_StartDir        : ${env:Ln_RootDir}\LnStart
-    Ln_LoretoDir       : ${env:Ln_RootDir}\Loreto
-    Ln_FreeDir         : ${env:Ln_RootDir}\LnFree
-    Ln_LeslaDir        : ${env:Ln_RootDir}\Lesla
+    StartDir        : ${env:Ln_RootDir}\LnStart
+    LoretoDir       : ${env:Ln_RootDir}\Loreto
+    FreeDir         : ${env:Ln_RootDir}\LnFree
+    LeslaDir        : ${env:Ln_RootDir}\Lesla
 
 
-env_VARS:
+export_vars:
+    Ln_StartDir        : ${VARS.StartDir}
+    Ln_LoretoDir       : ${VARS.LoretoDir}
+    Ln_FreeDir         : ${VARS.FreeDir}
+    Ln_LeslaDir        : ${VARS.LeslaDir}
+
+
     Ln_GitRepoDir      : ${env:Ln_RootDir}\GIT-REPO
-    JAVA_HOME          : ${VARS.Ln_FreeDir}\Pgm\Java\jdk1.8.0_66
+    JAVA_HOME          : ${env:Ln_FreeDir}\Pgm\Java\jdk1.8.0_66
 
     # --- Editors
-    Ln_SublimeEditor   : ${VARS.Ln_FreeDir}\Editors\SublimeText_3\sublime_text.exe
-    Ln_Notepad++       : ${VARS.Ln_FreeDir}\Editors\NotePad++\notepad++.exe
+    Ln_SublimeEditor   : ${env:Ln_FreeDir}\Editors\SublimeText_3\sublime_text.exe
+    Ln_Notepad++       : ${env:Ln_FreeDir}\Editors\NotePad++\notepad++.exe
 
     # --- Generic
     Ln_PortableAppsDir : ${env:Ln_RootDir}\PortableApps\PortableApps
-    Ln_myEditor        : ${VARS.Ln_FreeDir}\Editors\SublimeText_3\sublime_text.exe
-    Ln_myBrowser       : ${VARS.Ln_FreeDir}\Network\Browser\Opera\launcher.exe
-    # JAVA_HOME          : ${env.Ln_JAVA_HOME}
-    gitdir             : ${VARS.Ln_FreeDir}\Pgm\PortableGit
+    Ln_myEditor        : ${env:Ln_FreeDir}\Editors\SublimeText_3\sublime_text.exe
+    Ln_myBrowser       : ${env:Ln_FreeDir}\Network\Browser\Opera\launcher.exe
+    # JAVA_HOME          : ${env:Ln_JAVA_HOME}
+    gitdir             : ${env:Ln_FreeDir}\Pgm\PortableGit
 
     # --- Python
-    Ln_pythonDir       : ${VARS.Ln_FreeDir}\Pgm\WPy-3710\python-3.7.1.amd64
-    Ln_PythonExe       : ${VARS.Ln_FreeDir}\python.exe
+    Ln_pythonDir       : ${env:Ln_FreeDir}\Pgm\WPy-3710\python-3.7.1.amd64
+    Ln_PythonExe       : ${env:Ln_FreeDir}\python.exe
     opt.PYTHONPATH     : X:\GIT-REPO
                          ${env:Ln_RootDir}\GIT-REPO\Python3 # comoda per l'import di LnPythonLib
 
     # --- Winscp & Kitty
-    Ln_WinScpDIR       : ${VARS.Ln_FreeDir}\Network\FTPc\WinSCP
+    Ln_WinScpDIR       : ${env:Ln_FreeDir}\Network\FTPc\WinSCP
     Ln_WinScpKittyCmd  : ${env:Ln_RootDir}\GIT-REPO\Scripts\python\Sources\KittyFromWinScp\bin\kitty-from-WinScp.cmd
     Ln_WinScpKittyPy   : ${env:Ln_RootDir}\GIT-REPO\Scripts\python\Sources\KittyFromWinScp\__main__.py
-    Ln_WinScpEXE       : ${VARS.Ln_FreeDir}\winscp.exe
-    Ln_KittyEXE        : ${VARS.Ln_FreeDir}\Network\Telnet\Kitty/Kitty.exe
+    Ln_WinScpEXE       : ${env:Ln_FreeDir}\winscp.exe
+    Ln_KittyEXE        : ${env:Ln_FreeDir}\Network\Telnet\Kitty/Kitty.exe
 
+    # --- TotalCommander
+    Ln_TC_configDir    : ${env:Ln_TC_Dir}\LnData\Config
+    Ln_TC_Dir          : ${env:Ln_FreeDir}\Files\Manager\WinCmd-LN
 
 
 PATHS:
@@ -60,4 +69,22 @@ PATHS:
     - ${env:gitdir}\bin
     - ${env:Ln_GitRepoDir}\gitUtils
 
+
+
+# ----------------------------------------------------
+# - non posso mettere il '.' nei nomi delle variabili
+# - altrimenti mi dà errore dotMap()
+# - quindi conviene evitarlo in generale anche se
+# - gli OS le accettano
+# ----------------------------------------------------
+TOTAL_COMMANDER:
+    workingDir         : ${env:Ln_TC_Dir}
+    Ln_TC_PATH         : ${env:Ln_TC_Dir}
+    Ln_TC_dataDir      : ${env:Ln_TC_Dir}\LnData
+    Ln_TC_logDir       : ${env:Ln_TC_Dir}\log
+    Ln_TC_iconsDir     : ${env:Ln_TC_Dir}\LnData\Icons
+    Ln_TC_PluginDir    : ${env:Ln_TC_Dir}\LnData\PlugsIN
+
+    Ln_TC_IniFile      : ${env:Ln_TC_configDir}\WinCmd.ini
+    Ln_TC_ftpIniFile   : ${env:Ln_TC_configDir}\Wcx_Ftp.ini
 

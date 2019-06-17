@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 11-06-2019 18.41.35
+# Version ......: 17-06-2019 17.47.36
 #
 # #############################################
 
@@ -14,7 +14,8 @@ from    collections import OrderedDict
 from    dotmap import DotMap
 
 
-import myFunctions  as Ln
+import Source.Utils  as Ln
+import Source.Main  as Prj
 
 
 ##############################################################
@@ -30,10 +31,10 @@ def ParseInput():
 
     parser = argparse.ArgumentParser(description='command line tool to start programs')
     parser.add_argument('--program', help='Specify progra to be started)', required=True)
-    parser.add_argument('--subst', help='Specify the SUBST drive', required=False, default=None)
+    # parser.add_argument('--subst', help='Specify the SUBST drive', required=False, default=None)
     parser.add_argument('--root-dir', help='LnDisk ROOT directory (ex: D:\\LnDisk)', required=False, default=None)
-    parser.add_argument('--ini-file', help='ini configuration fileName', required=False, default='K:\\Filu\\LnDisk\\LnStart\\conf\\LnStart.ini')
-    parser.add_argument('--edit-ini', help='Edit ini configuration file', action='store_true')
+    # parser.add_argument('--ini-file', help='ini configuration fileName', required=False, default='K:\\Filu\\LnDisk\\LnStart\\conf\\LnStart.ini')
+    # parser.add_argument('--edit-ini', help='Edit ini configuration file', action='store_true')
 
     parser.add_argument('--go', help='disable dry-run', action='store_true')
     parser.add_argument('--display-args', help='Display input paramenters', action='store_true')
@@ -80,10 +81,10 @@ if __name__ == '__main__':
     stdout_file     = str(Path(script_path / 'log' / '{0}.stdout'.format(prj_name)))
     C               = Ln.Color(filename = stdout_file)
     printColored    = C.printColored
-    gv              = DotMap(_dynamic   = False)
-    gv.Ln           = Ln
-    gv.Color        = C
-    gv.printColored = C.printColored
+    gv              = DotMap(_dynamic=False)
+    # gv.Ln           = Ln
+    # gv.Color        = C
+    # gv.printColored = C.printColored
 
     # - Parse Input
     inpArgs = ParseInput()
@@ -100,66 +101,48 @@ if __name__ == '__main__':
     log_file = str(Path(script_path  / 'log' / '{0}.log'.format(prj_name)))
     lnLogger = Ln.setLogger(filename=os.path.abspath(log_file), debug_level=3, dry_run=not inpArgs.go, log_modules=inpArgs.log_modules, color=Ln.Color() )
     lnStdout = Ln.setLogger(filename=os.path.abspath(stdout_file), color=Ln.Color() )
-    # gv.logger = lnLogger
-    # gv.LnLogger = lnLogger
     lnLogger.info('input arguments', vars(inpArgs))
 
 
-
-    # - configuration file
+    # - read configuration file
     yaml_config_file = str(Path(script_path / 'conf' / '{0}.yml'.format(prj_name)))
     config = Ln.LoadYamFile(yaml_config_file, prefix=r'${', suffix=r'}', errorOnNotFound=False)
     lnLogger.info('configuration data', config)
-    # config = DotMap(config, _dynamic=False) # pass to dotMap
-    # lnLogger.info('configuration data', config.toDict())
-
-
-
-
-
-    # lnLogger.console('temporary exit', config.toDict())
-    # lnLogger.console('temporary exit'); sys.exit()
-
-
-
-    # extraSect   = Prj.prepareEnv()
-    # iniFile     = Ln.ReadIniFile(gv.args.ini_file, extraSections=extraSect, inline_comment_prefixes=(';'), strict=True)
-    # gv.cfgFile  = iniFile.toDict(dictType=Ln.Dict)
-    # if gv.fDEBUG: gv.cfgFile.printTree(header="INI File", fPAUSE=True)
 
 
         # -------------------------------------------------
-        # - Setting delle variabili
+        # - Setting environment variables
         # -------------------------------------------------
     for name, value in config['VARS'].items():
         lnLogger.info('envar {0:<15}: {1}'.format(name, value))
         os.environ[name] = str(value)
 
-    for name, value in config['env_VARS'].items():
-        lnLogger.info('envar {0:<15}: {1}'.format(name, value))
-        os.environ[name] = str(value)
+    for _name, _path in config['export_vars'].items():
+        lnLogger.info('envar {0:<15}: {1}'.format(_name, _path))
+        _path = Path(_path).resolve()
+        os.environ[name] = str(_path)
 
     myPath = os.getenv('PATH')
     for path in config['PATHS']:
-        path = '{0};'.format(str(Path(path)))  # rimuove eventuali eccessi di \\\\\\
-        # path = '{0};'.format(path)           # add ;
-        myPath = myPath.replace(path, '')     # delete if exists
-        # lnLogger.info('adding path:', ('PATH', path))
-        # lnLogger.info('adding PATH: {0}'.format(path))
+        path = Path(path).resolve()  # rimuove eventuali eccessi di \\\\\\
         lnLogger.info('adding PATH', path)
-        myPath = '{0};{1}'.format(path, myPath)
+        myPath = myPath.replace(str(path), '').replace(';;', ';')     # delete if exists
+        myPath = '{0};{1}'.format(str(path), myPath)
 
-        # paths = pathValue.split(sepChar)
-        # for path in paths:
-        #     path    = LnVerifyPath(path, exitOnError=fMANDATORY)
 
-        # setVar(pathName, newPATH, fDEBUG=False)
+
+    programToStart = inpArgs.program
+
+    if programToStart.lower().strip() in ['tc', 'totalcommander']:
+        CMDList = Prj.SetTotalCommander(config['TOTAL_COMMANDER'], logger=lnLogger)
+    else:
+        Ln.Exit(1, "Program: {} not yet implemented".format(programToStart))
+
 
     '''
     Ln.OsEnv.setVars(gv.cfgFile.OPT_VARS, mandatory=False)
     Ln.OsEnv.setPaths(gv.cfgFile.PATHS)
 
-    programToStart = gv.args.firstPosParameter
 
     if programToStart.lower().strip() in ['tc', 'totalcommander']:
         CMDList = Prj.SetTotalCommander(gv.cfgFile.TOTAL_COMMANDER, fDEBUG=gv.fDEBUG)
@@ -176,21 +159,20 @@ if __name__ == '__main__':
     elif programToStart.lower().strip() in ['winscp_loreto']:
         CMDList = Prj.SetWinSCP(gv.cfgFile.WINSCP_LORETO)
 
-    else:
-        Ln.Exit(1, "Program: {} not yet implemented".format(programToStart))
+    '''
 
-    if args['execute']:
-        Ln.runProgram('{PRGNAME} command list:'.format(PRGNAME=programToStart), CMDList)
-        msg = "Process completed, {} has been started".format(programToStart)
+    if inpArgs.go:
+        Ln.runProgram('{0} command list:'.format(programToStart), CMDList, logger=lnLogger)
+        msg = "Process completed, {0} has been started".format(programToStart)
     else:
         print ()
         for item in CMDList:
             C.printColored(color=C.yellowH, text=item, tab=4)
         print ()
-        msg = "enter --execute to launch the program: {}".format(programToStart)
+        msg = "enter --go    to launch the program: {0}".format(programToStart)
 
-    Ln.Exit(0, msg)
-    '''
+    C.printColored(color=C.greenH, text=msg, tab=4)
+    sys.exit(0)
 
 
 

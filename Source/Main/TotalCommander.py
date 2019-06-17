@@ -3,51 +3,51 @@
 # Scope:  Programma per ...........
 # updated by Loreto: 24-10-2017 14.24.47
 # -----------------------------------------------
-import os
+import os, sys
 import  platform
-
-import Source as Prj
+from pathlib import Path
 
 
 # =============================================
 # = Parsing
 # =============================================
-def SetTotalCommander(iniVar, fDEBUG=False):
-    # ----- common part into the Prj modules --------
-    Ln     = Prj.LnLib
-    logger = Ln.SetLogger(__name__)
-    # -----------------------------------------------
+def SetTotalCommander(d_vars, logger):
+    assert isinstance(d_vars, dict)
+
     CMDList = []
 
         # -------------------------------------------------
-        # - Setting delle variabili
+        # - scroling dictionary_variables
         # -------------------------------------------------
-    for varName, varValue in iniVar.items():
-        if varName.startswith('opt.'):
-            varName = varName[4:]
-            fMANDATORY = False
-        else:
-            fMANDATORY = True
+    for _label, _path in d_vars.items():
+        _path = Path(_path).resolve()
+        if not _path.exists():
+            logger.error(_path, "doesn't exists.")
+            print("{0} doesn't exists".format(_path))
+            sys.exit(1)
 
-        # salviamolo in formato Path
-        iniVar[varName] = Ln.VerifyPath(varValue, exitOnError=fMANDATORY)
-        Ln.OsEnv.setVar(varName, iniVar[varName])
-        if varName.lower() == 'workingdir':
-            os.chdir(str(iniVar[varName]))
+        logger.info('envar {0:<15}: {1}'.format(_label, _path))
+        os.environ[_label] = str(_path)
+        if _label.lower() == 'workingdir':
+            os.chdir(_path)
 
 
     OSbits = platform.architecture()[0]
-    logger.info( "Stiamo lavorando con TotalCommander {}".format(OSbits))
-    if OSbits.lower() == "64bit":
-        TCexe = Ln.VerifyPath(iniVar.Ln_TC_Dir.joinpath('realApp/WinCmd/TOTALCMD64.exe'))
+    logger.info( "Stiamo lavorando con TotalCommander {0}".format(OSbits))
+    if OSbits == "64bit":
+        TCexe = Path(d_vars['Ln_TC_PATH'] + '/realApp/WinCmd/TOTALCMD64.exe')
     else:
-        TCexe = Ln.VerifyPath(iniVar.Ln_TC_Dir.joinpath('realApp/WinCmd/TOTALCMD.exe'))
+        TCexe = Path(d_vars['Ln_TC_PATH'] + '/realApp/WinCmd/TOTALCMD.exe')
 
-    if fDEBUG: iniVar.printTree("IniVars variables", fPAUSE=True)
 
-    CMDList.append(TCexe)
-    CMDList.append('/I={}'.format(iniVar.Ln_TC_IniFile))
-    CMDList.append('/F={}'.format(iniVar.Ln_TC_ftpIniFile))
+    if not TCexe.exists():
+        print("{0} doesn't exists".format(TCexe))
+        sys.exit(1)
+
+
+    CMDList.append(str(TCexe))
+    CMDList.append('/I={}'.format(d_vars['Ln_TC_IniFile']))
+    CMDList.append('/F={}'.format(d_vars['Ln_TC_ftpIniFile']))
 
     return CMDList
 

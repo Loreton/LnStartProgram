@@ -1,12 +1,13 @@
-2019/06/11 18:41:21 - [LnLogger.setLogger: 226] INFO -> 
+    Process completed, tc has been started
+26] INFO -> 
 
 
 
 
  [list=6]:
-2019/06/11 18:41:21 - [LnLogger.setLogger: 226] INFO ->     [0000] - --------------------------------------------------
-2019/06/11 18:41:21 - [LnLogger.setLogger: 226] INFO ->     [0001] - - starting: 2019/06/11 18:41:21
-2019/06/11 18:41:21 - [LnLogger.setLogger: 226] INFO ->     [0002] - - dry-run:     False
-2019/06/11 18:41:21 - [LnLogger.setLogger: 226] INFO ->     [0003] - - debug level: 0
-2019/06/11 18:41:21 - [LnLogger.setLogger: 226] INFO ->     [0004] - --------------------------------------------------
-2019/06/11 18:41:21 - [LnLogger.setLogger: 226] INFO ->     [0005] - 
+2019/06/17 17:47:49 - [LnLogger.setLogger: 226] INFO ->     [0000] - --------------------------------------------------
+2019/06/17 17:47:49 - [LnLogger.setLogger: 226] INFO ->     [0001] - - starting: 2019/06/17 17:47:49
+2019/06/17 17:47:49 - [LnLogger.setLogger: 226] INFO ->     [0002] - - dry-run:     False
+2019/06/17 17:47:49 - [LnLogger.setLogger: 226] INFO ->     [0003] - - debug level: 0
+2019/06/17 17:47:49 - [LnLogger.setLogger: 226] INFO ->     [0004] - --------------------------------------------------
+2019/06/17 17:47:49 - [LnLogger.setLogger: 226] INFO ->     [0005] - 

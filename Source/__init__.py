@@ -1,23 +1,22 @@
-#!/usr/bin/python3.5
-#
 # updated by ...: Loreto Notarantonio
-# Version ......: 15-02-2018 15.15.27
+# Version ......: 17-06-2019 12.23.49
+
+# from . Utils.LnLogger import setLogger
+
+# from . LnUtils import readYamlFile
+# from . LnUtils import writeYamlFile
+# from . LnUtils import writeJsonFile
+# from . LnUtils import json_to_dict
+# from . LnUtils import dict_to_json
+# from . LnUtils import prompt
+# from . LnUtils import TreeList
+# from . LnUtils import readTextFile
+# from . LnUtils import timeConvertion
+# from . LnUtils import filesizeFmt
+# from . LnUtils import sizeof_fmt
+# from . ppretty import ppretty
+
+# from . Utils.LnYamlLoader import LoadYamFile
+# from . Utils.OsEnvironment import setVars
 #
-# -----------------------------------------------
-
-
-from   Source.ParseInput.Main_ParseInput import ParseInput
-from   Source.ParseInput.Main_ParseInput import EditPrjConfig
-
-# from   Source.Main.CalculateRootDir import CalculateRootDir
-from   Source.Main.CalculateRootDir import prepareEnv
-from   Source.Main.Executor         import SetExecutor
-from   Source.Main.TotalCommander   import SetTotalCommander
-
-from   Source.Main.HostNames        import getHostName
-
-from   Source.Main.WinScp           import SetWinSCP # bisogna ancora scrivere il file.ini
-# from   Source.Main.WinScp           import SetWinSCP_rawsetting as SetWinSCP
-
-from   . Setup import setProjectEnv   as SPE
-
+# from . Utils.LnColor  import LnColor as Color

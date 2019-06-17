@@ -3,17 +3,13 @@
 # Scope:  Programma per ...........
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 31-01-2018 14.49.30
+# Version ......: 17-06-2019 17.04.39
 #
 #  https://docs.python.org/3/library/pathlib.html
 # -----------------------------------------------
 from    pathlib import Path
 
-from .. Common.Exit          import Exit       as LnExit
-from .. Logger.LnLogger import SetLogger
-
-
-def VerifyPath(path, exitOnError=True):
+def checkPath(path, logger, exitOnError=True):
     '''
     verify if the path exists.
     return:

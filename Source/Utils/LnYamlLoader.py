@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # updated by ...: Loreto Notarantonio
-# Version ......: 11-06-2019 18.31.10
+# Version ......: 17-06-2019 13.21.30
 import sys
 import os
 import re
@@ -20,10 +20,10 @@ def log_it(*data):
 """
     variable_identifier: <PREFIX> ... <SUFFIX>
     variable_name_format:
-        {{ fname:key0.key1.keyn}}       - get data from fname.yml fname.yaml
+        {{     fname:key0.key1.keyn}}       - get data from fname.yml fname.yaml
         {{ fname.xyz:key0.key1.keyn}}   - get data from fname.xyz
-        {{      :key0.key1.key...n}}       - get data from internal data
-        {{       key0.key1.key...n}}       - get data from internal data
+        {{       env:key0.key1.key...n}}       - get data from environment variables
+        {{      key0.key1.key...n}}       - get data from internal data
 
     keyx identify the dictionary_path to be searched
 
@@ -67,8 +67,8 @@ def LoadYamFile(filename, prefix=r'${', suffix=r'}', errorOnNotFound=True, logge
             break
 
         var_name = var_names_list[0] # get the first variable
-        if var_name in ['VARS.Ln_RootDir']:
-            var_name = var_name
+        # if var_name in ['VARS.Ln_RootDir']:
+        #     var_name = var_name
         var_value = _decode_variable(var_name) # decode and search for it
         if var_value:   # variable value FOUND
             # remove DQuote around the string created by json.dumps
@@ -85,7 +85,7 @@ def LoadYamFile(filename, prefix=r'${', suffix=r'}', errorOnNotFound=True, logge
                     print(msg)
                 sys.exit()
             else:
-                processed_vars.append(var)
+                processed_vars.append(var_name)
 
 
     return yaml.load(data_str)
@@ -95,48 +95,40 @@ def LoadYamFile(filename, prefix=r'${', suffix=r'}', errorOnNotFound=True, logge
 def _decode_variable(var_name):
     _dict = yaml.load(data_str) # defaut currente data
 
-    if var_name[:4].lower() in ('env:'):
-        _str = var_name[:4]
-        _name = var_name.strip().replace(_str, '') # format env:varname
-        _value = os.environ.get(_name, None)
-        return _value
-
-    elif ':' in var_name:
+    if ':' in var_name:
         _fname, d_path = var_name.strip().split(':', 1) # format filename:key1.key2....
+        if _fname.lower() in ('env:'): # format env:varname
+            _value = os.environ.get(d_path, None)
+            return _value
 
-        if _fname in ['']:
-            _dict = yaml.load(data_str) # get inside currente data
-
-        elif _fname in already_read_files:
-            _dict = already_read_files[_fname]
-
-        # - altrimenti leggilo
         else:
-            filename, ext = os.path.splitext(_fname)
-            extensions = [ext] if ext else ['.yaml', '.yml']
-            # read file
-            for ext in extensions:
-                file = os.path.abspath(os.path.join(base_dir, '{0}{1}'.format(filename, ext)))
-                if os.path.isfile(file):
-                    with open(file, 'r') as fin:
-                        _dict = yaml.load(fin)
-                    already_read_files[_fname] = _dict
-                    break
+            if _fname in already_read_files:
+                _dict = already_read_files[_fname]
 
-            if _dict is None:
-                raise IOError('File: {} NOT FOUND!'.format(file))
+            # - altrimenti leggilo
+            else:
+                filename, ext = os.path.splitext(_fname)
+                extensions = [ext] if ext else ['.yaml', '.yml']
+                # read file
+                _dict = None
+                for ext in extensions:
+                    file = os.path.abspath(os.path.join(base_dir, '{0}{1}'.format(filename, ext)))
+                    if os.path.isfile(file):
+                        with open(file, 'r') as fin:
+                            _dict = yaml.load(fin)
+                        already_read_files[_fname] = _dict
+                        break
+
+                if _dict is None:
+                    raise IOError('File: {} NOT FOUND!'.format(file))
 
 
     elif '.' in var_name:
         d_path = var_name
 
-    else: # check in environment variables
-        var_value = os.environ.get(var_name, None)
-        return var_value
-
-
-
-    # _dict = None
+    else:
+        # un variabile senza prefisso... skip it
+        return None
 
 
     # - moving through the dict tree
