@@ -1,13 +1,9 @@
-    Process completed, executor has been started
-FO -> 
-
-
-
-
- [list=6]:
-2019/06/17 19:28:47 - [LnLogger.setLogger: 226] INFO ->     [0000] - --------------------------------------------------
-2019/06/17 19:28:47 - [LnLogger.setLogger: 226] INFO ->     [0001] - - starting: 2019/06/17 19:28:47
-2019/06/17 19:28:47 - [LnLogger.setLogger: 226] INFO ->     [0002] - - dry-run:     False
-2019/06/17 19:28:47 - [LnLogger.setLogger: 226] INFO ->     [0003] - - debug level: 0
-2019/06/17 19:28:47 - [LnLogger.setLogger: 226] INFO ->     [0004] - --------------------------------------------------
-2019/06/17 19:28:47 - [LnLogger.setLogger: 226] INFO ->     [0005] - 
+    K:\Filu\LnDisk\LnFree\Desktop\Executor\Executor.exe
+    -s
+    enter --go    to launch the program: executor
+ger: 226] INFO ->     [0000] - --------------------------------------------------
+2019/06/18 17:17:41 - [LnLogger.setLogger: 226] INFO ->     [0001] - - starting: 2019/06/18 17:17:41
+2019/06/18 17:17:41 - [LnLogger.setLogger: 226] INFO ->     [0002] - - dry-run:     False
+2019/06/18 17:17:41 - [LnLogger.setLogger: 226] INFO ->     [0003] - - debug level: 0
+2019/06/18 17:17:41 - [LnLogger.setLogger: 226] INFO ->     [0004] - --------------------------------------------------
+2019/06/18 17:17:41 - [LnLogger.setLogger: 226] INFO ->     [0005] - 

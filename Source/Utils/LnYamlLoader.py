@@ -2,12 +2,13 @@
 # -*- coding: utf-8 -*-
 
 # updated by ...: Loreto Notarantonio
-# Version ......: 17-06-2019 18.52.50
+# Version ......: 18-06-2019 09.37.35
 import sys
 import os
 import re
 import json
 import yaml
+from pathlib import Path
 
 
 logger = None
@@ -35,7 +36,7 @@ def log_it(*data):
 
 
 
-def LoadYamlFile_2(filename):
+def LoadYamlFile(filename):
     global base_dir
     processed_vars = [] # variables already processed
     base_dir = os.path.split(filename)[0] # directory of current file
@@ -79,8 +80,6 @@ def processYamlData(data, prefix=r'${', suffix=r'}', errorOnNotFound=True, logge
             break
 
         var_name = var_names_list[0] # get the first variable
-        # if var_name in ['VARS.Ln_RootDir']:
-        #     var_name = var_name
         var_value = _decode_variable(var_name) # decode and search for it
         if var_value:   # variable value FOUND
             # remove DQuote around the string created by json.dumps
@@ -104,8 +103,74 @@ def processYamlData(data, prefix=r'${', suffix=r'}', errorOnNotFound=True, logge
     # return yaml.safe_load(data_str)
 
 
+def _decode_variable(var_name):
+    _dict = yaml.load(data_str) # read currente data as dict
 
-def LoadYamFile(filename, prefix=r'${', suffix=r'}', errorOnNotFound=True, logger=None):
+    if ':' in var_name:
+        _fname, d_path = var_name.strip().split(':', 1) # format filename:key1.key2....
+        if _fname.lower() in ('env:'): # format env:varname
+            _value = os.environ.get(d_path, None)
+            if _value[1] == ':':
+                _value = Path(_value).resolve() # elimina tutti i \\\\ eccedenti
+                # if not _value.exists() and errorOnPathNotFound:
+                #     print('path: "{}" NOT found.'.format(_value))
+                #     sys.exit(1)
+
+            return str(_value)
+
+        else:
+            if _fname in already_read_files:
+                _dict = already_read_files[_fname]
+
+            # - altrimenti leggilo
+            else:
+                filename, ext = os.path.splitext(_fname)
+                extensions = [ext] if ext else ['.yaml', '.yml']
+                # read file
+                _dict = None
+                for ext in extensions:
+                    file = os.path.abspath(os.path.join(base_dir, '{0}{1}'.format(filename, ext)))
+                    if os.path.isfile(file):
+                        with open(file, 'r') as fin:
+                            _dict = yaml.load(fin)
+                        already_read_files[_fname] = _dict
+                        break
+
+                if _dict is None:
+                    raise IOError('File: {} NOT FOUND!'.format(file))
+
+
+    elif '.' in var_name:
+        d_path = var_name
+
+    else:
+        # un variabile senza prefisso... skip it
+        return None
+
+
+    # - moving through the dict tree
+    ptr = _dict
+    for item in d_path.strip().split('.'):
+        if item in ptr:
+            ptr = ptr[item]
+        else:
+            msg = 'key: {} not found in the dictionary'.format(d_path)
+            raise Exception('ERROR {}'.format(msg))
+
+    if ptr[1] == ':':
+        ptr = Path(ptr).resolve() # elimina tutti i \\\\ eccedenti
+        # if not ptr.exists() and errorOnPathNotFound:
+        #     print('path: "{}" NOT found.'.format(ptr))
+        #     sys.exit(1)
+
+    return str(ptr)
+
+
+
+
+
+
+def LoadYamFile_Prev(filename, prefix=r'${', suffix=r'}', errorOnNotFound=True, logger=None):
     _prefix = prefix.replace('$', '\\$')
     _suffix = suffix.replace('$', '\\$')
     """prefix - suffix: variable must be suffixed by non unicode
@@ -163,60 +228,6 @@ def LoadYamFile(filename, prefix=r'${', suffix=r'}', errorOnNotFound=True, logge
 
     return yaml.load(data_str)
     # return yaml.safe_load(data_str)
-
-
-def _decode_variable(var_name):
-    _dict = yaml.load(data_str) # defaut currente data
-
-    if ':' in var_name:
-        _fname, d_path = var_name.strip().split(':', 1) # format filename:key1.key2....
-        if _fname.lower() in ('env:'): # format env:varname
-            _value = os.environ.get(d_path, None)
-            return _value
-
-        else:
-            if _fname in already_read_files:
-                _dict = already_read_files[_fname]
-
-            # - altrimenti leggilo
-            else:
-                filename, ext = os.path.splitext(_fname)
-                extensions = [ext] if ext else ['.yaml', '.yml']
-                # read file
-                _dict = None
-                for ext in extensions:
-                    file = os.path.abspath(os.path.join(base_dir, '{0}{1}'.format(filename, ext)))
-                    if os.path.isfile(file):
-                        with open(file, 'r') as fin:
-                            _dict = yaml.load(fin)
-                        already_read_files[_fname] = _dict
-                        break
-
-                if _dict is None:
-                    raise IOError('File: {} NOT FOUND!'.format(file))
-
-
-    elif '.' in var_name:
-        d_path = var_name
-
-    else:
-        # un variabile senza prefisso... skip it
-        return None
-
-
-    # - moving through the dict tree
-    ptr = _dict
-    for item in d_path.strip().split('.'):
-        if item in ptr:
-            ptr = ptr[item]
-        else:
-            msg = 'key: {} not found in the dictionary'.format(d_path)
-            raise Exception('ERROR {}'.format(msg))
-
-    return ptr
-
-
-
 
 
 

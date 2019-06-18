@@ -13,7 +13,7 @@ from time import strftime
 ################################################
 ################################################
 def LnPathCopy(source, target, logger):
-    assert source.is_file()
+    #assert Path(source).is_file()
     '''
     alternative of Path.copy
     copyfile only if size or mtime ad differents

@@ -1,68 +1,58 @@
 
+MAIN:
+    # ---- created at run time
+    Drive:                  ${env:Ln_Drive}
+    RootDir:                ${env:Ln_RootDir}
+    ScriptDir:              ${env:Ln_ScriptDir}
 
-# servono da riferimento ma per ogni riga verrà creata una variabile di ambiente
+    StartDir:               ${env:Ln_RootDir}\LnStart
+    LoretoDir:              ${env:Ln_RootDir}\Loreto
+    FreeDir:                ${env:Ln_RootDir}\LnFree
+    LeslaDir:               ${env:Ln_RootDir}\Lesla
+
+
 VARS:
-    # Ln_Drive      : ${Ln_Drive}  # creata at run time
-    # Ln_RootDir         : ${env:Ln_RootDir}     # ${Ln_RootDir} creata at run time
-    # Ln_ProgramDir      : ${env:Ln_ProgramDir}  # creata at run time - directory dello script
+    Ln_RootDir:             ${MAIN.RootDir}
+    Ln_StartDir:            ${MAIN.StartDir}
+    Ln_LoretoDir:           ${MAIN.LoretoDir}
+    Ln_FreeDir:             ${MAIN.FreeDir}
+    Ln_LeslaDir:            ${MAIN.LeslaDir}
 
 
-    StartDir        : ${env:Ln_RootDir}\LnStart
-    LoretoDir       : ${env:Ln_RootDir}\Loreto
-    FreeDir         : ${env:Ln_RootDir}\LnFree
-    LeslaDir        : ${env:Ln_RootDir}\Lesla
-
-
-export_vars:
-    Ln_StartDir        : ${VARS.StartDir}
-    Ln_LoretoDir       : ${VARS.LoretoDir}
-    Ln_FreeDir         : ${VARS.FreeDir}
-    Ln_LeslaDir        : ${VARS.LeslaDir}
-
-
-    Ln_GitRepoDir      : ${env:Ln_RootDir}\GIT-REPO
-    JAVA_HOME          : ${env:Ln_FreeDir}\Pgm\Java\jdk1.8.0_66
 
     # --- Editors
-    Ln_SublimeEditor   : ${env:Ln_FreeDir}\Editors\SublimeText_3\sublime_text.exe
-    Ln_Notepad++       : ${env:Ln_FreeDir}\Editors\NotePad++\notepad++.exe
+    Ln_SublimeEditor:       ${VARS.Ln_FreeDir}\Editors\SublimeText_3\sublime_text.exe
+    Ln_Notepad:             ${VARS.Ln_FreeDir}\Editors\NotePad++\notepad++.exe
 
     # --- Generic
-    Ln_PortableAppsDir : ${env:Ln_RootDir}\PortableApps\PortableApps
-    Ln_myEditor        : ${env:Ln_FreeDir}\Editors\SublimeText_3\sublime_text.exe
-    Ln_myBrowser       : ${env:Ln_FreeDir}\Network\Browser\Opera\launcher.exe
-    # JAVA_HOME          : ${env:Ln_JAVA_HOME}
-    gitdir             : ${env:Ln_FreeDir}\Pgm\PortableGit
+    Ln_GitRepoDir:          ${VARS.Ln_RootDir}\GIT-REPO
+    JAVA_HOME:              ${VARS.Ln_FreeDir}\Pgm\Java\jdk1.8.0_66
+    Ln_PortableAppsDir:     ${VARS.Ln_RootDir}\PortableApps\PortableApps
+    Ln_myEditor:            ${VARS.Ln_FreeDir}\Editors\SublimeText_3\sublime_text.exe
+    Ln_myBrowser:           ${VARS.Ln_FreeDir}\Network\Browser\Opera\launcher.exe
+    gitdir:                 ${VARS.Ln_FreeDir}\Pgm\PortableGit
 
     # --- Python
-    Ln_pythonDir       : ${env:Ln_FreeDir}\Pgm\WPy-3710\python-3.7.1.amd64
-    Ln_PythonExe       : ${env:Ln_FreeDir}\python.exe
-    opt.PYTHONPATH     : X:\GIT-REPO
-                         ${env:Ln_RootDir}\GIT-REPO\Python3 # comoda per l'import di LnPythonLib
+    Ln_pythonDir:           ${VARS.Ln_FreeDir}\Pgm\WPy-3710\python-3.7.1.amd64
+    Ln_PythonExe:           ${VARS.Ln_pythonDir}\python.exe
 
     # --- Winscp & Kitty
-    Ln_WinScpDIR       : ${env:Ln_FreeDir}\Network\FTPc\WinSCP
-    Ln_WinScpKittyCmd  : ${env:Ln_RootDir}\GIT-REPO\Scripts\python\Sources\KittyFromWinScp\bin\kitty-from-WinScp.cmd
-    Ln_WinScpKittyPy   : ${env:Ln_RootDir}\GIT-REPO\Scripts\python\Sources\KittyFromWinScp\__main__.py
-    Ln_WinScpEXE       : ${env:Ln_FreeDir}\winscp.exe
-    Ln_KittyEXE        : ${env:Ln_FreeDir}\Network\Telnet\Kitty/Kitty.exe
+    Ln_WinScpDIR:           ${VARS.Ln_FreeDir}\Network\FTPc\WinSCP
+    Ln_WinScpKittyCmd:      ${VARS.Ln_RootDir}\GIT-REPO\Scripts\python\Sources\KittyFromWinScp\bin\kitty-from-WinScp.cmd
+    Ln_WinScpKittyPy:       ${VARS.Ln_RootDir}\GIT-REPO\Scripts\python\Sources\KittyFromWinScp\__main__.py
+    Ln_WinScpEXE:           ${VARS.Ln_WinScpDIR}\winscp.exe
+    Ln_KittyEXE:            ${VARS.Ln_FreeDir}\Network\Telnet\Kitty/Kitty.exe
 
-    # --- TotalCommander
-    Ln_TC_configDir    : ${env:Ln_TC_Dir}\LnData\Config
-    Ln_TC_Dir          : ${env:Ln_FreeDir}\Files\Manager\WinCmd-LN
-
-    # --- Executor
-    # Ln_ExecutorDir    : ${env:Ln_FreeDir}\Desktop\Executor_Test
 
 
 PATHS:
     # python:
-    - ${env:Ln_pythonDir}
-    - ${env:Ln_pythonDir}\DLLs
-    - ${env:Ln_pythonDir}\Lib
-    - ${env:Ln_pythonDir}\Scripts
-    - ${env:Ln_pythonDir}\Lib\site-packages
-    - ${env:Ln_pythonDir}\Lib\site-packages/win32com
+    - ${VARS.Ln_pythonDir}
+    - ${VARS.Ln_pythonDir}\DLLs
+    - ${VARS.Ln_pythonDir}\Lib
+    - ${VARS.Ln_pythonDir}\Scripts
+    - ${VARS.Ln_pythonDir}\Lib\site-packages
+    - ${VARS.Ln_pythonDir}\Lib\site-packages/win32com
 
     # java:
     - ${env:Ln_JAVA_HOME}\bin
@@ -81,28 +71,34 @@ PATHS:
 # - gli OS le accettano
 # ----------------------------------------------------
 TOTAL_COMMANDER:
-    workingDir         : ${env:Ln_TC_Dir}
-    Ln_TC_PATH         : ${env:Ln_TC_Dir}
-    Ln_TC_dataDir      : ${env:Ln_TC_Dir}\LnData
-    Ln_TC_logDir       : ${env:Ln_TC_Dir}\log
-    Ln_TC_iconsDir     : ${env:Ln_TC_Dir}\LnData\Icons
-    Ln_TC_PluginDir    : ${env:Ln_TC_Dir}\LnData\PlugsIN
 
-    Ln_TC_IniFile      : ${env:Ln_TC_configDir}\WinCmd.ini
-    Ln_TC_ftpIniFile   : ${env:Ln_TC_configDir}\Wcx_Ftp.ini
+    # --- TotalCommander
+    Ln_TC_Dir:                  ${VARS.Ln_FreeDir}\Files\Manager\WinCmd-LN
+    Ln_TC_configDir:            ${TOTAL_COMMANDER.Ln_TC_Dir}\LnData\Config
+
+    workingDir:                 ${TOTAL_COMMANDER.Ln_TC_Dir}
+    Ln_TC_PATH:                 ${TOTAL_COMMANDER.Ln_TC_Dir}
+    Ln_TC_dataDir:              ${TOTAL_COMMANDER.Ln_TC_Dir}\LnData
+    Ln_TC_logDir:               ${TOTAL_COMMANDER.Ln_TC_Dir}\log
+    Ln_TC_iconsDir:             ${TOTAL_COMMANDER.Ln_TC_Dir}\LnData\Icons
+    Ln_TC_PluginDir:            ${TOTAL_COMMANDER.Ln_TC_Dir}\LnData\PlugsIN
+
+    Ln_TC_IniFile:              ${TOTAL_COMMANDER.Ln_TC_configDir}\WinCmd.ini
+    Ln_TC_ftpIniFile:           ${TOTAL_COMMANDER.Ln_TC_configDir}\Wcx_Ftp.ini
 
 
 EXECUTOR:
     # workingDir: ${env:Ln_ExecutorDir}
-    workingDir: ${env:Ln_FreeDir}\Desktop\Executor
-    iniFile: ${EXECUTOR.workingDir}\executor.ini
-    backupDir: ${EXECUTOR.workingDir}\LnBackup
-    executorEXE:
-        - ${EXECUTOR.workingDir}\Executor.exe
-        - ${EXECUTOR.workingDir}\Executor_32.exe
-        - ${EXECUTOR.workingDir}\Executor_64.exe
-    hookwinrDLL:
-        - ${EXECUTOR.workingDir}\hookwinr.dll
-        - ${EXECUTOR.workingDir}\hookwinr_32.dll
-        - ${EXECUTOR.workingDir}\hookwinr_64.dll
+    workingDir:         ${VARS.Ln_FreeDir}\Desktop\Executor
+    iniFile:            ${EXECUTOR.workingDir}\executor.ini
+    backupDir:          ${EXECUTOR.workingDir}\LnBackup
+
+    executorEXE:        ${EXECUTOR.workingDir}\Executor.exe
+    executor64EXE:      ${EXECUTOR.workingDir}\Executor_64.exe
+    executor32EXE:      ${EXECUTOR.workingDir}\Executor_32.exe
+
+    hookwinrDLL:        ${EXECUTOR.workingDir}\hookwinr.dll
+    hookwinr32DLL:      ${EXECUTOR.workingDir}\hookwinr_32.dll
+    hookwinr64DLL:      ${EXECUTOR.workingDir}\hookwinr_64.dll
+
 

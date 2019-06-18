@@ -12,7 +12,7 @@ import  platform, sys, os
 # =============================================
 # = Parsing
 # =============================================
-def SetExecutor(d_vars, logger):
+def SetExecutor(d_vars, logger, fEXECUTE=False):
     assert isinstance(d_vars, dict)
 
     CMDList = []
@@ -20,38 +20,31 @@ def SetExecutor(d_vars, logger):
         # -------------------------------------------------
         # - scroling dictionary_variables
         # -------------------------------------------------
-    # for _label, _path in d_vars.items():
-    #     _path = Path(_path).resolve()
-    #     if not _path.exists():
-    #         logger.error(_path, "doesn't exists.")
-    #         print("{0} doesn't exists".format(_path))
-    #         sys.exit(1)
-
-    #     logger.info('envar {0:<15}: {1}'.format(_label, _path))
-    #     os.environ[_label] = str(_path)
-    #     if _label.lower() == 'workingdir':
-    #         os.chdir(_path)
-
-    EXE, EXE32, EXE64 = d_vars['executorEXE'] # .split('\n')
-    DLL, DLL32, DLL64 = d_vars['hookwinrDLL'] # .split('\n')
 
     OSbits = platform.architecture()[0]
     logger.info("Stiamo lavorando con Executor: {0}".format(OSbits))
+
+    my_exe = Path(d_vars['executorEXE']).resolve()
+    my_dll = Path(d_vars['hookwinrDLL']).resolve()
+
     if OSbits == "64bit":
-        myExe = Path(EXE64)
-        myDll = Path(DLL64)
+        exe_to_run = Path(d_vars['executor64EXE']).resolve()
+        dll_to_run = Path(d_vars['hookwinr64DLL']).resolve()
     else:
-        myExe = Path(EXE32)
-        myDll = Path(DLL32)
+        exe_to_run = Path(d_vars['executor32EXE']).resolve()
+        dll_to_run = Path(d_vars['hookwinr32DLL']).resolve()
 
         # faccio uso delle LnMonkeyFunctions
-    myExe.LnCopy(target=EXE, logger=logger)
-    myDll.LnCopy(target=DLL, logger=logger)
+    if fEXECUTE:
+        exe_to_run.LnCopy(target=my_exe, logger=logger)
+        dll_to_run.LnCopy(target=my_dll, logger=logger)
 
-    myIni = Path(d_vars['iniFile'])
-    myIni.LnBackup(d_vars['backupDir'], logger=logger)
+        my_ini = Path(d_vars['iniFile'])
+        my_ini.LnBackup(d_vars['backupDir'], logger=logger)
+    else:
+        logger.info('skipping copyfile due to dry-run')
 
-    CMDList.append(EXE)
+    CMDList.append(my_exe)
     CMDList.append('-s')
 
 
