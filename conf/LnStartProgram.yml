@@ -45,7 +45,7 @@ VARS:
 
 
 
-PATHS:
+PATHS: # verranno impostati nell'ordine indicato.
     # python:
     - ${VARS.Ln_pythonDir}
     - ${VARS.Ln_pythonDir}\DLLs
@@ -55,12 +55,11 @@ PATHS:
     - ${VARS.Ln_pythonDir}\Lib\site-packages/win32com
 
     # java:
-    - ${env:Ln_JAVA_HOME}\bin
-
+    - ${VARS.JAVA_HOME}\bin
 
     #git:
-    - ${env:gitdir}\bin
-    - ${env:Ln_GitRepoDir}\gitUtils
+    - ${VARS.gitdir}\bin
+    - ${VARS.Ln_GitRepoDir}\gitUtils
 
 
 
@@ -102,3 +101,8 @@ EXECUTOR:
     hookwinr64DLL:      ${EXECUTOR.workingDir}\hookwinr_64.dll
 
 
+VSCODE_INSIDERS:
+    workingDir:             ${VARS.Ln_FreeDir}\Pgm\VSCode_135_insider\bin
+    VSCODE_DEV:
+    ELECTRON_RUN_AS_NODE:   1
+    vscode_exe:             code-insiders.cmd

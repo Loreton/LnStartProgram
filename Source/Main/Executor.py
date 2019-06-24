@@ -22,7 +22,7 @@ def SetExecutor(d_vars, logger, fEXECUTE=False):
         # -------------------------------------------------
 
     OSbits = platform.architecture()[0]
-    logger.info("Stiamo lavorando con Executor: {0}".format(OSbits))
+    logger.info("Stiamo lavorando con Executor", OSbits)
 
     my_exe = Path(d_vars['executorEXE']).resolve()
     my_dll = Path(d_vars['hookwinrDLL']).resolve()
@@ -49,5 +49,5 @@ def SetExecutor(d_vars, logger, fEXECUTE=False):
 
 
     return CMDList
-    Ln.Exit(9999, 'exit temporanea')
+
 

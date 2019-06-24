@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"my",
+				"myPath〔variable〕"
+			],
+			[
+				"Lo",
+				"LookupError〔class〕"
+			],
+			[
+				"yaml_",
+				"yaml_filenames"
+			],
+			[
+				"yaml",
+				"yaml_filename〔variable〕"
+			],
+			[
+				"_",
+				"_I_AM_ZIP"
+			],
+			[
+				"confi",
+				"config_dirs〔variable〕"
+			],
+			[
+				"config",
+				"config_dir"
+			],
+			[
+				"progr",
+				"programToStart〔variable〕"
+			],
+			[
 				"erro",
 				"errorOnPathNotFound"
 			],
@@ -50,10 +82,6 @@
 			[
 				"rea",
 				"reason"
-			],
-			[
-				"_",
-				"_dynamic"
 			],
 			[
 				"vali",
@@ -486,66 +514,11 @@
 			[
 				"el",
 				"else"
-			],
-			[
-				"refresh",
-				"refreshed_items"
-			],
-			[
-				"daa",
-				"data.only_local_folders"
-			],
-			[
-				"parent",
-				"parent_path"
-			],
-			[
-				"only_",
-				"only_local_folders"
-			],
-			[
-				"only_remote",
-				"only_remote_folders"
-			],
-			[
-				"pdb",
-				"pdb.set_trace"
-			],
-			[
-				"downl",
-				"download_file"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "/K/Filu/LnDisk/GIT-REPO/LnStartProgram/conf/LnStartProgram.yml",
-			"settings":
-			{
-				"buffer_size": 4129,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/K/Filu/LnDisk/GIT-REPO/LnStartProgram/__main__.py",
-			"settings":
-			{
-				"buffer_size": 6740,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Utils/LnYamlLoader.py",
-			"settings":
-			{
-				"buffer_size": 10966,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -559,12 +532,12 @@
 		"selected_items":
 		[
 			[
-				"dele",
-				"File: Delete"
-			],
-			[
 				"ren",
 				"File: Rename"
+			],
+			[
+				"dele",
+				"File: Delete"
 			],
 			[
 				"re",
@@ -804,18 +777,27 @@
 	],
 	"file_history":
 	[
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Utils/LnYamlLoader.py",
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Main/VSCode.py",
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/conf/LnStartProgram.yml",
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/__main__.py",
+		"/K/Filu/LnDisk/LnFree/Pgm/VSCode_135_insider/bin/code-insiders.cmd",
+		"/K/Filu/LnDisk/LnStart/LnStart.cmd",
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Main/__init__.py",
+		"/K/Filu/LnDisk/LnStart/Executor.cmd",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/log/LnStartProgram.log",
+		"/K/Filu/LnDisk/GIT-REPO/googleDriveSync/release/bin/Launch.sh",
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Utils/__init__.py",
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/__init__.py",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Main/Executor.py",
+		"/K/Filu/LnDisk/LnStart/TotalCommander.cmd",
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Utils/LnLogger.py",
+		"/K/Filu/LnDisk/LnFree/SynchBackup/FreeFileSync/_LnProfiles/Main/@LnTemplate.ffs_gui",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Main/WinScp.py",
 		"/K/Filu/LnDisk/LnFree/Network/FTPc/WinSCP/Winscp_Loreto.cmd",
 		"/K/Filu/LnDisk/LnStart/StartProgram/Ln_ServerList.ini",
-		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/__main__.py",
-		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/conf/LnStartProgram.yml",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Utils/LnMonkeyFunctions.py",
 		"/K/Filu/LnDisk/LnStart/LnToDo.ini",
-		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Utils/__init__.py",
-		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Utils/LnYamlLoader.py",
-		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Main/__init__.py",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Main/TotalCommander.py",
 		"/K/Filu/LnDisk/LnFree/Files/Manager/WinCmd-LNrealApp/WinCmd/TOTALCMD64.exe",
 		"/K/Filu/LnDisk/LnFree/Files/Manager/WinCmd-LN/LnData/Config/WinCmd.ini",
@@ -824,12 +806,10 @@
 		"/K/Filu/LnDisk/LnFree/Files/Manager/WinCmd-LN/LnData/Config/wcx_ftp.ini",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Utils/VerifyPath.py",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram_APPO/LnPyLib/File/VerifyPath.py",
-		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/__init__.py",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Utils/DictMerge.py",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/myFunctions/LnYamlLoader.py",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/myFunctions/OsEnvironment.py",
 		"/C/Windows/System32/drivers/etc/hosts",
-		"/K/Filu/LnDisk/GIT-REPO/googleDriveSync/release/bin/Launch.sh",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/log/LnStartProgram.stdout",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/myFunctions/__init__.py",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/myFunctions/LnUtils.py",
@@ -847,9 +827,7 @@
 		"/K/Filu/LnDisk/LnFree/Pgm/VSCode_134_insider/bin/code-insiders.cmd",
 		"/K/Filu/LnDisk/LnFree/Pgm/VSCode_134_insider/bin/code-insiders",
 		"/K/Filu/LnDisk/LnFree/Editors/SublimeText_3/Data/Packages/User/Ln_RunMe.py",
-		"/K/Filu/LnDisk/LnStart/Executor.cmd",
 		"/K/Filu/LnDisk/LnFree/Desktop/Executor/Executor.cmd",
-		"/K/Filu/LnDisk/LnFree/SynchBackup/FreeFileSync/_LnProfiles/Main/@LnTemplate.ffs_gui",
 		"/K/Filu/LnDisk/LnFree/SynchBackup/FreeFileSync/_LnProfiles/GlobalSettings_base.xml",
 		"/K/Filu/LnDisk/LnFree/SynchBackup/FreeFileSync/_LnProfiles/Main/LnFree.ffs_gui",
 		"/C/Filu_C/LnDisk/LnFree/SynchBackup/FreeFileSync/LnFreeFileSync.cmd",
@@ -926,16 +904,11 @@
 		"/C/Users/Silvia/AppData/Local/Temp/scp04844/HOME%2FLnPi3B1%2FLnPi3B1-eth0/home/pi/PiProd/shProc/check_network.sh",
 		"/C/Users/Silvia/AppData/Local/Temp/scp05697/HOME%2FLnPi3B1%2FLnPi3B1-eth0/home/pi/PiProd/pyProc/_under_devel/checkNetwork.py",
 		"/C/Users/Silvia/AppData/Local/Temp/scp58173/HOME%2FLnPi3B1%2FLnPi3B1-eth0/home/pi/PiProd/shProc/ssh_Reverse_tunnel.sh",
-		"/C/Users/Silvia/AppData/Local/Temp/scp18141/HOME%2FLnPi23%2FLnPi23 rm-loreto.duckdns.org/home/pi/PiProd/shProc/ip_rule_eth0.sh",
-		"/C/Users/Silvia/AppData/Local/Temp/scp21627/HOME%2FLnPi23%2FLnPi23 rm-loreto.duckdns.org/home/pi/PiProd/pyProc/ipRoute2.py",
-		"/C/Users/Silvia/AppData/Local/Temp/scp35502/HOME%2FLnPi23%2FLnPi23 rm-loreto.duckdns.org/home/pi/PiProd/pyProc/ipRoute2_caller.sh",
-		"/C/Users/Silvia/AppData/Local/Temp/scp28433/HOME%2FLnPi23%2FLnPi23 rm-loreto.duckdns.org/home/pi/PiProd/pyProc/ipRoute2.py",
-		"/C/Users/Silvia/AppData/Local/Temp/scp29357/HOME%2FLnPi23%2FLnPi23 rm-loreto.duckdns.org/home/pi/PiProd/pyProc/restoreFromDLQ.sh",
-		"/C/Users/Silvia/AppData/Local/Temp/scp29114/HOME%2FLnPi23%2FLnPi23 rm-loreto.duckdns.org/home/pi/PiProd/pyProc/test_myIP"
+		"/C/Users/Silvia/AppData/Local/Temp/scp18141/HOME%2FLnPi23%2FLnPi23 rm-loreto.duckdns.org/home/pi/PiProd/shProc/ip_rule_eth0.sh"
 	],
 	"find":
 	{
-		"height": 28.0
+		"height": 40.0
 	},
 	"find_in_files":
 	{
@@ -950,6 +923,25 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"work",
+			"K:\\Filu\\LnDisk\\LnFree\\Pgm\\WPy-3710\\python-3.7.1.amd64",
+			"processed_vars",
+			"base_dir",
+			"extra_data",
+			"logger",
+			"processYamlData",
+			"JAVA_HOME",
+			"inpArgs.script_path",
+			" : ",
+			":",
+			"MAIN",
+			"VARS.RootDir",
+			"MAIN.FreeDir",
+			"MAIN.RootDir",
+			"export_vars",
+			"VARS",
+			"export_vars",
+			"env:Ln_pythonDir",
 			"Ln_ProgramDir",
 			"errorOnNotFound",
 			"FreeDir",
@@ -1058,26 +1050,7 @@
 			"Process_LnDisk_gDRIVE_nloreto",
 			"MY_PROFILE",
 			"Process_LnDisk",
-			"_execute_upload",
-			"encodig",
-			"writ",
-			"readTextFile",
-			"TAB5",
-			"TAB2",
-			"TAB4",
-			"day_light",
-			"fSKIP_DL",
-			"anal",
-			"python $program",
-			"lndi",
-			"LOCAL_ROOT_PATH",
-			"loretonota",
-			"notaloreto",
-			"nloreto",
-			"notaloreto",
-			"nloreto",
-			".nam",
-			"lndict"
+			"_execute_upload"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1095,578 +1068,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/K/Filu/LnDisk/GIT-REPO/LnStartProgram/conf/LnStartProgram.yml",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4129,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3589,
-								3589
-							]
-						],
-						"settings":
-						{
-							"apply_syntax_touched": true,
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.clone_locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.clone_regions":
-							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content"
-							],
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content"
-							],
-							"function_name_status_row": 98,
-							"incomplete_sync": null,
-							"origPos":
-							[
-								0.0,
-								1368.0
-							],
-							"remote_loading": false,
-							"syncScroll": false,
-							"synced": false,
-							"syntax": "Packages/YAML/YAML.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1368.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/K/Filu/LnDisk/GIT-REPO/LnStartProgram/__main__.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6740,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4421,
-								4421
-							]
-						],
-						"settings":
-						{
-							"apply_syntax_touched": true,
-							"auto_complete": false,
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.clone_locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.clone_regions":
-							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content"
-							],
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content"
-							],
-							"function_name_status_row": 116,
-							"incomplete_sync": null,
-							"origPos":
-							[
-								0.0,
-								2150.0
-							],
-							"remote_loading": false,
-							"syncScroll": false,
-							"synced": false,
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2150.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Utils/LnYamlLoader.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 10966,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3937,
-								3656
-							]
-						],
-						"settings":
-						{
-							"apply_syntax_touched": true,
-							"auto_complete": false,
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.clone_locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.clone_regions":
-							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content"
-							],
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content"
-							],
-							"function_name_status_row": 112,
-							"incomplete_sync": null,
-							"origPos":
-							[
-								0.0,
-								1284.0
-							],
-							"remote_loading": false,
-							"syncScroll": false,
-							"synced": false,
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1911.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1737,7 +1140,7 @@
 	"project": "LnStartProgram.sublime-project",
 	"replace":
 	{
-		"height": 52.0
+		"height": 72.0
 	},
 	"save_all_on_build": true,
 	"select_file":

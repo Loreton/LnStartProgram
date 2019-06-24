@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 18-06-2019 17.22.18
+# Version ......: 24-06-2019 10.30.28
 #
 # #############################################
 
@@ -34,6 +34,7 @@ def ParseInput():
     parser.add_argument('--root-dir', help='LnDisk ROOT directory (ex: D:\\LnDisk)', required=False, default=None)
 
     parser.add_argument('--go', help='disable dry-run', action='store_true')
+    parser.add_argument('--debug', help='display mai paths and input args', action='store_true')
     parser.add_argument('--display-args', help='Display input paramenters', action='store_true')
 
         # log debug su file
@@ -64,34 +65,86 @@ def checkPath(_path, errorOnPathNotFound=False):
         _path = str(_path)
     return _path
 
+
+
+def readConfigFile():
+    global script_path, yaml_config_file, prj_name
+    from zipfile import ZipFile
+    import io
+    # pdb.set_trace()
+    _this_path          = Path(sys.argv[0]).resolve()
+    # _this_path          = Path('K:/Filu/LnDisk/LnStart/LnStartProgram.zip').resolve()
+    #_this_path = Path('K:\\Filu\\LnDisk\\LnStart\\LnStartProgram_New.zip').resolve()
+    if _this_path.suffix == '.zip':
+        _I_AM_ZIP = True
+        prj_name    = _this_path.stem # first get name of zip file
+        script_path = _this_path.parent # ... then up one level
+        zip_filename = _this_path
+
+    else:
+        _I_AM_ZIP = False
+        script_path = _this_path.parent
+        prj_name  = script_path.name
+
+    # yaml_filename = '{0}.yml'.format(prj_name)
+    yaml_filenames = ['{0}.yml'.format(prj_name), 'conf/{0}.yml'.format(prj_name)]
+
+    content = None
+    if _I_AM_ZIP:
+        z = ZipFile(zip_filename, "r")
+        #zinfo = z.namelist()
+        for name in yaml_filenames:
+            if name in z.namelist():
+                yaml_filename = name
+                with z.open(yaml_filename) as f:
+                    _data = f.read()
+                _buffer = io.TextIOWrapper(io.BytesIO(_data))# def get_config(yaml_filename):
+                # contents  = io.TextIOWrapper(io.BytesIO(_data), encoding='iso-8859-1', newline='\n')# def get_config(yaml_filename):
+                content=[]
+                for line in _buffer:
+                    content.append(line)
+                #result = yaml.safe_load(contents)
+                break
+
+    else:
+        for name in yaml_filenames:
+            yaml_filename = Path(script_path / name)
+            if yaml_filename.exists():
+                # yaml_filename = name
+                with open(yaml_filename, 'r') as f:
+                    content = f.readlines() # splitted in rows
+                    # content = f.read() # single string
+                break
+
+    if content: # it's a LIST containing file rows...
+        """ removal of all commented lines to avoid solving
+        variables that could create errors"""
+        rows = []
+        for line in content:
+            if not line.strip(): continue
+            if line.strip()[0]=='#': continue
+            rows.append(line)
+
+        result = '\n'.join(rows)
+        content = yaml.safe_load(result)
+
+    else:
+        print ('configuration file {0} NOT FOUND'.format(prj_name))
+        sys.exit(1)
+    yaml_config_file = yaml_filename
+    return content # it's a dictionary
+
+
 ######################################
 # sample call:
-#    python.exe __main__.py TotalCommander --config-file .\LnStartProgram.ini --subst=y:
+#    python.exe __main__.py TotalCommander --go
 #
 ######################################
 if __name__ == '__main__':
-    pdb.set_trace()
-    script_path          = Path(sys.argv[0]).resolve().parent
-    if script_path.name  == 'bin': # potrei essere anche all'interno dello zip
-        script_path = script_path.parent
-    prj_name  = script_path.name
-
-    root_dir = script_path.parent
-    if root_dir.name.lower() in ['git-repo']:
-        root_dir = root_dir.parent
-
-    os.environ['Ln_RootDir'] = str(root_dir)
-    os.environ['Ln_Drive'] = str(script_path.drive)
-    os.environ['Ln_ScriptDir'] = str(script_path)
-
-    stdout_file     = str(Path(script_path / 'log' / '{0}.stdout'.format(prj_name)))
-    C               = Ln.Color(filename = stdout_file)
-    printColored    = C.printColored
-    gv              = DotMap(_dynamic=False)
+    config = readConfigFile()
 
     # - Parse Input
     inpArgs = ParseInput()
-    inpArgs.script_path = str(script_path)
     if inpArgs.display_args:
         import json
         json_data = json.dumps(vars(inpArgs), indent=4, sort_keys=True)
@@ -99,6 +152,35 @@ if __name__ == '__main__':
         sys.exit()
 
 
+    # Searching for ROOT path identified by 'LnDisk' dirname
+    root_dir = Path(sys.argv[0]).resolve()
+    while root_dir.name.lower() not in ['lndisk']:
+        root_dir = root_dir.parent
+        if root_dir.name == '':
+            print('ROOT directory "LnDisk" NOT FOUND in path:', _this_path)
+            sys.exit(1)
+
+    os.environ['Ln_RootDir'] = str(root_dir)
+    os.environ['Ln_Drive'] = str(script_path.drive)
+    os.environ['Ln_ScriptDir'] = str(script_path)
+
+    stdout_file = str(Path(script_path / 'log' / '{0}.stdout'.format(prj_name)))
+    C = Ln.Color(filename = stdout_file)
+
+
+
+    if inpArgs.debug:
+        for k,v in vars(inpArgs).items():
+            print('     {0:<15}: {1}'.format(k, v))
+        print()
+        print('     {0:<15}: {1}'.format('prj_name', prj_name))
+        print('     {0:<15}: {1}'.format('Ln_RootDir', str(root_dir)))
+        print('     {0:<15}: {1}'.format('Ln_Drive', str(script_path.drive)))
+        print('     {0:<15}: {1}'.format('Ln_ScriptDir', str(script_path)))
+        print('     {0:<15}: {1}'.format('stdout', stdout_file))
+        print('     {0:<15}: {1}'.format('config file', yaml_config_file))
+
+        sys.exit()
 
     # - logger
     log_file = str(Path(script_path  / 'log' / '{0}.log'.format(prj_name)))
@@ -107,11 +189,8 @@ if __name__ == '__main__':
     lnLogger.info('input arguments', vars(inpArgs))
 
 
-    # - read configuration file
-    yaml_config_file = str(Path(script_path / 'conf' / '{0}.yml'.format(prj_name)))
-    yaml_config_file = str(Path(script_path / '{0}.yml'.format(prj_name)))
-    config_str = Ln.LoadYamlFile(yaml_config_file)
-    config = Ln.processYamlData(config_str, prefix=r'${', suffix=r'}', errorOnNotFound=False)
+    # - process configuration file
+    config = Ln.processYamlData(config, prefix=r'${', suffix=r'}', errorOnNotFound=True, mylogger=lnLogger)
     lnLogger.info('configuration data', config)
 
 # https://stackoverflow.com/questions/31392057/configparser-loading-config-files-from-zip
@@ -121,17 +200,21 @@ if __name__ == '__main__':
 
     for _name, _path in config['VARS'].items():
         _path = checkPath(_path, errorOnPathNotFound=True)
-        lnLogger.info('envar {0:<15}: {1}'.format(_name, _path))
+        # lnLogger.info('envar {0:<15}: {1}'.format(_name, _path))
+        lnLogger.info('envar {0:<15}'.format(_name), _path)
         os.environ[_name] = _path
 
-    myPath = os.getenv('PATH')
-    for path in config['PATHS']:
+    myPath = os.getenv('PATH')+';'
+    for path in reversed(config['PATHS']):
         path = checkPath(path, errorOnPathNotFound=True)
         lnLogger.info('adding PATH', path)
-        myPath = myPath.replace(path, '').replace(';;', ';')     # delete if exists
+        myPath = myPath.replace(path+';', '')     # delete if exists
         myPath = '{0};{1}'.format(path, myPath)
 
+    os.environ['PATH'] = myPath
+    lnLogger.info('new PATHs', os.getenv('PATH'))
 
+    # sys.exit()
     # config = Ln.processYamlData(config, prefix=r'${', suffix=r'}', errorOnNotFound=False)
     # lnLogger.info('configuration data', config)
 
@@ -141,9 +224,18 @@ if __name__ == '__main__':
         CMDList = Prj.SetTotalCommander(config['TOTAL_COMMANDER'], logger=lnLogger)
     elif programToStart.lower().strip() in ['executor']:
         CMDList = Prj.SetExecutor(config['EXECUTOR'], logger=lnLogger, fEXECUTE=inpArgs.go)
+    elif programToStart.lower().strip() in ['vscode', 'vscode_insiders']:
+        CMDList = Prj.SetVSCode(config['VSCODE_INSIDERS'], logger=lnLogger, fEXECUTE=inpArgs.go)
     else:
-        Ln.Exit(1, "Program: {} not yet implemented".format(programToStart))
+        print("Program: {} not yet implemented".format(programToStart))
+        sys.exit(1)
 
+
+
+    # - EXECUTION
+    print ()
+    C.printColored(color=C.magentaH, text="Working dir: {}".format(os.getcwd()), tab=4)
+    print ()
 
     if inpArgs.go:
         Ln.runProgram('{0} command list:'.format(programToStart), CMDList, logger=lnLogger)
@@ -154,11 +246,8 @@ if __name__ == '__main__':
             C.printColored(color=C.yellowH, text=item, tab=4)
         print ()
         msg = "enter --go    to launch the program: {0}".format(programToStart)
-        lnLogger.info("program {0} NOT started due to dry-run oprion.".format(CMDList[0]))
+        lnLogger.info("program {0} NOT started due to dry-run option.".format(CMDList[0]))
 
     C.printColored(color=C.greenH, text=msg, tab=4)
     sys.exit(0)
 
-
-
-# E:\LnED\Lacie232\Filu\LnDisk\LnFree\Network\FTPc\WinSCP\winscp.exe ssh-loreton.loreton /ini=E:\LnED\Lacie232\Filu\LnDisk\LnFree\Network\FTPc\WinSCP\Ln_ini\WinSCP_Loreto.ini /log=D:/temp/winscp.log /sessionname=SSH-LORETON

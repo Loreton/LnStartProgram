@@ -1,22 +1,2 @@
 # updated by ...: Loreto Notarantonio
-# Version ......: 17-06-2019 12.23.49
-
-# from . Utils.LnLogger import setLogger
-
-# from . LnUtils import readYamlFile
-# from . LnUtils import writeYamlFile
-# from . LnUtils import writeJsonFile
-# from . LnUtils import json_to_dict
-# from . LnUtils import dict_to_json
-# from . LnUtils import prompt
-# from . LnUtils import TreeList
-# from . LnUtils import readTextFile
-# from . LnUtils import timeConvertion
-# from . LnUtils import filesizeFmt
-# from . LnUtils import sizeof_fmt
-# from . ppretty import ppretty
-
-# from . Utils.LnYamlLoader import LoadYamFile
-# from . Utils.OsEnvironment import setVars
-#
-# from . Utils.LnColor  import LnColor as Color
+# Version ......: 20-06-2019 11.35.50
