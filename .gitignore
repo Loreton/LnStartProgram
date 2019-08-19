@@ -103,4 +103,5 @@ ENV/
 
 # loreto
 __pycache__/
+log/
 *.zip

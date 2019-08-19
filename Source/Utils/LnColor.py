@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-15 -*-
 
+# updated by ...: Loreto Notarantonio
+# Version ......: 19-08-2019 16.26.44
+
 import sys, os
 
 # ---- importing colorama as zip file...
@@ -14,7 +17,7 @@ from . import colorama_039 as colorama
 
 
 class LnColor:
-    colorama.init(autoreset=True)
+    colorama.init(wrap=True, convert=None, strip=None, autoreset=False)
     # for i in dir('LnColors'): print (i)
     '''
         devo mantenere i valori seguenti perché a volte
@@ -28,34 +31,34 @@ class LnColor:
     HI         = colorama.Style
 
 
-    critical   = FG.BLUE
-    info       = FG.GREEN
-
-    black      = FG.BLACK
-    red     = FG.RED              ; redH     = red     + HI.BRIGHT
-    green   = colorama.Fore.GREEN ; greenH   = green   + HI.BRIGHT
-    yellow  = FG.YELLOW           ; yellowH  = yellow  + HI.BRIGHT
-    blue    = FG.BLUE             ; blueH    = blue    + HI.BRIGHT
-    magenta = FG.MAGENTA          ; magentaH = magenta + HI.BRIGHT
-    cyan    = FG.CYAN             ; cyanH    = cyan    + HI.BRIGHT
-    white   = FG.WHITE            ; whiteH   = white   + HI.BRIGHT
 
 
-    RESET      = HI.RESET_ALL
 
-    BW         = FG.BLACK + BG.WHITE
-    BWH        = FG.BLACK + BG.WHITE + HI.BRIGHT
-    YelloOnBlack        = FG.BLACK + BG.YELLOW
+    black       = FG.BLACK
+    red         = FG.RED              ; redH     = red     + HI.BRIGHT
+    green       = colorama.Fore.GREEN ; greenH   = green   + HI.BRIGHT
+    yellow      = FG.YELLOW           ; yellowH  = yellow  + HI.BRIGHT
+    blue        = FG.BLUE             ; blueH    = blue    + HI.BRIGHT
+    magenta     = FG.MAGENTA          ; magentaH = magenta + HI.BRIGHT
+    cyan        = FG.CYAN             ; cyanH    = cyan    + HI.BRIGHT
+    white       = FG.WHITE            ; whiteH   = white   + HI.BRIGHT
 
+    RESET        = HI.RESET_ALL
+    BW           = FG.BLACK + BG.WHITE
+    BWH          = FG.BLACK + BG.WHITE + HI.BRIGHT
+    YelloOnBlack = FG.BLACK + BG.YELLOW
+
+    normal = HI.RESET_ALL + FG.WHITE + BG.BLACK
     callerFunc = sys._getframe(1).f_code.co_name
 
 
 
 
         #  aliases
-    error  = redH
+    error    = redH
     warning  = magentaH
-    fucsia  = magentaH
+    fucsia   = magentaH
+    info     = greenH
 
     def __init__(self, filename=None):
         self._stdout = None
@@ -67,20 +70,22 @@ class LnColor:
 
             self._stdout = open(filename, "w", encoding='utf-8')
             self._stdout_colored = open(colored_filename, "w", encoding='utf-8')
-            # self._stdout = open(filename, "w")
-            # self._stdout_colored = open(colored_filename, "w")
 
-    # def set_stdout(self, filename=None, colored_filename=None):
+
+    def setColor(self,  color=''):
+        print (self.normal + color, end='' )
+
 
     def getColored(self, **args):
         return self.printColored (fGET=True, **args)
 
-    def printColored(self, color='', text='', tab=0, end='\n', reset=True, string_encode='latin-1', fGET=False):
+
+    def printColored(self, color='', text='', tab=0, end='\n', autoreset=True, string_encode='latin-1', fGET=False):
         _function_name = sys._getframe().f_code.co_name
-        endColor = self.RESET if reset else ''
         thisTAB = ' '*tab
         if not isinstance(text, str):
             text = str(text)
+
 
         # ----------------------------------------------
         # - intercettazione del tipo text per fare un
@@ -106,14 +111,15 @@ class LnColor:
             text = '\n'.join(myMsg)
             thisTAB = ''
 
-        colored_text = '{0}{1}{2}{3}'.format(thisTAB, color, text, endColor)
+        colored_text = '{0}{1}{2}'.format(thisTAB, color, text)
         normal_text = '{0}{1}'.format(thisTAB, text)
 
         # ----------------------------------------------
         # - print
         # ----------------------------------------------
+        ret_val=None
         if fGET:
-            return colored_text
+            ret_val=colored_text
         else:
             try:
                 print (colored_text, end=end )
@@ -121,8 +127,7 @@ class LnColor:
             except (UnicodeEncodeError):
                 print ('{0} function: {1} - UnicodeEncodeError on next line {2}'.format(
                         LnColor.redH,
-                        _function_name,
-                        endColor),
+                        _function_name),
                     end=end )
                 print (normal_text.encode(string_encode, 'ignore'), end=end )
 
@@ -131,7 +136,9 @@ class LnColor:
                     self._stdout.write('{0}{1}'.format(normal_text, end))
                 if self._stdout_colored:
                     self._stdout_colored.write('{0}{1}'.format(colored_text, end))
-            return None
 
 
+        if autoreset:
+            print(self.normal, end='')
 
+        return ret_val
