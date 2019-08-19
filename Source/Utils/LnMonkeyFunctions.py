@@ -67,18 +67,22 @@ def LnPathBackup(source, targetDir=None, logger=None):
 ######################################################
 #
 ######################################################
-def checkPath(_path, errorOnPathNotFound=False):
-    if isinstance(_path, (WindowsPath, str)):
-        if _path[1] == ':':
-            _path = Path(_path).resolve() # absolute path and cut  \\\\ excedents
-            if not _path.exists():
-                if errorOnPathNotFound:
-                    print('\n    {_path} path NOT FOUND. Pls change the config file.\n'.format(**locals()))
-                    sys.exit(1)
-                else:
-                    choice=keyb_input('\n   {_path} file NOT FOUND. [I]gnore'.format(**locals()), validKeys='i|I')
-        _path = str(_path)
-    return _path
+def checkPath(_path, errorOnPathNotFound=True):
+    if isinstance(_path, WindowsPath):
+        _path = str(_path.resolve())
+    elif isinstance(_path, str):
+        _path = str(Path(_path).resolve())
+
+    if _path[1] == ':':
+        _path = Path(_path).resolve() # absolute path and cut  \\\\ excedents
+        if not _path.exists():
+            if errorOnPathNotFound:
+                print('\n    {_path} path NOT FOUND. Pls change the config file.\n'.format(**locals()))
+                sys.exit(1)
+            else:
+                choice=keyb_input('\n   {_path} file NOT FOUND. [I]gnore'.format(**locals()), validKeys='i|I')
+
+    return str(_path)
 
 
 # inseriamo i miei comandi nella classe Path.

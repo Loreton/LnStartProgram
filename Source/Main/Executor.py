@@ -24,22 +24,25 @@ def SetExecutor(d_vars, logger, fEXECUTE=False):
     OSbits = platform.architecture()[0]
     logger.info("Stiamo lavorando con Executor", OSbits)
 
-    my_exe = Path(d_vars['executorEXE']).resolve()
-    my_dll = Path(d_vars['hookwinrDLL']).resolve()
+    my_exe = Path.LnVerify(d_vars['executorEXE'], errorOnPathNotFound=True)
+    my_dll = Path.LnVerify(d_vars['hookwinrDLL'], errorOnPathNotFound=True)
+
+    # my_exe = Path(d_vars['executorEXE']).resolve()
+    # my_dll = Path(d_vars['hookwinrDLL']).resolve()
 
     if OSbits == "64bit":
-        exe_to_run = Path(d_vars['executor64EXE']).resolve()
-        dll_to_run = Path(d_vars['hookwinr64DLL']).resolve()
+        exe_to_run = Path.LnVerify(d_vars['executor64EXE'], errorOnPathNotFound=True)
+        dll_to_run = Path.LnVerify(d_vars['hookwinr64DLL'], errorOnPathNotFound=True)
     else:
-        exe_to_run = Path(d_vars['executor32EXE']).resolve()
-        dll_to_run = Path(d_vars['hookwinr32DLL']).resolve()
+        exe_to_run = Path.LnVerify(d_vars['executor32EXE'], errorOnPathNotFound=True)
+        dll_to_run = Path.LnVerify(d_vars['hookwinr32DLL'], errorOnPathNotFound=True)
 
         # faccio uso delle LnMonkeyFunctions
     if fEXECUTE:
         exe_to_run.LnCopy(target=my_exe, logger=logger)
         dll_to_run.LnCopy(target=my_dll, logger=logger)
 
-        my_ini = Path(d_vars['iniFile'])
+        my_ini = Path.LnVerify(d_vars['iniFile'], errorOnPathNotFound=True)
         my_ini.LnBackup(d_vars['backupDir'], logger=logger)
     else:
         logger.info('skipping copyfile due to dry-run')

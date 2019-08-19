@@ -26,7 +26,7 @@ def SetVSCode(d_vars, logger, fEXECUTE=False):
         if _label.lower() == 'workingdir':
             os.chdir(_value)
 
-    my_exe = Path(d_vars['vscode_exe']).resolve()
+    my_exe = Path.LnVerify(d_vars['vscode_exe'])
 
     CMDList.append(my_exe)
 

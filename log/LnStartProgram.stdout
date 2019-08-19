@@ -1,9 +1,12 @@
-    Working dir: K:\Filu\LnDisk\LnFree\Files\Manager\WinCmd-LN
-    K:\Filu\LnDisk\LnFree\Files\Manager\WinCmd-LN\realApp\WinCmd\TOTALCMD64.exe
-    /I=K:\Filu\LnDisk\LnFree\Files\Manager\WinCmd-LN\LnData\Config\WinCmd.ini
-    /F=K:\Filu\LnDisk\LnFree\Files\Manager\WinCmd-LN\LnData\Config\Wcx_Ftp.ini
-    enter --go    to launch the program: totalcommander
-[0002] - - dry-run:     False
-2019/08/19 16:00:04 - [LnLogger.setLogger: 227] INFO ->     [0003] - - debug level: 0
-2019/08/19 16:00:04 - [LnLogger.setLogger: 227] INFO ->     [0004] - --------------------------------------------------
-2019/08/19 16:00:04 - [LnLogger.setLogger: 227] INFO ->     [0005] - 
+2019/08/19 16:22:44 - [LnLogger.setLogger: 227] INFO -> 
+
+
+
+
+ [list=6]:
+2019/08/19 16:22:44 - [LnLogger.setLogger: 227] INFO ->     [0000] - --------------------------------------------------
+2019/08/19 16:22:44 - [LnLogger.setLogger: 227] INFO ->     [0001] - - starting: 2019/08/19 16:22:44
+2019/08/19 16:22:44 - [LnLogger.setLogger: 227] INFO ->     [0002] - - dry-run:     False
+2019/08/19 16:22:44 - [LnLogger.setLogger: 227] INFO ->     [0003] - - debug level: 0
+2019/08/19 16:22:44 - [LnLogger.setLogger: 227] INFO ->     [0004] - --------------------------------------------------
+2019/08/19 16:22:44 - [LnLogger.setLogger: 227] INFO ->     [0005] - 

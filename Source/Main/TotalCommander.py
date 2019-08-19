@@ -20,11 +20,7 @@ def SetTotalCommander(d_vars, logger):
         # - scroling dictionary_variables
         # -------------------------------------------------
     for _label, _path in d_vars.items():
-        _path = Path(_path).resolve()
-        if not _path.exists():
-            logger.error(_path, "doesn't exists.")
-            print("{0} doesn't exists".format(_path))
-            sys.exit(1)
+        _path = Path.LnVerify(_path, errorOnPathNotFound=True)
 
         logger.info('envar {0:<15}: {1}'.format(_label, _path))
         os.environ[_label] = str(_path)
@@ -35,14 +31,11 @@ def SetTotalCommander(d_vars, logger):
     OSbits = platform.architecture()[0]
     logger.info( "Stiamo lavorando con TotalCommander {0}".format(OSbits))
     if OSbits == "64bit":
-        TCexe = Path(d_vars['Ln_TC_PATH'] + '/realApp/WinCmd/TOTALCMD64.exe')
+        TCexe = Path.LnVerify(d_vars['Ln_TC_PATH'] + '/realApp/WinCmd/TOTALCMD64.exe', errorOnPathNotFound=True)
     else:
-        TCexe = Path(d_vars['Ln_TC_PATH'] + '/realApp/WinCmd/TOTALCMD.exe')
+        TCexe = Path.LnVerify(d_vars['Ln_TC_PATH'] + '/realApp/WinCmd/TOTALCMD.exe', errorOnPathNotFound=True)
 
 
-    if not TCexe.exists():
-        print("{0} doesn't exists".format(TCexe))
-        sys.exit(1)
 
 
     CMDList.append(str(TCexe))
