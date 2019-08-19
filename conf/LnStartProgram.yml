@@ -26,43 +26,12 @@ VARS:
 
     # --- Generic
     Ln_GitRepoDir:          ${VARS.Ln_RootDir}\GIT-REPO
-    JAVA_HOME:              ${VARS.Ln_FreeDir}\Pgm\Java\xjdk1.8.0_66
+    # JAVA_HOME:              ${VARS.Ln_FreeDir}\Pgm\Java\jdk1.8.0_66
+    JAVA_HOME:              c:\Program Files\Java\jdk1.8.0_221
     Ln_PortableAppsDir:     ${VARS.Ln_RootDir}\PortableApps\PortableApps
     Ln_myEditor:            ${VARS.Ln_FreeDir}\Editors\SublimeText_3\sublime_text.exe
     Ln_myBrowser:           ${VARS.Ln_FreeDir}\Network\Browser\Opera\launcher.exe
-    gitdir:                 ${VARS.Ln_FreeDir}\Pgm\PortableGit
-
-    # --- Python
-    Ln_pythonDir:           ${VARS.Ln_FreeDir}\Pgm\WPy-3710\python-3.7.1.amd64
-    Ln_PythonExe:           ${VARS.Ln_pythonDir}\python.exe
-
-    # --- Winscp & Kitty
-    Ln_WinScpDIR:           ${VARS.Ln_FreeDir}\Network\FTPc\WinSCP
-    Ln_WinScpKittyCmd:      ${VARS.Ln_RootDir}\GIT-REPO\Scripts\python\Sources\KittyFromWinScp\bin\kitty-from-WinScp.cmd
-    Ln_WinScpKittyPy:       ${VARS.Ln_RootDir}\GIT-REPO\Scripts\python\Sources\KittyFromWinScp\__main__.py
-    Ln_WinScpEXE:           ${VARS.Ln_WinScpDIR}\winscp.exe
-    Ln_KittyEXE:            ${VARS.Ln_FreeDir}\Network\Telnet\Kitty/Kitty.exe
-
-
-PATH:
-    Ln_RootDir:             ${MAIN.RootDir}
-    Ln_StartDir:            ${MAIN.StartDir}
-    Ln_LoretoDir:           ${MAIN.LoretoDir}
-    Ln_FreeDir:             ${MAIN.FreeDir}
-    Ln_LeslaDir:            ${MAIN.LeslaDir}
-
-
-
-    # --- Editors
-    Ln_SublimeEditor:       ${VARS.Ln_FreeDir}\Editors\SublimeText_3\sublime_text.exe
-    Ln_Notepad:             ${VARS.Ln_FreeDir}\Editors\NotePad++\notepad++.exe
-
-    # --- Generic
-    Ln_GitRepoDir:          ${VARS.Ln_RootDir}\GIT-REPO
-    JAVA_HOME:              ${VARS.Ln_FreeDir}\Pgm\Java\jdk1.8.0_66
-    Ln_PortableAppsDir:     ${VARS.Ln_RootDir}\PortableApps\PortableApps
-    Ln_myEditor:            ${VARS.Ln_FreeDir}\Editors\SublimeText_3\sublime_text.exe
-    Ln_myBrowser:           ${VARS.Ln_FreeDir}\Network\Browser\Opera\launcher.exe
+    Ln_BrowserForSublime:   C:\Filu_C\LnDisk\LnFree\Network\Browser\Opera\launcher.exe
     gitdir:                 ${VARS.Ln_FreeDir}\Pgm\PortableGit
 
     # --- Python

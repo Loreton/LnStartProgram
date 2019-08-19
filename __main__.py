@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 19-08-2019 16.00.01
+# Version ......: 19-08-2019 16.02.44
 #
 # #############################################
 
@@ -54,17 +54,6 @@ def ParseInput():
     args = parser.parse_args()
     # print (args); sys.exit()
     return  args
-
-def checkPath(_path, errorOnPathNotFound=False):
-    if isinstance(_path, (WindowsPath, str)):
-        if _path[1] == ':':
-            _path = Path(_path).resolve() # absolute path and cut  \\\\ excedents
-            if not _path.exists() and errorOnPathNotFound:
-                print('path: "{}" NOT found.'.format(_path))
-                sys.exit(1)
-        _path = str(_path)
-    return _path
-
 
 
 def readConfigFile():
