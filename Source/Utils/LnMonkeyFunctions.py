@@ -4,10 +4,14 @@
 # Scope:  aggiunge dei metodi alle classi di sistema
 # updated by Loreto: 23-10-2017 14.38.53
 # ######################################################################################
+import sys
 import shutil
 
-from pathlib import Path
+from pathlib import Path, WindowsPath
 from time import strftime
+
+from . LnKeyboard import keyb_input
+
 
 
 ################################################
@@ -58,6 +62,26 @@ def LnPathBackup(source, targetDir=None, logger=None):
     backupFile = Path(backupFile)
     shutil.copy(str(source), str(backupFile))
 
+
+
+######################################################
+#
+######################################################
+def checkPath(_path, errorOnPathNotFound=False):
+    if isinstance(_path, (WindowsPath, str)):
+        if _path[1] == ':':
+            _path = Path(_path).resolve() # absolute path and cut  \\\\ excedents
+            if not _path.exists():
+                if errorOnPathNotFound:
+                    print('\n    {_path} path NOT FOUND. Pls change the config file.\n'.format(**locals()))
+                    sys.exit(1)
+                else:
+                    choice=keyb_input('\n   {_path} file NOT FOUND. [I]gnore'.format(**locals()), validKeys='i|I')
+        _path = str(_path)
+    return _path
+
+
 # inseriamo i miei comandi nella classe Path.
 Path.LnCopy   = LnPathCopy
 Path.LnBackup = LnPathBackup
+Path.LnVerify = checkPath

@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 24-06-2019 10.30.28
+# Version ......: 19-08-2019 16.00.01
 #
 # #############################################
 
@@ -68,7 +68,7 @@ def checkPath(_path, errorOnPathNotFound=False):
 
 
 def readConfigFile():
-    global script_path, yaml_config_file, prj_name
+    global g_script_path, g_yaml_config_file, g_prj_name
     from zipfile import ZipFile
     import io
     # pdb.set_trace()
@@ -77,17 +77,17 @@ def readConfigFile():
     #_this_path = Path('K:\\Filu\\LnDisk\\LnStart\\LnStartProgram_New.zip').resolve()
     if _this_path.suffix == '.zip':
         _I_AM_ZIP = True
-        prj_name    = _this_path.stem # first get name of zip file
-        script_path = _this_path.parent # ... then up one level
+        g_prj_name    = _this_path.stem # first get name of zip file
+        g_script_path = _this_path.parent # ... then up one level
         zip_filename = _this_path
 
     else:
         _I_AM_ZIP = False
-        script_path = _this_path.parent
-        prj_name  = script_path.name
+        g_script_path = _this_path.parent
+        g_prj_name  = g_script_path.name
 
-    # yaml_filename = '{0}.yml'.format(prj_name)
-    yaml_filenames = ['{0}.yml'.format(prj_name), 'conf/{0}.yml'.format(prj_name)]
+    # yaml_filename = '{0}.yml'.format(g_prj_name)
+    yaml_filenames = ['{0}.yml'.format(g_prj_name), 'conf/{0}.yml'.format(g_prj_name)]
 
     content = None
     if _I_AM_ZIP:
@@ -108,7 +108,7 @@ def readConfigFile():
 
     else:
         for name in yaml_filenames:
-            yaml_filename = Path(script_path / name)
+            yaml_filename = Path(g_script_path / name)
             if yaml_filename.exists():
                 # yaml_filename = name
                 with open(yaml_filename, 'r') as f:
@@ -129,9 +129,9 @@ def readConfigFile():
         content = yaml.safe_load(result)
 
     else:
-        print ('configuration file {0} NOT FOUND'.format(prj_name))
+        print ('configuration file {0} NOT FOUND'.format(g_prj_name))
         sys.exit(1)
-    yaml_config_file = yaml_filename
+    g_yaml_config_file = yaml_filename
     return content # it's a dictionary
 
 
@@ -142,6 +142,8 @@ def readConfigFile():
 ######################################
 if __name__ == '__main__':
     config = readConfigFile()
+    stdout_file = str(Path(g_script_path / 'log' / '{0}.stdout'.format(g_prj_name)))
+    C = Ln.Color(filename=stdout_file)
 
     # - Parse Input
     inpArgs = ParseInput()
@@ -161,11 +163,9 @@ if __name__ == '__main__':
             sys.exit(1)
 
     os.environ['Ln_RootDir'] = str(root_dir)
-    os.environ['Ln_Drive'] = str(script_path.drive)
-    os.environ['Ln_ScriptDir'] = str(script_path)
+    os.environ['Ln_Drive'] = str(g_script_path.drive)
+    os.environ['Ln_ScriptDir'] = str(g_script_path)
 
-    stdout_file = str(Path(script_path / 'log' / '{0}.stdout'.format(prj_name)))
-    C = Ln.Color(filename = stdout_file)
 
 
 
@@ -173,17 +173,17 @@ if __name__ == '__main__':
         for k,v in vars(inpArgs).items():
             print('     {0:<15}: {1}'.format(k, v))
         print()
-        print('     {0:<15}: {1}'.format('prj_name', prj_name))
+        print('     {0:<15}: {1}'.format('g_prj_name', g_prj_name))
         print('     {0:<15}: {1}'.format('Ln_RootDir', str(root_dir)))
-        print('     {0:<15}: {1}'.format('Ln_Drive', str(script_path.drive)))
-        print('     {0:<15}: {1}'.format('Ln_ScriptDir', str(script_path)))
+        print('     {0:<15}: {1}'.format('Ln_Drive', str(g_script_path.drive)))
+        print('     {0:<15}: {1}'.format('Ln_ScriptDir', str(g_script_path)))
         print('     {0:<15}: {1}'.format('stdout', stdout_file))
-        print('     {0:<15}: {1}'.format('config file', yaml_config_file))
+        print('     {0:<15}: {1}'.format('config file', g_yaml_config_file))
 
         sys.exit()
 
     # - logger
-    log_file = str(Path(script_path  / 'log' / '{0}.log'.format(prj_name)))
+    log_file = str(Path(g_script_path  / 'log' / '{0}.log'.format(g_prj_name)))
     lnLogger = Ln.setLogger(filename=os.path.abspath(log_file), debug_level=3, dry_run=not inpArgs.go, log_modules=inpArgs.log_modules, color=Ln.Color() )
     lnStdout = Ln.setLogger(filename=os.path.abspath(stdout_file), color=Ln.Color() )
     lnLogger.info('input arguments', vars(inpArgs))
@@ -199,17 +199,16 @@ if __name__ == '__main__':
         # -------------------------------------------------
 
     for _name, _path in config['VARS'].items():
-        _path = checkPath(_path, errorOnPathNotFound=True)
-        # lnLogger.info('envar {0:<15}: {1}'.format(_name, _path))
+        _path = Path.LnVerify(_path, errorOnPathNotFound=False)
         lnLogger.info('envar {0:<15}'.format(_name), _path)
         os.environ[_name] = _path
 
     myPath = os.getenv('PATH')+';'
-    for path in reversed(config['PATHS']):
-        path = checkPath(path, errorOnPathNotFound=True)
-        lnLogger.info('adding PATH', path)
-        myPath = myPath.replace(path+';', '')     # delete if exists
-        myPath = '{0};{1}'.format(path, myPath)
+    for _path in reversed(config['PATHS']):
+        path = Path.LnVerify(_path, errorOnPathNotFound=False)
+        lnLogger.info('adding PATH', _path)
+        myPath = myPath.replace(_path+';', '')     # delete if exists
+        myPath = '{0};{1}'.format(_path, myPath)
 
     os.environ['PATH'] = myPath
     lnLogger.info('new PATHs', os.getenv('PATH'))
