@@ -14,7 +14,7 @@
             "program": "K:\\Filu\\LnDisk\\GIT-REPO\\LnStartProgram\\__main__.py",
             "args": [
                 "--program=totalcommander",
-                ""
+                "--py=Python_3741"
             ],
             "cwd": "${workspaceRoot}",
 

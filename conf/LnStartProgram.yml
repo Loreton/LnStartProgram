@@ -34,9 +34,9 @@ VARS:
     Ln_BrowserForSublime:   C:\Filu_C\LnDisk\LnFree\Network\Browser\Opera\launcher.exe
     gitdir:                 ${VARS.Ln_FreeDir}\Pgm\PortableGit
 
-    # --- Python
-    Ln_pythonDir:           ${VARS.Ln_FreeDir}\Pgm\WPy-3710\python-3.7.1.amd64
-    Ln_PythonExe:           ${VARS.Ln_pythonDir}\python.exe
+    # --- Python default version
+    Ln_pythonDir:           ${Python_default.Ln_pythonDir}
+    Ln_PythonExe:           ${Python_default.Ln_PythonExe}
 
     # --- Winscp & Kitty
     Ln_WinScpDIR:           ${VARS.Ln_FreeDir}\Network\FTPc\WinSCP
@@ -47,14 +47,25 @@ VARS:
 
 
 
-PATHS: # verranno impostati nell'ordine indicato.
+PYTHON_PATHS: # verranno impostati nell'ordine indicato.
     # python:
     - ${VARS.Ln_pythonDir}
     - ${VARS.Ln_pythonDir}\DLLs
     - ${VARS.Ln_pythonDir}\Lib
     - ${VARS.Ln_pythonDir}\Scripts
     - ${VARS.Ln_pythonDir}\Lib\site-packages
-    - ${VARS.Ln_pythonDir}\Lib\site-packages/win32com
+    - ${VARS.Ln_pythonDir}\Lib\site-packages\win32com
+    - ${VARS.Ln_pythonDir}\Lib\site-packages\pywin32_system32
+
+
+PATHS: # verranno impostati nell'ordine indicato.
+    # python:
+    # - ${VARS.Ln_pythonDir}
+    # - ${VARS.Ln_pythonDir}\DLLs
+    # - ${VARS.Ln_pythonDir}\Lib
+    # - ${VARS.Ln_pythonDir}\Scripts
+    # - ${VARS.Ln_pythonDir}\Lib\site-packages
+    # - ${VARS.Ln_pythonDir}\Lib\site-packages/win32com
 
     # java:
     - ${VARS.JAVA_HOME}\bin
@@ -108,3 +119,12 @@ VSCODE_INSIDERS:
     VSCODE_DEV:
     ELECTRON_RUN_AS_NODE:   1
     vscode_exe:             code-insiders.cmd
+
+
+Python_3741:
+    Ln_pythonDir:           ${VARS.Ln_FreeDir}\Pgm\WPy64-3741\python-3.7.4.amd64
+    Ln_PythonExe:           ${VARS.Ln_pythonDir}\python.exe
+
+Python_default:
+    Ln_pythonDir:           ${VARS.Ln_FreeDir}\Pgm\WPy-3710\python-3.7.1.amd64
+    Ln_PythonExe:           ${VARS.Ln_pythonDir}\python.exe

@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 19-08-2019 16.02.44
+# Version ......: 29-10-2019 19.56.21
 #
 # #############################################
 
@@ -21,7 +21,7 @@ import Source.Main  as Prj
 ##############################################################
 # - Parse Input
 ##############################################################
-def ParseInput():
+def ParseInput(program_names):
     import argparse
     # =============================================
     # = Parsing
@@ -30,8 +30,9 @@ def ParseInput():
         sys.argv.append('-h')
 
     parser = argparse.ArgumentParser(description='command line tool to start programs')
-    parser.add_argument('--program', help='Specify progra to be started)', required=True)
+    parser.add_argument('--program', help='Specify progra to be started)', choices=program_names, required=True)
     parser.add_argument('--root-dir', help='LnDisk ROOT directory (ex: D:\\LnDisk)', required=False, default=None)
+    parser.add_argument('--python-version', help='Specify python version to be used', required=False, default='Python_default')
 
     parser.add_argument('--go', help='disable dry-run', action='store_true')
     parser.add_argument('--debug', help='display mai paths and input args', action='store_true')
@@ -130,12 +131,32 @@ def readConfigFile():
 #
 ######################################
 if __name__ == '__main__':
-    config = readConfigFile()
+    config_raw = readConfigFile()
     stdout_file = str(Path(g_script_path / 'log' / '{0}.stdout'.format(g_prj_name)))
     C = Ln.Color(filename=stdout_file)
 
+
+    # -------
+    # mapping program_name with python function module
+    # -------
+    module_map = {
+        "totalcommander" : {
+            'module': Prj.SetTotalCommander,
+            'config': 'TOTAL_COMMANDER',
+        },
+        "tc" : {
+            'module': Prj.SetTotalCommander,
+            'config': 'TOTAL_COMMANDER',
+        },
+        "executor" : {
+            'module': Prj.SetExecutor,
+            'config': 'EXECUTOR',
+        },
+    }
+    programs = [k for k in module_map.keys()]
+
     # - Parse Input
-    inpArgs = ParseInput()
+    inpArgs = ParseInput(program_names=programs)
     if inpArgs.display_args:
         import json
         json_data = json.dumps(vars(inpArgs), indent=4, sort_keys=True)
@@ -179,44 +200,78 @@ if __name__ == '__main__':
 
 
     # - process configuration file
-    config = Ln.processYamlData(config, prefix=r'${', suffix=r'}', errorOnNotFound=True, mylogger=lnLogger)
-    lnLogger.info('configuration data', config)
+    config_default = Ln.processYamlData(config_raw, prefix=r'${', suffix=r'}', errorOnNotFound=True, mylogger=lnLogger)
+    lnLogger.info('default configuration data', config_default)
 
-# https://stackoverflow.com/questions/31392057/configparser-loading-config-files-from-zip
+    # myPath = os.getenv('PATH')+';'
+    myPath = os.getenv('PATH').split(';')
+    # myPath.remove('')
+    print()
+    for index, item in enumerate(myPath):
+        print("[{index:04}] {item}".format(**locals()))
+
+
+        # -------------------------------------------------
+        # - Choose right python version
+        # -------------------------------------------------
+    if inpArgs.python_version not in 'Python_default':
+        # - Replace python version in VARS section
+        for k,v in config_raw[inpArgs.python_version].items():
+            config_raw['VARS'][k] = v
+        config = Ln.processYamlData(config_raw, prefix=r'${', suffix=r'}', errorOnNotFound=True, mylogger=lnLogger)
+
+        # - remove default python paths... if exists
+        default_python_dir=config_default['Python_default']['Ln_pythonDir']
+        for _path in reversed(myPath[:]):
+            if _path.startswith(default_python_dir):
+                lnLogger.console('removing PATH', _path)
+                myPath.remove(_path)
+        print()
+        for index, item in enumerate(myPath):
+            print("[{index:04}] {item}".format(**locals()))
+
+    else:
+        config = config_default
+
+    lnLogger.info('running configuration data', config)
+    sys.exit()
+
+
+
+
+
         # -------------------------------------------------
         # - Setting environment variables
         # -------------------------------------------------
-
     for _name, _path in config['VARS'].items():
-        _path = Path.LnVerify(_path, errorOnPathNotFound=False)
+        _path = Path.LnCheck(_path, errorOnPathNotFound=False)
         lnLogger.info('envar {0:<15}'.format(_name), _path)
         os.environ[_name] = _path
 
-    myPath = os.getenv('PATH')+';'
+    # myPath = os.getenv('PATH')+';'
     for _path in reversed(config['PATHS']):
-        path = Path.LnVerify(_path, errorOnPathNotFound=False)
+        path = Path.LnCheck(_path, errorOnPathNotFound=False)
         lnLogger.info('adding PATH', _path)
         myPath = myPath.replace(_path+';', '')     # delete if exists
         myPath = '{0};{1}'.format(_path, myPath)
 
+
+
     os.environ['PATH'] = myPath
+    for path in myPath.split(';'):
+        print(path)
+    sys.exit(1)
+
+
+
+
     lnLogger.info('new PATHs', os.getenv('PATH'))
 
-    # sys.exit()
-    # config = Ln.processYamlData(config, prefix=r'${', suffix=r'}', errorOnNotFound=False)
-    # lnLogger.info('configuration data', config)
-
     programToStart = inpArgs.program
-
-    if programToStart.lower().strip() in ['tc', 'totalcommander']:
-        CMDList = Prj.SetTotalCommander(config['TOTAL_COMMANDER'], logger=lnLogger)
-    elif programToStart.lower().strip() in ['executor']:
-        CMDList = Prj.SetExecutor(config['EXECUTOR'], logger=lnLogger, fEXECUTE=inpArgs.go)
-    elif programToStart.lower().strip() in ['vscode', 'vscode_insiders']:
-        CMDList = Prj.SetVSCode(config['VSCODE_INSIDERS'], logger=lnLogger, fEXECUTE=inpArgs.go)
-    else:
-        print("Program: {} not yet implemented".format(programToStart))
-        sys.exit(1)
+    moduleToCall = module_map[programToStart]['module']
+    # moduleConfig = module_map[programToStart]['config']
+    module_config_data = config[module_map[programToStart]['config']]
+    CMDList = moduleToCall(module_config_data, logger=lnLogger)
 
 
 

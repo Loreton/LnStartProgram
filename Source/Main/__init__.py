@@ -1,6 +1,7 @@
 # updated by ...: Loreto Notarantonio
-# Version ......: 24-06-2019 10.13.57
+# Version ......: 22-10-2019 19.47.22
 
 from . TotalCommander import SetTotalCommander
 from . Executor import SetExecutor
 from . VSCode import SetVSCode
+from . SetPython import SetPython

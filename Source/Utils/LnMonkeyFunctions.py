@@ -65,7 +65,7 @@ def LnPathBackup(source, targetDir=None, logger=None):
 
 
 ######################################################
-#
+# - check if path exists
 ######################################################
 def checkPath(_path, errorOnPathNotFound=True):
     if isinstance(_path, WindowsPath):
@@ -89,3 +89,4 @@ def checkPath(_path, errorOnPathNotFound=True):
 Path.LnCopy   = LnPathCopy
 Path.LnBackup = LnPathBackup
 Path.LnVerify = checkPath
+Path.LnCheck = checkPath
