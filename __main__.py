@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 05-11-2019 18.34.49
+# Version ......: 05-11-2019 18.43.04
 #
 # #############################################
 
@@ -59,8 +59,6 @@ def ParseInput(program_names, python_versions):
 
 def setMainPaths():
     global g_script_path, g_prj_name
-    from zipfile import ZipFile
-    import io
     # pdb.set_trace()
     _this_path          = Path(sys.argv[0]).resolve()
     # _this_path          = Path('K:/Filu/LnDisk/LnStart/LnStartProgram.zip').resolve()
@@ -80,6 +78,8 @@ def setMainPaths():
     return zip_filename
 
 def readConfigFile(zip_filename=None):
+    from zipfile import ZipFile
+    import io
     global g_yaml_config_file
     # yaml_filename = '{0}.yml'.format(g_prj_name)
     yaml_filenames = ['{0}.yml'.format(g_prj_name), 'conf/{0}.yml'.format(g_prj_name)]
@@ -137,8 +137,8 @@ def readConfigFile(zip_filename=None):
 #
 ######################################
 if __name__ == '__main__':
-    i_am_zip=setMainPaths()
-    config_raw = readConfigFile(i_am_zip)
+    zip_filename=setMainPaths()
+    config_raw = readConfigFile(zip_filename)
     stdout_file = str(Path(g_script_path / 'log' / '{0}.stdout'.format(g_prj_name)))
     C = Ln.Color(filename=stdout_file)
 
