@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 29-10-2019 19.56.21
+# Version ......: 05-11-2019 18.34.49
 #
 # #############################################
 
@@ -21,7 +21,7 @@ import Source.Main  as Prj
 ##############################################################
 # - Parse Input
 ##############################################################
-def ParseInput(program_names):
+def ParseInput(program_names, python_versions):
     import argparse
     # =============================================
     # = Parsing
@@ -32,11 +32,11 @@ def ParseInput(program_names):
     parser = argparse.ArgumentParser(description='command line tool to start programs')
     parser.add_argument('--program', help='Specify progra to be started)', choices=program_names, required=True)
     parser.add_argument('--root-dir', help='LnDisk ROOT directory (ex: D:\\LnDisk)', required=False, default=None)
-    parser.add_argument('--python-version', help='Specify python version to be used', required=False, default='Python_default')
+    parser.add_argument('--python-version', help='Specify python version to be used', required=False,  choices=python_versions, default='default')
 
     parser.add_argument('--go', help='disable dry-run', action='store_true')
-    parser.add_argument('--debug', help='display mai paths and input args', action='store_true')
-    parser.add_argument('--display-args', help='Display input paramenters', action='store_true')
+    parser.add_argument('--debug', help='display main paths and input args', action='store_true')
+    parser.add_argument('--display-args', help='Display input paramesters', action='store_true')
 
         # log debug su file
     parser.add_argument('--log-modules',
@@ -53,12 +53,12 @@ def ParseInput(program_names):
 
     # args = vars(parser.parse_args())
     args = parser.parse_args()
+    args.python_version='Python_' + args.python_version
     # print (args); sys.exit()
     return  args
 
-
-def readConfigFile():
-    global g_script_path, g_yaml_config_file, g_prj_name
+def setMainPaths():
+    global g_script_path, g_prj_name
     from zipfile import ZipFile
     import io
     # pdb.set_trace()
@@ -66,21 +66,26 @@ def readConfigFile():
     # _this_path          = Path('K:/Filu/LnDisk/LnStart/LnStartProgram.zip').resolve()
     #_this_path = Path('K:\\Filu\\LnDisk\\LnStart\\LnStartProgram_New.zip').resolve()
     if _this_path.suffix == '.zip':
-        _I_AM_ZIP = True
+        # _I_AM_ZIP = True
         g_prj_name    = _this_path.stem # first get name of zip file
         g_script_path = _this_path.parent # ... then up one level
         zip_filename = _this_path
 
     else:
-        _I_AM_ZIP = False
+        # _I_AM_ZIP = False
         g_script_path = _this_path.parent
         g_prj_name  = g_script_path.name
+        zip_filename = None
 
+    return zip_filename
+
+def readConfigFile(zip_filename=None):
+    global g_yaml_config_file
     # yaml_filename = '{0}.yml'.format(g_prj_name)
     yaml_filenames = ['{0}.yml'.format(g_prj_name), 'conf/{0}.yml'.format(g_prj_name)]
 
     content = None
-    if _I_AM_ZIP:
+    if zip_filename:
         z = ZipFile(zip_filename, "r")
         #zinfo = z.namelist()
         for name in yaml_filenames:
@@ -106,7 +111,7 @@ def readConfigFile():
                     # content = f.read() # single string
                 break
 
-    if content: # it's a LIST containing file rows...
+    if content: # LIST containing file rows...
         """ removal of all commented lines to avoid solving
         variables that could create errors"""
         rows = []
@@ -121,17 +126,19 @@ def readConfigFile():
     else:
         print ('configuration file {0} NOT FOUND'.format(g_prj_name))
         sys.exit(1)
+
     g_yaml_config_file = yaml_filename
-    return content # it's a dictionary
+    return content # dictionary data
 
 
 ######################################
 # sample call:
-#    python.exe __main__.py TotalCommander --go
+#    python.exe __main__.py --program TotalCommander --python python_3741 --go
 #
 ######################################
 if __name__ == '__main__':
-    config_raw = readConfigFile()
+    i_am_zip=setMainPaths()
+    config_raw = readConfigFile(i_am_zip)
     stdout_file = str(Path(g_script_path / 'log' / '{0}.stdout'.format(g_prj_name)))
     C = Ln.Color(filename=stdout_file)
 
@@ -154,9 +161,11 @@ if __name__ == '__main__':
         },
     }
     programs = [k for k in module_map.keys()]
+    python_versions = [k.lstrip('Python_') for k in config_raw.keys() if k.startswith('Python_')]
+
 
     # - Parse Input
-    inpArgs = ParseInput(program_names=programs)
+    inpArgs = ParseInput(program_names=programs, python_versions=python_versions)
     if inpArgs.display_args:
         import json
         json_data = json.dumps(vars(inpArgs), indent=4, sort_keys=True)
@@ -175,9 +184,6 @@ if __name__ == '__main__':
     os.environ['Ln_RootDir'] = str(root_dir)
     os.environ['Ln_Drive'] = str(g_script_path.drive)
     os.environ['Ln_ScriptDir'] = str(g_script_path)
-
-
-
 
     if inpArgs.debug:
         for k,v in vars(inpArgs).items():
@@ -203,42 +209,29 @@ if __name__ == '__main__':
     config_default = Ln.processYamlData(config_raw, prefix=r'${', suffix=r'}', errorOnNotFound=True, mylogger=lnLogger)
     lnLogger.info('default configuration data', config_default)
 
-    # myPath = os.getenv('PATH')+';'
+
+
     myPath = os.getenv('PATH').split(';')
-    # myPath.remove('')
-    print()
-    for index, item in enumerate(myPath):
-        print("[{index:04}] {item}".format(**locals()))
+
+        # - remove default python paths...
+    default_python_dir=config_default['Python_default']['Ln_pythonDir']
+    myPath = [_path for _path in myPath if not _path.startswith(default_python_dir)]
 
 
         # -------------------------------------------------
         # - Choose right python version
         # -------------------------------------------------
     if inpArgs.python_version not in 'Python_default':
-        # - Replace python version in VARS section
         for k,v in config_raw[inpArgs.python_version].items():
             config_raw['VARS'][k] = v
-        config = Ln.processYamlData(config_raw, prefix=r'${', suffix=r'}', errorOnNotFound=True, mylogger=lnLogger)
 
-        # - remove default python paths... if exists
-        default_python_dir=config_default['Python_default']['Ln_pythonDir']
-        for _path in reversed(myPath[:]):
-            if _path.startswith(default_python_dir):
-                lnLogger.console('removing PATH', _path)
-                myPath.remove(_path)
-        print()
-        for index, item in enumerate(myPath):
-            print("[{index:04}] {item}".format(**locals()))
+        # - re-read configuration file
+        config = Ln.processYamlData(config_raw, prefix=r'${', suffix=r'}', errorOnNotFound=True, mylogger=lnLogger)
 
     else:
         config = config_default
 
     lnLogger.info('running configuration data', config)
-    sys.exit()
-
-
-
-
 
         # -------------------------------------------------
         # - Setting environment variables
@@ -248,24 +241,28 @@ if __name__ == '__main__':
         lnLogger.info('envar {0:<15}'.format(_name), _path)
         os.environ[_name] = _path
 
-    # myPath = os.getenv('PATH')+';'
-    for _path in reversed(config['PATHS']):
+        # -------------------------------------------------
+        # - Setting path variables
+        # -------------------------------------------------
+    for _path in config['PATHS'] + config['PYTHON_PATHS']:
         path = Path.LnCheck(_path, errorOnPathNotFound=False)
         lnLogger.info('adding PATH', _path)
-        myPath = myPath.replace(_path+';', '')     # delete if exists
-        myPath = '{0};{1}'.format(_path, myPath)
+        if _path in myPath:
+            myPath.remove(_path) # delete if exists... per averi in ordine
+        myPath.insert(0, _path)
 
 
-
-    os.environ['PATH'] = myPath
-    for path in myPath.split(';'):
-        print(path)
-    sys.exit(1)
-
-
-
-
+    myPath = [i for i in myPath if i.strip()]   # remove empty entries
+    # print()
+    # for index, item in enumerate(myPath):
+    #     print("[{index:04}] {item}".format(**locals()))
+    os.environ['PATH'] = ';'.join(myPath)
+    # sys.exit(1)
     lnLogger.info('new PATHs', os.getenv('PATH'))
+
+
+
+
 
     programToStart = inpArgs.program
     moduleToCall = module_map[programToStart]['module']

@@ -31,6 +31,7 @@ VARS:
     Ln_PortableAppsDir:     ${VARS.Ln_RootDir}\PortableApps\PortableApps
     Ln_myEditor:            ${VARS.Ln_FreeDir}\Editors\SublimeText_3\sublime_text.exe
     Ln_myBrowser:           ${VARS.Ln_FreeDir}\Network\Browser\Opera\launcher.exe
+    Ln_pdfViewer:           ${VARS.Ln_PortableAppsDir}\FoxitReaderPortable\FoxitReaderPortable.exe
     Ln_BrowserForSublime:   C:\Filu_C\LnDisk\LnFree\Network\Browser\Opera\launcher.exe
     gitdir:                 ${VARS.Ln_FreeDir}\Pgm\PortableGit
 
