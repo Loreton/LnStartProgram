@@ -86,9 +86,7 @@ PATHS: # verranno impostati nell'ordine indicato.
 TOTAL_COMMANDER:
 
     # --- TotalCommander
-    Ln_TC_Dir:                  ${VARS.Ln_FreeDir}\Files\Manager\TotalCommander
-    Ln_TC_64EXE:                ${TOTAL_COMMANDER.Ln_TC_Dir}\TotalCmd\TOTALCMD64.EXE
-    # Ln_TC_32EXE:                ${TOTAL_COMMANDER.Ln_TC_Dir}\TotalCmd\TOTALCMD32.EXE
+    Ln_TC_Dir:                  ${VARS.Ln_FreeDir}\Files\Manager\WinCmd-LN
     Ln_TC_configDir:            ${TOTAL_COMMANDER.Ln_TC_Dir}\LnData\Config
 
     workingDir:                 ${TOTAL_COMMANDER.Ln_TC_Dir}

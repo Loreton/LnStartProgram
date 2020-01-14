@@ -31,9 +31,11 @@ def SetTotalCommander(d_vars, logger):
     OSbits = platform.architecture()[0]
     logger.info( "Stiamo lavorando con TotalCommander {0}".format(OSbits))
     if OSbits == "64bit":
-        TCexe = Path.LnVerify(d_vars['Ln_TC_PATH'] + '/realApp/WinCmd/TOTALCMD64.exe', errorOnPathNotFound=True)
+        # TCexe = Path.LnVerify(d_vars['Ln_TC_PATH'] + '/realApp/WinCmd/TOTALCMD64.exe', errorOnPathNotFound=True)
+        TCexe = Path.LnVerify(d_vars['Ln_TC_64EXE'], errorOnPathNotFound=True)
     else:
-        TCexe = Path.LnVerify(d_vars['Ln_TC_PATH'] + '/realApp/WinCmd/TOTALCMD.exe', errorOnPathNotFound=True)
+        # TCexe = Path.LnVerify(d_vars['Ln_TC_PATH'] + '/realApp/WinCmd/TOTALCMD.exe', errorOnPathNotFound=True)
+        TCexe = Path.LnVerify(d_vars['Ln_TC_32EXE'], errorOnPathNotFound=True)
 
 
 

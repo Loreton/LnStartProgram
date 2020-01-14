@@ -49,11 +49,11 @@
             },
             "program": "${file}",
             "cwd": "${workspaceRoot}",
-            "debugOptions": [
-                "WaitOnAbnormalExit",
-                "WaitOnNormalExit",
-                "RedirectOutput"
-            ]
+            // "debugOptions": [
+            //     "WaitOnAbnormalExit",
+            //     "WaitOnNormalExit",
+            //     "RedirectOutput"
+            // ]
         },
         {
             "name": "Python Module",
@@ -63,11 +63,11 @@
             "pythonPath": "${config:python.pythonPath}",
             "module": "module.name",
             "cwd": "${workspaceRoot}",
-            "debugOptions": [
-                "WaitOnAbnormalExit",
-                "WaitOnNormalExit",
-                "RedirectOutput"
-            ]
+            // "debugOptions": [
+            //     "WaitOnAbnormalExit",
+            //     "WaitOnNormalExit",
+            //     "RedirectOutput"
+            // ]
         },
         {
             "name": "Integrated Terminal/Console",
@@ -78,10 +78,10 @@
             "program": "${file}",
             "cwd": "null",
             "console": "integratedTerminal",
-            "debugOptions": [
-                "WaitOnAbnormalExit",
-                "WaitOnNormalExit"
-            ]
+            // "debugOptions": [
+            //     "WaitOnAbnormalExit",
+            //     "WaitOnNormalExit"
+            // ]
         },
         {
             "name": "External Terminal/Console",
@@ -92,10 +92,10 @@
             "program": "${file}",
             "cwd": "null",
             "console": "externalTerminal",
-            "debugOptions": [
-                "WaitOnAbnormalExit",
-                "WaitOnNormalExit"
-            ]
+            // "debugOptions": [
+            //     "WaitOnAbnormalExit",
+            //     "WaitOnNormalExit"
+            // ]
         },
         {
             "name": "Django",
@@ -109,12 +109,12 @@
                 "runserver",
                 "--noreload"
             ],
-            "debugOptions": [
-                "WaitOnAbnormalExit",
-                "WaitOnNormalExit",
-                "RedirectOutput",
-                "DjangoDebugging"
-            ]
+            // "debugOptions": [
+            //     "WaitOnAbnormalExit",
+            //     "WaitOnNormalExit",
+            //     "RedirectOutput",
+            //     "DjangoDebugging"
+            // ]
         },
         {
             "name": "Flask",
@@ -132,11 +132,11 @@
                 "--no-debugger",
                 "--no-reload"
             ],
-            "debugOptions": [
-                "WaitOnAbnormalExit",
-                "WaitOnNormalExit",
-                "RedirectOutput"
-            ]
+            // "debugOptions": [
+            //     "WaitOnAbnormalExit",
+            //     "WaitOnNormalExit",
+            //     "RedirectOutput"
+            // ]
         },
         {
             "name": "Flask (old)",
@@ -147,11 +147,11 @@
             "program": "${workspaceRoot}/run.py",
             "cwd": "${workspaceRoot}",
             "args": [],
-            "debugOptions": [
-                "WaitOnAbnormalExit",
-                "WaitOnNormalExit",
-                "RedirectOutput"
-            ]
+            // "debugOptions": [
+            //     "WaitOnAbnormalExit",
+            //     "WaitOnNormalExit",
+            //     "RedirectOutput"
+            // ]
         },
         {
             "name": "Watson",
@@ -166,20 +166,20 @@
                 "runserver",
                 "--noreload=True"
             ],
-            "debugOptions": [
-                "WaitOnAbnormalExit",
-                "WaitOnNormalExit",
-                "RedirectOutput"
-            ]
+            // "debugOptions": [
+            //     "WaitOnAbnormalExit",
+            //     "WaitOnNormalExit",
+            //     "RedirectOutput"
+            // ]
         },
         {
             "name": "Attach (Remote Debug)",
             "type": "python",
             "request": "attach",
-            "localRoot": "${workspaceRoot}",
-            "remoteRoot": "${workspaceRoot}",
+            // "localRoot": "${workspaceRoot}",
+            // "remoteRoot": "${workspaceRoot}",
             "port": 3000,
-            "secret": "my_secret",
+            // "secret": "my_secret",
             "host": "localhost"
         }
     ]
