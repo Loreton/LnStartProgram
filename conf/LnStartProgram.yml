@@ -18,6 +18,14 @@ VARS:
     Ln_FreeDir:             ${MAIN.FreeDir}
     Ln_LeslaDir:            ${MAIN.LeslaDir}
 
+    # PYTHONHOME:             ${VARS.Ln_FreeDir}\Pgm\WPy64-3741\python-3.7.4.amd64
+    PYTHONHOME:             ${VARS.Ln_FreeDir}\Pgm\WPy-3710\python-3.7.1.amd64
+    PYTHONPATH:             ${VARS.PYTHONHOME}
+
+    # --- Python default version
+    # Ln_pythonDir:           ${VARS.PYTHONHOME}
+    Ln_PythonExe:           ${VARS.PYTHONHOME}\python.exe
+
 
 
     # --- Editors
@@ -35,9 +43,6 @@ VARS:
     Ln_BrowserForSublime:   C:\Filu_C\LnDisk\LnFree\Network\Browser\Opera\launcher.exe
     gitdir:                 ${VARS.Ln_FreeDir}\Pgm\PortableGit
 
-    # --- Python default version
-    Ln_pythonDir:           ${Python_default.Ln_pythonDir}
-    Ln_PythonExe:           ${Python_default.Ln_PythonExe}
 
     # --- Winscp & Kitty
     Ln_WinScpDIR:           ${VARS.Ln_FreeDir}\Network\FTPc\WinSCP
@@ -50,30 +55,23 @@ VARS:
 
 PYTHON_PATHS: # verranno impostati nell'ordine indicato.
     # python:
-    - ${VARS.Ln_pythonDir}
-    - ${VARS.Ln_pythonDir}\DLLs
-    - ${VARS.Ln_pythonDir}\Lib
-    - ${VARS.Ln_pythonDir}\Scripts
-    - ${VARS.Ln_pythonDir}\Lib\site-packages
-    - ${VARS.Ln_pythonDir}\Lib\site-packages\win32com
-    - ${VARS.Ln_pythonDir}\Lib\site-packages\pywin32_system32
+    - ${VARS.PYTHONHOME}
+    - ${VARS.PYTHONHOME}\DLLs
+    - ${VARS.PYTHONHOME}\Lib
+    - ${VARS.PYTHONHOME}\Scripts
+    - ${VARS.PYTHONHOME}\Lib\site-packages
+    # - ${VARS.PYTHONHOME}\Lib\site-packages\win32com
+    # - ${VARS.PYTHONHOME}\Lib\site-packages\pywin32_system32
 
 
 PATHS: # verranno impostati nell'ordine indicato.
-    # python:
-    # - ${VARS.Ln_pythonDir}
-    # - ${VARS.Ln_pythonDir}\DLLs
-    # - ${VARS.Ln_pythonDir}\Lib
-    # - ${VARS.Ln_pythonDir}\Scripts
-    # - ${VARS.Ln_pythonDir}\Lib\site-packages
-    # - ${VARS.Ln_pythonDir}\Lib\site-packages/win32com
 
     # java:
     - ${VARS.JAVA_HOME}\bin
 
-    #git:
-    - ${VARS.gitdir}\bin
-    - ${VARS.Ln_GitRepoDir}\gitUtils
+    # MinGW:
+    - ${VARS.Ln_FreeDir}\Pgm\MinGW\bin
+
 
 
 
@@ -124,10 +122,10 @@ VSCODE_INSIDERS:
     vscode_exe:             code-insiders.cmd
 
 
-Python_3741:
-    Ln_pythonDir:           ${VARS.Ln_FreeDir}\Pgm\WPy64-3741\python-3.7.4.amd64
-    Ln_PythonExe:           ${VARS.Ln_pythonDir}\python.exe
+# Python_3741:
+    # PYTHONHOME:           ${VARS.Ln_FreeDir}\Pgm\WPy64-3741\python-3.7.4.amd64
+    # Ln_PythonExe:           ${VARS.Ln_pythonDir}\python.exe
 
-Python_default:
-    Ln_pythonDir:           ${VARS.Ln_FreeDir}\Pgm\WPy-3710\python-3.7.1.amd64
-    Ln_PythonExe:           ${VARS.Ln_pythonDir}\python.exe
+# Python_default:
+    # PYTHONHOME:           ${VARS.Ln_FreeDir}\Pgm\WPy-3710\python-3.7.1.amd64
+    # Ln_PythonExe:           ${VARS.Ln_pythonDir}\python.exe

@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 05-11-2019 18.43.04
+# Version ......: 20-01-2020 08.41.37
 #
 # #############################################
 
@@ -21,7 +21,7 @@ import Source.Main  as Prj
 ##############################################################
 # - Parse Input
 ##############################################################
-def ParseInput(program_names, python_versions):
+def ParseInput(program_names):
     import argparse
     # =============================================
     # = Parsing
@@ -32,7 +32,7 @@ def ParseInput(program_names, python_versions):
     parser = argparse.ArgumentParser(description='command line tool to start programs')
     parser.add_argument('--program', help='Specify progra to be started)', choices=program_names, required=True)
     parser.add_argument('--root-dir', help='LnDisk ROOT directory (ex: D:\\LnDisk)', required=False, default=None)
-    parser.add_argument('--python-version', help='Specify python version to be used', required=False,  choices=python_versions, default='default')
+    # parser.add_argument('--python-version', help='Specify python version to be used', required=False,  choices=python_versions, default='default')
 
     parser.add_argument('--go', help='disable dry-run', action='store_true')
     parser.add_argument('--debug', help='display main paths and input args', action='store_true')
@@ -53,7 +53,7 @@ def ParseInput(program_names, python_versions):
 
     # args = vars(parser.parse_args())
     args = parser.parse_args()
-    args.python_version='Python_' + args.python_version
+    # args.python_version='Python_' + args.python_version
     # print (args); sys.exit()
     return  args
 
@@ -161,11 +161,12 @@ if __name__ == '__main__':
         },
     }
     programs = [k for k in module_map.keys()]
-    python_versions = [k.lstrip('Python_') for k in config_raw.keys() if k.startswith('Python_')]
+    # python_versions = [k.lstrip('Python_') for k in config_raw.keys() if k.startswith('Python_')]
 
 
     # - Parse Input
-    inpArgs = ParseInput(program_names=programs, python_versions=python_versions)
+    # inpArgs = ParseInput(program_names=programs, python_versions=python_versions)
+    inpArgs = ParseInput(program_names=programs)
     if inpArgs.display_args:
         import json
         json_data = json.dumps(vars(inpArgs), indent=4, sort_keys=True)
@@ -206,30 +207,25 @@ if __name__ == '__main__':
 
 
     # - process configuration file
-    config_default = Ln.processYamlData(config_raw, prefix=r'${', suffix=r'}', errorOnNotFound=True, mylogger=lnLogger)
-    lnLogger.info('default configuration data', config_default)
+    config = Ln.processYamlData(config_raw, prefix=r'${', suffix=r'}', errorOnNotFound=True, mylogger=lnLogger)
+    # lnLogger.info('default configuration data', config_default)
 
 
 
-    myPath = os.getenv('PATH').split(';')
-
-        # - remove default python paths...
-    default_python_dir=config_default['Python_default']['Ln_pythonDir']
-    myPath = [_path for _path in myPath if not _path.startswith(default_python_dir)]
 
 
         # -------------------------------------------------
         # - Choose right python version
         # -------------------------------------------------
-    if inpArgs.python_version not in 'Python_default':
-        for k,v in config_raw[inpArgs.python_version].items():
-            config_raw['VARS'][k] = v
+    # if inpArgs.python_version not in 'Python_default':
+    #     for k,v in config_raw[inpArgs.python_version].items():
+    #         config_raw['VARS'][k] = v
 
-        # - re-read configuration file
-        config = Ln.processYamlData(config_raw, prefix=r'${', suffix=r'}', errorOnNotFound=True, mylogger=lnLogger)
+    #     # - re-read configuration file
+    #     config = Ln.processYamlData(config_raw, prefix=r'${', suffix=r'}', errorOnNotFound=True, mylogger=lnLogger)
 
-    else:
-        config = config_default
+    # else:
+    #     config = config_default
 
     lnLogger.info('running configuration data', config)
 
@@ -244,21 +240,50 @@ if __name__ == '__main__':
         # -------------------------------------------------
         # - Setting path variables
         # -------------------------------------------------
-    for _path in config['PATHS'] + config['PYTHON_PATHS']:
+    myPath = os.getenv('PATH').split(';')
+
+    for _path in config['PATHS']:
         path = Path.LnCheck(_path, errorOnPathNotFound=False)
         lnLogger.info('adding PATH', _path)
         if _path in myPath:
-            myPath.remove(_path) # delete if exists... per averi in ordine
+            myPath.remove(_path) # delete if exists... per averli in ordine
         myPath.insert(0, _path)
 
+        # - remove default python paths...
+    python_home=config['VARS']['PYTHONHOME']
+    path_len=len(python_home)
+    # myPath = [_path for _path in myPath if not _path.startswith(current_python_dir)]
+    myPath = [_path for _path in myPath if not _path[:path_len].lower() == python_home.lower()]
 
+        # - add python home path
+    myPath.insert(0, python_home)
+
+        # - replace PATH environment variable
     myPath = [i for i in myPath if i.strip()]   # remove empty entries
+    os.environ['PATH'] = ';'.join(myPath)
+    lnLogger.info('new PATHs', os.getenv('PATH'))
+
+        # -------------------------------------------------
+        # - Setting pythonpath variable
+        # -------------------------------------------------
+    pyPath = os.getenv('PYTHONPATH').split(';')
+
+    for _path in config['PYTHON_PATHS']:
+        path = Path.LnCheck(_path, errorOnPathNotFound=False)
+        lnLogger.info('adding PATH', _path)
+        if _path in pyPath:
+            myPath.remove(_path) # delete if exists... per averli in ordine
+        pyPath.append(_path)
+    pyPath = [i for i in pyPath if i.strip()]   # remove empty entries
+    os.environ['PYTHONPATH'] = ';'.join(pyPath)
+    lnLogger.info('new PYTHONPATHs', os.getenv('PYTHONPATH'))
+
+
+
+
     # print()
     # for index, item in enumerate(myPath):
     #     print("[{index:04}] {item}".format(**locals()))
-    os.environ['PATH'] = ';'.join(myPath)
-    # sys.exit(1)
-    lnLogger.info('new PATHs', os.getenv('PATH'))
 
 
 
