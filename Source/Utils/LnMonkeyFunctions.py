@@ -77,10 +77,12 @@ def checkPath(_path, errorOnPathNotFound=True):
         _path = Path(_path).resolve() # absolute path and cut  \\\\ excedents
         if not _path.exists():
             if errorOnPathNotFound:
-                print('\n    {_path} path NOT FOUND. Pls change the config file.\n'.format(**locals()))
-                sys.exit(1)
-            else:
                 choice=keyb_input('\n   {_path} file NOT FOUND. [I]gnore'.format(**locals()), validKeys='i|I')
+                # sys.exit(1)
+            else:
+                # choice=keyb_input('\n   {_path} file NOT FOUND. [I]gnore'.format(**locals()), validKeys='i|I')
+                print('\n    {_path} path NOT FOUND. Skipping configuration line.\n'.format(**locals()))
+                _path=''
 
     return str(_path)
 

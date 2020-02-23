@@ -174,7 +174,7 @@ if __name__ == '__main__':
         sys.exit()
 
 
-    # Searching for ROOT path identified by 'LnDisk' dirname
+    # Searching for ROOT path. It's identified by 'LnDisk' dirname
     root_dir = Path(sys.argv[0]).resolve()
     while root_dir.name.lower() not in ['lndisk']:
         root_dir = root_dir.parent
@@ -228,18 +228,34 @@ if __name__ == '__main__':
     #     config = config_default
 
     lnLogger.info('running configuration data', config)
-
         # -------------------------------------------------
         # - Setting environment variables
         # -------------------------------------------------
     for _name, _path in config['VARS'].items():
-        _path = Path.LnCheck(_path, errorOnPathNotFound=False)
-        lnLogger.info('envar {0:<15}'.format(_name), _path)
-        os.environ[_name] = _path
+        if isinstance(_path, (list, tuple)):
+            multiple_paths=[]
+            for item in _path:
+                item = Path.LnCheck(item, errorOnPathNotFound=False)
+                if item:
+                    multiple_paths.append(item)
+            lnLogger.info('envar {0:<15}'.format(_name), multiple_paths)
+
+            if _name == 'JAVA_HOME': 
+                ''' get the first valid path and prepare it to be inserted into the PATH '''
+                os.environ[_name] = multiple_paths[0]
+                config['PATHS'].append(multiple_paths[0] + '/bin')
+            else:
+                os.environ[_name] = ';'.join(multiple_paths)
+
+        else:
+            _path = Path.LnCheck(_path, errorOnPathNotFound=False)
+            lnLogger.info('envar {0:<15}'.format(_name), _path)
+            os.environ[_name] = _path
 
         # -------------------------------------------------
         # - Setting path variables
         # -------------------------------------------------
+
     myPath = os.getenv('PATH').split(';')
 
     for _path in config['PATHS']:

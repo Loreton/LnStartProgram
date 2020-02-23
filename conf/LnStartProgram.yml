@@ -34,8 +34,10 @@ VARS:
 
     # --- Generic
     Ln_GitRepoDir:          ${VARS.Ln_RootDir}\GIT-REPO
-    # JAVA_HOME:              ${VARS.Ln_FreeDir}\Pgm\Java\jdk1.8.0_66
-    JAVA_HOME:              c:\Program Files\Java\jdk1.8.0_221
+    JAVA_HOME:   # only the first valid path will be used and path/bin will be added to PATH variables             
+        - c:\Program Files\Java\jdk1.8.0_221
+        - c:\Program Files (x86)\Java\jre1.8.0_241
+        - ${VARS.Ln_FreeDir}\Pgm\Java\jdk1.8.0_66
     Ln_PortableAppsDir:     ${VARS.Ln_RootDir}\PortableApps\PortableApps
     Ln_myEditor:            ${VARS.Ln_FreeDir}\Editors\SublimeText_3\sublime_text.exe
     Ln_myBrowser:           ${VARS.Ln_FreeDir}\Network\Browser\Opera\launcher.exe
@@ -67,10 +69,13 @@ PYTHON_PATHS: # verranno impostati nell'ordine indicato.
 PATHS: # verranno impostati nell'ordine indicato.
 
     # java:
-    - ${VARS.JAVA_HOME}\bin
+    # - ${VARS.JAVA_HOME}\bin
 
     # MinGW:
     - ${VARS.Ln_FreeDir}\Pgm\MinGW\bin
+
+    # Platformio-VSCode:
+    - C:\Users\Loreto\.platformio\penv\Scripts
 
 
 
