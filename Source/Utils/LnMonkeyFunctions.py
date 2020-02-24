@@ -81,7 +81,7 @@ def checkPath(_path, errorOnPathNotFound=True):
                 # sys.exit(1)
             else:
                 # choice=keyb_input('\n   {_path} file NOT FOUND. [I]gnore'.format(**locals()), validKeys='i|I')
-                print('\n    {_path} path NOT FOUND. Skipping configuration line.\n'.format(**locals()))
+                print('\n  directory {_path} NOT FOUND. The path will be ignored.\n'.format(**locals()))
                 _path=''
 
     return str(_path)
