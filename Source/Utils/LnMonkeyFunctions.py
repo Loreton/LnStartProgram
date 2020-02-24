@@ -90,5 +90,6 @@ def checkPath(_path, errorOnPathNotFound=True):
 # inseriamo i miei comandi nella classe Path.
 Path.LnCopy   = LnPathCopy
 Path.LnBackup = LnPathBackup
-Path.LnVerify = checkPath
-Path.LnCheck = checkPath
+# Path.LnVerify = checkPath
+# Path.LnCheck = checkPath
+Path.LnCheckPath = checkPath

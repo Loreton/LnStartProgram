@@ -20,7 +20,7 @@ def SetTotalCommander(d_vars, logger):
         # - scroling dictionary_variables
         # -------------------------------------------------
     for _label, _path in d_vars.items():
-        _path = Path.LnVerify(_path, errorOnPathNotFound=True)
+        _path = Path.LnCheckPath(_path, errorOnPathNotFound=True)
 
         logger.info('envar {0:<15}: {1}'.format(_label, _path))
         os.environ[_label] = str(_path)
@@ -31,11 +31,11 @@ def SetTotalCommander(d_vars, logger):
     OSbits = platform.architecture()[0]
     logger.info( "Stiamo lavorando con TotalCommander {0}".format(OSbits))
     if OSbits == "64bit":
-        # TCexe = Path.LnVerify(d_vars['Ln_TC_PATH'] + '/realApp/WinCmd/TOTALCMD64.exe', errorOnPathNotFound=True)
-        TCexe = Path.LnVerify(d_vars['Ln_TC_64EXE'], errorOnPathNotFound=True)
+        # TCexe = Path.LnCheckPath(d_vars['Ln_TC_PATH'] + '/realApp/WinCmd/TOTALCMD64.exe', errorOnPathNotFound=True)
+        TCexe = Path.LnCheckPath(d_vars['Ln_TC_64EXE'], errorOnPathNotFound=True)
     else:
-        # TCexe = Path.LnVerify(d_vars['Ln_TC_PATH'] + '/realApp/WinCmd/TOTALCMD.exe', errorOnPathNotFound=True)
-        TCexe = Path.LnVerify(d_vars['Ln_TC_32EXE'], errorOnPathNotFound=True)
+        # TCexe = Path.LnCheckPath(d_vars['Ln_TC_PATH'] + '/realApp/WinCmd/TOTALCMD.exe', errorOnPathNotFound=True)
+        TCexe = Path.LnCheckPath(d_vars['Ln_TC_32EXE'], errorOnPathNotFound=True)
 
 
 

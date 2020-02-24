@@ -174,12 +174,15 @@ if __name__ == '__main__':
         sys.exit()
 
 
-    # Searching for ROOT path. It's identified by 'LnDisk' dirname
-    root_dir = Path(sys.argv[0]).resolve()
+    ''' 
+        Searching for ROOT path in the script path. It's identified by 'LnDisk' subdirectory
+    '''
+    # root_dir = Path(sys.argv[0]).resolve()
+    root_dir = Path(g_script_path)
     while root_dir.name.lower() not in ['lndisk']:
         root_dir = root_dir.parent
         if root_dir.name == '':
-            print('ROOT directory "LnDisk" NOT FOUND in path:', _this_path)
+            print('ROOT directory "LnDisk" NOT FOUND in path:', g_script_path)
             sys.exit(1)
 
     os.environ['Ln_RootDir'] = str(root_dir)
@@ -235,7 +238,7 @@ if __name__ == '__main__':
         if isinstance(_path, (list, tuple)):
             multiple_paths=[]
             for item in _path:
-                item = Path.LnCheck(item, errorOnPathNotFound=False)
+                item = Path.LnCheckPath(item, errorOnPathNotFound=False)
                 if item:
                     multiple_paths.append(item)
             lnLogger.info('envar {0:<15}'.format(_name), multiple_paths)
@@ -248,7 +251,7 @@ if __name__ == '__main__':
                 os.environ[_name] = ';'.join(multiple_paths)
 
         else:
-            _path = Path.LnCheck(_path, errorOnPathNotFound=False)
+            _path = Path.LnCheckPath(_path, errorOnPathNotFound=False)
             lnLogger.info('envar {0:<15}'.format(_name), _path)
             os.environ[_name] = _path
 
@@ -259,7 +262,7 @@ if __name__ == '__main__':
     myPath = os.getenv('PATH').split(';')
 
     for _path in config['PATHS']:
-        path = Path.LnCheck(_path, errorOnPathNotFound=False)
+        path = Path.LnCheckPath(_path, errorOnPathNotFound=False)
         lnLogger.info('adding PATH', _path)
         if _path in myPath:
             myPath.remove(_path) # delete if exists... per averli in ordine
@@ -285,7 +288,7 @@ if __name__ == '__main__':
     pyPath = os.getenv('PYTHONPATH').split(';')
 
     for _path in config['PYTHON_PATHS']:
-        path = Path.LnCheck(_path, errorOnPathNotFound=False)
+        path = Path.LnCheckPath(_path, errorOnPathNotFound=False)
         lnLogger.info('adding PATH', _path)
         if _path in pyPath:
             myPath.remove(_path) # delete if exists... per averli in ordine
