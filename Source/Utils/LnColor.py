@@ -125,7 +125,7 @@ class LnColor:
                 print (colored_text, end=end )
 
             except (UnicodeEncodeError):
-                print ('{0} function: {1} - UnicodeEncodeError on next line {2}'.format(
+                print ('{0} function: {1} - UnicodeEncodeError on next line'.format(
                         LnColor.redH,
                         _function_name),
                     end=end )

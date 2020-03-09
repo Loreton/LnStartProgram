@@ -111,12 +111,12 @@ EXECUTOR:
     backupDir:          ${EXECUTOR.workingDir}\LnBackup
 
     executorEXE:        ${EXECUTOR.workingDir}\Executor.exe
-    executor64EXE:      ${EXECUTOR.workingDir}\Executor_64.exe
-    executor32EXE:      ${EXECUTOR.workingDir}\Executor_32.exe
+    # executor64EXE:      ${EXECUTOR.workingDir}\Executor_64.exe
+    # executor32EXE:      ${EXECUTOR.workingDir}\Executor_32.exe
 
-    hookwinrDLL:        ${EXECUTOR.workingDir}\hookwinr.dll
-    hookwinr32DLL:      ${EXECUTOR.workingDir}\hookwinr_32.dll
-    hookwinr64DLL:      ${EXECUTOR.workingDir}\hookwinr_64.dll
+    # hookwinrDLL:        ${EXECUTOR.workingDir}\hookwinr.dll
+    # hookwinr32DLL:      ${EXECUTOR.workingDir}\hookwinr_32.dll
+    # hookwinr64DLL:      ${EXECUTOR.workingDir}\hookwinr_64.dll
 
 
 VSCODE_INSIDERS:

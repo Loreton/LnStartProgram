@@ -32,7 +32,6 @@ def ParseInput(program_names):
     parser = argparse.ArgumentParser(description='command line tool to start programs')
     parser.add_argument('--program', help='Specify progra to be started)', choices=program_names, required=True)
     parser.add_argument('--root-dir', help='LnDisk ROOT directory (ex: D:\\LnDisk)', required=False, default=None)
-    # parser.add_argument('--python-version', help='Specify python version to be used', required=False,  choices=python_versions, default='default')
 
     parser.add_argument('--go', help='disable dry-run', action='store_true')
     parser.add_argument('--debug', help='display main paths and input args', action='store_true')
@@ -51,7 +50,6 @@ def ParseInput(program_names):
     """)
 
 
-    # args = vars(parser.parse_args())
     args = parser.parse_args()
     # args.python_version='Python_' + args.python_version
     # print (args); sys.exit()
@@ -61,16 +59,12 @@ def setMainPaths():
     global g_script_path, g_prj_name
     # pdb.set_trace()
     _this_path          = Path(sys.argv[0]).resolve()
-    # _this_path          = Path('K:/Filu/LnDisk/LnStart/LnStartProgram.zip').resolve()
-    #_this_path = Path('K:\\Filu\\LnDisk\\LnStart\\LnStartProgram_New.zip').resolve()
     if _this_path.suffix == '.zip':
-        # _I_AM_ZIP = True
         g_prj_name    = _this_path.stem # first get name of zip file
         g_script_path = _this_path.parent # ... then up one level
         zip_filename = _this_path
 
     else:
-        # _I_AM_ZIP = False
         g_script_path = _this_path.parent
         g_prj_name  = g_script_path.name
         zip_filename = None
@@ -81,31 +75,26 @@ def readConfigFile(zip_filename=None):
     from zipfile import ZipFile
     import io
     global g_yaml_config_file
-    # yaml_filename = '{0}.yml'.format(g_prj_name)
     yaml_filenames = ['{0}.yml'.format(g_prj_name), 'conf/{0}.yml'.format(g_prj_name)]
 
     content = None
     if zip_filename:
         z = ZipFile(zip_filename, "r")
-        #zinfo = z.namelist()
         for name in yaml_filenames:
             if name in z.namelist():
                 yaml_filename = name
                 with z.open(yaml_filename) as f:
                     _data = f.read()
                 _buffer = io.TextIOWrapper(io.BytesIO(_data))# def get_config(yaml_filename):
-                # contents  = io.TextIOWrapper(io.BytesIO(_data), encoding='iso-8859-1', newline='\n')# def get_config(yaml_filename):
                 content=[]
                 for line in _buffer:
                     content.append(line)
-                #result = yaml.safe_load(contents)
                 break
 
     else:
         for name in yaml_filenames:
             yaml_filename = Path(g_script_path / name)
             if yaml_filename.exists():
-                # yaml_filename = name
                 with open(yaml_filename, 'r') as f:
                     content = f.readlines() # splitted in rows
                     # content = f.read() # single string
@@ -161,11 +150,8 @@ if __name__ == '__main__':
         },
     }
     programs = [k for k in module_map.keys()]
-    # python_versions = [k.lstrip('Python_') for k in config_raw.keys() if k.startswith('Python_')]
-
 
     # - Parse Input
-    # inpArgs = ParseInput(program_names=programs, python_versions=python_versions)
     inpArgs = ParseInput(program_names=programs)
     if inpArgs.display_args:
         import json
@@ -177,7 +163,6 @@ if __name__ == '__main__':
     ''' 
         Searching for ROOT path in the script path. It's identified by 'LnDisk' subdirectory
     '''
-    # root_dir = Path(sys.argv[0]).resolve()
     root_dir = Path(g_script_path)
     while root_dir.name.lower() not in ['lndisk']:
         root_dir = root_dir.parent
@@ -211,10 +196,6 @@ if __name__ == '__main__':
 
     # - process configuration file
     config = Ln.processYamlData(config_raw, prefix=r'${', suffix=r'}', errorOnNotFound=True, mylogger=lnLogger)
-    # lnLogger.info('default configuration data', config_default)
-
-
-
 
 
         # -------------------------------------------------
@@ -271,7 +252,6 @@ if __name__ == '__main__':
         # - remove default python paths...
     python_home=config['VARS']['PYTHONHOME']
     path_len=len(python_home)
-    # myPath = [_path for _path in myPath if not _path.startswith(current_python_dir)]
     myPath = [_path for _path in myPath if not _path[:path_len].lower() == python_home.lower()]
 
         # - add python home path
@@ -300,20 +280,10 @@ if __name__ == '__main__':
 
 
 
-    # print()
-    # for index, item in enumerate(myPath):
-    #     print("[{index:04}] {item}".format(**locals()))
-
-
-
-
-
     programToStart = inpArgs.program
     moduleToCall = module_map[programToStart]['module']
-    # moduleConfig = module_map[programToStart]['config']
     module_config_data = config[module_map[programToStart]['config']]
     CMDList = moduleToCall(module_config_data, logger=lnLogger)
-
 
 
     # - EXECUTION

@@ -523,25 +523,16 @@
 			"file": "/K/Filu/LnDisk/GIT-REPO/LnStartProgram/__main__.py",
 			"settings":
 			{
-				"buffer_size": 10834,
+				"buffer_size": 11226,
 				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/K/Filu/LnDisk/Lesla/Ricette Cucina/Dolci/Torta di Castagne/Torta di castagne_V1.0.txt",
-			"settings":
-			{
-				"buffer_size": 2749,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"line_ending": "Windows"
 			}
 		},
 		{
 			"file": "/K/Filu/LnDisk/GIT-REPO/LnStartProgram/conf/LnStartProgram.yml",
 			"settings":
 			{
-				"buffer_size": 5026,
+				"buffer_size": 5331,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -804,13 +795,15 @@
 	],
 	"file_history":
 	[
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Main/Executor_32_64.py",
+		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Main/Executor.py",
+		"/K/Filu/LnDisk/Lesla/Ricette Cucina/Dolci/Torta di Castagne/Torta di castagne_V1.0.txt",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/conf/LnStartProgram.yml",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/log/LnStartProgram.log",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Main/SetPython.py",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Utils/LnMonkeyFunctions.py",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Main/VSCode.py",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Main/TotalCommander.py",
-		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Main/Executor.py",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Main/__init__.py",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/__main__.py",
 		"/K/Filu/LnDisk/GIT-REPO/LnStartProgram/Source/Utils/LnKeyboard.py",
@@ -929,13 +922,11 @@
 		"/Y/GIT-REPO/LnPythonLib/.git/config",
 		"/Y/GIT-REPO/LnPythonLib/_update_git.sh",
 		"/Y/GIT-REPO/Python3/PhotosModifier/Ln_Funcs/Logger.py",
-		"/C/Users/Silvia/AppData/Local/Temp/scp07432/HOME%2FLnPi3B1%2FLnPi3B1-eth0/home/pi/PiProd/pyProc/_under_devel/checkIpGateway.py",
-		"/Y/GIT-REPO/@Bdi-Projects/KeepAlived/pyChecks/checks/IP_Gateway.py",
-		"/C/Users/Silvia/AppData/Local/Temp/scp02969/HOME%2FLnPi3B1%2FLnPi3B1-eth0/home/pi/PiProd/shProc/_under_devel/check_network.sh"
+		"/C/Users/Silvia/AppData/Local/Temp/scp07432/HOME%2FLnPi3B1%2FLnPi3B1-eth0/home/pi/PiProd/pyProc/_under_devel/checkIpGateway.py"
 	],
 	"find":
 	{
-		"height": 28.0
+		"height": 29.0
 	},
 	"find_in_files":
 	{
@@ -1104,15 +1095,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10834,
+						"buffer_size": 11226,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3056,
-								3056
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1226,51 +1217,11 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
 								"bh_regex_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
@@ -1280,9 +1231,49 @@
 								"bh_double_quote_center",
 								"bh_double_quote_open",
 								"bh_double_quote_close",
-								"bh_double_quote_content"
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
 							],
-							"function_name_status_row": 81,
+							"function_name_status_row": 0,
 							"incomplete_sync": null,
 							"origPos":
 							[
@@ -1306,131 +1297,19 @@
 				},
 				{
 					"buffer": 1,
-					"file": "/K/Filu/LnDisk/Lesla/Ricette Cucina/Dolci/Torta di Castagne/Torta di castagne_V1.0.txt",
+					"file": "/K/Filu/LnDisk/GIT-REPO/LnStartProgram/conf/LnStartProgram.yml",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2749,
+						"buffer_size": 5331,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								73,
-								0
-							]
-						],
-						"settings":
-						{
-							"apply_syntax_touched": true,
-							"bracket_highlighter.busy": false,
-							"bracket_highlighter.clone": -1,
-							"bracket_highlighter.locations":
-							{
-								"close":
-								{
-								},
-								"icon":
-								{
-								},
-								"open":
-								{
-								},
-								"unmatched":
-								{
-								}
-							},
-							"bracket_highlighter.regions":
-							[
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content"
-							],
-							"function_name_status_row": 0,
-							"incomplete_sync": null,
-							"origPos":
-							[
-								0.0,
-								0.0
-							],
-							"syncScroll": false,
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/K/Filu/LnDisk/GIT-REPO/LnStartProgram/conf/LnStartProgram.yml",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 5026,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2119,
-								2131
+								4330,
+								4337
 							]
 						],
 						"settings":
@@ -1528,51 +1407,11 @@
 							},
 							"bracket_highlighter.regions":
 							[
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
 								"bh_regex_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
@@ -1582,14 +1421,54 @@
 								"bh_double_quote_center",
 								"bh_double_quote_open",
 								"bh_double_quote_close",
-								"bh_double_quote_content"
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
 							],
-							"function_name_status_row": 50,
+							"function_name_status_row": 109,
 							"incomplete_sync": null,
 							"origPos":
 							[
 								0.0,
-								684.0
+								2040.0
 							],
 							"remote_loading": false,
 							"syncScroll": false,
@@ -1599,10 +1478,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 684.0,
+						"translation.y": 2040.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -1610,7 +1489,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 28.0
+		"height": 29.0
 	},
 	"input":
 	{
@@ -1675,7 +1554,7 @@
 	"project": "LnStartProgram.sublime-project",
 	"replace":
 	{
-		"height": 52.0
+		"height": 54.0
 	},
 	"save_all_on_build": true,
 	"select_file":

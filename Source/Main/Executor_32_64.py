@@ -25,11 +25,22 @@ def SetExecutor(d_vars, logger, fEXECUTE=False):
     logger.info("Stiamo lavorando con Executor", OSbits)
 
     my_exe = Path.LnCheckPath(d_vars['executorEXE'], errorOnPathNotFound=True)
-    exe_to_run = Path.LnCheckPath(d_vars['executorEXE'], errorOnPathNotFound=True)
+    my_dll = Path.LnCheckPath(d_vars['hookwinrDLL'], errorOnPathNotFound=True)
+
+    # my_exe = Path(d_vars['executorEXE']).resolve()
+    # my_dll = Path(d_vars['hookwinrDLL']).resolve()
+
+    if OSbits == "64bit":
+        exe_to_run = Path.LnCheckPath(d_vars['executor64EXE'], errorOnPathNotFound=True)
+        dll_to_run = Path.LnCheckPath(d_vars['hookwinr64DLL'], errorOnPathNotFound=True)
+    else:
+        exe_to_run = Path.LnCheckPath(d_vars['executor32EXE'], errorOnPathNotFound=True)
+        dll_to_run = Path.LnCheckPath(d_vars['hookwinr32DLL'], errorOnPathNotFound=True)
 
         # faccio uso delle LnMonkeyFunctions
     if fEXECUTE:
         exe_to_run.LnCopy(target=my_exe, logger=logger)
+        dll_to_run.LnCopy(target=my_dll, logger=logger)
 
         my_ini = Path.LnCheckPath(d_vars['iniFile'], errorOnPathNotFound=True)
         my_ini.LnBackup(d_vars['backupDir'], logger=logger)
@@ -38,6 +49,7 @@ def SetExecutor(d_vars, logger, fEXECUTE=False):
 
     CMDList.append(my_exe)
     CMDList.append('-s')
+
 
     return CMDList
 
