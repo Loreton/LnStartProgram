@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 20-01-2020 08.41.37
+# Version ......: 22-03-2020 16.52.45
 #
 # #############################################
 
@@ -160,7 +160,7 @@ if __name__ == '__main__':
         sys.exit()
 
 
-    ''' 
+    '''
         Searching for ROOT path in the script path. It's identified by 'LnDisk' subdirectory
     '''
     root_dir = Path(g_script_path)
@@ -224,7 +224,7 @@ if __name__ == '__main__':
                     multiple_paths.append(item)
             lnLogger.info('envar {0:<15}'.format(_name), multiple_paths)
 
-            if _name == 'JAVA_HOME': 
+            if _name == 'JAVA_HOME':
                 ''' get the first valid path and prepare it to be inserted into the PATH '''
                 os.environ[_name] = multiple_paths[0]
                 config['PATHS'].append(multiple_paths[0] + '/bin')
@@ -254,13 +254,6 @@ if __name__ == '__main__':
     path_len=len(python_home)
     myPath = [_path for _path in myPath if not _path[:path_len].lower() == python_home.lower()]
 
-        # - add python home path
-    myPath.insert(0, python_home)
-
-        # - replace PATH environment variable
-    myPath = [i for i in myPath if i.strip()]   # remove empty entries
-    os.environ['PATH'] = ';'.join(myPath)
-    lnLogger.info('new PATHs', os.getenv('PATH'))
 
         # -------------------------------------------------
         # - Setting pythonpath variable
@@ -270,14 +263,30 @@ if __name__ == '__main__':
     for _path in config['PYTHON_PATHS']:
         path = Path.LnCheckPath(_path, errorOnPathNotFound=False)
         lnLogger.info('adding PATH', _path)
-        if _path in pyPath:
-            myPath.remove(_path) # delete if exists... per averli in ordine
+
+        pyPath.remove(_path) if _path in pyPath # delete if exists... per averli in ordine
         pyPath.append(_path)
+
+        myPath.remove(_path) if _path in myPath  # delete if exists... non serve a parte la python_home
+        # myPath.append(_path)
+
     pyPath = [i for i in pyPath if i.strip()]   # remove empty entries
     os.environ['PYTHONPATH'] = ';'.join(pyPath)
     lnLogger.info('new PYTHONPATHs', os.getenv('PYTHONPATH'))
 
+    # --- Add python_home to PATH.
+    myPath.insert(0, python_home)
 
+    # --- uncomment if you want to put alle python_path into PATH variable
+    # myPath.extend(pyPath)
+
+        # - replace PATH environment variable
+    myPath = [i for i in myPath if i.strip()]   # remove empty entries
+    os.environ['PATH'] = ';'.join(myPath)
+    lnLogger.info('new PATHs', os.getenv('PATH'))
+
+
+    # for _path in os.getenv('PATH').split(';'): print(_path)
 
 
     programToStart = inpArgs.program
