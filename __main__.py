@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 22-03-2020 16.52.45
+# Version ......: 22-04-2020 09.11.10
 #
 # #############################################
 
@@ -225,9 +225,10 @@ if __name__ == '__main__':
             lnLogger.info('envar {0:<15}'.format(_name), multiple_paths)
 
             if _name == 'JAVA_HOME':
-                ''' get the first valid path and prepare it to be inserted into the PATH '''
-                os.environ[_name] = multiple_paths[0]
-                config['PATHS'].append(multiple_paths[0] + '/bin')
+                if multiple_paths: # - potrebbero essere tutti path non validi
+                    ''' get the first valid path and prepare it to be inserted into the PATH '''
+                    os.environ[_name] = multiple_paths[0]
+                    config['PATHS'].append(multiple_paths[0] + '/bin')
             else:
                 os.environ[_name] = ';'.join(multiple_paths)
 
@@ -264,10 +265,12 @@ if __name__ == '__main__':
         path = Path.LnCheckPath(_path, errorOnPathNotFound=False)
         lnLogger.info('adding PATH', _path)
 
-        pyPath.remove(_path) if _path in pyPath # delete if exists... per averli in ordine
+        if _path in pyPath: # delete if exists... per averli in ordine
+            pyPath.remove(_path)
         pyPath.append(_path)
 
-        myPath.remove(_path) if _path in myPath  # delete if exists... non serve a parte la python_home
+        if _path in myPath:  # delete if exists... non serve a parte la python_home
+            myPath.remove(_path)
         # myPath.append(_path)
 
     pyPath = [i for i in pyPath if i.strip()]   # remove empty entries

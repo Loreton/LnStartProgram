@@ -35,14 +35,14 @@ VARS:
     # --- Generic
     Ln_GitRepoDir:          ${VARS.Ln_RootDir}\GIT-REPO
     JAVA_HOME:   # only the first valid path will be used and path/bin will be added to PATH variables
-        - c:\Program Files\Java\jdk1.8.0_221
-        - c:\Program Files (x86)\Java\jre1.8.0_241
-        - ${VARS.Ln_FreeDir}\Pgm\Java\jdk1.8.0_66
+        - ${VARS.Ln_FreeDir}\Pgm\Java\jre1.8.0_66x
+        - c:\Program Files\Java\jre1.8.0_251x
+
     Ln_PortableAppsDir:     ${VARS.Ln_RootDir}\PortableApps\PortableApps
     Ln_myEditor:            ${VARS.Ln_FreeDir}\Editors\SublimeText_3\sublime_text.exe
     Ln_myBrowser:           ${VARS.Ln_FreeDir}\Network\Browser\Opera\launcher.exe
     Ln_pdfViewer:           ${VARS.Ln_PortableAppsDir}\FoxitReaderPortable\FoxitReaderPortable.exe
-    Ln_BrowserForSublime:   C:\Filu_C\LnDisk\LnFree\Network\Browser\Opera\launcher.exe
+    Ln_BrowserForSublime:   c:\@LnLocalUtils\Opera\launcher.exe
 
 
     # --- Winscp & Kitty
