@@ -1,7 +1,7 @@
 # #############################################
 #
 # updated by ...: Loreto Notarantonio
-# Version ......: 22-04-2020 09.11.10
+# Version ......: 25-04-2020 12.08.34
 #
 # #############################################
 
@@ -281,7 +281,7 @@ if __name__ == '__main__':
     myPath.insert(0, python_home)
 
     # --- uncomment if you want to put alle python_path into PATH variable
-    # myPath.extend(pyPath)
+    myPath.extend(pyPath)
 
         # - replace PATH environment variable
     myPath = [i for i in myPath if i.strip()]   # remove empty entries
